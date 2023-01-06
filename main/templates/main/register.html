@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Raleway:200'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Register</title>
+    <style>
+        textarea:focus,
+        input:focus {
+            outline: none;
+        }
+
+
+        body,
+        html {
+            height: 100%;
+
+            font-family: 'Raleway', sans-serif;
+            font-weight: 200;
+        }
+
+        .otp-box {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            text-align: center;
+            border: 1px solid black;
+            position: relative;
+            left: 20px;
+        }
+        @media (max-width:600px){
+            .logout{
+                position: fixed;
+                left: 100px;
+                
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p style="font-size:54px ; font-weight: 700; text-align: center; margin-bottom: 50px;">Registration</p>
+    <div class="logout" style="text-align: right; position: relative; bottom: 100px; margin-right: 20px;">
+        <button type="button" style="background-color:red ;border:0; border-radius:14px;color: white; font-weight: 700;" onclick="location.href='{% url 'log' %}' ">Logout</button>
+    </div>
+    <div class="registerForm">
+        <div id="TeamForm" style="display: flex; flex-direction: column;">
+            <form action="submit/" method="POST">
+                {% csrf_token %}
+                <div class="info" style=" margin-left: 20px;">
+                    <div class="input-field" style="display:flex ; align-items: center; ">
+                        <p>Name</p>
+                        <input type="text" name="LeaderName" spellcheck="false" data-ms-editor="true"
+                            style="width: 500px; height: 50%; position: relative; left: 93px; bottom: 5px;" required>
+                    </div>
+                    <div class="input-field" style="display:flex ; align-items: center; ">
+                        <p>Contact_No.</p>
+                        <input type="text" name="LeaderContact_no" spellcheck="false" data-ms-editor="true"
+                            style="width: 500px; height: 50%; position: relative; left: 47px; bottom: 5px;" required>
+                    </div>
+                    <div class="input-field" style="display:flex ; align-items: center; ">
+                        <p style="display: none;" >Email</p>
+                        <input type="text" name="LeaderEmail" spellcheck="false" data-ms-editor="true"
+                            style="width:500px; height: 50%; position: relative; left:95px ; bottom: 5px; display: none;" value="{{email}}" required>
+                    </div>
+                    <div id="container"></div>
+
+                </div>
+
+                <div
+                    style="display: flex; justify-content:center; flex-direction: row; justify-content:flex-end; flex-direction: column; width: 50%; max-width: 150px;">
+
+                    <button style=" margin-left: 20px;margin-bottom: 30px; position: relative; top: 10px; background-color: orangered;border: 0;border-radius: 14px;color: white;font-weight: 700;"
+                        id="add-more-button">Add member</button>
+                    <input style="margin-left: 20px; background-color: greenyellow;color: white;font-weight: 700;border: 0;border-radius: 14px; text-align: center;" type="submit" value="REGISTER">
+                </div>
+
+            </form>
+            
+            <script>
+                window.onload = function (e) {
+                    const addMoreButton = document.getElementById('add-more-button');
+                    const container = document.getElementById('container');
+
+                    let count = 1;
+                    addMoreButton.addEventListener('click', function () {
+
+                        const newElement = document.createElement('div');
+                        newElement.innerHTML = `
+                        <p>Member ${count}</p>
+              <div class="input-field" style="display:flex ; align-items: center; ">
+                        <p>Name</p>
+                        <input type="text" name="name" spellcheck="false" data-ms-editor="true"
+                            style="width: 500px; height: 50%; position: relative; left: 93px; bottom: 5px;" required>
+                    </div>
+                    <div class="input-field" style="display:flex ; align-items: center; ">
+                        <p>Contact_No.</p>
+                        <input type="text" name="contact_no" spellcheck="false" data-ms-editor="true"
+                            style="width: 500px; height: 50%; position: relative; left: 47px; bottom: 5px;" required>
+                    </div>
+  <button type="button" class="btn btn-danger delete-button" style="margin-left:300px;color:white;font-weight:700;" onclick="Delete()">Delete</button>
+    
+`;
+                        container.append(newElement);
+                        count++;
+                    })
+
+                }
+
+                function Delete() {
+                    const deleteButtons = document.querySelectorAll('.delete-button');
+                    deleteButtons.forEach(button => {
+                        button.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            const div = event.target.closest('div');
+                            div.remove();
+                        });
+                    });
+                }
+
+                
+            </script>
+</body>
+
+</html>
