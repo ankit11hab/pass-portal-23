@@ -12,15 +12,15 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 
 config = {
-  'apiKey': "AIzaSyC8N2qP1oHpViVAV-TADSGvM5tRrawo0F8",
-  'authDomain': "passportal-b43c7.firebaseapp.com",
-  'databaseURL':"https://passportal-b43c7-default-rtdb.firebaseio.com/",
-  'projectId': "passportal-b43c7",
-  'storageBucket': "passportal-b43c7.appspot.com",
-  'messagingSenderId': "248589796957",
-  'appId': "1:248589796957:web:cdeb2232356200ead66fb4",
-  'measurementId': "G-X8ZLQS5E75",
-  "serviceAccount": "main/serviceAccountKey.json"
+  'apiKey': "AIzaSyCkFXpXE7teeesfREQtEiBN48LKnLYTqp0",
+  'authDomain': "pass-portal-c7ebd.firebaseapp.com",
+  'databaseURL':"https://pass-portal-c7ebd-default-rtdb.firebaseio.com/",
+  'projectId': "pass-portal-c7ebd",
+  'storageBucket': "pass-portal-c7ebd.appspot.com",
+  'messagingSenderId': "780759810916",
+  'appId': "1:780759810916:web:e59f55cd9b200062a3b071",
+  'measurementId': "G-PNVV3374ZZ",
+    "serviceAccount": "main/serviceAccountKey.json"
 }
 
 firebase=pyrebase.initialize_app(config)
@@ -38,7 +38,8 @@ def generate_qr_code(request):
     email=request.session.get('LeaderEmail')
     count=request.session.get('count')
     img = qrcode.make({'email':email,'count':count})
-    
+    from_email = settings.EMAIL_HOST_USER
+
     with tempfile.TemporaryFile() as fp:
         img.save(fp)
         
@@ -49,8 +50,8 @@ def generate_qr_code(request):
         message = EmailMessage(
             'QR code',
             'Here is the QR code you requested',
-            'siddhant.s@iitg.ac.in',
-            [email],
+            from_email,
+            [email],    
         )
         
        
@@ -60,13 +61,16 @@ def generate_qr_code(request):
         message.send()
     
     return HttpResponse('QR code email sent!')
+
+def otpPage(request):
+    return render(request,'main/otp.html')
+
 def postsignIn(request):
     email=request.POST.get('email')
     pasw=request.POST.get('pass')
     request.session['execEmail']=email
     
     try:
-       
         user=authe.sign_in_with_email_and_password(email,pasw)
     except:
         message="Invalid Credentials!!Please ChecK your Data"
@@ -74,8 +78,6 @@ def postsignIn(request):
     session_id=user['idToken']
     request.session['uid']=str(session_id)
     return render(request,"main/otp.html",{"email":email})
-  
-
   
 
 def logout(request):
@@ -126,20 +128,25 @@ def register(request):
     return render(request,'main/register.html',{'email':email})
 
 def SaveData(request):
+    execEmail =request.session['execEmail']
     LeaderName=request.POST.get('LeaderName')
     LeaderContact_no=request.POST.get('LeaderContact_no')
     LeaderEmail=request.POST.get('LeaderEmail')
+    LeaderPassType=request.POST.get('LeaderPassType')
     member_names = request.POST.getlist('name')
     member_contacts=request.POST.getlist('contact_no')
+    member_pass_type=request.POST.getlist('pass_type')
+    print(execEmail)
     count=1
     for i in member_names:
         count=count+1
     request.session['count']=count
     members = []
-    for name, contact in zip(member_names, member_contacts):
+    for name, contact,passtype in zip(member_names, member_contacts,member_pass_type):
         member = {
             "name": name,
-            "contact": contact
+            "contact": contact,
+            "passType":passtype
         }
         members.append(member)
 
@@ -148,6 +155,8 @@ def SaveData(request):
         "LName": LeaderName,
         "LContact": LeaderContact_no,
         "LEmail": LeaderEmail,
+        "LPassType":LeaderPassType,
+        "ExecEmail":execEmail,
         "members": members
     }
     
@@ -155,5 +164,5 @@ def SaveData(request):
     doc_ref.set(data)
 
     generate_qr_code(request)
-    return redirect('/postsignIn/register/')
+    return redirect('/postsignIn/otppage/')
 
