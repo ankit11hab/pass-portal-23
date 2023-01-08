@@ -10,18 +10,18 @@ import pyrebase
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+import os
 
 config = {
-  'apiKey': "AIzaSyCkFXpXE7teeesfREQtEiBN48LKnLYTqp0",
-  'authDomain': "pass-portal-c7ebd.firebaseapp.com",
-  'databaseURL':"https://pass-portal-c7ebd-default-rtdb.firebaseio.com/",
-  'projectId': "pass-portal-c7ebd",
-  'storageBucket': "pass-portal-c7ebd.appspot.com",
-  'messagingSenderId': "780759810916",  
-  'appId': "1:780759810916:web:e59f55cd9b200062a3b071",
-  'measurementId': "G-PNVV3374ZZ",
-    "serviceAccount": "main/serviceAccountKey.json"
+  'apiKey': os.environ.get('API_KEY'),
+  'authDomain': "pass-portal-a05c7.firebaseapp.com",
+  'databaseURL':"https://pass-portal-a05c7-default-rtdb.firebaseio.com/",
+  'projectId': "pass-portal-a05c7",
+  'storageBucket': "pass-portal-a05c7.appspot.com",
+  'messagingSenderId': "160016579583",
+  'appId': "1:160016579583:web:e04e2383bfd944f4aa05ca",
 }
+
 
 firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
