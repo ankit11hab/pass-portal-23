@@ -17,7 +17,7 @@ config = {
   'databaseURL':"https://pass-portal-c7ebd-default-rtdb.firebaseio.com/",
   'projectId': "pass-portal-c7ebd",
   'storageBucket': "pass-portal-c7ebd.appspot.com",
-  'messagingSenderId': "780759810916",
+  'messagingSenderId': "780759810916",  
   'appId': "1:780759810916:web:e59f55cd9b200062a3b071",
   'measurementId': "G-PNVV3374ZZ",
     "serviceAccount": "main/serviceAccountKey.json"
@@ -110,14 +110,10 @@ def verify(request):
 
 def verify_otp(request):
         otp1 = request.POST.get('otp1')
-        otp2 = request.POST.get('otp2')
-        otp3 = request.POST.get('otp3')
-        otp4 = request.POST.get('otp4')
         otp = request.session.get('otp')
        
-        OTP = int(otp1 + otp2 + otp3 + otp4)
+        OTP = int(otp1)
         print(OTP)
-        print(otp)
         if OTP == otp:
             return redirect('/postsignIn/register/')
         else:
@@ -135,21 +131,17 @@ def SaveData(request):
     LeaderPassType=request.POST.get('LeaderPassType')
     member_names = request.POST.getlist('name')
     member_contacts=request.POST.getlist('contact_no')
-    member_pass_type=request.POST.getlist('pass_type')
-    print(execEmail)
     count=1
     for i in member_names:
         count=count+1
     request.session['count']=count
     members = []
-    for name, contact,passtype in zip(member_names, member_contacts,member_pass_type):
+    for name, contact in zip(member_names, member_contacts):
         member = {
             "name": name,
             "contact": contact,
-            "passType":passtype
         }
         members.append(member)
-
     
     data = {
         "LName": LeaderName,
