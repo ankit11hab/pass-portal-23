@@ -1,4 +1,3 @@
-
 from django.shortcuts import render,redirect,HttpResponse
 import qrcode
 import tempfile
@@ -13,15 +12,16 @@ from firebase_admin import firestore
 import os
 
 config = {
-  'apiKey': os.environ.get('API_KEY'),
-  'authDomain': "pass-portal-a05c7.firebaseapp.com",
-  'databaseURL':"https://pass-portal-a05c7-default-rtdb.firebaseio.com/",
-  'projectId': "pass-portal-a05c7",
-  'storageBucket': "pass-portal-a05c7.appspot.com",
-  'messagingSenderId': "160016579583",
-  'appId': "1:160016579583:web:e04e2383bfd944f4aa05ca",
+  'apiKey': "AIzaSyC8N2qP1oHpViVAV-TADSGvM5tRrawo0F8",
+  'authDomain': "passportal-b43c7.firebaseapp.com",
+  'databaseURL':"https://passportal-b43c7-default-rtdb.firebaseio.com/",
+  'projectId': "passportal-b43c7",
+  'storageBucket': "passportal-b43c7.appspot.com",
+  'messagingSenderId': "248589796957",
+  'appId': "1:248589796957:web:cdeb2232356200ead66fb4",
+  'measurementId': "G-X8ZLQS5E75",
+  "serviceAccount": "main/serviceAccountKey.json"
 }
-
 
 firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
@@ -29,11 +29,7 @@ cred = credentials.Certificate('main/serviceAccountKey.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-def login(request):
-    return render(request,'main/login.html')
-
-
-
+# -----------------------------code for qr code----------------------
 def generate_qr_code(request):
     email=request.session.get('LeaderEmail')
     count=request.session.get('count')
@@ -62,63 +58,9 @@ def generate_qr_code(request):
     
     return HttpResponse('QR code email sent!')
 
-def otpPage(request):
-    return render(request,'main/otp.html')
+# -----------------end---------------------------------
 
-def postsignIn(request):
-    email=request.POST.get('email')
-    pasw=request.POST.get('pass')
-    request.session['execEmail']=email
-    
-    try:
-        user=authe.sign_in_with_email_and_password(email,pasw)
-    except:
-        message="Invalid Credentials!!Please ChecK your Data"
-        return render(request,"main/login.html",{"message":message})
-    session_id=user['idToken']
-    request.session['uid']=str(session_id)
-    return render(request,"main/otp.html",{"email":email})
-  
-
-def logout(request):
-    try:
-        del request.session['uid']
-    except:
-        pass
-    return render(request,"main/login.html")
-
-# def Register(request):
-    
-#     return render(request,'main/register.html')
-
-def otp(request):
-  try:
-    email=request.POST.get('email')
-    request.session['LeaderEmail']=email
-    subject = 'Your email verification email'
-    otp = random.randint(1000, 9999)
-    message = 'Your otp is '+ str(otp)
-    from_email = settings.EMAIL_HOST_USER
-    send_mail(subject, message, from_email, [email])
-  except Exception as e:
-            print(e)
-  request.session['otp'] = otp
-  return redirect('/postsignIn/verify/')
-
-def verify(request):
-   return render(request,'main/verify.html')
-
-def verify_otp(request):
-        otp1 = request.POST.get('otp1')
-        otp = request.session.get('otp')
-       
-        OTP = int(otp1)
-        print(OTP)
-        if OTP == otp:
-            return redirect('/postsignIn/register/')
-        else:
-            return redirect('/postsignIn/verify/')
-
+# -------------------------Code for registration-----------------------------
 def register(request):
     email=request.session.get('LeaderEmail')
     return render(request,'main/register.html',{'email':email})
@@ -158,3 +100,4 @@ def SaveData(request):
     generate_qr_code(request)
     return redirect('/postsignIn/otppage/')
 
+    # ---------------------------end------------------------
