@@ -35,9 +35,10 @@ def payment_error(request):
 
 @csrf_exempt
 def payment_response(request):
-    if request.method=='post':
+    context = {"message": '', "success": 0, "tid": ''}
+    if request.method == 'post':
         secretkey = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
-        data=request.POST['data']
+        data = request.POST['data']
         data = decrypt(secretkey, data)
         split_data = data.split('|')
         status = split_data[4]
@@ -47,7 +48,8 @@ def payment_response(request):
         if status == 1:
             context = {"message": "", "success": 1, "tid": tid}
             leader_id = id
-            doc_ref = db.collection('users').document(leader_id).get().to_dict()
+            doc_ref = db.collection('users').document(
+                leader_id).get().to_dict()
 
             leader_data = {
                 "name": doc_ref.LName,
@@ -68,7 +70,7 @@ def payment_response(request):
             doc_ref2 = db.collection('verified_users').document()
             doc_ref2.set(member_data)
             print(context)
-            return render(request,"payment/response.html",context)
+            return render(request, "payment/response.html", context)
         else:
             context = {"message": errDesc, "success": 0, "tid": tid}
         print(context)
