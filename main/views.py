@@ -141,7 +141,6 @@ def SaveData(request):
         "LContact": LeaderContact_no,
         "LEmail": LeaderEmail,
         "LPassType":LeaderPassType,
-        "ExecEmail":execEmail,
         "members": members
     }
     
