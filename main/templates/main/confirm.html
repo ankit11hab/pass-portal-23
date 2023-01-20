@@ -15,9 +15,14 @@
       action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp"
     >
       {% csrf_token %}
-      <input type="hidden" name="data" value="{{message}}" />
+      <input type="hidden" name="data" value="{{message.encryptedData}}" />
       <button type="submit">submit</button>
     </form>
     {%endfor%}
   </body>
+  <script>
+    {% for message in messages%}
+    window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF","{{message.id}}")
+    {%endfor%}
+  </script>
 </html>

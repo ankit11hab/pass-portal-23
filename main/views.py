@@ -112,8 +112,10 @@ def SaveData(request):
                                     string.digits, k=11))
         amount = 1
         fee_id = "M1006"
+        print(id)
         data = id+"|"+fee_id+"|"+str(amount)
         encryptedData = encrypt(key, data, iv)
+        print(encryptedData)
         # print(encryptedData)
         LeaderName = request.POST.get('LeaderName')
         LeaderContact_no = request.POST.get('LeaderContact_no')
@@ -143,11 +145,12 @@ def SaveData(request):
             "members": members
         }
 
-        doc_ref = db.collection('users').document()
+        doc_ref = db.collection('users').document(id)
         doc_ref.set(data)
 
         generate_qr_code(request, members, data)
-        messages.info(request, encryptedData)
+        messages.info(request, {"encryptedData": encryptedData, "id": id})
+
     return redirect('confirm')
 
 
