@@ -36,16 +36,20 @@ def payment_error(request):
 @csrf_exempt
 def payment_response(request):
     context = {"message": '', "success": 0, "tid": ''}
+    print(context)
     if request.method == 'post':
+        print("inside post")
         secretkey = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         data = request.POST['data']
-        data = decrypt(secretkey, data)
-        split_data = data.split('|')
+        decrypt_data = decrypt(secretkey, data)
+        print(decrypt_data)
+        split_data = decrypt_data.split('|')
         status = split_data[4]
         errDesc = split_data[5]
         tid = split_data[3]
         id = split_data[0]
         if status == 1:
+            print("inside 1")
             context = {"message": "", "success": 1, "tid": tid}
             leader_id = id
             doc_ref = db.collection('users').document(
@@ -72,6 +76,7 @@ def payment_response(request):
             print(context)
             return render(request, "payment/response.html", context)
         else:
+            print("inside not 1")
             context = {"message": errDesc, "success": 0, "tid": tid}
         print(context)
     return render(request, "payment/response.html", context)
