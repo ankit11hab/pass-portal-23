@@ -67,11 +67,12 @@ def payment_response(request):
                 }
             doc_ref2 = db.collection('verified_users').document()
             doc_ref2.set(member_data)
-
+            print(context)
+            return render(request,"payment/response.html",context)
         else:
             context={"message":errDesc,"success":0,}
-        
-        print(context)
+            print(context)
+            return render(request,"payment/response.html",context)
 
     
-    return render("response.html")
+    # return render(request,"payment/response.html")

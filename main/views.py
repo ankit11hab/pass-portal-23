@@ -112,7 +112,7 @@ def SaveData(request):
         iv="adjfytryd5g87hgh"
         id=''.join(random.choices(string.ascii_uppercase +
                              string.digits, k=11))
-        amount=1
+        amount=0.1
         fee_id="M1006"
         data=id+"|"+fee_id+"|"+str(amount)
         encryptedData=encrypt(key,data,iv)
