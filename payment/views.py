@@ -68,8 +68,9 @@ def payment_response(request):
             doc_ref2.set(member_data)
 
         else:
-            cotext={"message":errDesc,"success":0,}
+            context={"message":errDesc,"success":0,}
         
+        print(context)
 
     
     return render("response.html")
