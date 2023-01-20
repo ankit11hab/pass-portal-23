@@ -45,7 +45,7 @@ def get_status_ajax(request):
 def payment_response(request):
     context = {"message": '', "success": 0, "tid": ''}
     print(context)
-    if request.method == 'post':
+    if request.method == 'POST':
         print("inside post")
         secretkey = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         data = request.POST['data']
