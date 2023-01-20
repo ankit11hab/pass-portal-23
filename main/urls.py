@@ -2,13 +2,14 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.login, name = 'Login'),
+    # path('', views.login, name = 'Login'),
 
     path('mail',views.generate_qr_code,name='QRcode'),
     path('postsignIn/', views.postsignIn),
     # path('signUp/', views.signUp, name="signup"),
-    path('logout/', views.logout, name="logout"),
+    # path('logout/', views.logout, name="logout"),
     # path('postsignIn/otp/',views.otp,name='otp'),
+    path('postsignIn/confirm/',views.confirm,name="confirm"),
     path('postsignIn/otppage/',views.otpPage,name='otpPage'),
     path('postsignIn/submit/',views.otp,name='otp'),
     path('postsignIn/verify/',views.verify,name='verify'),

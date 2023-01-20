@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<body>
+    Status: <span id="status">{{currstatus}}</span>
+</body>
+<script type="text/javascript">
+    const check = setInterval(function(){
+        $.ajax(
+        {
+            type:"GET",
+            url: "{% url 'get_status_ajax' %}",
+            success: function( data ) 
+            {
+                if(data.currstatus==="verified")
+                    location.href="{% url 'payment_success' %}"
+                else if(data.currstatus==="error") {
+                    document.getElementById("status").innerText = data.error;
+                    console.log("here")
+                    clearInterval(check);
+                }
+                else {
+                    document.getElementById("status").innerText = "Payment is under process";
+                }
+            }
+        })
+    }, 4000);
+</script>
+</html>

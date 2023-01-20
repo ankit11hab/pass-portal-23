@@ -20,7 +20,9 @@ from django.conf.urls.static import static
 from django.conf.urls.static import serve
 
 
-urlpatterns = [path('',include('main.urls')),
+urlpatterns = [
+    path('',include('main.urls')),
+    path('payment/',include('payment.urls')),
     path('admin/', admin.site.urls),
     
 ]

@@ -1,16 +1,20 @@
 
 from django.shortcuts import render,redirect,HttpResponse
 import qrcode
+import string
+import random
 import tempfile
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
 import random
+from .encrypt_decrypt import encrypt,decrypt
 from django.conf import settings
-import pyrebase
+# import pyrebase
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 import os
+from django.contrib import messages
 
 config = {
   'apiKey': os.environ.get('API_KEY'),
@@ -23,14 +27,14 @@ config = {
 }
 
 
-firebase=pyrebase.initialize_app(config)
-authe = firebase.auth()
+# firebase=pyrebase.initialize_app(config)
+# authe = firebase.auth()
 cred = credentials.Certificate('main/serviceAccountKey.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-def login(request):
-    return render(request,'main/login.html')
+# def login(request):
+#     return render(request,'main/login.html')
 
 
 
@@ -121,9 +125,20 @@ def verify_otp(request):
 
 def register(request):
     email=request.session.get('LeaderEmail')
+
     return render(request,'main/register.html',{'email':email})
 
 def SaveData(request):
+    if request.method=='POST':
+        key="Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
+        iv="1234567890123456"
+        id=''.join(random.choices(string.ascii_uppercase +
+                             string.digits, k=11))
+        amount=9
+        fee_id="M1006"
+        data=id+"|"+fee_id+"|"+str(amount)
+        encryptedData=encrypt(key,data,iv)
+        print(encryptedData)
     execEmail =request.session['execEmail']
     LeaderName=request.POST.get('LeaderName')
     LeaderContact_no=request.POST.get('LeaderContact_no')
@@ -155,6 +170,10 @@ def SaveData(request):
     doc_ref = db.collection('users').document()
     doc_ref.set(data)
 
-    generate_qr_code(request)
-    return redirect('/postsignIn/otppage/')
+    # generate_qr_code(request)
+    messages.info(request,encryptedData)
+    return redirect('/postsignIn/confirm/')
+
+def confirm(request):
+    return render(request,'main/confirm.html')
 
