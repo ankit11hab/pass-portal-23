@@ -70,30 +70,8 @@ def otpPage(request):
     return render(request,'main/otp.html')
 
 def postsignIn(request):
-    email=request.POST.get('email')
-    pasw=request.POST.get('pass')
-    request.session['execEmail']=email
-    
-    try:
-        user=authe.sign_in_with_email_and_password(email,pasw)
-    except:
-        message="Invalid Credentials!!Please ChecK your Data"
-        return render(request,"main/login.html",{"message":message})
-    session_id=user['idToken']
-    request.session['uid']=str(session_id)
-    return render(request,"main/otp.html",{"email":email})
+    return render(request,"main/otp.html")
   
-
-def logout(request):
-    try:
-        del request.session['uid']
-    except:
-        pass
-    return render(request,"main/login.html")
-
-# def Register(request):
-    
-#     return render(request,'main/register.html')
 
 def otp(request):
   try:
@@ -131,14 +109,15 @@ def register(request):
 def SaveData(request):
     if request.method=='POST':
         key="Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
-        iv="1234567890123456"
+        iv="adjfytryd5g87hgh"
         id=''.join(random.choices(string.ascii_uppercase +
                              string.digits, k=11))
         amount=9
         fee_id="M1006"
         data=id+"|"+fee_id+"|"+str(amount)
         encryptedData=encrypt(key,data,iv)
-        print(encryptedData)
+        print(decrypt(key,"ZEC7argQsqGS97sr5VQbP/an5jiU7K43bB1meR7/c0Q=YWRqZnl0cnlkNWc4N2hnaA=="))
+        # print(encryptedData)
     execEmail =request.session['execEmail']
     LeaderName=request.POST.get('LeaderName')
     LeaderContact_no=request.POST.get('LeaderContact_no')

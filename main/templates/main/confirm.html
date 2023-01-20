@@ -9,7 +9,8 @@
 <body>
     <h1>COnfirm?</h1>
     {% for message in messages %}
-    <form method="post" action="https://alcheringa.in">
+    <form method="post" action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp">
+        {% csrf_token %}
         <input type="hidden" name="data" value='{{message}}'>
         <button type="submit">submit</button>
     </form>
