@@ -118,7 +118,6 @@ def SaveData(request):
         encryptedData=encrypt(key,data,iv)
         print(decrypt(key,"ZEC7argQsqGS97sr5VQbP/an5jiU7K43bB1meR7/c0Q=YWRqZnl0cnlkNWc4N2hnaA=="))
         # print(encryptedData)
-    execEmail =request.session['execEmail']
     LeaderName=request.POST.get('LeaderName')
     LeaderContact_no=request.POST.get('LeaderContact_no')
     LeaderEmail=request.POST.get('LeaderEmail')
