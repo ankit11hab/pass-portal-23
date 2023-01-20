@@ -41,11 +41,14 @@ def get_status_ajax(request):
 @csrf_exempt
 def payment_response(request):
     context = {"message": '', "success": 0, "tid": ''}
-    if request.method == 'POST':
+    print(context)
+    if request.method == 'post':
+        print("inside post")
         secretkey = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         data = request.POST['data']
-        decryptdata = decrypt(secretkey, data)
-        split_data = decryptdata.split('|')
+        decrypt_data = decrypt(secretkey, data)
+        print(decrypt_data)
+        split_data = decrypt_data.split('|')
         status = split_data[4]
         errDesc = split_data[5]
         tid = split_data[3]
@@ -55,6 +58,7 @@ def payment_response(request):
         doc_ref = db.collection('users').document(
             leader_id)
         if status == "1":
+            print("inside 1")
             context = {"message": "", "success": 1, "tid": tid}
             doc_ref.update({"currStatus": "verified"})
             leader_data = {
