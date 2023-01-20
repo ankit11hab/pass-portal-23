@@ -18,7 +18,7 @@ def payment_error(request):
 
 
 # def payment_status(request):
-#     return render(request, 'payment/payment_status.html', {'currstatus':'Payment is under process'})
+#     return render(request, 'payment/payment_status.html', {'currStatus':'Payment is under process'})
 
 
 def get_status_ajax(request):
@@ -28,12 +28,15 @@ def get_status_ajax(request):
 
         doc_ref = db.collection('users').document(id).get().to_dict()
         print(doc_ref)
-        if doc_ref['currStatus'] == "verified":
-            return JsonResponse({"currstatus": "verified"})
-        elif doc_ref['currStatus'] == "error":
-            return JsonResponse({"currstatus": "error", "error": doc_ref['error']})
+        if 'currStatus' in doc_ref:
+            if doc_ref['currStatus'] == "verified":
+                return JsonResponse({"currStatus": "verified"})
+            elif doc_ref['currStatus'] == "error":
+                return JsonResponse({"currStatus": "error", "error": doc_ref['error']})
+            else:
+                return JsonResponse({"currStatus": "Payment is under process"})
         else:
-            return JsonResponse({"currstatus": "Payment is under process"})
+            return JsonResponse({"currStatus": "Payment is under process"})
     else:
         return HttpResponse("Request method is not a GET")
 

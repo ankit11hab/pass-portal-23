@@ -20,9 +20,9 @@
         url: "{% url 'get_status_ajax' %}",
         data: { id: id },
         success: function (data) {
-          if (data.currstatus === "verified")
+          if (data["currStatus"] === "verified")
             location.href = "{% url 'payment_success' %}";
-          else if (data.currstatus === "error") {
+          else if (data["currStatus"] === "error") {
             document.getElementById("status").innerText = data.error;
             console.log("here");
             clearInterval(check);
