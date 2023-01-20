@@ -149,7 +149,8 @@ def SaveData(request):
         doc_ref.set(data)
 
         generate_qr_code(request, members, data)
-        messages.info(request, {"encryptedData": encryptedData, "id": id})
+        messages.info(request,  encryptedData)
+        messages.error(request, id)
 
     return redirect('confirm')
 

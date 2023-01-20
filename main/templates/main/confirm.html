@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="unsafe-url">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="unsafe-url" />
     <title>Document</title>
   </head>
   <body>
     <h1>COnfirm?</h1>
-    {% for message in messages %}
+    {% for message in messages %} {%ifequal message.tags 'info' %}
     <form
       method="post"
       action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp"
     >
       {% csrf_token %}
-      <input type="hidden" name="data" value="{{message.encryptedData}}" />
+      <input type="hidden" name="data" value="{{message}}" />
+      {{message}}
       <button type="submit">submit</button>
     </form>
-    {%endfor%}
+    {%endifequal%} {%endfor%}
   </body>
   <script>
     {% for message in messages%}
-    window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF","{{message.id}}")
+    {% ifequal message.tags 'error'%}
+    window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF","{{message}}")
+    {%endifequal%}
     {%endfor%}
   </script>
 </html>
