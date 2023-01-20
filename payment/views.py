@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from main.views import db
 from main.encrypt_decrypt import decrypt
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -32,7 +33,7 @@ def payment_error(request):
 #     else:
 #         return HttpResponse("Request method is not a GET")
 
-
+@csrf_exempt
 def payment_response(request):
     if request.method=='post':
         secretkey="Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
