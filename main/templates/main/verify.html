@@ -29,7 +29,7 @@ font-weight: 200;
 
 </style>
 <body>
-	<form action="submit/" method="POST">
+	<form action="{% url 'verify_otp'%}" method="POST">
         {% csrf_token %}
         <div class="info" style=" margin-left: 20px;">
 	<div class="input-field" >

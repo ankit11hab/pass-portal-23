@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OTP</title>
     <style>
-        @media (max-width:500px){
-            .email{
-                font-size: 32px;
-                
-            }
-            .otp{
-                font-size: 32px;
-            }
-            .sendOTP{
-                transform: scale(1.4);
-                margin-top: 30px;
-            }
-            html,body{
-        overflow-x: hidden;
-    }
+      @media (max-width: 500px) {
+        .email {
+          font-size: 32px;
         }
+        .otp {
+          font-size: 32px;
+        }
+        .sendOTP {
+          transform: scale(1.4);
+          margin-top: 30px;
+        }
+        html,
+        body {
+          overflow-x: hidden;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <div style="display: flex;justify-content: space-between;">
-        <form action="/postsignIn/submit/" method="POST" class="Form">
-            {% csrf_token %}
-            <div class="info" style=" margin-left: 20px; display: flex;">
-                <div class="input-field" style="display:flex ; align-items: center; ">
-                    <p class="email">Email</p>
-                    <input class="otp" type="text" name="email" spellcheck="false" data-ms-editor="true"
-                        style="width: 500px; height: 50%; position: relative; left: 93px; bottom: 5px;" required>
-                </div>
-                <input class="sendOTP" style="margin-left: 120px; position: relative; top: 5px; background-color: rgb(24, 179, 24);border: 0;border-radius: 14px; color: white;font-weight: 700;height: 25px;" type="submit"  value="Send OTP">
-            </div>
-        </form>
+  <body>
+    <div style="display: flex; justify-content: space-between">
+      <form action="{% url 'otp'%}" method="POST" class="Form">
+        {% csrf_token %}
+        <div class="info" style="margin-left: 20px; display: flex">
+          <div class="input-field" style="display: flex; align-items: center">
+            <p class="email">Email</p>
+            <input
+              class="otp"
+              type="text"
+              name="email"
+              spellcheck="false"
+              data-ms-editor="true"
+              style="
+                width: 500px;
+                height: 50%;
+                position: relative;
+                left: 93px;
+                bottom: 5px;
+              "
+              required
+            />
+          </div>
+          <input
+            class="sendOTP"
+            style="
+              margin-left: 120px;
+              position: relative;
+              top: 5px;
+              background-color: rgb(24, 179, 24);
+              border: 0;
+              border-radius: 14px;
+              color: white;
+              font-weight: 700;
+              height: 25px;
+            "
+            type="submit"
+            value="Send OTP"
+          />
+        </div>
+      </form>
     </div>
-</body>
-
+  </body>
 </html>

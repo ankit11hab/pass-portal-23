@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>COnfirm?</h1>
     {% for message in messages %}
-    <form method="post" action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp">
-        {% csrf_token %}
-        <input type="hidden" name="data" value='{{message}}'>
-        <button type="submit">submit</button>
+    <form
+      method="post"
+      action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp"
+    >
+      {% csrf_token %}
+      <input type="hidden" name="data" value="{{message}}" />
+      <button type="submit">submit</button>
     </form>
     {%endfor%}
-    
-</body>
+  </body>
 </html>

@@ -13,7 +13,7 @@ from main.encrypt_decrypt import decrypt
 def payment_error(request):
     error = request.GET.get('id')
     print(error)
-    return render("error.html", {'error':error})
+    return render("error.html", {'error': error})
 
 
 # def payment_status(request):
@@ -35,16 +35,16 @@ def payment_error(request):
 
 def payment_response(request):
     if request.method=='post':
-        secretkey="Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
+        secretkey = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         data=request.POST['data']
-        data=decrypt(secretkey,data)
-        split_data=data.split('|')
-        status=split_data[4]
-        errDesc=split_data[5]
-        tid=split_data[3]
-        id=split_data[0]
-        if status==1:
-            context={"message":"","success":1,"tid":tid}
+        data = decrypt(secretkey, data)
+        split_data = data.split('|')
+        status = split_data[4]
+        errDesc = split_data[5]
+        tid = split_data[3]
+        id = split_data[0]
+        if status == 1:
+            context = {"message": "", "success": 1, "tid": tid}
             leader_id = id
             doc_ref = db.collection('users').document(leader_id).get().to_dict()
 
@@ -68,8 +68,6 @@ def payment_response(request):
             doc_ref2.set(member_data)
 
         else:
-            cotext={"message":errDesc,"success":0,}
-        
-
-    
-    return render("response.html")
+            context = {"message": errDesc, "success": 0, "tid": tid}
+        print(context)
+    return render(request, "payment/response.html", context)
