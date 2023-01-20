@@ -114,42 +114,40 @@ def SaveData(request):
         fee_id = "M1006"
         data = id+"|"+fee_id+"|"+str(amount)
         encryptedData = encrypt(key, data, iv)
-        print(decrypt(
-            key, "ZEC7argQsqGS97sr5VQbP/an5jiU7K43bB1meR7/c0Q=YWRqZnl0cnlkNWc4N2hnaA=="))
         # print(encryptedData)
-    LeaderName = request.POST.get('LeaderName')
-    LeaderContact_no = request.POST.get('LeaderContact_no')
-    LeaderEmail = request.POST.get('LeaderEmail')
-    LeaderPassType = request.POST.get('LeaderPassType')
-    member_names = request.POST.getlist('name')
-    member_contacts = request.POST.getlist('contact_no')
-    member_passtype = request.POST.getlist('pass_type')
+        LeaderName = request.POST.get('LeaderName')
+        LeaderContact_no = request.POST.get('LeaderContact_no')
+        LeaderEmail = request.POST.get('LeaderEmail')
+        LeaderPassType = request.POST.get('LeaderPassType')
+        member_names = request.POST.getlist('name')
+        member_contacts = request.POST.getlist('contact_no')
+        member_passtype = request.POST.getlist('pass_type')
 
-    count = 1
-    for i in member_names:
-        count = count+1
-    request.session['count'] = count
-    members = []
-    for name, contact, pass_type in zip(member_names, member_contacts, member_passtype):
-        member = {
-            "name": name,
-            "contact": contact,
-            "pass_type": pass_type,
+        count = 1
+        for i in member_names:
+            count = count+1
+        request.session['count'] = count
+        members = []
+        for name, contact, pass_type in zip(member_names, member_contacts, member_passtype):
+            member = {
+                "name": name,
+                "contact": contact,
+                "pass_type": pass_type,
+            }
+            members.append(member)
+        data = {
+            "LName": LeaderName,
+            "LContact": LeaderContact_no,
+            "LEmail": LeaderEmail,
+            "LPassType": LeaderPassType,
+            "members": members
         }
-        members.append(member)
-    data = {
-        "LName": LeaderName,
-        "LContact": LeaderContact_no,
-        "LEmail": LeaderEmail,
-        "LPassType": LeaderPassType,
-        "members": members
-    }
 
-    doc_ref = db.collection('users').document()
-    doc_ref.set(data)
+        doc_ref = db.collection('users').document()
+        doc_ref.set(data)
 
-    generate_qr_code(request, members, data)
-    messages.info(request, encryptedData)
+        generate_qr_code(request, members, data)
+        messages.info(request, encryptedData)
     return redirect('confirm')
 
 
