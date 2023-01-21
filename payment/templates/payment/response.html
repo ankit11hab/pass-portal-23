@@ -6,11 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <body>
-    <h1>{{success}}</h1>
-    {% if message %}
-    <p>{{message}}</p>
-    {%endif%}
-    <h1>{{tid}}</h1>
+    <div id="status"></div>
   </body>
+  <script>
+    var id = window.localStorage.getItem(
+      "fasdlfsdaffdsui542958riuehwflu989aaSDAF"
+    );
+    const check = setInterval(function () {
+      $.ajax({
+        type: "GET",
+        url: "{% url 'get_status_ajax' %}",
+        data: { id: id },
+        success: function (data) {
+          if (data["currStatus"] === "verified")
+            location.href = "{% url 'payment_success' %}";
+          else if (data["currStatus"] === "error") {
+            document.getElementById("status").innerText = data.error;
+            console.log("here");
+            clearInterval(check);
+          } else {
+            document.getElementById("status").innerText =
+              "Payment is under process";
+          }
+        },
+      });
+    }, 4000);
+    check();
+  </script>
 </html>
