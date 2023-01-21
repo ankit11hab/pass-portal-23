@@ -2,24 +2,20 @@
   font-family: 'Star-Guard';
   src: url(../fonts/starguard.ttf) format("truetype");
 }
-@font-face {
+/* @font-face {
   font-family: 'Aileron';
   src: url(../fonts/Aileron-Bold.ttf) format("truetype");
-}
-@import url(//db.onlinewebfonts.com/c/85b716bb727b76ebc27a2d72b9f9c8b5?family=Star+Guard+Semi-Italic);
+} */
+/* @import url(//db.onlinewebfonts.com/c/85b716bb727b76ebc27a2d72b9f9c8b5?family=Star+Guard+Semi-Italic); */
 body{
     margin: 0;
-    background-image: url('Frame-14859.png');
-    background-size: 100% 100%;
+    background-image: url('/static/images/Frame-14859.png');
+    background-size: 100% 900%;
 }
 
 
 /* ////////////////////////////////////////////////// CSS for navbar starts */
-<<<<<<< HEAD
-/* @import url(https://db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold); */
-=======
-@import url('db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
->>>>>>> cd62dc9d51f025f410c4c4d6063f7f80f0e6533d
+@import url(https://db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold);
 
 *{
     padding: 0;
@@ -41,6 +37,9 @@ body{
 } */
 .passPortalContent{
     margin-bottom: 5vw;
+}
+.passImg{
+  display: block;
 }
 .exclusivePass{
      margin-top: 5vh;
@@ -121,7 +120,7 @@ body{
 
  @media screen and (max-width:800px) {
     body{
-      background-image: url("Android Large - 3.png");
+      background-image: url("/static/images/Android Large - 3.png");
       /* background-repeat: no-repeat; */
     }
     .exclusivePass{
@@ -184,7 +183,7 @@ body{
     
 /* /////////////////////////////// CSS for footer starts here */
 /* footer */
-/* @import url('https://fonts.cdnfonts.com/css/aileron'); */
+@import url('https://fonts.cdnfonts.com/css/aileron');
 
 .footer_desk {
     /* position: absolute; */

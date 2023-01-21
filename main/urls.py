@@ -10,5 +10,5 @@ urlpatterns = [
     path('verify/', views.verify, name='verify'),
     path('verify/submit/', views.verify_otp, name='verify_otp'),
     path('register/', views.register, name='register'),
-    path('register/submit/', views.SaveData, name='SaveData')
+    path('register/submit/', views.SaveData, name='SaveData'),
 ] 
