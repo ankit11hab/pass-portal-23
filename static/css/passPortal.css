@@ -38,6 +38,9 @@ body{
 .passPortalContent{
     margin-bottom: 5vw;
 }
+.passImg{
+  display: block;
+}
 .exclusivePass{
      margin-top: 5vh;
      display: flex;

@@ -19,6 +19,9 @@ body{
     padding: 0;
     margin: 0;
 }
+.form_mobile__{
+  display: none;
+}
 .navHeader{
     margin-top: 0;
 }
