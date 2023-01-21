@@ -108,7 +108,7 @@
       <form>
         <label for="email">Enter Email</label>
         <div class="form_otp_container">
-        <input type="email" class="email_input" name="email" />
+        <input type="email" class="email_input" name="email" required/>
         <button type="button" class="otp_bookbtn" id="email_submit">
           <div class="booktextnav">Submit</div>
         </button>
@@ -120,7 +120,7 @@
         {% csrf_token %}
       <label for="otp1">Enter OTP</label>
       <div class="form_otp_container">
-      <input type="number" maxlength="4" class="otp_input" name="otp1" />
+      <input type="number" maxlength="4" class="otp_input" name="otp1" required/>
       <button type="submit" class="otp_bookbtn">
         <div class="booktextnav">Verify</div>
       </button>

@@ -90,7 +90,7 @@ def SaveData(request):
         key = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         iv = "adjfytryd5g87hgh"
         id = ''.join(random.choices(string.ascii_uppercase +
-                                    string.digits, k=11))
+                                    string.digits, k=8))
         amount = 1
         fee_id = "M1006"
         print(id)

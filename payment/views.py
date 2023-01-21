@@ -10,6 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.core.mail import EmailMessage
 import qrcode
+import random
+import string
 
 
 # Create your views here.
@@ -49,18 +51,17 @@ def payment_response(request):
     context = {"message": '', "success": 0, "tid": ''}
     print(context)
     if request.method == 'POST':
-        print("inside post")
         secretkey = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         data = request.POST['data']
         decrypt_data = decrypt(secretkey, data)
         print(decrypt_data)
         split_data = decrypt_data.split('|')
-        # status = split_data[4]
-        status ='1'
+        status = split_data[4]
+        # status = '1'
         errDesc = split_data[5]
         tid = split_data[3]
-        # id = split_data[0]
-        id = "60R5234BS3J"
+        id = split_data[0]
+        # id = "60R5234BS3J"
         leader_id = id
         doc_ref = db.collection('users').document(
             leader_id)
@@ -75,18 +76,24 @@ def payment_response(request):
                 "pass_type": doc_ref.get().to_dict()['LPassType'],
                 "transID": tid,
             }
+            doc_ref2 = ''
+            while True:
+                memID = ''.join(random.choices(string.ascii_uppercase +
+                                               string.digits, k=8))
+                doc_ref2 = db.collection('verified_users').document(memID)
+                if not doc_ref2.get().exists:
+                    doc_ref2.set(leader_data)
+                    break
 
-            doc_ref2 = db.collection('verified_users').document()
-            doc_ref2.set(leader_data)
-            docref3=db.collection('verified_users').document(doc_ref2.id)
-            leader_array={
-                'name':docref3.get().to_dict()['name'],
-                'pass_type':docref3.get().to_dict()['pass_type'],
-                'id':docref3.id,
+            docref3 = db.collection('verified_users').document(doc_ref2.id)
+            leader_array = {
+                'name': docref3.get().to_dict()['name'],
+                'pass_type': docref3.get().to_dict()['pass_type'],
+                'id': docref3.id,
             }
             print(leader_array)
             i = 0
-            member_array=[]
+            member_array = []
             for member in doc_ref.get().to_dict()['members']:
                 member_data = {
                     "name": member['name'],
@@ -94,9 +101,18 @@ def payment_response(request):
                     "pass_type": member['pass_type'],
                     "transID": tid
                 }
-                doc_ref2 = db.collection('verified_users').document()
-                doc_ref2.set(member_data)
-                member_array.append({'name':member_data['name'],'pass_type':member_data['pass_type'],'id':doc_ref2.id})
+                doc_ref2 = ''
+                while True:
+                    memID = ''.join(random.choices(string.ascii_uppercase +
+                                                   string.digits, k=8))
+                    doc_ref2 = db.collection('verified_users').document(memID)
+                    if not doc_ref2.get().exists:
+                        doc_ref2.set(member_data)
+                        break
+                # doc_ref2 = db.collection('verified_users').document()
+                # doc_ref2.set(member_data)
+                member_array.append(
+                    {'name': member_data['name'], 'pass_type': member_data['pass_type'], 'id': doc_ref2.id})
                 # doc_ref = db.collection('users').document(
                 #     leader_id)
                 # members = doc_ref.get().to_dict()["members"]
@@ -117,7 +133,7 @@ def payment_response(request):
             )
             with open('reg mail.png', "rb") as f:
                 imgToSend = f.read()
-                message.attach('reg_mail.png',imgToSend,'image/png')
+                message.attach('reg_mail.png', imgToSend, 'image/png')
             message.send()
             return redirect('payment_success')
         else:
@@ -126,7 +142,6 @@ def payment_response(request):
             doc_ref.update({"currStatus": "error", "error": errDesc})
             context = {"message": errDesc, "success": 0, "tid": tid}
             print(context)
-        
 
     return render(request, "payment/response.html", context)
 
@@ -134,7 +149,6 @@ def payment_response(request):
 @csrf_exempt
 def success(request):
     return render(request, 'payment/success.html')
-
 
 
 def generate_qr_code(request, members, leader):
@@ -148,12 +162,13 @@ def generate_qr_code(request, members, leader):
         [email],
     )
     qr = qrcode.QRCode()
-    qr.add_data({'name': leader['LName'], 'pass_type': leader['LPassType'],'id':leader['id']})
+    qr.add_data(
+        {'name': leader['LName'], 'pass_type': leader['LPassType'], 'id': leader['id']})
     qr.make()
     img = qr.make_image(fill_color="black",
-                            back_color="#D9D9D9")
-    lid=leader['id']
-    img.save(f'{lid}.png',format='PNG')
+                        back_color="#D9D9D9")
+    lid = leader['id']
+    img.save(f'{lid}.png', format='PNG')
     with open(f'{lid}.png', "rb") as f:
         imgToSend = f.read()
         message.attach(f'{lid}.png', imgToSend, 'image/png')
@@ -161,12 +176,12 @@ def generate_qr_code(request, members, leader):
     for member in members:
         qr = qrcode.QRCode()
         qr.add_data(
-            {'name': member['name'], 'pass_type': member['pass_type'],'id':member['id']})
+            {'name': member['name'], 'pass_type': member['pass_type'], 'id': member['id']})
         qr.make()
         img = qr.make_image(fill_color="black",
                             back_color="#D9D9D9")
-        mid=member['id']
-        img.save(f'{mid}.png',format='PNG')
+        mid = member['id']
+        img.save(f'{mid}.png', format='PNG')
         with open(f'{mid}.png', "rb") as f:
             imgToSend = f.read()
             message.attach(f'{id}.png', imgToSend, 'image/png')
