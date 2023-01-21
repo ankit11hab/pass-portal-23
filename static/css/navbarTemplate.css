@@ -1,5 +1,9 @@
-@import url('db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
-@import url('db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
+/* @import url('db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold'); */
+/* @import url('db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron'); */
+@font-face {
+  font-family: 'Aileron';
+  src: url(../fonts/Aileron-Bold.ttf) format("truetype");
+}
 .navHeader{
     margin-top: 0;
 }
@@ -78,7 +82,7 @@ header{
 .navHeader div{
     display: grid;
     /* height: 7vw; */
-    font-family: 'Aileron Bold', 'sans-serif'
+    font-family: 'Aileron Bold', 'sans-serif';
     grid-column: 2/3;
     justify-content: start;
     align-items: center;
@@ -96,6 +100,7 @@ nav{
     align-items: center;
     flex-direction: row;
     justify-content: space-around;
+    font-family: 'Aileron';
 }
 li{
     display: flex;
@@ -248,7 +253,7 @@ li{
     margin: 1.4rem 4rem;
     
     font-size: 1.6rem;
-    font-family: 'Aileron Bold', 'sans-serif'
+    font-family: 'Aileron Bold', 'sans-serif';
     color: white !important;
     text-decoration: #0B0B0B;
     display: flex;
