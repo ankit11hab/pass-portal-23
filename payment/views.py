@@ -143,20 +143,26 @@ def generate_qr_code(request, members, leader):
         from_email,
         [email],
     )
-    img = qrcode.make(
-        {'name': leader['LName'], 'pass_type': leader['LPassType'],'id':leader['id']})
-    path=(settings.MEDIA_ROOT+'/main/')
+    qr = qrcode.QRCode()
+    qr.add_data({'name': leader['LName'], 'pass_type': leader['LPassType'],'id':leader['id']})
+    qr.make()
+    img = qr.make_image(fill_color="black",
+                            back_color="#D9D9D9")
     lid=leader['id']
-    img.save(f'{lid}.png',path=path,format='PNG')
+    img.save(f'{lid}.png',format='PNG')
     with open(f'{lid}.png', "rb") as f:
         imgToSend = f.read()
         message.attach(f'{lid}.png', imgToSend, 'image/png')
 
     for member in members:
-        img = qrcode.make(
+        qr = qrcode.QRCode()
+        qr.add_data(
             {'name': member['name'], 'pass_type': member['pass_type'],'id':member['id']})
+        qr.make()
+        img = qr.make_image(fill_color="black",
+                            back_color="#D9D9D9")
         mid=member['id']
-        img.save(f'{mid}.png',path=path,format='PNG')
+        img.save(f'{mid}.png',format='PNG')
         with open(f'{mid}.png', "rb") as f:
             imgToSend = f.read()
             message.attach(f'{id}.png', imgToSend, 'image/png')
