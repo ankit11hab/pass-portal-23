@@ -1,0 +1,1275 @@
+@import url('//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
+@import url('//db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Aileron' !important;
+}
+@import url('//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
+@import url('//db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
+body{
+    margin: 0px;
+    background-image: url("/static/images/Frame 14941.png");
+    background-size: 900% 100%;
+    font-family: 'Aileron' !important;
+}
+/* ////////////////////////////////////////////////// CSS for navbar starts */
+@import url(//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold);
+*{
+    padding: 0;
+    margin: 0;
+}
+.form_mobile__{
+  display: none;
+}
+.navHeader{
+    margin-top: 0;
+}
+.passImg{
+  display: none;
+}
+
+.navHeader a{
+    text-decoration: none;
+}
+.Ticket-details{
+  background-color: white;
+  border-radius: 2vw;
+  max-width: 400px;
+  max-height: 50vw;
+  position: relative;
+  right: 1vw;
+}
+.NavigationBar .active{
+    font-family: 'Star-Guard Semi-Italic';
+    font-style: italic;
+    /* font-family: 'Roboto', sans-serif; */
+    font-weight: 400;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+    font-size: 1.3vw;
+
+    margin-top:2.3vw;
+    padding-top:1.8vw;
+    background-image: url(./Images/Back.png);
+    
+    background-position:top;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+.Events {
+    padding-left: 1.2vw;
+    padding-right: 1vw;
+    
+}
+.Merch {
+    padding-left: 1.vw;
+    padding-right: 1vw;
+}
+.Teams .active{
+    padding-left: 1.2vw;
+    padding-right: 1vw;
+}
+.Mun .active{
+    margin-top: 2.8vw;
+    padding-left: 1.2vw;
+} 
+.Sponsors .active{
+    padding-left: 0.4vw;
+    padding-right: 0.5vw;
+}
+.Contests .active{
+    padding-left: 0.4vw;
+    padding-right: 0.5vw;
+}
+header{
+    width: 100%;
+    /* height: 7vw; */
+    background-color: #FFFBF5;
+    background-blend-mode: multiply;
+    display: grid;
+    grid-template-columns: 2rem 1fr 3fr 1fr 2rem;
+
+    color: #000000;
+    font-family: 'Aileron Bold';
+    
+    font-style: normal;
+    font-weight: 900;
+    font-size: 1vw;
+    /* identical to box height */
+
+    text-align: center;
+    text-transform: uppercase;
+}
+.navHeader div{
+    display: grid;
+    /* height: 7vw; */
+    font-family: 'Aileron Bold';
+    grid-column: 2/3;
+    justify-content: start;
+    align-items: center;
+}
+nav{
+    /* height: 7vw; */
+    grid-column: 3/4;
+}
+.NavigationBar{
+    margin-top: 0.25vw;
+}
+.NavigationBar ul{
+    /* height: 7vw; */
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: fit-content;
+}
+.NavigationBar a{
+    text-decoration: none;
+    color: black;
+    /* height: 12vh; */
+    /* background-color: aqua; */
+    padding-top: auto;
+}
+.image{
+    display: grid;
+    grid-column: 4/5;
+    align-items: center;
+    justify-content: center;
+}
+/* img{
+    height: 3vw;
+    width: 9vw;
+} */
+
+.NavigationBar a{
+    height: 6vw;
+    margin-top:8vh;
+}
+.nonGradient{
+    transition: all 0.5s ease-in-out;
+}
+.gradient{
+    background-image: linear-gradient(180deg,#FFFBF5, transparent);
+}
+.mobile{
+    display: none;
+}
+.navmob{
+    display: none;
+}
+.mobileList{
+    margin: 0px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Aileron Bold';
+    
+}
+.mobileList a{
+    font-size: 2.8vh;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    /* height: 12vh; */
+    /* background-color: aqua; */
+    padding-top: auto;
+}
+
+@media screen and (max-width:760px){
+
+    .main{
+        display: none;
+    }
+    .mobile{
+        display: flex;
+        flex-direction: column;
+        padding: 0% 2% 0% 2%;
+        background-color: #FFFBF5;
+    }
+    .navmob{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+    #logomobile{
+        margin-top: 0.6rem;
+        width: 32vw;
+    }
+    .logoticket{
+        padding-left: 0.3rem !important;
+    }
+    .booktickett{
+        font-size: 8rem;
+    }
+    .navHeader div{
+        font-family: 'Aileron Bold';  
+    }
+}
+
+/* Button */
+#btnn{
+    width: 12vw;
+    height: 3vw;
+    margin-top: 7vh;
+    border-radius: 24px;
+    box-shadow: 2px 3px 3px black;
+    background-color: #F35C41;
+    color: white;
+    
+   
+  }
+  .tickett{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bookbtnn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #booktickett{
+    font-size: 1vw;
+    padding-left: 0.4rem;
+  }
+  .logoticket{
+    width: 1.38vw;
+    padding-left: 1.0rem;
+    border: none;
+    box-shadow: none;
+    display: flex;
+  }
+  .booktickets{
+    border: none;
+    box-shadow: none;
+    width: 7.6vw;
+    display: flex;
+    padding-left: 0.5rem;
+  
+  }
+  #btnn:hover{
+    box-shadow: none;
+    -webkit-transform: translateY(-1px);
+      transform: translateY(1px)
+  }
+  a:visited {
+    background-color: #f44336;
+    color: black;
+    
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  /* Hamburger */
+  .menuItem {
+    display: block;
+    margin: 1.4rem 4rem;
+    
+    font-size: 1.6rem;
+    font-family: 'Aileron Bold';
+    color: white !important;
+    text-decoration: #0B0B0B;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  
+  .menuItem:hover {
+    text-decoration: underline;
+  }
+  
+
+  .hamburger {
+    position: fixed;
+    z-index: 100;
+    top: 1rem;
+    right: 1rem;
+    padding: 4px;
+    border: none;
+    background-color: #FFFBF5;
+    cursor: pointer;
+  }
+  
+  .closeIcon {
+    display: none;
+    background-color: #000000;
+   border: transparent;
+    
+  }
+  
+  .menu {
+    position: fixed;
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background: black;
+    color: white;
+    list-style: none;
+    padding-top: 8rem;
+  }
+  
+  .showMenu {
+    transform: translateX(0);
+  }
+
+      
+
+      
+/* ///////////////////////////////////////////////////// CSS for navbar ends here */
+.Pass-Alcher{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  padding:0 ;
+  margin-top:11.7vh;
+  margin-bottom: 15vh;
+}
+.Pass-Alcher .Pass{
+    background-image: url('/static/images/Subtract.png');
+    background-repeat: none;
+    height: 47vh;
+    width: 65vw;
+    padding: 2.5% 0%;
+    background-size: 100% 100%;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.Pass-Alcher .Pass2{
+  background-image: url('/static/images/Subtract.png');
+    background-repeat: none;
+    height: 55vh;
+    width: 75vw;
+    padding: 2.5% 0%;
+    background-size: 100% 100%;
+    display: flex;
+    box-sizing: border-box;
+}
+.addmember{
+  display: flex;
+  margin-bottom: 7vh;
+  margin-left: 9.5vw;
+}
+.shipping-section{
+  
+  
+display: flex;
+justify-content: space-evenly;
+padding: 0% 5%;
+box-sizing: border-box;
+flex-direction: column;
+
+width: 74.7%;
+
+}
+
+
+.shipping-details{
+    display: flex;
+    justify-content: space-between;
+}
+.shipping-details2{
+    display: flex;
+    justify-content: space-between;
+
+    width: 47%;
+}
+.shipping-details1 {
+    display: flex;
+    justify-content: space-between;
+
+}
+.shipping-details1 div{
+    display: flex;
+    width: 47%;
+}
+.shipping-details2 div{
+    width: 47%;
+}
+.shipping-details2 select
+{
+    display: flex;
+    width: 100% !important;
+ 
+    border: 1.5px solid #000000;
+    height: 5vh;
+    box-sizing: border-box;
+ 
+font-style: normal;
+font-weight: 400;
+font-size: 2.3vh;
+justify-content: space-between;
+padding: 0vh 1vw;
+box-sizing: border-box;
+}
+.shipping-details3{
+    display: flex;
+    justify-content: space-between;
+    width: 47%;
+}
+.shipping-details3 div {
+ width: 47% !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.3vh; 
+    }
+.shipping-details1 label{
+ 
+font-style: normal;
+font-weight: 600;
+font-size: 2.3vh; 
+}
+.shipping-details input,.shipping-details select{
+    border: 1.5px solid #000000;
+    height: 5vh;
+    box-sizing: border-box;
+    width: 47%;
+  
+font-style: normal;
+font-weight: 400;
+font-size: 2.3vh;
+
+padding: 0vh 1vw;
+box-sizing: border-box;
+background: transparent;
+}
+.shipping-details input:focus,.shipping-details select:focus{
+    border: 1.5px solid #000000;
+}
+
+
+.shipping-details-address input:focus{
+    border: 1.5px solid #000000;
+}
+.shipping-price-details{
+    border-top: 1px solid #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 10vh;
+}
+.shipping-price-details div{
+    display: flex;
+    justify-content: space-between;
+   
+font-style: normal;
+font-weight: 400;
+font-size: 1.65vh;
+color: #141414;
+
+}
+.blackdot img{
+    height: 80%;
+}
+.blackdot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Ticket-details{
+    position: sticky;
+    top: 2vw;
+    display: flex;
+    justify-content: center;
+
+    padding: 0% 2% 0% 2%;
+    flex-direction: column;
+ box-sizing: border-box;
+    font-size: 2.3vh;
+    gap: 6.5%;
+    width: 25%;
+
+}
+.Ticket-details div{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    font-size: 1.8vh;
+    font-style: normal;
+
+}
+.border-ticket{
+    padding-bottom: 7%;
+}
+#bookbtnnav {
+    display: flex;
+    flex-direction: row;
+    background: #f35c41;
+    border: 2px solid #1a1a1a;
+    border-radius: 5vw;
+    color: #ffffff;
+  align-items: center;
+    font-size:2vh;
+    font-weight: 700;
+    justify-content: center;
+  
+    width: 100%;
+    box-shadow: 3px 3px 0px #1a1a1a;
+    padding-top: 3%;
+    padding-bottom: 3%;
+   
+  }
+  #add-member-button{
+    display: flex;
+    flex-direction: row;
+   
+    border: 2px solid #1a1a1a;
+   border-radius: 15px;
+    color: black;
+  align-items: center;
+    font-size:2.5vh;
+    font-weight: 700;
+   justify-content: center;
+  background: #F35C41;
+    width: 15vw;
+    height: 3vw;
+    padding: 1.2vh 1vw;
+   
+ 
+  }
+  #add-member-button2{
+ 
+
+   border-radius: 15px;
+    color: white;
+
+    font-size:2vh;
+
+  }
+.PassSel{
+width: 20vw;
+
+height: 2.3vw;
+background-color: #FEA82F;
+}
+  .bookicon {
+      width: 1.5vw;
+      margin-right: 10px;
+  }
+  
+  .booktextnav {
+      display: flex;
+      align-self: center;
+  }
+  
+  @media (max-width: 900px) {
+    #bookbtn {
+    
+    
+   
+      border-radius: 20vw;
+      
+      box-shadow: 3.5px 3.5px 0px #1a1a1a;
+    }
+  }
+  
+  @media (min-width: 800px) and (max-width: 900px) {
+    #bookbtnnav,#add-member-button {
+
+      border-radius: 20vw;
+     
+    }
+  }
+  
+  .bookticketbtnnav {
+    display: flex;
+    justify-content: center;
+  }
+
+  #bookbtnnav:hover {
+    box-shadow: none;
+    transform: translate(5%, 10%);
+    transition-duration: 0.3s;
+  }
+  #add-member-button:hover {
+    box-shadow: none;
+    transform: translate(5%, 10%);
+    transition-duration: 0.3s;
+  }
+  /* /////////////////////////////// CSS for footer starts here */
+/* footer */
+@import url('https://fonts.cdnfonts.com/css/aileron');
+@font-face {
+  font-family: 'Star-Guard';
+  src: url('./star-guard-italic.ttf');
+}
+.footer_desk {
+    /* position: absolute; */
+    width: 100vw;
+    /* height: 40vw; */
+    /* left: 0px; */
+    background: #0b0b0b;
+  
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    box-sizing: border-box;
+    padding: 5vh 5vw 2vh 5vw;
+  }
+  .footer_main {
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo {
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hail {
+    position: absolute;
+    font-family: "Star-Guard";
+    font-style: italic;
+    font-weight: 500;
+    font-size: 6vw;
+    line-height: 7vw;
+  
+    text-align: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  
+    color: #fefcf0;
+  
+    text-shadow: 0px 14px 40px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .inqueries {
+       font-family: 'Aileron', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 2.6vh;
+    line-height: 24px;
+    color: #ffffff;
+    padding-top: 3.06vh;
+    text-align: right;
+  }
+  
+  .red {
+    width: 7vw;
+    height: 12vw;
+    position: relative;
+    top: -6vw;
+    left: 12vw;
+  }
+  /* .red:hover{
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 0.5s infinite  alternate;
+    
+  
+  }
+  @-webkit-keyframes mover {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-15px); }
+  }
+  @keyframes mover {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-15px); }
+  } */
+  .violet {
+    width: 10vw;
+    height: 13vw;
+    position: relative;
+    top: 6vw;
+    left: -6vw;
+  }
+  /* .violet:hover{
+    -webkit-animation: moverv 0.5s infinite  alternate;
+    animation: moverv 0.5s infinite  alternate;
+    
+  
+  }
+  @-webkit-keyframes moverv {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-50px); }
+  }
+  @keyframes moverv {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-50px); }
+  } */
+  
+  .green {
+    width: 10vw;
+    height: 13vw;
+    position: relative;
+    top: 10vw;
+    left: -8vw;
+  }
+  /* .green:hover{
+    -webkit-animation: moverg 0.5s infinite  alternate;
+    animation: moverg 0.5s infinite  alternate;
+    
+  
+  }
+  @-webkit-keyframes moverg {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-50px); }
+  }
+  @keyframes moverg {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-50px); }
+  } */
+  .yellow {
+    width: 10vw;
+    height: 15vw;
+    position: relative;
+    left: 6vw;
+    top: -6vw;
+  }
+  /* .yellow:hover{
+    -webkit-animation: movery 0.5s infinite  alternate;
+    animation: movery 0.5s infinite  alternate;
+    
+  
+  }
+  @-webkit-keyframes movery {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-50px); }
+  }
+  @keyframes movery {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-50px); }
+  } */
+  
+  .stones {
+    display: flex;
+    flex-direction: row;
+    /* position:absolute; */
+    /* bottom: calc(57% - 12vw/2 - 1vw);
+          left: calc(40% - 17vw/2 - 1vw); */
+  }
+  
+  .footer_desk ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    /* margin-top: 6vw; */
+    /* height: 17vw; */
+    /* margin-left: 5vw; */
+  }
+  
+  .footer_desk li {
+       font-family: 'Aileron', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.6vh;
+    line-height: 3.2vh;
+    padding-top: 3.73vh;
+    /* identical to box height */
+    margin-top:-1vh ;
+  
+    text-align: left;
+    text-transform: uppercase;
+  
+    color: #ffffff;
+  }
+  
+  .footer_desk a {
+    font-weight:900;
+    color: white;
+    text-decoration: none;
+  }
+  /* .contact{ */
+  /* margin: 6vw 4vw 1vw 1vw; */
+  /* }  */
+  .details_footer {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3.73vh;
+  }
+  .shareka {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+       font-family: 'Aileron', sans-serif;
+    font-style: normal;
+    font-size: 2.6vh;
+    line-height: 3.2vh;
+    text-align: right;
+    /* margin: 2vw; */
+    color: #fffffe;
+  }
+  .abhi {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+       font-family: 'Aileron', sans-serif;
+    font-style: normal;
+    font-size: 2.6vh;
+    line-height: 3.2vh;
+    text-align: right;
+    /* margin: 2vw; */
+    color: #fffffe;
+  }
+  .socialIcon {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    /* position:relative; */
+    /* top:4vw; */
+    /* right: 4vw; */
+  }
+  .socials_desk {
+    display: flex;
+  
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  .socials_mob {
+    display: none;
+  }
+  
+  .socials_desk a {
+    padding: 0px 0px 0px 10px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .logo_mob {
+    display: none;
+  }
+  .footer_bottom{
+    margin-top: 8vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  @media only screen and (max-width: 768px) {
+    .logo {
+      display: none;
+    }
+    .logo_mob {
+      padding: 15vw 12vw ;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hail {
+      font-family: "Star-Guard";
+      font-weight: 400;
+      font-size: 17vw;
+      line-height: 16vw;
+      text-align: center;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #fefcf0;
+      text-shadow: 0px 7.58043px 21.6584px rgb(0 0 0 / 20%);
+  
+      color: #fefcf0;
+  
+      text-shadow: 0px 7.58043px 21.6584px rgba(0, 0, 0, 0.2);
+    }
+    .yellow {
+      width: 21vw;
+      height: 36vw;
+      position: relative;
+      left: 24vw;
+      top: -15vw;
+    }
+    .red {
+      width: 20vw;
+      height: 35vw;
+      position: relative;
+      top: -15vw;
+      left: 37vw;
+    }
+    .violet {
+   
+      width: 29vw;
+      height: 39vw;
+      position: relative;
+      top: 18vw;
+      left: -20vw;
+  
+    }
+  
+    .green {
+      width: 31vw;
+      height: 41vw;
+      position: relative;
+      top: 23vw;
+      left: -16vw;
+    }
+    .inqueries {
+         font-family: 'Aileron', sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 3vw;
+      line-height: 24px;
+      color: #ffffff;
+    }
+  
+    /* .contact{
+          margin: 6vw 4vw 1vw 1vw;
+      } */
+    /* .Logo{
+          display: none;
+      }
+    
+      
+      .logo{
+          display: none;
+      }
+    
+      
+      .desk{
+          display: none;
+      } */
+    .footer_desk {
+      /* position: absolute; */
+      width: 100%;
+      /* height: 46vh; */
+      /* left: 0px; */
+      background: #272727;
+  
+      /* display: flex;
+          flex-direction: row; */
+    }
+    .footer_bottom{
+  
+      margin: 4vh ;
+      display: flex;
+      justify-content: space-between;
+      gap: 2vh;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+    /* .footer_desk ul{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          margin-top: 6vw;
+          height: 28vh;
+          margin-left: 2.93vw;
+      } */
+    .footer_desk li {
+         font-family: 'Aileron', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.6vh;
+      line-height: 1.86vh;
+      /* identical to box height */
+  
+      text-align: left;
+      text-transform: uppercase;
+  
+      color: #ffffff;
+    }
+    /* .socialIcon{
+          display:flex;
+          flex-direction:column;
+          height:fit-content;
+          position:relative;
+          top:4vw;
+          right: 4vw;
+      } */
+    .socials_mob{
+          display:flex;
+          
+          flex-direction: row;
+          justify-content: flex-end;
+          
+      }
+    .socials_desk{
+          display: none;
+      }
+  .details_main{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+  
+    .socials_mob a{
+      padding: 4px 0px 0px 16px;
+      }
+  
+    .shareka {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+         font-family: 'Aileron', sans-serif;
+      font-style: normal;
+      font-size: 1.6vh;
+      line-height: 1.86vh;
+      text-align: right;
+  
+      color: #fffffe;
+    }
+    .abhi {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+         font-family: 'Aileron', sans-serif;
+      font-style: normal;
+      font-size: 1.6vh;
+      line-height: 1.86vh;
+      text-align: right;
+  
+      color: #fffffe;
+    }
+    .socials {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+  
+      margin-top: 0vh;
+      padding-top: 0;
+      text-align: right;
+    }
+    .socials a {
+      width: 2.18vh;
+      height: 2.18vh;
+    }
+  }
+  
+  /* animations */
+  /* :root{
+    --X:10px;
+    --Y:10px;
+    --deg:10deg;
+  } */
+  @-o-keyframes movery {
+    0% { transform: translate(0px,0px);}
+    25% { transform: translate(15px,-15px) rotate(-15deg); }
+    50% { transform: translate(15px,-15px) rotate(15deg); }
+    75% { transform: translate(15px,-15px) rotate(-15deg); }
+    100% { transform: translate(-15px,-15px) rotate(15deg); }
+  }@-ms-keyframes movery {
+    0% { transform: translate(0px,0px);}
+    25% { transform: translate(15px,-15px) rotate(-15deg); }
+    50% { transform: translate(15px,-15px) rotate(15deg); }
+    75% { transform: translate(15px,-15px) rotate(-15deg); }
+    100% { transform: translate(-15px,-15px) rotate(15deg); }
+  }@-moz-keyframes movery {
+    0% { transform: translate(0px,0px);}
+    25% { transform: translate(15px,-15px) rotate(-15deg); }
+    50% { transform: translate(15px,-15px) rotate(15deg); }
+    75% { transform: translate(15px,-15px) rotate(-15deg); }
+    100% { transform: translate(-15px,-15px) rotate(15deg); }
+  }
+  @-webkit-keyframes movery {
+    0% { transform: translate(0px,0px);}
+    25% { transform: translate(15px,-15px) rotate(-15deg); }
+    50% { transform: translate(15px,-15px) rotate(15deg); }
+    75% { transform: translate(15px,-15px) rotate(-15deg); }
+    100% { transform: translate(-15px,-15px) rotate(15deg); }
+  }
+  @keyframes movery {
+    0% { transform: translate(0px,0px);}
+    25% { transform: translate(15px,-15px) rotate(-15deg); }
+    50% { transform: translate(15px,-15px) rotate(15deg); }
+    75% { transform: translate(15px,-15px) rotate(-15deg); }
+    100% { transform: translate(-15px,-15px) rotate(15deg); }
+  } 
+  
+  /* body:has(.hail:hover) */
+   .yellow{
+    -webkit-animation: movery 20s infinite alternate;
+    animation: movery 20s infinite alternate;
+  }
+  
+  @-o-keyframes moverr {
+    0% { transform: translate(0px,0px);}
+    19% { transform: translate(-15px,-15px) rotate(-15deg); }
+    45% { transform: translate(15px,15px) rotate(15deg); }
+    79% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }@-ms-keyframes moverr {
+    0% { transform: translate(0px,0px);}
+    19% { transform: translate(-15px,-15px) rotate(-15deg); }
+    45% { transform: translate(15px,15px) rotate(15deg); }
+    79% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }@-moz-keyframes moverr {
+    0% { transform: translate(0px,0px);}
+    19% { transform: translate(-15px,-15px) rotate(-15deg); }
+    45% { transform: translate(15px,15px) rotate(15deg); }
+    79% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  @-webkit-keyframes moverr {
+    0% { transform: translate(0px,0px);}
+    19% { transform: translate(-15px,-15px) rotate(-15deg); }
+    45% { transform: translate(15px,15px) rotate(15deg); }
+    79% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  @keyframes moverr {
+    0% { transform: translate(0px,0px);}
+    19% { transform: translate(-15px,-15px) rotate(-15deg); }
+    45% { transform: translate(15px,15px) rotate(15deg); }
+    79% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  } 
+  
+  /* body:has(.hail:hover) */
+   .red{
+    -webkit-animation: moverr 20s infinite alternate;
+    animation: moverr 20s infinite alternate ;
+  }
+  @-ms-keyframes moverv {
+    0% { transform: translate(0px,0px);}
+    25% { transform: translate(-15px,15px) rotate(-15deg); }
+    50% { transform: translate(15px,25px) rotate(15deg); }
+    75% { transform: translate(-15px,-15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  @-moz-keyframes moverv {
+    0% { transform: translate(0px,0px);}
+    25% { transform: translate(-15px,15px) rotate(-15deg); }
+    50% { transform: translate(15px,25px) rotate(15deg); }
+    75% { transform: translate(-15px,-15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  @-o-keyframes moverv {
+    0% { transform: translate(0px,0px);}
+    25% { transform: translate(-15px,15px) rotate(-15deg); }
+    50% { transform: translate(15px,25px) rotate(15deg); }
+    75% { transform: translate(-15px,-15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  @-webkit-keyframes moverv {
+    0% { transform: translate(0px,0px);}
+    25% { transform: translate(-15px,15px) rotate(-15deg); }
+    50% { transform: translate(15px,25px) rotate(15deg); }
+    75% { transform: translate(-15px,-15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  @keyframes moverv {
+    0% { transform: translate(0px,0px);}
+    35% { transform: translate(15px,15px) rotate(-15deg); }
+    50% { transform: translate(-15px,15px) rotate(15deg); }
+    78% { transform: translate(15px,25px) rotate(-15deg); }
+    100% { transform: translate(25px,25px) rotate(15deg); }
+  } 
+  
+   /* body:has(.hail:hover) */
+   .violet{
+    -webkit-animation: moverv 20s infinite alternate;
+    animation: moverv 20s infinite alternate ;
+  }
+  @-ms-keyframes moverg {
+    0% { transform: translate(0px,0px);}
+    21% { transform: translate(-15px,15px) rotate(-15deg); }
+    50% { transform: translate(15px,15px) rotate(15deg); }
+    74% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  @-o-keyframes moverg {
+    0% { transform: translate(0px,0px);}
+    21% { transform: translate(-15px,15px) rotate(-15deg); }
+    50% { transform: translate(15px,15px) rotate(15deg); }
+    74% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  @-moz-keyframes moverg {
+    0% { transform: translate(0px,0px);}
+    21% { transform: translate(-15px,15px) rotate(-15deg); }
+    50% { transform: translate(15px,15px) rotate(15deg); }
+    74% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  
+  @-webkit-keyframes moverg {
+    0% { transform: translate(0px,0px);}
+    21% { transform: translate(-15px,15px) rotate(-15deg); }
+    50% { transform: translate(15px,15px) rotate(15deg); }
+    74% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(15px,-15px) rotate(15deg); }
+  }
+  @keyframes moverg {
+    0% { transform: translate(0px,0px);}
+    22% { transform: translate(15px,-15px) rotate(-15deg); }
+    59% { transform: translate(15px,-15px) rotate(15deg); }
+    76% { transform: translate(-15px,15px) rotate(-15deg); }
+    100% { transform: translate(-15px,-15px) rotate(15deg); }
+  } 
+  
+  /* body:has(.hail:hover) */
+   .green{
+    -webkit-animation: moverg 20s infinite alternate;
+    animation: moverg 20s infinite alternate ;
+  }
+  
+  .footer_logo{
+    width: 15vw;
+  }
+  @media only screen and (max-width:768px) {
+    .footer_logo{
+        width: 50vw;
+    }
+  }
+
+
+  /* /////////////////// */
+
+  @import url('//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
+@import url('//db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
+.mainsection{
+    display: grid;
+    grid-template-columns: 30vw 30vw;
+    gap:40px;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5vh;
+
+}
+.imgsec{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.head1{
+    font-family: 'Aileron';
+    font-size: 5vh;
+    color:  #3A3A3A;
+    text-transform: uppercase;
+}
+.rndtxt{
+    font-size: 2.5vh;
+    color:#3A3A3A
+}
+.feature_button{
+    padding-top: 3%;
+    padding-bottom: 3%;
+    width: 23vw;
+    font-size: 2vh;
+    background: #FEA82F;
+    border: 1.5px solid #000000;
+    box-shadow: 3px 3px 0 #000000;
+    cursor:grabbing;
+    font-weight: 700;
+}
+.button_section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+}
+.btn{
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.eventimg{
+    width: 80vw;
+}
