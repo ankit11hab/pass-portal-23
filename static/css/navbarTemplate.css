@@ -1,5 +1,5 @@
-@import url('//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
-@import url('//db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
+@import url('db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
+@import url('db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
 .navHeader{
     margin-top: 0;
 }
@@ -65,10 +65,10 @@ header{
     grid-template-columns: 2rem 1fr 3fr 1fr 2rem;
 
     color: #000000;
-    font-family: 'Aileron Bold';
+    font-family: 'Aileron Bold', 'sans-serif';
     
     font-style: normal;
-    font-weight: 900;
+    font-weight: 600;
     font-size: 1vw;
     /* identical to box height */
 
@@ -78,7 +78,7 @@ header{
 .navHeader div{
     display: grid;
     /* height: 7vw; */
-    font-family: 'Aileron Bold';
+    font-family: 'Aileron Bold', 'sans-serif'
     grid-column: 2/3;
     justify-content: start;
     align-items: center;
@@ -143,7 +143,7 @@ li{
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Aileron Bold';
+    font-family: 'Aileron Bold', 'sans-serif'
     
 }
 .mobileList a{
@@ -184,7 +184,7 @@ li{
         font-size: 8rem;
     }
     .navHeader div{
-        font-family: 'Aileron Bold';  
+        font-family: 'Aileron Bold', 'sans-serif'  
     }
 }
 
@@ -248,7 +248,7 @@ li{
     margin: 1.4rem 4rem;
     
     font-size: 1.6rem;
-    font-family: 'Aileron Bold';
+    font-family: 'Aileron Bold', 'sans-serif'
     color: white !important;
     text-decoration: #0B0B0B;
     display: flex;
