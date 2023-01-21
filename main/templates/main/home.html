@@ -6,66 +6,112 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pass Portal</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
     <link rel="stylesheet" href="{% static 'css/passPortal.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}" />
   </head>
-  <body >
-    <div class='main'>
-      <header class='navHeader gradient'>
-          <div style="margin-top: 1vh;" ><a href="/"><img style="width: 15vw;" src="{% static 'images/Mask group.png' %}" class="alcherLogoo" alt=""></a></div>
-          <nav class='NavigationBar'>
-              <ul class='NavigationList'>
-                  <li class="Events" id="Event" onclick="color()" ><a href="/"  ><b>EVENTS</b></a ></li>
-                  <li class="Merch"><a href="/"><b>MERCH</b></a></li>
-                  <li class='Campaigns'><a href="/"><b>CAMPAIGNS</b></a></li>
-                  <li class='Teams'><a href="/"><b>TEAMS</b></a></li>
-                 
-                  <li class='Sponsors'><a href="/" 
-                      ><b>SPONSORS</b></a></li>
-                  <li class="Contests"><a href="/"><b>CONTESTS</b></a></li>
-              </ul>
-          </nav>
-         
+  <body>
+    <div class="main">
+      <header class="navHeader gradient">
+        <div style="margin-top: 1vh">
+          <a href="/"
+            ><img
+              style="width: 15vw"
+              src="{% static 'images/Mask group.png' %}"
+              class="alcherLogoo"
+              alt=""
+          /></a>
+        </div>
+        <nav class="NavigationBar">
+          <ul class="NavigationList">
+            <li class="Events" id="Event" onclick="color()">
+              <a href="/"><b>EVENTS</b></a>
+            </li>
+            <li class="Merch">
+              <a href="/"><b>MERCH</b></a>
+            </li>
+            <li class="Campaigns">
+              <a href="/"><b>CAMPAIGNS</b></a>
+            </li>
+            <li class="Teams">
+              <a href="/"><b>TEAMS</b></a>
+            </li>
+
+            <li class="Sponsors">
+              <a href="/"><b>SPONSORS</b></a>
+            </li>
+            <li class="Contests">
+              <a href="/"><b>CONTESTS</b></a>
+            </li>
+          </ul>
+        </nav>
       </header>
+    </div>
+
+    <!-- material icons CDN in the head section, see the html settings 👆-->
+    <div class="mobile">
+      <div>
+        <a href="/"
+          ><img
+            src="{% static 'images/Mask group.png' %}"
+            id="logomobile"
+            width="150vw"
+            alt=""
+        /></a>
       </div>
-          
- <!-- material icons CDN in the head section, see the html settings 👆-->
- <div class="mobile">
-  <div><a href="/"><img src="{% static 'images/Mask group.png' %}" id="logomobile" width="150vw" alt=""></a></div> 
-<ul class="menu mobileList">
-  <li><a class="menuItem" href="/"><b>EVENTS</b></a></li>
-  <li><a class="menuItem" href="/"><b>MERCH</b></a></li>
-  <li><a class="menuItem" href="/"><b>CAMPAIGNS</b></a></li>
-  <li><a class="menuItem" href="/"><b>TEAMS</b></a></li>
-  <li><a class="menuItem" href="/"><b>SPONSORS</b></a></li>
-  <li><a class="menuItem" href="/"><b>CONTESTS</b></a></li>
-
-</ul>
-<button class="hamburger">
-  <!-- material icons https://material.io/resources/icons/ -->
-  <i class="menuIcon material-symbols-outlined">menu</i>
-  <!-- <i class="closeIcon material-symbols-outlined">close</i> -->
-  <!-- <img src="{% static 'images/{% static ./Images/menu.png' %}" class="menuIcon" alt=""> -->
-  <img src="{% static 'images/close.png' %}" class="closeIcon" alt="">
-
-</button>
-</div>
-<!-- /////////// code for navbar ends here -->
+      <ul class="menu mobileList">
+        <li>
+          <a class="menuItem" href="/"><b>EVENTS</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>MERCH</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>CAMPAIGNS</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>TEAMS</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>SPONSORS</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>CONTESTS</b></a>
+        </li>
+      </ul>
+      <button class="hamburger">
+        <!-- material icons https://material.io/resources/icons/ -->
+        <i class="menuIcon material-symbols-outlined">menu</i>
+        <!-- <i class="closeIcon material-symbols-outlined">close</i> -->
+        <!-- <img src="{% static 'images/{% static ./Images/menu.png' %}" class="menuIcon" alt=""> -->
+        <img src="{% static 'images/close.png' %}" class="closeIcon" alt="" />
+      </button>
+    </div>
+    <!-- /////////// code for navbar ends here -->
 
     <!-- <div class="alcherLogo">
     <img src="{% static 'images/{% static alcher 2023 logo.png" alt="">
 </div> -->
 
-    
-
     <div class="passPortalContent">
-    
       <div class="exclusivePass">
         <div class="exclusivePassInnerDiv">
-          <img id="exclusivePassImg" src="{% static 'images/Exclusive Pass.png' %}" alt="" />
+          <img
+            id="exclusivePassImg"
+            src="{% static 'images/Exclusive Pass.png' %}"
+            alt=""
+          />
           <div class="bookNowBtnDesktop">
            <a href="{% url 'send_otp' %}" ><img src="{% static 'images/Frame 14711.png' %}" alt=""></a>
           </div>
@@ -80,8 +126,8 @@
            </div>
         </div>
       </div> -->
-<!-- ///////////////////////////////////// -->
-<!-- <div class="creatorsCamp">
+      <!-- ///////////////////////////////////// -->
+      <!-- <div class="creatorsCamp">
   <div class="creatorsCampInnerDiv">
      <img id="creatorsCampImg" src="{% static 'images/Creatorss_Camp.png' %}" alt="" />
      <div class="bookNowBtnDesktop">
@@ -89,8 +135,8 @@
      </div>
   </div>
 </div> -->
-<!-- ////////////////////////////////////// -->
-<!-- <div class="entryPass">
+      <!-- ////////////////////////////////////// -->
+      <!-- <div class="entryPass">
   <div class="entryPassInnerDiv">
      <img id="entryPassImg" src="{% static 'images/entrypass.png' %}" alt="" />
      <div class="bookNowBtnDesktop">
@@ -98,19 +144,21 @@
      </div>
   </div>
 </div> -->
-<!-- /////////////////////////////////////// -->
+      <!-- /////////////////////////////////////// -->
       <div class="mobileContent">
-        <div class="getYourPasses"><img src="{% static 'images/Group 500.png' %}" alt="" /></div>
+        <div class="getYourPasses">
+          <img src="{% static 'images/Group 500.png' %}" alt="" />
+        </div>
         <div class="manageBookingBtn">
-          <a href="{% url 'send_otp' %}"><img src="{% static 'images/Group 232.png' %}" alt="" /></a>
+          <a href="##"><img src="{% static 'images/Group 232.png' %}" alt="" /></a>
         </div>
         <div class="mobileContentImg">
-            <!-- /////////////////////////////////////////////// -->
+          <!-- /////////////////////////////////////////////// -->
           <div class="mobImg">
             <div class="mobImgInnerDiv">
               <img src="{% static 'images/Frame 14957.png' %}" alt="" />
               <div class="bookNowBtn">
-                <a href="{% url 'send_otp' %}"><img src="{% static 'images/Frame 14711.png' %}" alt="" /></a>
+                <a href="##"><img src="{% static 'images/Frame 14711.png' %}" alt="" /></a>
               </div>
             </div>
           </div>
@@ -119,7 +167,7 @@
             <div class="mobImgInnerDiv">
               <img src="{% static 'images/Frame 14972.png' %}" alt="" />
               <div class="bookTicketsBtn">
-                <a href="{% url 'send_otp' %}"><img src="{% static 'images/booktickets2.png' %}" alt="" /></a>
+                <a href="##"><img src="{% static 'images/booktickets2.png' %}" alt="" /></a>
               </div>
             </div>
           </div>
@@ -127,23 +175,23 @@
           <div class="mobImg"> <div class="mobImgInnerDiv">
             <img src="{% static 'images/Frame 14973.png' %}" alt="" />
             <div class="bookNowBtn">
-              <a href="{% url 'send_otp' %}"><img src="{% static 'images/Frame 14711.png' %}" alt="" /></a>
+              <a href="##"><img src="{% static 'images/Frame 14711.png' %}" alt="" /></a>
             </div>
-          </div></div>
+          </div>
           <!-- //////////////////////////////////////////////////////// -->
           <div class="mobImg"><div class="mobImgInnerDiv">
             <img src="{% static 'images/Frame 14974.png' %}" alt="" />
             <div class="bookTicketsBtn">
-              <a href="{% url 'send_otp' %}"><img src="{% static 'images/booktickets2.png' %}" alt="" /></a>
+              <a href="##"><img src="{% static 'images/booktickets2.png' %}" alt="" /></a>
             </div>
-          </div></div>
+          </div>
           <!-- ///////////////////////////////////////////////////// -->
         </div>
       </div>
     </div>
 
     <!-- /////////////////////////////////////////////////////////// -->
-       <!-- Footer code starts here  -->
+    <!-- Footer code starts here  -->
 
 
       <div class="footer_desk">
@@ -160,25 +208,25 @@
             <div class="options">
               <ul type="none">
                 <li>
-                  <a href="https://alcheringa.in/events/pt">EVENTS</a>
+                  <a href="/Events">EVENTS</a>
                 </li>
                 <li>
-                  <a href="https://alcheringa.in/Merch">MERCH</a>
+                  <a href="/Merch">MERCH</a>
                 </li>
                 <li>
-                  <a href="https://alcheringa.in/Campaigns">CAMPAIGNS</a>
+                  <a href="/Campaigns">CAMPAIGNS</a>
                 </li>
                 <li>
-                  <a href="https://alcheringa.in/Teams">TEAMS</a>
+                  <a href="/Teams">TEAMS</a>
                 </li>
                 <li>
-                  <a href="https://alcheringa.in/MUN">MUN</a>
+                  <a href="/MUN">MUN</a>
                 </li>
                 <li>
-                  <a href="https://alcheringa.in/Sponsors">SPONSORS</a>
+                  <a href="/Sponsors">SPONSORS</a>
                 </li>
                 <li>
-                  <a href="https://alcheringa.in/Contests">CONTESTS</a>
+                  <a href="/Contests">CONTESTS</a>
                 </li>
               </ul>
             </div>
@@ -215,25 +263,25 @@
                   href="https://www.instagram.com/alcheringaiitg/"
                 >
                   <!-- <Insta2 /> -->
-                  <img src="{% static 'images/insta2.svg' %}">
+                  <img src="{% static 'images/./images/insta2.svg'%}"/>
                 </a>
                 <a
                   class="face"
                   href="https://www.facebook.com/alcheringaiitg"
                 >
                   <!-- <Facebook2 /> -->
-                  <img src="{% static 'images/facebook2.svg' %}">
+                  <img src="{% static 'images/facebook2.svg'%}"/>
                 </a>
                 <a class="tweet" href="https://twitter.com/alcheringaiitg">
                   <!-- <Twitter2 /> -->
-                  <img src="{% static 'images/twitter2.svg' %}">
+                  <img src="{% static 'images/twitter2.svg'%}"/>
                 </a>
                 <a
                   class="youtube"
                   href="https://www.youtube.com/@alcheringaIITG"
                 >
                   <!-- <Youtube2 /> -->
-                  <img src="{% static 'images/utube2.svg' %}">
+                  <img src="{% static 'images/utube2.svg'%}"/>
                 </a>
               </div>
             </div>
@@ -241,7 +289,7 @@
           <div class="footer_bottom">
             <div>
               <a href="/">
-                <img class="footer_logo"src="{% static 'images/LogoFooter.svg' %}">
+                <img class="footer_logo"src="{% static 'images/LogoFooter.svg'%}"/>
               </a>
             </div>
             <div class="socialIcon">
@@ -250,22 +298,22 @@
                   class="insta"
                   href="https://www.instagram.com/alcheringaiitg/"
                 >
-                  <img src="{% static 'images/insta.svg' %}">
+                  <img src="{% static 'images/insta.svg'%}"/>
                 </a>
                 <a
                   class="face"
                   href="https://www.facebook.com/alcheringaiitg"
                 >
-                  <img src="{% static 'images/facebook.svg' %}">
+                  <img src="{% static 'images/facebook.svg'%}"/>
                 </a>
                 <a class="tweet" href="https://twitter.com/alcheringaiitg">
-                  <img src="{% static 'images/twitter.svg' %}">
+                  <img src="{% static 'images/twitter.svg'%}"/>
                 </a>
                 <a
                   class="youtube"
                   href="https://www.youtube.com/@alcheringaIITG"
                 >
-                  <img src="{% static 'images/utube.svg' %}">
+                  <img src="{% static 'images/utube.svg'%}"/>
                 </a>
               </div>
               <div class="inqueries">
@@ -275,12 +323,11 @@
             </div>
           </div>
         </div>
-
+      </div>
 
       <!-- Footer code ends here  -->
       <script src="{% static 'js/scriptPassPortal.js' %}"></script>
-      <script src="{% static 'js/script.js '%}" ></script>
-
+      <script src="{% static 'js/script.js '%}"></script>
     </div>
   </body>
 </html>

@@ -1,67 +1,355 @@
-<html>
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
   <head>
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pass Portal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="{% static 'css/passPortal.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/success.css' %}">
   </head>
-    <style>
-      body {
-        text-align: center;
-        padding: 40px 0;
-      
-      }
-        h1 {
-          color: #88B04B;
-          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-          font-weight: 900;
-          font-size: 40px;
-          margin-bottom: 10px;
-        }
-        p {
-          color: #404F5E;
-          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-          font-size:20px;
-          margin: 0;
-        }
-      i {
-        color: #9ABC66;
-        font-size: 100px;
-        line-height: 200px;
-        margin-left:-15px;
-      }
-      .card {
-        background: white;
-        padding: 60px;
-        border-radius: 4px;
+  <body >
+    <div class='main'>
+      <header class='navHeader gradient'>
+          <div style="margin-top: 1vh;" ><a href="/"><img style="width: 15vw;" src="{% static 'images/Mask group.png' %}" class="alcherLogoo" alt=""></a></div>
+          <nav class='NavigationBar'>
+              <ul class='NavigationList'>
+                  <li class="Events" id="Event" onclick="color()" ><a href="/"  ><b>EVENTS</b></a ></li>
+                  <li class="Merch"><a href="/"><b>MERCH</b></a></li>
+                  <li class='Campaigns'><a href="/"><b>CAMPAIGNS</b></a></li>
+                  <li class='Teams'><a href="/"><b>TEAMS</b></a></li>
+                 
+                  <li class='Sponsors'><a href="/" 
+                      ><b>SPONSORS</b></a></li>
+                  <li class="Contests"><a href="/"><b>CONTESTS</b></a></li>
+              </ul>
+          </nav>
+         
+      </header>
+      </div>
+          
+ <!-- material icons CDN in the head section, see the html settings 👆-->
+ <div class="mobile">
+  <div><a href="/"><img src="{% static 'images/Mask group.png' %}" id="logomobile" width="150vw" alt=""></a></div> 
+<ul class="menu mobileList">
+  <li><a class="menuItem" href="/"><b>EVENTS</b></a></li>
+  <li><a class="menuItem" href="/"><b>MERCH</b></a></li>
+  <li><a class="menuItem" href="/"><b>CAMPAIGNS</b></a></li>
+  <li><a class="menuItem" href="/"><b>TEAMS</b></a></li>
+  <li><a class="menuItem" href="/"><b>SPONSORS</b></a></li>
+  <li><a class="menuItem" href="/"><b>CONTESTS</b></a></li>
+
+</ul>
+<button class="hamburger">
+  <!-- material icons https://material.io/resources/icons/ -->
+  <i class="menuIcon material-symbols-outlined">menu</i>
+  <!-- <i class="closeIcon material-symbols-outlined">close</i> -->
+  <!-- <img src="{% static 'images/{% static Images/menu.png' %}" class="menuIcon" alt=""> -->
+  <img src="{% static 'images/close.png' %}" class="closeIcon" alt="">
+
+</button>
+</div>
+
+  <!-- /////////// code for navbar ends here -->
+  
+      <!-- <div class="alcherLogo">
+      <img src="alcher 2023 logo.png" alt="">
+  </div> -->
+  
+    <div class="Pass-Alcher">
+        <form action="">
+<div class="Pass">
     
-        display: inline-block;
-        margin: 0 auto;
-      }
-    </style>
-    <body>
-      <div class="card">
-      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-        <i class="checkmark">✓</i>
+    <div class="shipping-section">
+       
+       <div class="shipping-details1">    
+        <div style="font-family: 'Aileron',sans-serif;font-size: 2.5vw;color: #3A3A3A;" > <b>Payment Successful</b> </div>   
+ 
+        </div>  
+        <div class="shipping-details">
+            <div style="font-family: 'Aileron',sans-serif;font-size: 2vw;color: #3A3A3A;">
+               <b>8-Digit Reference Code</b> 
+            </div>
+        
+        </div>
+    
+        <div class="shipping-details4">        
+
+            <p>
+                <div class="password-container" >
+                   <div><input style="width: 50vw;height: 3vw;" type="password" value="4591-453-6234" name="ref_code" id="password" readonly></div> 
+                  <div> <i class="fa-solid fa-eye" id="eye"></i></div> 
+                  </div>            
+            </p>
+        </div>  
+        <div class="shipping-details">
+           <div style="font-size: 1.2vw;font-family: 'Aileron',sans-serif;"> Please refer to an Alcheringa Executive,to <br> process and confirm the payment.</div>
+           
+        </div>
+        <div class="shipping-details3">        
+         
+        </div>  
+    <div class="shipping-details">
+        <div class="shipping-details2">
+          
+        </div>
+        <div class="shipping-details2">
+       
+        </div>
+    </div>
+        
+                
+
+    </div>
+<div class="blackdot"> 
+    <img src="{% static 'images/Blackdot.png'%}" alt="">
+</div>
+<div class="Ticket-details" style="padding:4% 2%;">
+<div class="border-ticket">
+<div class="paymentPending"  ><b>PAYMENT PENDING</b>
+<img class="greenTick" src="{% static  'images/mdi_tick-circle.png'%}" alt=""></div>
+
+</div>
+<div class="border-ticket">
+
+
+<div style="display: flex;margin-left: auto;margin-right: auto;">
+    <img class="Qr_Code" src="{% static  'images/fadedQr.png'%}" alt="">
+</div>
+</div>
+<div class="border-ticket">
+   
+    <div style="font-size: 1vw;display: flex;margin-left: auto;margin-right: auto;text-align: center;font-family: 'Aileron',sans-serif;">Please refer to an Alcheringa Executive, to process and confirm the payment.</div>
+    </div>
+</div>
+</div>
+</form>
+
+    </div>
+    <div class="Pass-Alcher">
+        <form action="">
+<div class="Pass">
+    
+    <div class="shipping-section">
+       
+       <div class="shipping-details1">    
+        <div style="font-family: 'Aileron',sans-serif;font-size: 2.5vw;color: #3A3A3A;" > <b></b> </div>   
+         
+
+        </div>  
+        <div class="shipping-details">
+            <div style="font-family: 'Aileron',sans-serif;font-size: 2vw;color: #3A3A3A;">
+               <b>8-Digit Reference Code</b> 
+            </div>
+         
+        </div>
+    
+        <div class="shipping-details4">        
+
+            <p>
+                <div class="password-container" >
+                   <div><input style="width: 50vw;height: 3vw;" type="password" value="4591-453-6234" name="ref_code" id="password1" readonly></div> 
+                  <div> <i class="fa-solid fa-eye" id="eye1"></i></div> 
+                  </div>            
+            </p>
+        </div>  
+        <div class="shipping-details">
+           <div style="font-size: 1.2vw;font-family: 'Aileron',sans-serif;"> Please refer to an Alcheringa Executive,to <br> process and confirm the payment.</div>
+    
+        </div>
+        <div class="shipping-details3">        
+         
+        </div>  
+    <div class="shipping-details">
+        <div class="shipping-details2">
+       
+        </div>
+        <div class="shipping-details2">
+      
+        </div>
+    </div>
+        
+                
+
+    </div>
+<div class="blackdot"> 
+    <img src="{% static  'images/Blackdot.png'%}" alt="">
+</div>
+<div class="Ticket-details" style="padding: 4% 0% ;">
+<div class="border-ticket">
+<div class="paymentPending" ><b>PAYMENT CONFIRMED</b>
+<img class="greenTick" src="{% static  'images/Vector.png'%}" alt=""></div>
+
+</div>
+<div class="border-ticket">
+
+<div style="display: flex;margin-left: auto;margin-right: auto;">
+    <img class="Qr_Code" src="{% static  'images/Group.png'%}" alt="">
+</div>
+</div>
+<div class="border-ticket">
+
+    <div style="font-size: 1vw;display: flex;margin-left: auto;margin-right: auto;text-align: center;font-family: 'Aileron',sans-serif;padding: 1% 5%;">A copy of the E-pass has been sent to your registered E-mail ID.</div>
+    </div>
+</div>
+</div>
+</form>
+
+    </div>
+
+    <div class="buttonStackOuterDiv">
+         <div class="buttonStack">
+        <div > <img class="tapButton" src="{% static  'images/DownloadBtn.png'%}" alt=""></div>
+        <div > <img class="tapButton" src="{% static  'images/shareBtn.png'%}" alt=""> </div>
+        <div > <img class="tapButton" src="{% static  'images/whatsappBtn.png'%}" alt=""></div>
+    </div>
+    </div>
+   <!-- Footer code starts here  -->
+
+   <div class="footer_desk">
+    <div class="logo_mob">
+      <img src="{% static 'images/yellow_stone.png' %}" class="yellow" />
+      <img src="{% static 'images/red_stone.png' %}" class="red" />
+      <div class="hail">
+        HAIL <br />
+        ALCHER!
       </div>
-      {% if context %}
-      <h1>Successs</h1> 
-      {% else %}
-      <h1>Please Wait! Do not Refresh the Page.</h1>
-      {% endif %}
+      <img src="{% static 'images/green_stone.png' %}" class="green" />
+      <img src="{% static 'images/violet_stone.png' %}" class="violet" />
+    </div>
+    <div>
+      <div class="footer_main">
+        <div class="options">
+          <ul type="none">
+            <li>
+              <a href="/Events">EVENTS</a>
+            </li>
+            <li>
+              <a href="/Merch">MERCH</a>
+            </li>
+            <li>
+              <a href="/Campaigns">CAMPAIGNS</a>
+            </li>
+            <li>
+              <a href="/Teams">TEAMS</a>
+            </li>
+            <li>
+              <a href="/MUN">MUN</a>
+            </li>
+            <li>
+              <a href="/Sponsors">SPONSORS</a>
+            </li>
+            <li>
+              <a href="/Contests">CONTESTS</a>
+            </li>
+          </ul>
+        </div>
+        <div class="logo">
+          <!-- <HailAlcher /> -->
+          <!-- Hail Alcher Starts  -->
+
+          <img src="{% static 'images/yellow_stone.png' %}" class="yellow" />
+          <img src="{% static 'images/red_stone.png' %}" class="red" />
+          <div class="hail">
+            HAIL <br />
+            ALCHER!
+          </div>
+          <img src="{% static 'images/green_stone.png' %}" class="green" />
+          <img src="{% static 'images/violet_stone.png' %}" class="violet" />
+          <!-- Hail Alcher Ends  -->
+        </div>
+        <div class="details_main">
+          <div class="details">
+            <div class="contact">
+              <div class="shareka">
+                <b>Siddant Singh</b>
+                PR Head<br />
+                +91 9310859978
+              </div>
+              <br />
+              <div class="abhi">
+                <b>Danda Akshara</b>
+                PR Head<br />
+                +91 9908991939
+              </div>
+            </div>
+          </div>
+          <div class="socials_mob">
+            <a class="insta" href="https://www.instagram.com/alcheringaiitg/">
+              <!-- <Insta2 /> -->
+              <img src="{% static 'images/images/insta2.svg'%}" />
+            </a>
+            <a class="face" href="https://www.facebook.com/alcheringaiitg">
+              <!-- <Facebook2 /> -->
+              <img src="{% static 'images/facebook2.svg'%}" />
+            </a>
+            <a class="tweet" href="https://twitter.com/alcheringaiitg">
+              <!-- <Twitter2 /> -->
+              <img src="{% static 'images/twitter2.svg'%}" />
+            </a>
+            <a class="youtube" href="https://www.youtube.com/@alcheringaIITG">
+              <!-- <Youtube2 /> -->
+              <img src="{% static 'images/utube2.svg'%}" />
+            </a>
+          </div>
+        </div>
       </div>
-    </body>
+      <div class="footer_bottom">
+        <div>
+          <a href="/">
+            <img
+              class="footer_logo"
+              src="{% static 'images/LogoFooter.svg'%}"
+            />
+          </a>
+        </div>
+        <div class="socialIcon">
+          <div class="socials_desk">
+            <a class="insta" href="https://www.instagram.com/alcheringaiitg/">
+              <img src="{% static 'images/insta.svg'%}" />
+            </a>
+            <a class="face" href="https://www.facebook.com/alcheringaiitg">
+              <img src="{% static 'images/facebook.svg'%}" />
+            </a>
+            <a class="tweet" href="https://twitter.com/alcheringaiitg">
+              <img src="{% static 'images/twitter.svg'%}" />
+            </a>
+            <a class="youtube" href="https://www.youtube.com/@alcheringaIITG">
+              <img src="{% static 'images/utube.svg'%}" />
+            </a>
+          </div>
+          <div class="inqueries">
+            <span style="font-weight: 200">For Business Enqueries:</span>
+            <span style="font-weight: 900">alcheringa@iitg.ac.in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <!-- Footer code ends here  -->
+
     <script>
-      fetch('{% url 'get_verified_details' %}',{
-        method:'POST',
-        body:JSON.stringify({'id':window.localStorage.getItem('fasdlfsdaffdsui542958riuehwflu989aaSDAF')})
-      }
-      ).
-      then((response)=>{
-        response.json()
-        .then((data)=>{
-          console.log(data);
-        })
-      })
-      .then((error)=>{
-        console.log(error);
-      })
+        const passwordInput = document.querySelector("#password")
+    const eye = document.querySelector("#eye")
+    eye.addEventListener("click", function(){
+      this.classList.toggle("fa-eye-slash")
+      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
+      passwordInput.setAttribute("type", type)
+    }) 
+    const passwordInput1 = document.querySelector("#password1")
+    const eye1 = document.querySelector("#eye1")
+    eye1.addEventListener("click", function(){
+      this.classList.toggle("fa-eye-slash")
+      const type = passwordInput1.getAttribute("type") === "password" ? "text" : "password"
+      passwordInput1.setAttribute("type", type)
+    }) 
     </script>
+</body>
 </html>
