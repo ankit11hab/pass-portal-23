@@ -28,7 +28,7 @@
             clearInterval(check);
           } else {
             document.getElementById("status").innerText =
-              "Payment is under process";
+            location.href = "{% url 'UnderProcess' %}";
           }
         },
       });
@@ -36,3 +36,4 @@
     check();
   </script>
 </html>
+
