@@ -99,37 +99,52 @@ def SaveData(request):
         amount = 1
         fee_id = "M1006"
         print(id)
-        data = id+"|"+fee_id+"|"+str(amount)
-        encryptedData = encrypt(key, data, iv)
-        print(encryptedData)
-        # print(encryptedData)
-        LeaderName = request.POST.get('LeaderName')
-        LeaderContact_no = request.POST.get('LeaderContact_no')
-        LeaderEmail = request.POST.get('LeaderEmail')
-        LeaderPassType = request.POST.get('LeaderPassType')
-        member_names = request.POST.getlist('name')
-        member_contacts = request.POST.getlist('contact_no')
-        member_passtype = request.POST.getlist('pass_type')
-
-        count = 1
-        for i in member_names:
-            count = count+1
-        request.session['count'] = count
-        members = []
         paases_type = {
             'general':0,
             'premium':0,
             'exclusive':0,
+            'id':id,
+            'amount':0,
         }
-        for name, contact, pass_type in zip(member_names, member_contacts, member_passtype):
+        
+        LeaderFirstName = request.POST.get('LeaderFirstName')
+        LeaderLastName = request.POST.get('LeaderLastName')
+        LeaderContact_no = request.POST.get('LeaderContact_no')
+        LeaderEmail = request.POST.get('LeaderEmail')
+        LeaderPassType = request.POST.get('LeaderPassType')
+        member_first_names = request.POST.getlist('first_name')
+        member_last_names = request.POST.getlist('last_name')
+
+        member_contacts = request.POST.getlist('contact_no')
+        member_passtype = request.POST.getlist('pass_type')
+        if(LeaderPassType=='general'):
+                paases_type['general']=paases_type['general']+1
+        elif(LeaderPassType=='premium'):
+            paases_type['premium']=paases_type['premium']+1
+        elif(LeaderPassType=='exclusive'):
+            paases_type['exclusive']=paases_type['exclusive']+1
+
+        count = 1
+        for i in member_first_names:
+            count = count+1
+        request.session['count'] = count
+        members = []
+        
+        for fname,lname, contact, pass_type in zip(member_first_names,member_last_names, member_contacts, member_passtype):
             member = {
-                "name": name,
+                "name": fname+' '+ lname,
                 "contact": contact,
                 "pass_type": pass_type,
             }
             members.append(member)
-        data = {
-            "LName": LeaderName,
+            if(pass_type=='general'):
+                paases_type['general']=paases_type['general']+1
+            elif(pass_type=='premium'):
+                paases_type['premium']=paases_type['premium']+1
+            elif(pass_type=='exclusive'):
+                paases_type['exclusive']=paases_type['exclusive']+1
+        Ldata = {
+            "LName": LeaderFirstName+' ' +LeaderLastName,
             "LContact": LeaderContact_no,
             "LEmail": LeaderEmail,
             "LPassType": LeaderPassType,
@@ -137,10 +152,17 @@ def SaveData(request):
         }
 
         doc_ref = db.collection('users').document(id)
-        doc_ref.set(data)
-
+        doc_ref.set(Ldata)
+        amount=paases_type['general']*500+(paases_type['premium']+paases_type['premium'])*750
+        print(amount)
+        paases_type['amount']=amount
+        data = id+"|"+fee_id+"|"+str(amount)
+        encryptedData = encrypt(key, data, iv)
+        fstring=f'{id}|{paases_type["general"]}|{paases_type["exclusive"]}|{paases_type["premium"]}|{paases_type["amount"]}'
+        print(fstring)
         messages.info(request,  encryptedData)
-        messages.error(request, id)
+        messages.error(request, fstring)
+        print(paases_type)
 
     return redirect('confirm')
 

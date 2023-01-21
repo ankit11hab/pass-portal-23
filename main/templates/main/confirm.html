@@ -24,9 +24,12 @@
     {%endfor%}
   </body>
   <script>
+    window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF","{{message}}")
     {% for message in messages%}
     {% if message.tags == 'error'%}
-    window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF","{{message}}")
+      var msg = "{{message}}"
+      var splittedData="{{message}}"".split("|")
+      console.log((splittedData));
     {%endif%}
     {%endfor%}
   </script>

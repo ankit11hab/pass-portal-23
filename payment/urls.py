@@ -5,6 +5,7 @@ urlpatterns = [
     path('error/', views.payment_error, name='payment_error'),
     path('response/', views.payment_response, name='payment_response'),
     path('status/', views.payment_response, name="payment_status"),
+    path('get_verified_details/', views.get_verified_details, name="get_verified_details"),
     path('success/', views.success, name="payment_success"),
     path('get_status/', views.get_status_ajax, name="get_status_ajax"),
     path('under_process/',views.under_process,name='UnderProcess')

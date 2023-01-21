@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -56,19 +57,19 @@ def payment_response(request):
         decrypt_data = decrypt(secretkey, data)
         print(decrypt_data)
         split_data = decrypt_data.split('|')
-        status = split_data[4]
-        # status = '1'
+        # status = split_data[4]
+        status = '1'
         errDesc = split_data[5]
         tid = split_data[3]
-        id = split_data[0]
-        # id = "60R5234BS3J"
+        # id = split_data[0]
+        id = "LNDKR6O0"
         leader_id = id
         doc_ref = db.collection('users').document(
             leader_id)
         if status == "1":
             print("inside 1")
             context = {"message": "", "success": 1, "tid": tid}
-            doc_ref.update({"currStatus": "verified"})
+            doc_ref.update({"currStatus": "verified",'transID':tid})
             leader_data = {
                 "name": doc_ref.get().to_dict()['LName'],
                 "contact": doc_ref.get().to_dict()['LContact'],
@@ -91,7 +92,7 @@ def payment_response(request):
                 'pass_type': docref3.get().to_dict()['pass_type'],
                 'id': docref3.id,
             }
-            print(leader_array)
+            # print(leader_array)
             i = 0
             member_array = []
             for member in doc_ref.get().to_dict()['members']:
@@ -122,20 +123,9 @@ def payment_response(request):
                 #     {"members[i]['id']": doc_ref2.id})
                 # i += 1
                 # member.set({"id": doc_ref2.get().to_dict()['id']})
-                print(context)
-            print(member_array)
-            from_email = settings.EMAIL_HOST_USER
-            message = EmailMessage(
-                'Alcher Pass',
-                'You have successfully purchased Alcher Pass. You will soon receive the Pass',
-                from_email,
-                [leader_data['email']],
-            )
-            with open('reg mail.png', "rb") as f:
-                imgToSend = f.read()
-                message.attach('reg_mail.png', imgToSend, 'image/png')
-            message.send()
-            return redirect('payment_success')
+                # print(context)
+            # print(member_array)
+            return redirect('get_verified_details')
         else:
             doc_ref = db.collection('users').document(
                 leader_id)
@@ -191,3 +181,22 @@ def generate_qr_code(request, members, leader):
     message.send()
 
     return HttpResponse('QR code email sent!')
+
+@csrf_exempt
+def get_verified_details(request):
+    print('called')
+    if request.method=="POST":
+        print('entered')
+        # id1=request.body['id']
+        tid=220075070
+        # print(id1)
+        # doc_ref = db.collection('users').document(id)
+        # tid=doc_ref.get().to_dict()['transID']
+        # id,name,pass_type
+        q=db.collection('verified_users').where('transID','==',tid).stream()
+        context=[]
+        for doc in q :
+            context.append(doc.to_dict())
+        print(context)
+        return render(request,'payment/success_.html',{'context':context})
+    return render(request,'payment/success_.html')
