@@ -14,6 +14,8 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import os
 from django.contrib import messages
+import base64
+
 
 config = {
     'apiKey': os.environ.get('API_KEY'),
@@ -33,37 +35,6 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 # add this section to payment success and send qr for leader and members
-
-
-def generate_qr_code(request, members, leader):
-    email = request.session.get('LeaderEmail')
-    count = request.session.get('count')
-    from_email = settings.EMAIL_HOST_USER
-    message = EmailMessage(
-        'QR code',
-        'Here is the QR code you requested',
-        from_email,
-        [email],
-    )
-    img = qrcode.make(
-        {'name': leader['LName'], 'pass_type': leader['LPassType']})
-    with tempfile.TemporaryFile() as fp:
-        img.save(fp)
-        fp.seek(0)
-        message.attach('qr_code.png', fp.read(), 'image/png')
-
-    for member in members:
-        img = qrcode.make(
-            {'name': member['name'], 'pass_type': member['pass_type']})
-        with tempfile.TemporaryFile() as fp:
-            img.save(fp)
-            fp.seek(0)
-            message.attach('qr_code.png', fp.read(), 'image/png')
-
-    message.send()
-
-    return HttpResponse('QR code email sent!')
-
 
 def otp(request):
     return render(request, "main/otp.html")
@@ -148,7 +119,6 @@ def SaveData(request):
         doc_ref = db.collection('users').document(id)
         doc_ref.set(data)
 
-        generate_qr_code(request, members, data)
         messages.info(request,  encryptedData)
         messages.error(request, id)
 

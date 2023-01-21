@@ -7,6 +7,9 @@ from django.http import JsonResponse
 from main.views import db
 from main.encrypt_decrypt import decrypt
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from django.core.mail import EmailMessage
+import qrcode
 
 
 # Create your views here.
@@ -69,13 +72,20 @@ def payment_response(request):
                 "contact": doc_ref.get().to_dict()['LContact'],
                 "email": doc_ref.get().to_dict()['LEmail'],
                 "pass_type": doc_ref.get().to_dict()['LPassType'],
-                "transID": tid
+                "transID": tid,
             }
 
             doc_ref2 = db.collection('verified_users').document()
-
             doc_ref2.set(leader_data)
+            docref3=db.collection('verified_users').document(doc_ref2.id)
+            leader_array={
+                'name':docref3.get().to_dict()['name'],
+                'pass_type':docref3.get().to_dict()['pass_type'],
+                'id':docref3.id,
+            }
+            print(leader_array)
             i = 0
+            member_array=[]
             for member in doc_ref.get().to_dict()['members']:
                 member_data = {
                     "name": member['name'],
@@ -85,6 +95,7 @@ def payment_response(request):
                 }
                 doc_ref2 = db.collection('verified_users').document()
                 doc_ref2.set(member_data)
+                member_array.append({'name':member_data['name'],'pass_type':member_data['pass_type'],'id':doc_ref2.id})
                 # doc_ref = db.collection('users').document(
                 #     leader_id)
                 # members = doc_ref.get().to_dict()["members"]
@@ -95,6 +106,15 @@ def payment_response(request):
                 # i += 1
                 # member.set({"id": doc_ref2.get().to_dict()['id']})
                 print(context)
+            print(member_array)
+            from_email = settings.EMAIL_HOST_USER
+            message = EmailMessage(
+                'Alcher Pass',
+                'You have successfully purchased Alcher Pass. You will soon receive the Pass',
+                from_email,
+                [leader_data['email']],
+            )
+            message.send()
             return redirect('payment_success')
         else:
             doc_ref = db.collection('users').document(
@@ -102,6 +122,7 @@ def payment_response(request):
             doc_ref.update({"currStatus": "error", "error": errDesc})
             context = {"message": errDesc, "success": 0, "tid": tid}
             print(context)
+        
 
     return render(request, "payment/response.html", context)
 
@@ -109,3 +130,37 @@ def payment_response(request):
 @csrf_exempt
 def success(request):
     return render(request, 'payment/success.html')
+
+
+
+def generate_qr_code(request, members, leader):
+    email = request.session.get('LeaderEmail')
+    count = request.session.get('count')
+    from_email = settings.EMAIL_HOST_USER
+    message = EmailMessage(
+        'QR code',
+        'Here is the QR code you requested',
+        from_email,
+        [email],
+    )
+    img = qrcode.make(
+        {'name': leader['LName'], 'pass_type': leader['LPassType'],'id':leader['id']})
+    path=(settings.MEDIA_ROOT+'/main/')
+    lid=leader['id']
+    img.save(f'{lid}.png',path=path,format='PNG')
+    with open(f'{lid}.png', "rb") as f:
+        imgToSend = f.read()
+        message.attach(f'{lid}.png', imgToSend, 'image/png')
+
+    for member in members:
+        img = qrcode.make(
+            {'name': member['name'], 'pass_type': member['pass_type'],'id':member['id']})
+        mid=member['id']
+        img.save(f'{mid}.png',path=path,format='PNG')
+        with open(f'{mid}.png', "rb") as f:
+            imgToSend = f.read()
+            message.attach(f'{id}.png', imgToSend, 'image/png')
+
+    message.send()
+
+    return HttpResponse('QR code email sent!')
