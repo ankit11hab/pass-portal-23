@@ -36,6 +36,9 @@ db = firestore.client()
 
 # add this section to payment success and send qr for leader and members
 
+def home(request):
+    return render(request,'main/home.html')
+
 def otp(request):
     return render(request, "main/otp.html")
 

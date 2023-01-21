@@ -1,0 +1,302 @@
+@import url('//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
+@import url('//db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
+.navHeader{
+    margin-top: 0;
+}
+
+.navHeader a{
+    text-decoration: none;
+}
+
+.NavigationBar .active{
+    font-family: 'Star Guard Semi-Italic';
+    font-style: italic;
+    /* font-family: 'Roboto', sans-serif; */
+    font-weight: 400;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+    font-size: 1.3vw;
+
+    margin-top:2.3vw;
+    padding-top:1.8vw;
+    background-image: url(./Images/Back.png);
+    
+    background-position:top;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+.Events {
+    padding-left: 1.2vw;
+    padding-right: 1vw;
+    
+}
+.Merch {
+    padding-left: 1.vw;
+    padding-right: 1vw;
+}
+.Teams .active{
+    padding-left: 1.2vw;
+    padding-right: 1vw;
+}
+.Mun .active{
+    margin-top: 2.8vw;
+    padding-left: 1.2vw;
+} 
+.Sponsors .active{
+    padding-left: 0.4vw;
+    padding-right: 0.5vw;
+}
+.Contests .active{
+    padding-left: 0.4vw;
+    padding-right: 0.5vw;
+}
+header{
+    width: 100%;
+    /* height: 7vw; */
+    /* background-color: #FFFBF5; */
+    background-blend-mode: multiply;
+    display: grid;
+    grid-template-columns: 2rem 1fr 3fr 1fr 2rem;
+
+    color: #000000;
+    font-family: 'Aileron Bold';
+    
+    font-style: normal;
+    font-weight: 900;
+    font-size: 1vw;
+    /* identical to box height */
+
+    text-align: center;
+    text-transform: uppercase;
+}
+.navHeader div{
+    display: grid;
+    /* height: 7vw; */
+    font-family: 'Aileron Bold';
+    grid-column: 2/3;
+    justify-content: start;
+    align-items: center;
+}
+nav{
+    /* height: 7vw; */
+    grid-column: 3/4;
+}
+.NavigationBar{
+    margin-top: 0.25vw;
+}
+.NavigationBar ul{
+    /* height: 7vw; */
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: fit-content;
+}
+.NavigationBar a{
+    text-decoration: none;
+    color: black;
+    /* height: 12vh; */
+    /* background-color: aqua; */
+    padding-top: auto;
+}
+.image{
+    display: grid;
+    grid-column: 4/5;
+    align-items: center;
+    justify-content: center;
+}
+/* img{
+    height: 3vw;
+    width: 9vw;
+} */
+
+.NavigationBar a{
+    height: 6vw;
+    margin-top:8vh;
+}
+.nonGradient{
+    transition: all 0.5s ease-in-out;
+}
+.gradient{
+    background-image: linear-gradient(180deg,#FFFBF5, transparent);
+}
+.mobile{
+    display: none;
+}
+.navmob{
+    display: none;
+}
+.mobileList{
+    margin: 0px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Aileron Bold';
+    
+}
+.mobileList a{
+    font-size: 2.8vh;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    /* height: 12vh; */
+    /* background-color: aqua; */
+    padding-top: auto;
+}
+
+@media screen and (max-width:760px){
+
+    .main{
+        display: none;
+    }
+    .mobile{
+        display: flex;
+        flex-direction: column;
+        padding: 0% 2% 0% 2%;
+        /* background-color: #FFFBF5; */
+    }
+    .navmob{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+    #logomobile{
+        margin-top: 0.6rem;
+        width: 32vw;
+    }
+    .logoticket{
+        padding-left: 0.3rem !important;
+    }
+    .booktickett{
+        font-size: 8rem;
+    }
+    .navHeader div{
+        font-family: 'Aileron Bold';  
+    }
+}
+
+/* Button */
+#btnn{
+    width: 12vw;
+    height: 3vw;
+    margin-top: 7vh;
+    border-radius: 24px;
+    box-shadow: 2px 3px 3px black;
+    background-color: #F35C41;
+    color: white;
+    
+   
+  }
+  .tickett{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bookbtnn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #booktickett{
+    font-size: 1vw;
+    padding-left: 0.4rem;
+  }
+  .logoticket{
+    width: 1.38vw;
+    padding-left: 1.0rem;
+    border: none;
+    box-shadow: none;
+    display: flex;
+  }
+  .booktickets{
+    border: none;
+    box-shadow: none;
+    width: 7.6vw;
+    display: flex;
+    padding-left: 0.5rem;
+  
+  }
+  #btnn:hover{
+    box-shadow: none;
+    -webkit-transform: translateY(-1px);
+      transform: translateY(1px)
+  }
+  a:visited {
+    background-color: #f44336;
+    color: black;
+    
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  /* Hamburger */
+  .menuItem {
+    display: block;
+    margin: 1.4rem 4rem;
+    
+    font-size: 1.6rem;
+    font-family: 'Aileron Bold';
+    color: white !important;
+    text-decoration: #0B0B0B;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  
+  .menuItem:hover {
+    text-decoration: underline;
+  }
+  
+.menuIcon{
+  
+}
+
+  .hamburger {
+    position: fixed;
+    z-index: 100;
+    top: 1rem;
+    right: 1rem;
+    padding: 4px;
+    border: none;
+    background-color: #FFFBF5;
+    cursor: pointer;
+  }
+  
+  .closeIcon {
+    display: none;
+    background-color: #000000;
+   border: transparent;
+    
+  }
+  
+  .menu {
+    position: fixed;
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background: black;
+    color: white;
+    list-style: none;
+    padding-top: 8rem;
+  }
+  
+  .showMenu {
+    transform: translateX(0);
+  }
