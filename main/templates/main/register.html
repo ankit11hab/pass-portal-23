@@ -362,14 +362,13 @@
         document.getElementById("add-member-button").addEventListener("click", function () {
   
           var newForm = `
-  <div class="Pass" id="h${i}" style="margin-top:3vw;">
+  <div class="Pass" id="${i}" style="margin-top:3vw;">
       <div class="shipping-section">
         <div class="upperPart" style="display: flex; justify-content:space-between">
-                <p style="font-weight:700;font-size:20px;">Attendee (${i})</p>
+                <p style="font-weight:700;font-size:20px;">Attendee</p>
                 <div class="passdiv">
                   <select class="PassSel select_dropdown" name="pass_type" onchange=onchnge_()>
-                    <option value="" disabled selected hidden>Select</option>
-  
+                    <option value="none" disabled selected hidden>Select</option>
                     <option value="general"> General
                     </option>
                     <option value="premium"> Premium
@@ -404,7 +403,7 @@
           <div class="shipping-details2">
               <div class="genderDiv" > 
                      <select name="gender">  
-                  <option value=""" disabled selected hidden ></option>
+                  <option value="" disabled selected hidden ></option>
   
                     <option value="male"> Male
                     </option>
@@ -418,12 +417,10 @@
                 <input type='number' name='age'>
               </div>
           </div>
-          <div class="shipping-details2">
-            
+          <div class="shipping-details2" onclick=del(${i})>
             <div class="bookticketbtnnav">
-                <button type="button" id="bookbtnnav" class="bookbtn" >
-        
-        <div class="booktextnav">Remove</div>
+          <button type="button" id="bookbtnnav" onclick=del(${i}) class="bookbtn" >
+        <div class="booktextnav" >Remove</div>
       </button>
         </div>
           </div>
@@ -445,13 +442,18 @@
           parent.insertAdjacentHTML('beforeend', newForm);
   
         });
-  
-        document.querySelector('.Pass-Alcher').addEventListener('click', function (event) {
-          if (event.target.classList.contains('booktextnav')) {
-            event.target.closest('div').remove();
-            i--;
-          }
-        });
+
+        function del(div) {
+          onchnge_()
+            document.getElementById(div).remove()
+            document.getElementById("hidden").insertAdjacentHTML('beforeend',`<input type="hidden" name="name${div}" value=""/>`)
+            }
+        // document.querySelector('.Pass-Alcher').addEventListener('click', function (event) {
+        //   if (event.target.classList.contains('booktextnav')) {
+        //     event.target.closest('div').remove();
+        //     i--;
+        //   }
+        // });
       </script>
         <script>
             let amount = 0;
@@ -459,20 +461,25 @@
                function onchnge_(){
                    // e.preventDefault()
                    amount = 0;
-                   const select_dropdowns  = document.getElementsByClassName('select_dropdown');
-                   console.log(select_dropdowns[0]);
+                  //  const select_dropdowns  = document.getElementsByClassName('select_dropdown');
+                   const select_dropdowns  = document.getElementsByName('pass_type');
+                  //  console.log(select_dropdowns[0]);
                    for (var i=0;i<select_dropdowns.length;i++){
                        console.log(select_dropdowns[i].value);
-                       if(select_dropdowns[i].value=='general'){
+                       if(select_dropdowns[i].value==="general"){
                            amount+=500;
                        }
-                       else if (select_dropdowns[i].value=='none'){
-                           amount+=0;
-                       }
-                       else{
+                       else if(select_dropdowns[i].value==="premium" || select_dropdowns[i].value==="exclusive" ){
                            amount+=750;
                        }
-                   }
+                   }  
+                   const leader_select_dropdown =document.getElementsByName('LeaderPassType')
+                   if(leader_select_dropdown[0].value==="general"){
+                           amount+=500;
+                       }
+                   else if(leader_select_dropdown[0].value==="exclusive" || leader_select_dropdown[0].value==="premium"){
+                           amount+=750; 
+                      }
                    console.log(amount)
                    const amount__span = document.getElementById('amount__')
                    amount__span.innerHTML=amount;

@@ -8,6 +8,11 @@
     margin-top: 0;
 }
 
+.main{
+    background-image: url("/static/images/Frame 14941.png");
+
+    background-size: 100% 100%;
+}
 .navHeader a{
     text-decoration: none;
 }
@@ -23,7 +28,7 @@
 
     margin-top:2.3vw;
     padding-top:1.8vw;
-    background-image: url(./Images/Back.png);
+    background-image: url('../images/Back.png');
     
     background-position:top;
     background-repeat: no-repeat;

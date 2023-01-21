@@ -9,8 +9,8 @@
 /* @import url(//db.onlinewebfonts.com/c/85b716bb727b76ebc27a2d72b9f9c8b5?family=Star+Guard+Semi-Italic); */
 body{
     margin: 0;
-    background-image: url('Frame-14859.png');
-    background-size: 100% 100%;
+    background-image: url('/static/images/Frame-14859.png');
+    background-size: 100% 900%;
 }
 
 
@@ -117,7 +117,7 @@ body{
 
  @media screen and (max-width:800px) {
     body{
-      background-image: url("Android Large - 3.png");
+      background-image: url("/static/images/Android Large - 3.png");
       /* background-repeat: no-repeat; */
     }
     .exclusivePass{
