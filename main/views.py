@@ -140,5 +140,8 @@ def SaveData(request):
     return redirect('confirm')
 
 
+def confirm_payment(request):
+    return render(request, 'main/confirm_payment.html')
+
 def confirm(request):
     return render(request, 'main/confirm.html')
