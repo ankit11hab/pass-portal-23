@@ -66,8 +66,8 @@
                     </div>
                     <div class="input-field" style="display:flex ; align-items: center; ">
                         <p>Pass Type</p>
-                        <select type="se" name="LeaderPassType" spellcheck="false" data-ms-editor="true"
-                            style="width: 500px; height: 50%; position: relative; left: 63px; bottom: 5px;" required>
+                        <select type="se" class='select_dropdown' name="LeaderPassType" spellcheck="false" data-ms-editor="true"
+                            style="width: 500px; height: 50%; position: relative; left: 63px; bottom: 5px;" required onchange=onchnge_()>
                             <option value="none" selected disabled>Selelct Pass Type</option>
                             <option value="general">General</option>
                             <option value="premium">Premium</option>
@@ -116,8 +116,8 @@
                     </div>
                     <div class="input-field" style="display:flex ; align-items: center; ">
                         <p>Pass Type</p>
-                        <select type="se" name="pass_type" spellcheck="false" data-ms-editor="true"
-                            style="width: 500px; height: 50%; position: relative; left: 63px; bottom: 5px;" required>
+                        <select type="se" name="pass_type" class='select_dropdown' spellcheck="false" data-ms-editor="true"
+                            style="width: 500px; height: 50%; position: relative; left: 63px; bottom: 5px;" required onchange=onchnge_()>
                             <option value="none" selected disabled>Selelct Pass Type</option>
                             <option value="general">General</option>
                             <option value="premium">Premium</option>
@@ -142,9 +142,30 @@
                             div.remove();
                         });
                     });
+                }       
+         </script>
+            <script>
+             let amount = 0;
+                console.log(amount);
+                function onchnge_(){
+                    // e.preventDefault()
+                    amount = 0;
+                    const select_dropdowns  = document.getElementsByClassName('select_dropdown');
+                    console.log(select_dropdowns[0]);
+                    for (var i=0;i<select_dropdowns.length;i++){
+                        console.log(select_dropdowns[i].value);
+                        if(select_dropdowns[i].value=='general'){
+                            amount+=500;
+                        }
+                        else if (select_dropdowns[i].value=='none'){
+                            amount+=0;
+                        }
+                        else{
+                            amount+=750;
+                        }
+                    }
+                    console.log(amount)
                 }
-
-                
             </script>
 </body>
 
