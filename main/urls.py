@@ -11,5 +11,4 @@ urlpatterns = [
     path('verify/submit/', views.verify_otp, name='verify_otp'),
     path('register/', views.register, name='register'),
     path('register/submit/', views.SaveData, name='SaveData'),
-    path('confirmPayment/',views.confirm_payment, name ='Confirm_Payment'),
 ] 

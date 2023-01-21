@@ -67,7 +67,7 @@
         <div class="exclusivePassInnerDiv">
           <img id="exclusivePassImg" src="{% static 'images/Exclusive Pass.png' %}" alt="" />
           <div class="bookNowBtnDesktop">
-           <a href="./form desktop/Pass Portal/form_desktop.html" target="_blank"><img src="{% static 'images/Frame 14711.png' %}" alt=""></a>
+           <a href="{% url 'send_otp' %}" target="_blank"><img src="{% static 'images/Frame 14711.png' %}" alt=""></a>
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@
       <div class="mobileContent">
         <div class="getYourPasses"><img src="{% static 'images/Group 500.png' %}" alt="" /></div>
         <div class="manageBookingBtn">
-          <a href="##"><img src="{% static 'images/Group 232.png' %}" alt="" /></a>
+          <a href="{% url 'send_otp' %}"><img src="{% static 'images/Group 232.png' %}" alt="" /></a>
         </div>
         <div class="mobileContentImg">
             <!-- /////////////////////////////////////////////// -->
@@ -110,7 +110,7 @@
             <div class="mobImgInnerDiv">
               <img src="{% static 'images/Frame 14957.png' %}" alt="" />
               <div class="bookNowBtn">
-                <a href="##"><img src="{% static 'images/Frame 14711.png' %}" alt="" /></a>
+                <a href="{% url 'send_otp' %}"><img src="{% static 'images/Frame 14711.png' %}" alt="" /></a>
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@
             <div class="mobImgInnerDiv">
               <img src="{% static 'images/Frame 14972.png' %}" alt="" />
               <div class="bookTicketsBtn">
-                <a href="##"><img src="{% static 'images/booktickets2.png' %}" alt="" /></a>
+                <a href="{% url 'send_otp' %}"><img src="{% static 'images/booktickets2.png' %}" alt="" /></a>
               </div>
             </div>
           </div>
@@ -127,14 +127,14 @@
           <div class="mobImg"> <div class="mobImgInnerDiv">
             <img src="{% static 'images/Frame 14973.png' %}" alt="" />
             <div class="bookNowBtn">
-              <a href="##"><img src="{% static 'images/Frame 14711.png' %}" alt="" /></a>
+              <a href="{% url 'send_otp' %}"><img src="{% static 'images/Frame 14711.png' %}" alt="" /></a>
             </div>
           </div></div>
           <!-- //////////////////////////////////////////////////////// -->
           <div class="mobImg"><div class="mobImgInnerDiv">
             <img src="{% static 'images/Frame 14974.png' %}" alt="" />
             <div class="bookTicketsBtn">
-              <a href="##"><img src="{% static 'images/booktickets2.png' %}" alt="" /></a>
+              <a href="{% url 'send_otp' %}"><img src="{% static 'images/booktickets2.png' %}" alt="" /></a>
             </div>
           </div></div>
           <!-- ///////////////////////////////////////////////////// -->
@@ -160,25 +160,25 @@
             <div class="options">
               <ul type="none">
                 <li>
-                  <a href="/Events">EVENTS</a>
+                  <a href="https://alcheringa.in/events/pt">EVENTS</a>
                 </li>
                 <li>
-                  <a href="/Merch">MERCH</a>
+                  <a href="https://alcheringa.in/Merch">MERCH</a>
                 </li>
                 <li>
-                  <a href="/Campaigns">CAMPAIGNS</a>
+                  <a href="https://alcheringa.in/Campaigns">CAMPAIGNS</a>
                 </li>
                 <li>
-                  <a href="/Teams">TEAMS</a>
+                  <a href="https://alcheringa.in/Teams">TEAMS</a>
                 </li>
                 <li>
-                  <a href="/MUN">MUN</a>
+                  <a href="https://alcheringa.in/MUN">MUN</a>
                 </li>
                 <li>
-                  <a href="/Sponsors">SPONSORS</a>
+                  <a href="https://alcheringa.in/Sponsors">SPONSORS</a>
                 </li>
                 <li>
-                  <a href="/Contests">CONTESTS</a>
+                  <a href="https://alcheringa.in/Contests">CONTESTS</a>
                 </li>
               </ul>
             </div>

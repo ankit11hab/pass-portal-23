@@ -116,6 +116,11 @@ def SaveData(request):
             count = count+1
         request.session['count'] = count
         members = []
+        paases_type = {
+            'general':0,
+            'premium':0,
+            'exclusive':0,
+        }
         for name, contact, pass_type in zip(member_names, member_contacts, member_passtype):
             member = {
                 "name": name,
@@ -140,8 +145,5 @@ def SaveData(request):
     return redirect('confirm')
 
 
-def confirm_payment(request):
-    return render(request, 'main/confirm_payment.html')
-
 def confirm(request):
-    return render(request, 'main/confirm.html')
+    return render(request, 'main/confirm_payment.html')

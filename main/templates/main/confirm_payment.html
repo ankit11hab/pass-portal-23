@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="referrer" content="unsafe-url" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pass Portal</title>
   <link rel="stylesheet"
@@ -67,6 +68,13 @@
 
 
   <div class="passPortalContent">
+    {% for message in messages %} 
+    {% if message.tags == 'info' %}
+    <form
+      method="POST"
+      action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp">
+      {% csrf_token %}
+      <input type="hidden" name="data" value="{{message}}" />
     <div class="ConfirmP_img">
       <div class="CP_Left">
         <div class="CP_Left_head">
@@ -235,12 +243,15 @@
             2397
           </div>
         </div>
-        <button class="CP_button">
+        <button class="CP_button" type="submit">
           Confirm
         </button>
       </div>
     </div>
-  </div>
+  </form>
+  {%endif%} 
+  {%endfor%}
+</div>
 
   <!-- /////////////////////////////////////////////////////////// -->
   <!-- Footer code starts here  -->
@@ -365,5 +376,12 @@
 
   </div>
 </body>
+<script>
+  {% for message in messages%}
+  {% if message.tags == 'error'%}
+  window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF","{{message}}")
+  {%endif%}
+  {%endfor%}
+</script>
 
 </html>

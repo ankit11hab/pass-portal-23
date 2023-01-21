@@ -25,6 +25,9 @@ body{
 .navHeader{
     margin-top: 0;
 }
+.passImg{
+  display: none;
+}
 
 .navHeader a{
     text-decoration: none;
