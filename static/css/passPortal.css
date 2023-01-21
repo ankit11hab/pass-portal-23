@@ -15,7 +15,11 @@ body{
 
 
 /* ////////////////////////////////////////////////// CSS for navbar starts */
+<<<<<<< HEAD
 /* @import url(https://db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold); */
+=======
+@import url('db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
+>>>>>>> cd62dc9d51f025f410c4c4d6063f7f80f0e6533d
 
 *{
     padding: 0;
@@ -356,7 +360,7 @@ body{
   }
   
   .footer_desk a {
-    font-weight:900;
+    font-weight:600;
     color: white;
     text-decoration: none;
   }
