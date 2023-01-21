@@ -1,14 +1,16 @@
 
 .otpPage_box{
-    border: 2px solid black;
-    border-radius:2.5vw;
+    border: 1.2px solid black;
+    border-radius:2.2vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    margin-bottom: 3vw;
     width: 80vw;
     box-sizing: border-box;
+    background-color: #FEF8F1;
 }
 .otpPage_container{
     font-family: 'Aileron',sans-serif;
@@ -21,8 +23,10 @@
     padding-bottom: 12vh;
 }
 .email_input,.otp_input{
-    height: 4vh;
+    height: 5.6vh;
     width: 200px;
+    border: 1px solid black;
+    background: transparent;
 }
 .email_input_container,.verify_container{
     display: flex;
@@ -54,6 +58,7 @@
     justify-content: center;
     font-size: 3vw;
     padding: 2vw;
+    padding-top: 0;
     box-sizing: border-box;
     width: 80vw;
 }
