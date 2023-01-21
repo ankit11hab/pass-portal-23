@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Star-Guard';
+  src: url(../fonts/starguard.ttf) format("truetype");
+}
+/* @font-face {
+  font-family: 'Aileron';
+  src: url(../fonts/Aileron-Bold.ttf) format("truetype");
+} */
+/* @import url(//db.onlinewebfonts.com/c/85b716bb727b76ebc27a2d72b9f9c8b5?family=Star+Guard+Semi-Italic); */
 body{
     margin: 0;
     background-image: url('Frame-14859.png');
@@ -6,7 +15,7 @@ body{
 
 
 /* ////////////////////////////////////////////////// CSS for navbar starts */
-@import url(//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold);
+@import url(https://db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold);
 
 *{
     padding: 0;
@@ -172,10 +181,7 @@ body{
 /* /////////////////////////////// CSS for footer starts here */
 /* footer */
 @import url('https://fonts.cdnfonts.com/css/aileron');
-@font-face {
-  font-family: 'Star-Guard';
-  src: url('./star-guard-italic.ttf');
-}
+
 .footer_desk {
     /* position: absolute; */
     width: 100vw;
@@ -350,7 +356,7 @@ body{
   }
   
   .footer_desk a {
-    font-weight:900;
+    font-weight:600;
     color: white;
     text-decoration: none;
   }

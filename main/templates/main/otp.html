@@ -1,71 +1,271 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OTP</title>
-    <style>
-      @media (max-width: 500px) {
-        .email {
-          font-size: 32px;
-        }
-        .otp {
-          font-size: 32px;
-        }
-        .sendOTP {
-          transform: scale(1.4);
-          margin-top: 30px;
-        }
-        html,
-        body {
-          overflow-x: hidden;
-        }
-      }
-    </style>
+    <title>Pass Portal</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link rel="stylesheet" href="{% static 'css/passPortal.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/otpPage.css' %}" />
   </head>
-
   <body>
-    <div style="display: flex; justify-content: space-between">
-      <form action="{% url 'otp'%}" method="POST" class="Form">
-        {% csrf_token %}
-        <div class="info" style="margin-left: 20px; display: flex">
-          <div class="input-field" style="display: flex; align-items: center">
-            <p class="email">Email</p>
-            <input
-              class="otp"
-              type="text"
-              name="email"
-              spellcheck="false"
-              data-ms-editor="true"
-              style="
-                width: 500px;
-                height: 50%;
-                position: relative;
-                left: 93px;
-                bottom: 5px;
-              "
-              required
-            />
-          </div>
-          <input
-            class="sendOTP"
-            style="
-              margin-left: 120px;
-              position: relative;
-              top: 5px;
-              background-color: rgb(24, 179, 24);
-              border: 0;
-              border-radius: 14px;
-              color: white;
-              font-weight: 700;
-              height: 25px;
-            "
-            type="submit"
-            value="Send OTP"
-          />
+    <div class="main">
+      <header class="navHeader gradient">
+        <div style="margin-top: 1vh">
+          <a href="/"
+            ><img
+              style="width: 15vw"
+              src="{% static 'images/Mask group.png' %}"
+              class="alcherLogoo"
+              alt=""
+          /></a>
         </div>
+        <nav class="NavigationBar">
+          <ul class="NavigationList">
+            <li class="Events" id="Event" onclick="color()">
+              <a href="/"><b>EVENTS</b></a>
+            </li>
+            <li class="Merch">
+              <a href="/"><b>MERCH</b></a>
+            </li>
+            <li class="Campaigns">
+              <a href="/"><b>CAMPAIGNS</b></a>
+            </li>
+            <li class="Teams">
+              <a href="/"><b>TEAMS</b></a>
+            </li>
+
+            <li class="Sponsors">
+              <a href="/"><b>SPONSORS</b></a>
+            </li>
+            <li class="Contests">
+              <a href="/"><b>CONTESTS</b></a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+    <!-- material icons CDN in the head section, see the html settings 👆-->
+    <div class="mobile">
+      <div>
+        <a href="/"
+          ><img
+            src="{% static 'images/Mask group.png' %}"
+            id="logomobile"
+            width="150vw"
+            alt=""
+        /></a>
+      </div>
+      <ul class="menu mobileList">
+        <li>
+          <a class="menuItem" href="/"><b>EVENTS</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>MERCH</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>CAMPAIGNS</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>TEAMS</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>SPONSORS</b></a>
+        </li>
+        <li>
+          <a class="menuItem" href="/"><b>CONTESTS</b></a>
+        </li>
+      </ul>
+      <button class="hamburger">
+        <!-- material icons https://material.io/resources/icons/ -->
+        <i class="menuIcon material-symbols-outlined">menu</i>
+        <!-- <i class="closeIcon material-symbols-outlined">close</i> -->
+        <!-- <img src="{% static 'images/{% static ./Images/menu.png' %}" class="menuIcon" alt=""> -->
+        <img src="{% static 'images/close.png' %}" class="closeIcon" alt="" />
+      </button>
+    </div>
+    <!-- /////////// code for navbar ends here -->
+  
+<div class="otpPage_container">
+<div class="otp_header">Verify Email</div>
+<div class="otpPage_box">
+    <div class="email_input_container">
+      <form>
+        <label for="email">Enter Email</label>
+        <div class="form_otp_container">
+        <input type="email" class="email_input" name="email" required/>
+        <button type="button" class="otp_bookbtn" id="email_submit">
+          <div class="booktextnav">Submit</div>
+        </button>
+      </div>
       </form>
     </div>
+    <div class="verify_container">
+      <form action="{% url 'verify_otp'%}" method="POST">
+        {% csrf_token %}
+      <label for="otp1">Enter OTP</label>
+      <div class="form_otp_container">
+      <input type="number" maxlength="4" class="otp_input" name="otp1" required/>
+      <button type="submit" class="otp_bookbtn">
+        <div class="booktextnav">Verify</div>
+      </button>
+    </form>
+    </div>
+    </div>
+  </div>
+</div>
+    <!-- /////////////////////////////////////////////////////////// -->
+    <!-- Footer code starts here  -->
+
+    <div class="footer_desk">
+      <div class="logo_mob">
+        <img src="{% static 'images/yellow_stone.png' %}" class="yellow" />
+        <img src="{% static 'images/red_stone.png' %}" class="red" />
+        <div class="hail">
+          HAIL <br />
+          ALCHER!
+        </div>
+        <img src="{% static 'images/green_stone.png' %}" class="green" />
+        <img src="{% static 'images/violet_stone.png' %}" class="violet" />
+      </div>
+      <div>
+        <div class="footer_main">
+          <div class="options">
+            <ul type="none">
+              <li>
+                <a href="/Events">EVENTS</a>
+              </li>
+              <li>
+                <a href="/Merch">MERCH</a>
+              </li>
+              <li>
+                <a href="/Campaigns">CAMPAIGNS</a>
+              </li>
+              <li>
+                <a href="/Teams">TEAMS</a>
+              </li>
+              <li>
+                <a href="/MUN">MUN</a>
+              </li>
+              <li>
+                <a href="/Sponsors">SPONSORS</a>
+              </li>
+              <li>
+                <a href="/Contests">CONTESTS</a>
+              </li>
+            </ul>
+          </div>
+          <div class="logo">
+            <!-- <HailAlcher /> -->
+            <!-- Hail Alcher Starts  -->
+
+            <img src="{% static 'images/yellow_stone.png' %}" class="yellow" />
+            <img src="{% static 'images/red_stone.png' %}" class="red" />
+            <div class="hail">
+              HAIL <br />
+              ALCHER!
+            </div>
+            <img src="{% static 'images/green_stone.png' %}" class="green" />
+            <img src="{% static 'images/violet_stone.png' %}" class="violet" />
+            <!-- Hail Alcher Ends  -->
+          </div>
+          <div class="details_main">
+            <div class="details">
+              <div class="contact">
+                <div class="shareka">
+                  <b>Siddant Singh</b>
+                  PR Head<br />
+                  +91 9310859978
+                </div>
+                <br />
+                <div class="abhi">
+                  <b>Danda Akshara</b>
+                  PR Head<br />
+                  +91 9908991939
+                </div>
+              </div>
+            </div>
+            <div class="socials_mob">
+              <a class="insta" href="https://www.instagram.com/alcheringaiitg/">
+                <!-- <Insta2 /> -->
+                <img src="{% static 'images/./images/insta2.svg'%}" />
+              </a>
+              <a class="face" href="https://www.facebook.com/alcheringaiitg">
+                <!-- <Facebook2 /> -->
+                <img src="{% static 'images/facebook2.svg'%}" />
+              </a>
+              <a class="tweet" href="https://twitter.com/alcheringaiitg">
+                <!-- <Twitter2 /> -->
+                <img src="{% static 'images/twitter2.svg'%}"/>
+              </a>
+              <a class="youtube" href="https://www.youtube.com/@alcheringaIITG">
+                <!-- <Youtube2 /> -->
+                <img src="{% static 'images/utube2.svg'%}" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer_bottom">
+          <div>
+            <a href="/">
+              <img class="footer_logo" src="{% static 'images/LogoFooter.svg'%}" />
+            </a>
+          </div>
+          <div class="socialIcon">
+            <div class="socials_desk">
+              <a class="insta" href="https://www.instagram.com/alcheringaiitg/">
+                <img src="{% static 'images/insta.svg'%}"/>
+              </a>
+              <a class="face" href="https://www.facebook.com/alcheringaiitg">
+                <img src="{% static 'images/facebook.svg'%}"/>
+              </a>
+              <a class="tweet" href="https://twitter.com/alcheringaiitg">
+                <img src="{% static 'images/twitter.svg'%}"/>
+              </a>
+              <a class="youtube" href="https://www.youtube.com/@alcheringaIITG">
+                <img src="{% static 'images/utube.svg'%}"/>
+              </a>
+            </div>
+            <div class="inqueries">
+              <span style="font-weight: 200">For Business Enqueries:</span>
+              <span style="font-weight: 900">alcheringa@iitg.ac.in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer code ends here  -->
+      <script src="{% static 'js/scriptPassPortal.js' %}"></script>
+      <script src="{% static 'js/script.js '%}"></script>
+    </div>
   </body>
+  <script>
+    document.getElementById('email_submit').addEventListener('click',(e)=>{
+      document.getElementsByClassName('verify_container')[0].setAttribute('style',"display:block;")
+      fetch("{% url 'otp'%}",{
+        method:"POST",
+        body:JSON.stringify({
+          email:document.getElementsByName('email')[0].value
+        }),
+        headers: {
+        "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+    })
+  </script>
 </html>

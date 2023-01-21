@@ -1,5 +1,6 @@
 
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
 import qrcode
 import string
 import random
@@ -14,7 +15,9 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import os
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 import base64
+import json
 
 
 config = {
@@ -36,26 +39,30 @@ db = firestore.client()
 
 # add this section to payment success and send qr for leader and members
 
+
 def home(request):
-    return render(request,'main/home.html')
+    return render(request, 'main/home.html')
+
 
 def otp(request):
     return render(request, "main/otp.html")
 
 
+@csrf_exempt
 def send_otp(request):
     try:
-        email = request.POST.get('email')
+        email = json.loads(request.body)['email']
         request.session['LeaderEmail'] = email
         subject = 'Your email verification email'
         otp = random.randint(1000, 9999)
         message = 'Your otp is ' + str(otp)
         from_email = settings.EMAIL_HOST_USER
         send_mail(subject, message, from_email, [email])
+        request.session['otp'] = otp
     except Exception as e:
         print(e)
-    request.session['otp'] = otp
-    return redirect('verify')
+    return JsonResponse({"otp": "otp"})
+    # return redirect('verify')
 
 
 def verify(request):
@@ -88,7 +95,7 @@ def SaveData(request):
         key = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         iv = "adjfytryd5g87hgh"
         id = ''.join(random.choices(string.ascii_uppercase +
-                                    string.digits, k=11))
+                                    string.digits, k=8))
         amount = 1
         fee_id = "M1006"
         print(id)
