@@ -9,7 +9,8 @@
   </head>
   <body>
     <h1>COnfirm?</h1>
-    {% for message in messages %} {%ifequal message.tags 'info' %}
+    {% for message in messages %} 
+    {% if message.tags == 'info' %}
     <form
       method="post"
       action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp"
@@ -19,13 +20,14 @@
       {{message}}
       <button type="submit">submit</button>
     </form>
-    {%endifequal%} {%endfor%}
+    {%endif%} 
+    {%endfor%}
   </body>
   <script>
     {% for message in messages%}
-    {% ifequal message.tags 'error'%}
+    {% if message.tags == 'error'%}
     window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF","{{message}}")
-    {%endifequal%}
+    {%endif%}
     {%endfor%}
   </script>
 </html>

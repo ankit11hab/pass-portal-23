@@ -78,6 +78,11 @@ def register(request):
     return render(request, 'main/register.html', {'email': email})
 
 
+def register2(request):
+    email = request.session.get('LeaderEmail')
+    return render(request, 'main/register2.html', {'email': email})
+
+
 def SaveData(request):
     if request.method == 'POST':
         key = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
