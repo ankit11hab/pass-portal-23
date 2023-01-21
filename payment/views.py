@@ -149,7 +149,9 @@ def payment_response(request):
 @csrf_exempt
 def success(request):
     return render(request, 'payment/success.html')
-
+@csrf_exempt
+def under_process(request):
+    return render(request,'under_process.html')
 
 def generate_qr_code(request, members, leader):
     email = request.session.get('LeaderEmail')
