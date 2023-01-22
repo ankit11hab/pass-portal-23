@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="unsafe-url" />
-  <title>Pass Portal</title>
+  <title>Registration | Alcheringa</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -76,23 +76,23 @@
         </div>
         <div class="success_div_">
           <div class="success_header">E-mail</div>
-          <div class="success_info_value">testemail</div>
+          <div class="success_info_value">{{member.email}}</div>
         </div>
         <div class="success_div_">
           <div class="success_header">Phone Number</div>
           <div class="success_info_value">{{member.contact}}</div>
         </div>
-        <div class="success_div_mul">
-          <div class="success_div_">
-            <div class="success_header">Gender</div>
-            <div class="success_info_value">gender<div>
-              </div>
-              <div class="success_div_">
-                <div class="success_header">Age</div>
-                <div class="success_info_value">age</div>
-              </div>
+      </div>
+      <div class="success_div_mul">
+        <div class="success_div_">
+          <div class="success_header">Gender</div>
+          <div class="success_info_value">{{member.gender}}</div>
             </div>
-          </div>
+            <div class="success_div_">
+              <div class="success_header">Age</div>
+              <div class="success_info_value">{{member.age}}</div>
+            </div>
+      </div>
           <div class="blackdot">
             <img src="{% static 'images/Blackdot.png'%}" alt="">
           </div>
@@ -121,7 +121,7 @@
         </div>
       </div>
     </div>
-      {%endfor%}
+     
 
     <div class="buttonStackOuterDiv">
       <div class="buttonStack">
@@ -130,6 +130,8 @@
         <div> <img class="tapButton" src="{% static  'images/whatsappBtn.png'%}" alt=""></div>
       </div>
     </div>
+    {%endfor%}
+  </div>
     <!-- Footer code starts here  -->
 
     <div class="footer_desk">
@@ -248,7 +250,7 @@
           </div>
         </div>
       </div>
-
+</div>
 
 
       <!-- Footer code ends here  -->
