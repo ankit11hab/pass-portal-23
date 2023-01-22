@@ -189,3 +189,6 @@ def SaveData(request):
 
 def confirm(request):
     return render(request, 'main/confirm_payment.html')
+
+def comingsoon(request):
+    return render(request,'main/comingsoon.html')

@@ -131,7 +131,7 @@ def payment_response(request):
                     [email],
                 )
                 message.send()
-            # generate_qr_code(request,leader_array,member_array)
+            # generate_qr_code( request,leader_array,member_array)
             return redirect('get_payment_details')
         else:
             doc_ref = db.collection('users').document(
@@ -172,9 +172,9 @@ def generate_qr_code(request, leader, members):
     img = qr.make_image(fill_color="#fffde9",
                         back_color="black")
     lid = leader['id']
-    img.save(static(f'static/QRcode/{lid}.png'), format='PNG')
+    img.save(static(f'QRcode/{lid}.png'), format='PNG')
     gen_pdf(lid)
-    message.attach_file(static(f'static/pdf/{lid}.pdf'))
+    message.attach_file(static(f'pdf/{lid}.pdf'))
     for member in members:
         qr = qrcode.QRCode()
         qr.add_data(
@@ -183,9 +183,9 @@ def generate_qr_code(request, leader, members):
         img = qr.make_image(fill_color="#fffde9",
                             back_color="black")
         mid = member['id']
-        img.save(static(f'static/QRcode/{mid}.png'), format='PNG')
+        img.save(static(f'QRcode/{mid}.png'), format='PNG')
         gen_pdf(mid)
-        message.attach(static(f'static/pdf/{mid}.pdf'))
+        message.attach(static(f'pdf/{mid}.pdf'))
     message.send()
 
     return HttpResponse('Pass sent!')
@@ -224,18 +224,18 @@ def get_verified_details(request, id):
 def gen_pdf(pdfID):
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=(2000, 2000))
-    can.drawImage(static(f"static/QRcode/{pdfID}.png"), 1100, 800)
+    can.drawImage(static(f"QRcode/{pdfID}.png"), 1100, 800)
     can.save()
     packet.seek(0)
     new_pdf = PdfReader(packet)
     existing_pdf = PdfReader(
-        open(static("static/exclusive_alcheringa.pdf"), "rb"))
+        open(static("exclusive_alcheringa.pdf"), "rb"))
     output = PdfWriter()
     page = existing_pdf.pages[0]
     page.merge_page(new_pdf.pages[0])
     output.add_page(page)
     output.add_page(existing_pdf.pages[1])
-    outputStream = open(static(f'static/pdf/{pdfID}.pdf'), "wb")
+    outputStream = open(static(f'pdf/{pdfID}.pdf'), "wb")
     output.write(outputStream)
     outputStream.close()
 
