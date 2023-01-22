@@ -72,7 +72,7 @@ def payment_response(request):
         if status == "1":
             print("inside 1")
             context = {"message": "", "success": 1, "tid": tid}
-            doc_ref.update({"currStatus": "verified",'transID':tid})
+            doc_ref.update({"currStatus": "verified", 'transID': tid})
             leader_data = {
                 "name": doc_ref.get().to_dict()['LName'],
                 "contact": doc_ref.get().to_dict()['LContact'],
@@ -105,9 +105,9 @@ def payment_response(request):
                     "name": member['name'],
                     "contact": member['contact'],
                     "pass_type": member['pass_type'],
-                    "email":member['email'],
-                    "age":member['age'],
-                    "gender":member['gender'],
+                    "email": member['email'],
+                    "age": member['age'],
+                    "gender": member['gender'],
                     "transID": tid
                 }
                 doc_ref2 = ''
@@ -121,7 +121,17 @@ def payment_response(request):
                 member_array.append(
                     {'name': member_data['name'], 'pass_type': member_data['pass_type'], 'id': doc_ref2.id})
                 print(member_array)
-            generate_qr_code(request,leader_array,member_array)
+                email = request.session.get('LeaderEmail')
+                count = request.session.get('count')
+                from_email = settings.EMAIL_HOST_USER
+                message = EmailMessage(
+                    'Pass Confirmation',
+                    'Your registeration for Acheringa 2023 has been sent to us.Hang on to your cape and keep an eye out we will send you  a QR code shortly'                                                                       ',
+                    from_email,
+                    [email],
+                )
+                message.send()
+            # generate_qr_code(request,leader_array,member_array)
             return redirect('get_payment_details')
         else:
             doc_ref = db.collection('users').document(
@@ -136,12 +146,14 @@ def payment_response(request):
 @csrf_exempt
 def success(request):
     return render(request, 'payment/success_.html')
+
+
 @csrf_exempt
 def under_process(request):
-    return render(request,'under_process.html')
+    return render(request, 'under_process.html')
 
-def generate_qr_code(request,leader,members):
-    email="akshat.akshat@iitg.ac.in"
+
+def generate_qr_code(request, leader, members):
     email = request.session.get('LeaderEmail')
     count = request.session.get('count')
     from_email = settings.EMAIL_HOST_USER
@@ -152,8 +164,8 @@ def generate_qr_code(request,leader,members):
         [email],
     )
     qr = qrcode.QRCode(version=6,
-    box_size=18,
-    border=4,)
+                       box_size=18,
+                       border=4,)
     qr.add_data(
         {'name': leader['name'], 'pass_type': leader['pass_type'], 'id': leader['id']})
     qr.make()
@@ -169,7 +181,7 @@ def generate_qr_code(request,leader,members):
             {'name': member['name'], 'pass_type': member['pass_type'], 'id': member['id']})
         qr.make()
         img = qr.make_image(fill_color="#fffde9",
-                        back_color="black")
+                            back_color="black")
         mid = member['id']
         img.save(static(f'static/QRcode/{mid}.png'), format='PNG')
         gen_pdf(mid)
@@ -178,33 +190,34 @@ def generate_qr_code(request,leader,members):
 
     return HttpResponse('Pass sent!')
 
+
 @csrf_exempt
 def get_verified_details(request, id):
     # print('called')
     # id=request.GET.get('id')
     print(id)
     # if request.method=="POST":
-        # print('entered')
-        # print(type(request.body))
-        # id1=str((request.body).decode())
-        # id=gngjngj
-        # id1='14I3DFYP'
-        # tid=220075070
-        # print(id1)
-        # id1=id1.split("=")
-        # print(id1)
-        # print(id1[1])
-        # doc_ref = db.collection('users').document(id1[1])
+    # print('entered')
+    # print(type(request.body))
+    # id1=str((request.body).decode())
+    # id=gngjngj
+    # id1='14I3DFYP'
+    # tid=220075070
+    # print(id1)
+    # id1=id1.split("=")
+    # print(id1)
+    # print(id1[1])
+    # doc_ref = db.collection('users').document(id1[1])
     doc_ref = db.collection('users').document(id)
-    tid=doc_ref.get().to_dict()['transID']
+    tid = doc_ref.get().to_dict()['transID']
     # id,name,pass_type
-    q=db.collection('verified_users').where('transID','==',tid).stream()
-    context=[]
-    for doc in q :
+    q = db.collection('verified_users').where('transID', '==', tid).stream()
+    context = []
+    for doc in q:
         context.append(doc.to_dict())
     print(context)
     # return JsonResponse({'context':context})
-    return render(request,'payment/success_.html',{'context':context})
+    return render(request, 'payment/success_.html', {'context': context})
     # return render(request,'payment/success_.html')
 
 
@@ -215,7 +228,8 @@ def gen_pdf(pdfID):
     can.save()
     packet.seek(0)
     new_pdf = PdfReader(packet)
-    existing_pdf = PdfReader(open(static("static/exclusive_alcheringa.pdf"), "rb"))
+    existing_pdf = PdfReader(
+        open(static("static/exclusive_alcheringa.pdf"), "rb"))
     output = PdfWriter()
     page = existing_pdf.pages[0]
     page.merge_page(new_pdf.pages[0])
@@ -227,4 +241,4 @@ def gen_pdf(pdfID):
 
 
 def get_payment_details(request):
-    return render(request,'payment/transaction_done.html')
+    return render(request, 'payment/transaction_done.html')
