@@ -12,7 +12,9 @@
     /* background-color: black; */
     /* opacity: 50%; */
     /* margin-left: 6vw; */
-    /* display: flex;*/
+    display: flex;
+    align-items: center;
+    height: 100%;
     position: relative;
 }
 
