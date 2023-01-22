@@ -30,7 +30,7 @@
 
 .CP_Left_head {
 
-    font-family: 'Aileron';
+    font-family: sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
@@ -50,7 +50,7 @@
 }
 
 .CP_entry_head {
-    font-family: 'Aileron';
+    font-family: sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -101,7 +101,7 @@
     height: 5vw;
     padding-top: 5vw;
     padding-left: 4vw;
-    font-family: 'Aileron';
+    font-family: sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 17px;
