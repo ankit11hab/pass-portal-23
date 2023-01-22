@@ -125,8 +125,8 @@ def payment_response(request):
                 count = request.session.get('count')
                 from_email = settings.EMAIL_HOST_USER
                 message = EmailMessage(
-                    'Pass Confirmation',
-                    'Your registeration for Acheringa 2023 has been sent to us.Hang on to your cape and keep an eye out we will send you  a QR code shortly'                                                                       ',
+                    'Confirmation Mail',
+                    'Your registeration for Alcheringa 2023 has been sent to us.Hang on to your cape and keep an eye out we will send you a QR code shortly',
                     from_email,
                     [email],
                 )
