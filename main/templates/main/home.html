@@ -22,82 +22,7 @@
     <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}" />
   </head>
   <body>
-    <div class="main">
-      <header class="navHeader gradient">
-        <div style="margin-top: 1vh">
-          <a href="/"
-            ><img
-              style="width: 15vw"
-              src="{% static 'images/Mask group.png' %}"
-              class="alcherLogoo"
-              alt=""
-          /></a>
-        </div>
-        <nav class="NavigationBar">
-          <ul class="NavigationList">
-            <li class="Events" id="Event" onclick="color()">
-              <a href="/"><b>EVENTS</b></a>
-            </li>
-            <li class="Merch">
-              <a href="/"><b>MERCH</b></a>
-            </li>
-            <li class="Campaigns">
-              <a href="/"><b>CAMPAIGNS</b></a>
-            </li>
-            <li class="Teams">
-              <a href="/"><b>TEAMS</b></a>
-            </li>
-
-            <li class="Sponsors">
-              <a href="/"><b>SPONSORS</b></a>
-            </li>
-            <li class="Contests">
-              <a href="/"><b>CONTESTS</b></a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    </div>
-
-    <!-- material icons CDN in the head section, see the html settings 👆-->
-    <div class="mobile">
-      <div>
-        <a href="/"
-          ><img
-            src="{% static 'images/Mask group.png' %}"
-            id="logomobile"
-            width="150vw"
-            alt=""
-        /></a>
-      </div>
-      <ul class="menu mobileList">
-        <li>
-          <a class="menuItem" href="/"><b>EVENTS</b></a>
-        </li>
-        <li>
-          <a class="menuItem" href="/"><b>MERCH</b></a>
-        </li>
-        <li>
-          <a class="menuItem" href="/"><b>CAMPAIGNS</b></a>
-        </li>
-        <li>
-          <a class="menuItem" href="/"><b>TEAMS</b></a>
-        </li>
-        <li>
-          <a class="menuItem" href="/"><b>SPONSORS</b></a>
-        </li>
-        <li>
-          <a class="menuItem" href="/"><b>CONTESTS</b></a>
-        </li>
-      </ul>
-      <button class="hamburger">
-        <!-- material icons https://material.io/resources/icons/ -->
-        <i class="menuIcon material-symbols-outlined">menu</i>
-        <!-- <i class="closeIcon material-symbols-outlined">close</i> -->
-        <!-- <img src="{% static 'images/{% static ./Images/menu.png' %}" class="menuIcon" alt=""> -->
-        <img src="{% static 'images/close.png' %}" class="closeIcon" alt="" />
-      </button>
-    </div>
+    {% include 'main/navbar.html' %}
     <!-- /////////// code for navbar ends here -->
 
     <!-- <div class="alcherLogo">
@@ -109,7 +34,7 @@
         <div class="exclusivePassInnerDiv">
           <img
             id="exclusivePassImg"
-            src="{% static 'images/Exclusive Pass.png' %}"
+            src="{% static 'images/Exclusive Pass (2).png' %}"
             alt=""
           />
           <div class="bookNowBtnDesktop">
@@ -180,7 +105,7 @@
           </div>
           <!-- //////////////////////////////////////////////////////// -->
           <div class="mobImg"><div class="mobImgInnerDiv">
-            <img src="{% static 'images/Frame 14974.png' %}" alt="" />
+            <img src="{% static 'images/Frame 149721.png' %}" alt="" />
             <div class="bookTicketsBtn">
               <a href="##"><img src="{% static 'images/booktickets2.png' %}" alt="" /></a>
             </div>
@@ -194,136 +119,7 @@
     <!-- Footer code starts here  -->
 
 
-      <div class="footer_desk">
-        <div class="logo_mob">
-
-              <img src="{% static 'images/yellow_stone.png' %}" class="yellow">
-            <img src="{% static 'images/red_stone.png' %}" class="red">
-            <div class='hail'>HAIL <br> ALCHER!</div>
-                    <img src="{% static 'images/green_stone.png' %}" class="green">
-                    <img src="{% static 'images/violet_stone.png' %}" class="violet">
-        </div>
-        <div>
-          <div class="footer_main">
-            <div class="options">
-              <ul type="none">
-                <li>
-                  <a href="/Events">EVENTS</a>
-                </li>
-                <li>
-                  <a href="/Merch">MERCH</a>
-                </li>
-                <li>
-                  <a href="/Campaigns">CAMPAIGNS</a>
-                </li>
-                <li>
-                  <a href="/Teams">TEAMS</a>
-                </li>
-                <li>
-                  <a href="/MUN">MUN</a>
-                </li>
-                <li>
-                  <a href="/Sponsors">SPONSORS</a>
-                </li>
-                <li>
-                  <a href="/Contests">CONTESTS</a>
-                </li>
-              </ul>
-            </div>
-            <div class="logo">
-              <!-- <HailAlcher /> -->
-                        <!-- Hail Alcher Starts  -->
-
-                        <img src="{% static 'images/yellow_stone.png' %}" class="yellow">
-                        <img src="{% static 'images/red_stone.png' %}" class="red">
-                        <div class='hail'>HAIL <br> ALCHER!</div>
-                                <img src="{% static 'images/green_stone.png' %}" class="green">
-                                <img src="{% static 'images/violet_stone.png' %}" class="violet">
-                      <!-- Hail Alcher Ends  -->
-            </div>
-            <div class="details_main">
-              <div class="details">
-                <div class="contact">
-                  <div class="shareka">
-                    <b>Siddant Singh</b>
-                    PR Head<br>
-                    +91 9310859978
-                  </div>
-                  <br>
-                  <div class="abhi">
-                    <b>Danda Akshara</b>
-                    PR Head<br>
-                    +91 9908991939
-                  </div>
-                </div>
-              </div>
-              <div class="socials_mob">
-                <a
-                  class="insta"
-                  href="https://www.instagram.com/alcheringaiitg/"
-                >
-                  <!-- <Insta2 /> -->
-                  <img src="{% static 'images/./images/insta2.svg'%}"/>
-                </a>
-                <a
-                  class="face"
-                  href="https://www.facebook.com/alcheringaiitg"
-                >
-                  <!-- <Facebook2 /> -->
-                  <img src="{% static 'images/facebook2.svg'%}"/>
-                </a>
-                <a class="tweet" href="https://twitter.com/alcheringaiitg">
-                  <!-- <Twitter2 /> -->
-                  <img src="{% static 'images/twitter2.svg'%}"/>
-                </a>
-                <a
-                  class="youtube"
-                  href="https://www.youtube.com/@alcheringaIITG"
-                >
-                  <!-- <Youtube2 /> -->
-                  <img src="{% static 'images/utube2.svg'%}"/>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="footer_bottom">
-            <div>
-              <a href="/">
-                <img class="footer_logo"src="{% static 'images/LogoFooter.svg'%}"/>
-              </a>
-            </div>
-            <div class="socialIcon">
-              <div class="socials_desk">
-                <a
-                  class="insta"
-                  href="https://www.instagram.com/alcheringaiitg/"
-                >
-                  <img src="{% static 'images/insta.svg'%}"/>
-                </a>
-                <a
-                  class="face"
-                  href="https://www.facebook.com/alcheringaiitg"
-                >
-                  <img src="{% static 'images/facebook.svg'%}"/>
-                </a>
-                <a class="tweet" href="https://twitter.com/alcheringaiitg">
-                  <img src="{% static 'images/twitter.svg'%}"/>
-                </a>
-                <a
-                  class="youtube"
-                  href="https://www.youtube.com/@alcheringaIITG"
-                >
-                  <img src="{% static 'images/utube.svg'%}"/>
-                </a>
-              </div>
-              <div class="inqueries">
-                <span style="font-weight: 200;">For Business Enqueries:</span>
-                <span style="font-weight: 600">alcheringa@iitg.ac.in</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% include 'main/footer.html' %}
 
       <!-- Footer code ends here  -->
       <script src="{% static 'js/scriptPassPortal.js' %}"></script>
