@@ -571,7 +571,39 @@ text-align: center;
       display: flex;
       align-self: center;
   }
-  
+  .Pass-Alcher-Mob{
+    display: none;
+  }
+  @media screen and (max-width: 800px) {
+    .Pass,.Pass-Alcher{
+      display: none;
+    }
+    .Pass-Alcher-Mob{
+      margin-left: 10vw;
+      display: block;
+    }
+    .CP_entry {
+      width: 100%;
+      margin-top: 8vw;
+      height: auto;
+    }
+    .CP_Right_Total {
+      display: block !important;
+      font-size: xx-small !important;
+      font-weight: lighter !important;
+    }
+    .Qr_Code {
+      width: 30vw;
+      position: absolute;
+      left: 25.5vw;
+    }
+    .CP_entry_head {
+      margin-bottom: 0 !important;
+    }
+    .hbbilkm{
+      margin-top: 13vw;
+    }
+  }
   @media (max-width: 900px) {
     #bookbtn {
     
@@ -649,4 +681,5 @@ text-align: center;
     gap:1vw;
     width: 42%;
   }
+  
   

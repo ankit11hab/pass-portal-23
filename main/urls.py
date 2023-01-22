@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name="home"),
-    path('otp', views.otp, name="send_otp"),
+    path('otp/', views.otp, name="send_otp"),
     path('confirm/', views.confirm, name="confirm"),
     path('submit/', views.send_otp, name='otp'),
     path('verify/', views.verify, name='verify'),
