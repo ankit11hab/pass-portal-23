@@ -1,14 +1,15 @@
 body{
     padding: 0;
     margin: 0;
-    font-family: 'Aileron' !important;
-    background-image: url("/static/images/Frame 14941.png");
+
+    font-family: sans-serif !important;
+
 }
 body{
     margin: 0px;
    
     background-size: 900% 100%;
-    font-family: 'Aileron' !important;
+    font-family: sans-serif !important;
 }
 /* ////////////////////////////////////////////////// CSS for navbar starts */
 *{
@@ -93,7 +94,7 @@ header{
     grid-template-columns: 2rem 1fr 3fr 1fr 2rem;
 
     color: #000000;
-    font-family: 'Aileron Bold';
+    font-family: sans-serif;
     
     font-style: normal;
     font-weight: 900;
@@ -106,7 +107,7 @@ header{
 .navHeader div{
     display: grid;
     /* height: 7vw; */
-    font-family: 'Aileron Bold';
+    font-family: sans-serif;
     grid-column: 2/3;
     justify-content: start;
     align-items: center;
@@ -176,8 +177,9 @@ li{
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Aileron Bold';
-    background-image: url('/static/images/Frame-14859.png'),defaul!important;
+
+    font-family: sans-serif;
+
     
 }
 .mobileList a{
@@ -218,7 +220,7 @@ li{
         font-size: 8rem;
     }
     .navHeader div{
-        font-family: 'Aileron Bold';  
+        font-family: sans-serif;  
     }
 }
 
@@ -282,7 +284,7 @@ li{
     margin: 1.4rem 4rem;
     
     font-size: 1.6rem;
-    font-family: 'Aileron Bold';
+    font-family: sans-serif;
     color: white !important;
     text-decoration: #0B0B0B;
     display: flex;
@@ -608,7 +610,13 @@ background-color: #FEA82F;
   }
   /* /////////////////////////////// CSS for footer starts here */
 /* footer */
-@import url('https://fonts.cdnfonts.com/css/aileron');
+
+
+/* @import url('https://fonts.cdnfonts.com/css/aileron'); */
+@font-face {
+  font-family: 'Star-Guard';
+  src: url('./star-guard-italic.ttf');
+}
 
 .footer_desk {
     /* position: absolute; */
@@ -653,7 +661,7 @@ background-color: #FEA82F;
   }
   
   .inqueries {
-       font-family: 'Aileron', sans-serif;
+       font-family: sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 2.6vh;
@@ -768,7 +776,7 @@ background-color: #FEA82F;
   }
   
   .footer_desk li {
-       font-family: 'Aileron', sans-serif;
+       font-family: sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 2.6vh;
@@ -800,7 +808,7 @@ background-color: #FEA82F;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-       font-family: 'Aileron', sans-serif;
+       font-family: sans-serif sans-serif;
     font-style: normal;
     font-size: 2.6vh;
     line-height: 3.2vh;
@@ -812,7 +820,7 @@ background-color: #FEA82F;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-       font-family: 'Aileron', sans-serif;
+       font-family: sans-serif sans-serif;
     font-style: normal;
     font-size: 2.6vh;
     line-height: 3.2vh;
@@ -910,7 +918,7 @@ background-color: #FEA82F;
       left: -16vw;
     }
     .inqueries {
-         font-family: 'Aileron', sans-serif;
+         font-family: sans-serif sans-serif;
       font-style: normal;
       font-weight: 300;
       font-size: 3vw;
@@ -963,7 +971,7 @@ background-color: #FEA82F;
           margin-left: 2.93vw;
       } */
     .footer_desk li {
-         font-family: 'Aileron', sans-serif;
+         font-family: sans-serif sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 1.6vh;
@@ -1007,7 +1015,7 @@ background-color: #FEA82F;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-         font-family: 'Aileron', sans-serif;
+         font-family: sans-serif sans-serif;
       font-style: normal;
       font-size: 1.6vh;
       line-height: 1.86vh;
@@ -1019,7 +1027,7 @@ background-color: #FEA82F;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-         font-family: 'Aileron', sans-serif;
+         font-family: sans-serif sans-serif;
       font-style: normal;
       font-size: 1.6vh;
       line-height: 1.86vh;
@@ -1237,7 +1245,7 @@ background-color: #FEA82F;
 }
 
 .head1{
-    font-family: 'Aileron';
+    font-family: sans-serif;
     font-size: 5vh;
     color:  #3A3A3A;
     text-transform: uppercase;

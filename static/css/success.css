@@ -75,7 +75,7 @@ header{
     grid-template-columns: 2rem 1fr 3fr 1fr 2rem;
 
     color: #000000;
-    font-family: 'Aileron Bold';
+    font-family: sans-serif;
     
     font-style: normal;
     font-weight: 900;
@@ -88,7 +88,7 @@ header{
 .navHeader div{
     display: grid;
     /* height: 7vw; */
-    font-family: 'Aileron Bold';
+    font-family: sans-serif;
     grid-column: 2/3;
     justify-content: start;
     align-items: center;
@@ -153,7 +153,7 @@ li{
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Aileron Bold';
+    font-family: sans-serif;
     
 }
 .mobileList a{
@@ -194,7 +194,7 @@ li{
         font-size: 8rem;
     }
     .navHeader div{
-        font-family: 'Aileron Bold';  
+        font-family: sans-serif;  
     }
 }
 
@@ -258,7 +258,7 @@ li{
     margin: 1.4rem 4rem;
     
     font-size: 1.6rem;
-    font-family: 'Aileron Bold';
+    font-family: sans-serif;
     color: white !important;
     text-decoration: #0B0B0B;
     display: flex;
@@ -446,7 +446,7 @@ color: #141414;
 .password-container{
     width: 100%;
     /* position: relative; */
-    font-family: Aileron;
+    font-family: sans-serif;
     display: flex;
     justify-content: space-between;
   }
@@ -454,7 +454,7 @@ color: #141414;
   .password-container input[type="text"]{
     width: 80%;
     box-sizing: border-box;
-    font-family: 'Aileron',sans-serif;
+    font-family: sans-serif;
     justify-content: center;
     display: flex;
     font-size: 2vw;

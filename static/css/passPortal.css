@@ -2,10 +2,6 @@
   font-family: 'Star-Guard';
   src: url(../fonts/starguard.ttf) format("truetype");
 }
-/* @font-face {
-  font-family: 'Aileron';
-  src: url(../fonts/Aileron-Bold.ttf) format("truetype");
-} */
 body{
     margin: 0;
     background-image: url('/static/images/Frame-14859.png');
@@ -243,7 +239,7 @@ align-items: center;
   }
   
   .inqueries {
-       font-family: 'Aileron', sans-serif;
+       font-family: sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 2.6vh;
@@ -358,7 +354,7 @@ align-items: center;
   }
   
   .footer_desk li {
-       font-family: 'Aileron', sans-serif;
+       font-family:  sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 2.6vh;
@@ -390,7 +386,7 @@ align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-       font-family: 'Aileron', sans-serif;
+       font-family: sans-serif;
     font-style: normal;
     font-size: 2.6vh;
     line-height: 3.2vh;
@@ -402,7 +398,7 @@ align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-       font-family: 'Aileron', sans-serif;
+       font-family: sans-serif;
     font-style: normal;
     font-size: 2.6vh;
     line-height: 3.2vh;
@@ -503,7 +499,7 @@ align-items: center;
       left: -16vw;
     }
     .inqueries {
-         font-family: 'Aileron', sans-serif;
+         font-family: sans-serif;
       font-style: normal;
       font-weight: 300;
       font-size: 3vw;
@@ -556,7 +552,7 @@ align-items: center;
           margin-left: 2.93vw;
       } */
     .footer_desk li {
-         font-family: 'Aileron', sans-serif;
+         font-family:  sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 1.6vh;
@@ -600,7 +596,7 @@ align-items: center;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-         font-family: 'Aileron', sans-serif;
+         font-family:  sans-serif;
       font-style: normal;
       font-size: 1.6vh;
       line-height: 1.86vh;
@@ -612,7 +608,7 @@ align-items: center;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-         font-family: 'Aileron', sans-serif;
+         font-family:  sans-serif;
       font-style: normal;
       font-size: 1.6vh;
       line-height: 1.86vh;
