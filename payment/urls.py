@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('error/', views.payment_error, name='payment_error'),
+    path('mail/', views.generate_qr_code, name='mail'),
     path('response/', views.payment_response, name='payment_response'),
     path('status/', views.payment_response, name="payment_status"),
     path('get_verified_details/<str:id>/', views.get_verified_details, name="get_verified_details"),
