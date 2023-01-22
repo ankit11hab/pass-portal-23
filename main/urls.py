@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # path('mail', views.generate_qr_code, name='QRcode'),
     path('', views.home, name="home"),
     path('otp', views.otp, name="send_otp"),
     path('confirm/', views.confirm, name="confirm"),

@@ -502,23 +502,26 @@ margin-top: 1.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 2%;
+    /* margin-left: 2%; */
 }
 .Ticket-details{
     display: flex;
     justify-content: center;
 
     padding: 5% 5%;
-    flex-direction: column;
+    flex-direction: column; 
+    align-items: center;
  box-sizing: border-box;
     font-size:2.3vh;
     gap: 8.5%;
-    width: 35%;
+    width: 25%;
 
 }
 .Ticket-details div{
     display: flex;
     flex-direction: column;
+    align-items: center;
+text-align: center;
     gap: 1.5vh;
     font-size: 2.3vh;
     font-style: normal;
@@ -536,7 +539,7 @@ margin-top: 1.5vh;
     width: 1.5vw;
 }
 .Qr_Code{
-    width: 8vw;
+    width: 10vw;
 }
 .border-ticket{
     padding-bottom: 7%;
@@ -624,5 +627,25 @@ margin-top: 1.5vh;
   .tapButton:hover{
     transform: translate(5px,5px);
     transition-duration: 0.3s;
+  }
+  .shipping-section{
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+  }
+  .success_div_{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+  }
+  .success_header{
+    color: #acacac;
+  }
+  .success_info_value{
+    font-weight: 700;
+  }
+  .success_div_mul{
+    display: flex;
+    gap:1vw;
   }
   

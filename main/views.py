@@ -112,11 +112,16 @@ def SaveData(request):
         LeaderContact_no = request.POST.get('LeaderContact_no')
         LeaderEmail = request.POST.get('LeaderEmail')
         LeaderPassType = request.POST.get('LeaderPassType')
+        LeaderAge = request.POST.get('LeaderAge')
+        LeaderGender = request.POST.get('LeaderGender')
         member_first_names = request.POST.getlist('first_name')
         member_last_names = request.POST.getlist('last_name')
-
         member_contacts = request.POST.getlist('contact_no')
-        member_passtype = request.POST.getlist('pass_type')
+        member_passtype = request.POST.getlist('pass_type')        
+        member_age = request.POST.getlist('age')        
+        member_gender = request.POST.getlist('gender')
+        member_email = request.POST.getlist('email')     
+
         if(LeaderPassType=='general'):
                 paases_type['general']=paases_type['general']+1
         elif(LeaderPassType=='premium'):
@@ -130,11 +135,14 @@ def SaveData(request):
         request.session['count'] = count
         members = []
         
-        for fname,lname, contact, pass_type in zip(member_first_names,member_last_names, member_contacts, member_passtype):
+        for fname,lname, contact, pass_type,gender,age,email in zip(member_first_names,member_last_names, member_contacts, member_passtype,member_gender,member_age,member_email):
             member = {
                 "name": fname+' '+ lname,
                 "contact": contact,
                 "pass_type": pass_type,
+                "age":age,
+                "gender":gender,
+                'email':email
             }
             members.append(member)
             if(pass_type=='general'):
@@ -148,6 +156,8 @@ def SaveData(request):
             "LContact": LeaderContact_no,
             "LEmail": LeaderEmail,
             "LPassType": LeaderPassType,
+            "LAge":LeaderAge,
+            "LGender":LeaderGender,
             "members": members
         }
 

@@ -13,6 +13,10 @@ from django.core.mail import EmailMessage
 import qrcode
 import random
 import string
+from pypdf import PdfWriter, PdfReader
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+import io
 
 
 # Create your views here.
@@ -75,6 +79,8 @@ def payment_response(request):
                 "contact": doc_ref.get().to_dict()['LContact'],
                 "email": doc_ref.get().to_dict()['LEmail'],
                 "pass_type": doc_ref.get().to_dict()['LPassType'],
+                "age": doc_ref.get().to_dict()['LAge'],
+                "gender": doc_ref.get().to_dict()['LGender'],
                 "transID": tid,
             }
             doc_ref2 = ''
@@ -100,6 +106,9 @@ def payment_response(request):
                     "name": member['name'],
                     "contact": member['contact'],
                     "pass_type": member['pass_type'],
+                    "email":member['email'],
+                    "age":member['age'],
+                    "gender":member['gender'],
                     "transID": tid
                 }
                 doc_ref2 = ''
@@ -125,6 +134,7 @@ def payment_response(request):
                 # member.set({"id": doc_ref2.get().to_dict()['id']})
                 # print(context)
             # print(member_array)
+                # generate_qr_code(request,leader_array,member_array)
             return redirect('get_verified_details')
         else:
             doc_ref = db.collection('users').document(
@@ -138,12 +148,13 @@ def payment_response(request):
 
 @csrf_exempt
 def success(request):
-    return render(request, 'payment/success.html')
+    return render(request, 'payment/success_.html')
 @csrf_exempt
 def under_process(request):
     return render(request,'under_process.html')
 
-def generate_qr_code(request, members, leader):
+def generate_qr_code(request,leader,members):
+    # email="akshat.akshat@iitg.ac.in"
     email = request.session.get('LeaderEmail')
     count = request.session.get('count')
     from_email = settings.EMAIL_HOST_USER
@@ -153,31 +164,36 @@ def generate_qr_code(request, members, leader):
         from_email,
         [email],
     )
-    qr = qrcode.QRCode()
+    qr = qrcode.QRCode(version=6,
+    box_size=18,
+    border=4,)
     qr.add_data(
-        {'name': leader['LName'], 'pass_type': leader['LPassType'], 'id': leader['id']})
+        {'name': leader['name'], 'pass_type': leader['pass_type'], 'id': leader['id']})
+    # qr.add_data(
+        # {'name': 'leadeLName', 'pass_type': 'leaderLPassType', 'id': 'leaderid'})
     qr.make()
-    img = qr.make_image(fill_color="black",
-                        back_color="#D9D9D9")
+    img = qr.make_image(fill_color="#fffde9",
+                        back_color="black")
     lid = leader['id']
-    img.save(f'{lid}.png', format='PNG')
-    with open(f'{lid}.png', "rb") as f:
-        imgToSend = f.read()
-        message.attach(f'{lid}.png', imgToSend, 'image/png')
-
+    # lid=2
+    img.save(f'assests/QRcode/{lid}.png', format='PNG')
+    gen_pdf(lid)
+    # with open(f'{lid}.pdf', "rb") as f:
+    #     pdfToSend = f.read()
+    message.attach_file(f'assests/pdf/{lid}.pdf')
     for member in members:
         qr = qrcode.QRCode()
         qr.add_data(
             {'name': member['name'], 'pass_type': member['pass_type'], 'id': member['id']})
         qr.make()
-        img = qr.make_image(fill_color="black",
-                            back_color="#D9D9D9")
+        img = qr.make_image(fill_color="#fffde9",
+                        back_color="black")
         mid = member['id']
-        img.save(f'{mid}.png', format='PNG')
-        with open(f'{mid}.png', "rb") as f:
-            imgToSend = f.read()
-            message.attach(f'{id}.png', imgToSend, 'image/png')
-
+        img.save(f'static/QRcode/{mid}.png', format='PNG')
+        gen_pdf(mid)
+        # with open(f'{mid}.pdf', "rb") as f:
+        #     pdfToSend = f.read()
+        message.attach(f'assests/pdf/{mid}.pdf')
     message.send()
 
     return HttpResponse('QR code email sent!')
@@ -200,3 +216,21 @@ def get_verified_details(request):
         print(context)
         return render(request,'payment/success_.html',{'context':context})
     return render(request,'payment/success_.html')
+
+
+def gen_pdf(pdfID):
+    packet = io.BytesIO()
+    can = canvas.Canvas(packet, pagesize=(2000, 2000))
+    can.drawImage(f"{pdfID}.png", 1100, 800)
+    can.save()
+    packet.seek(0)
+    new_pdf = PdfReader(packet)
+    existing_pdf = PdfReader(open("assets/exclusive_alcheringa.pdf", "rb"))
+    output = PdfWriter()
+    page = existing_pdf.pages[0]
+    page.merge_page(new_pdf.pages[0])
+    output.add_page(page)
+    output.add_page(existing_pdf.pages[1])
+    outputStream = open(f"assests/pdf/{pdfID}.pdf", "wb")
+    output.write(outputStream)
+    outputStream.close()
