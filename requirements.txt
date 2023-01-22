@@ -14,4 +14,4 @@ firebase-admin==5.4.0
 google-cloud-firestore==2.5.3
 google-cloud-storage==2.0.0
 pypdf==3.2.1
-reportlab==3.6.11
+reportlab==3.6.8
