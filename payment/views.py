@@ -8,12 +8,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.core.mail import EmailMessage
 import qrcode
+from django.conf import settings
 import random
 import string
 from pypdf import PdfWriter, PdfReader
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import io
+import os
 
 
 # Create your views here.
@@ -59,11 +61,10 @@ def payment_response(request):
         print(decrypt_data)
         split_data = decrypt_data.split('|')
         status = split_data[4]
-        # status = '1'
         errDesc = split_data[5]
         tid = split_data[3]
         id = split_data[0]
-        # id = "LNDKR6O0"
+        # id = "2UIRIAH8"
         leader_id = id
         doc_ref = db.collection('users').document(
             leader_id)
@@ -95,7 +96,7 @@ def payment_response(request):
                 'pass_type': docref3.get().to_dict()['pass_type'],
                 'id': docref3.id,
             }
-            # print(leader_array)
+            print(leader_array)
             i = 0
             member_array = []
             for member in doc_ref.get().to_dict()['members']:
@@ -116,23 +117,11 @@ def payment_response(request):
                     if not doc_ref2.get().exists:
                         doc_ref2.set(member_data)
                         break
-                # doc_ref2 = db.collection('verified_users').document()
-                # doc_ref2.set(member_data)
                 member_array.append(
                     {'name': member_data['name'], 'pass_type': member_data['pass_type'], 'id': doc_ref2.id})
-                # doc_ref = db.collection('users').document(
-                #     leader_id)
-                # members = doc_ref.get().to_dict()["members"]
-                # print(doc_ref2.id)
-                # member.update({"id": doc_ref2.id})
-                # doc_ref.update(
-                #     {"members[i]['id']": doc_ref2.id})
-                # i += 1
-                # member.set({"id": doc_ref2.get().to_dict()['id']})
-                # print(context)
-            # print(member_array)
-                # generate_qr_code(request,leader_array,member_array)
-            return redirect('get_verified_details')
+                print(member_array)
+            generate_qr_code(request,leader_array,member_array)
+            return redirect('get_payment_details')
         else:
             doc_ref = db.collection('users').document(
                 leader_id)
@@ -151,13 +140,13 @@ def under_process(request):
     return render(request,'under_process.html')
 
 def generate_qr_code(request,leader,members):
-    # email="akshat.akshat@iitg.ac.in"
+    email="akshat.akshat@iitg.ac.in"
     email = request.session.get('LeaderEmail')
     count = request.session.get('count')
     from_email = settings.EMAIL_HOST_USER
     message = EmailMessage(
         'QR code',
-        'Here is the QR code you requested',
+        'Here is the Pass you requested',
         from_email,
         [email],
     )
@@ -166,18 +155,13 @@ def generate_qr_code(request,leader,members):
     border=4,)
     qr.add_data(
         {'name': leader['name'], 'pass_type': leader['pass_type'], 'id': leader['id']})
-    # qr.add_data(
-        # {'name': 'leadeLName', 'pass_type': 'leaderLPassType', 'id': 'leaderid'})
     qr.make()
     img = qr.make_image(fill_color="#fffde9",
                         back_color="black")
     lid = leader['id']
-    # lid=2
-    img.save(f'assests/QRcode/{lid}.png', format='PNG')
+    img.save(savefile_(f'static/QRcode/{lid}.png'), format='PNG')
     gen_pdf(lid)
-    # with open(f'{lid}.pdf', "rb") as f:
-    #     pdfToSend = f.read()
-    message.attach_file(f'assests/pdf/{lid}.pdf')
+    message.attach_file(savefile_(f'static/pdf/{lid}.pdf'))
     for member in members:
         qr = qrcode.QRCode()
         qr.add_data(
@@ -186,51 +170,64 @@ def generate_qr_code(request,leader,members):
         img = qr.make_image(fill_color="#fffde9",
                         back_color="black")
         mid = member['id']
-        img.save(f'static/QRcode/{mid}.png', format='PNG')
+        img.save(savefile_(f'static/QRcode/{mid}.png'), format='PNG')
         gen_pdf(mid)
-        # with open(f'{mid}.pdf', "rb") as f:
-        #     pdfToSend = f.read()
-        message.attach(f'assests/pdf/{mid}.pdf')
+        message.attach(savefile_(f'static/pdf/{mid}.pdf'))
     message.send()
 
-    return HttpResponse('QR code email sent!')
+    return HttpResponse('Pass sent!')
 
 @csrf_exempt
-def get_verified_details(request):
-    print('called')
-    if request.method=="POST":
-        print('entered')
-        print(type(request.body))
-        id1=str((request.body).decode())
+def get_verified_details(request, id):
+    # print('called')
+    # id=request.GET.get('id')
+    print(id)
+    # if request.method=="POST":
+        # print('entered')
+        # print(type(request.body))
+        # id1=str((request.body).decode())
+        # id=gngjngj
         # id1='14I3DFYP'
         # tid=220075070
-        id1=id1.split("=")
+        # print(id1)
+        # id1=id1.split("=")
+        # print(id1)
         # print(id1[1])
-        doc_ref = db.collection('users').document(id1[1])
-        tid=doc_ref.get().to_dict()['transID']
-        # id,name,pass_type
-        q=db.collection('verified_users').where('transID','==',tid).stream()
-        context=[]
-        for doc in q :
-            context.append(doc.to_dict())
-        print(context)
-        return render(request,'payment/success_.html',{'context':context})
-    return render(request,'payment/success_.html')
+        # doc_ref = db.collection('users').document(id1[1])
+    doc_ref = db.collection('users').document(id)
+    tid=doc_ref.get().to_dict()['transID']
+    # id,name,pass_type
+    q=db.collection('verified_users').where('transID','==',tid).stream()
+    context=[]
+    for doc in q :
+        context.append(doc.to_dict())
+    print(context)
+    # return JsonResponse({'context':context})
+    return render(request,'payment/success_.html',{'context':context})
+    # return render(request,'payment/success_.html')
 
 
 def gen_pdf(pdfID):
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=(2000, 2000))
-    can.drawImage(f"{pdfID}.png", 1100, 800)
+    can.drawImage(savefile_(f"static/QRcode/{pdfID}.png"), 1100, 800)
     can.save()
     packet.seek(0)
     new_pdf = PdfReader(packet)
-    existing_pdf = PdfReader(open("assets/exclusive_alcheringa.pdf", "rb"))
+    existing_pdf = PdfReader(open(savefile_("static/exclusive_alcheringa.pdf"), "rb"))
     output = PdfWriter()
     page = existing_pdf.pages[0]
     page.merge_page(new_pdf.pages[0])
     output.add_page(page)
     output.add_page(existing_pdf.pages[1])
-    outputStream = open(f"assests/pdf/{pdfID}.pdf", "wb")
+    outputStream = open(savefile_(f'static/pdf/{pdfID}.pdf'), "wb")
     output.write(outputStream)
     outputStream.close()
+
+
+def get_payment_details(request):
+    return render(request,'payment/transaction_done.html')
+
+
+def savefile_(pathtojoin):
+    return os.path.join(settings.BASE_DIR,pathtojoin)

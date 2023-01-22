@@ -21,7 +21,7 @@
         data: { id: id },
         success: function (data) {
           if (data["currStatus"] === "verified")
-            location.href = "{% url 'get_verified_details' %}";
+            location.href = "{% url 'get_payment_details' %}";
           else if (data["currStatus"] === "error") {
             document.getElementById("status").innerText = data.error;
             console.log("here");
@@ -33,7 +33,6 @@
         },
       });
     }, 4000);
-    check();
-  </script>
+    </script>
 </html>
 

@@ -20,10 +20,6 @@ addIndividual.addEventListener('click',target=>{
                 <div class="custom-select">
                     <select name="pass_type" id="" onchange=onchnge_()>
                     <option value="none" disabled selected hidden>Select</option>
-                    <option value="general"> General
-                    </option>
-                    <option value="premium"> Premium
-                    </option>
                     <option value="exclusive"> Exclusive
                     </option>
                 </select>

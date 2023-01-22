@@ -959,7 +959,7 @@ text-decoration: none;
 .details {
 display: flex;
 flex-direction: column;
-padding-top: 3.73vh;
+/* padding-top: 3.73vh; */
 }
 .shareka {
 display: flex;
