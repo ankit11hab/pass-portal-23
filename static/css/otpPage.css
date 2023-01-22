@@ -39,7 +39,17 @@
 }
 
 .verify_container{
-    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 3vw;
+    width: 400px;
+    box-sizing: border-box;
+    background-image: url('../images/ConfirmPayment.png');
+    background-size: cover;
+    aspect-ratio: 3.57;
     display: none;
 }
 
@@ -70,7 +80,7 @@
     .otp_bookbtn{
         margin-left: 56px;
     }
-    .otpPage_box{
+    .otpPage_box,.verify_container{
         width: 375px;
     }
 }
