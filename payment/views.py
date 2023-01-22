@@ -58,12 +58,12 @@ def payment_response(request):
         decrypt_data = decrypt(secretkey, data)
         print(decrypt_data)
         split_data = decrypt_data.split('|')
-        status = split_data[4]
-        # status = '1'
+        # status = split_data[4]
+        status = '1'
         errDesc = split_data[5]
         tid = split_data[3]
-        id = split_data[0]
-        # id = "LNDKR6O0"
+        # id = split_data[0]
+        id = "2UIRIAH8"
         leader_id = id
         doc_ref = db.collection('users').document(
             leader_id)
@@ -132,7 +132,7 @@ def payment_response(request):
                 # print(context)
             # print(member_array)
                 # generate_qr_code(request,leader_array,member_array)
-            return redirect('get_verified_details')
+            return redirect('get_payment_details')
         else:
             doc_ref = db.collection('users').document(
                 leader_id)
@@ -198,28 +198,31 @@ def generate_qr_code(request,leader,members):
 @csrf_exempt
 def get_verified_details(request):
     print('called')
-    if request.method=="POST":
-        print('entered')
-        print(type(request.body))
-        id1=str((request.body).decode())
+    id=request.GET.get('id')
+    print(id)
+    # if request.method=="POST":
+        # print('entered')
+        # print(type(request.body))
+        # id1=str((request.body).decode())
         # id=gngjngj
         # id1='14I3DFYP'
         # tid=220075070
-        print(id1)
-        id1=id1.split("=")
-        print(id1)
-        print(id1[1])
-        doc_ref = db.collection('users').document(id1[1])
-        tid=doc_ref.get().to_dict()['transID']
-        # id,name,pass_type
-        q=db.collection('verified_users').where('transID','==',tid).stream()
-        context=[]
-        for doc in q :
-            context.append(doc.to_dict())
-        print(context)
-        return JsonResponse({'context':context})
-        # return render(request,'payment/success_.html',{'context':context})
-    return render(request,'payment/success_.html')
+        # print(id1)
+        # id1=id1.split("=")
+        # print(id1)
+        # print(id1[1])
+        # doc_ref = db.collection('users').document(id1[1])
+    doc_ref = db.collection('users').document(id)
+    tid=doc_ref.get().to_dict()['transID']
+    # id,name,pass_type
+    q=db.collection('verified_users').where('transID','==',tid).stream()
+    context=[]
+    for doc in q :
+        context.append(doc.to_dict())
+    print(context)
+    # return JsonResponse({'context':context})
+    return render(request,'payment/success_.html',{'context':context})
+    # return render(request,'payment/success_.html')
 
 
 def gen_pdf(pdfID):
@@ -238,3 +241,7 @@ def gen_pdf(pdfID):
     outputStream = open(f"assests/pdf/{pdfID}.pdf", "wb")
     output.write(outputStream)
     outputStream.close()
+
+
+def get_payment_details(request):
+    return render(request,'payment/transaction_done.html')

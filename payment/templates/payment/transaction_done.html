@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successfull</title>
+</head>
+<body>
+    <h1>Payment Successfull</h1>
+    Click <span id="linktodetails">Here</span> to get details.
+</body>
+<script>
+    const here___=document.getElementById('linktodetails')
+    const id=window.localStorage.getItem('fasdlfsdaffdsui542958riuehwflu989aaSDAF')
+    here___.addEventListener('click',()=>{
+        window.location = "{% url 'get_verified_details' id='2UIRIAH8' %}".replace('/2UIRIAH8/',id.toString());
+    })
+</script>
+</html>
