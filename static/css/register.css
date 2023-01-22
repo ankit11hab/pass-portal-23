@@ -1,12 +1,12 @@
-@import url('//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
-@import url('//db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
+@import url('https://db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
+@import url('https://db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
 body{
     padding: 0;
     margin: 0;
     font-family: 'Aileron' !important;
 }
-@import url('//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
-@import url('//db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
+@import url('https://db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
+@import url('https://db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
 body{
     margin: 0px;
     background-image: url("/static/images/Frame 14941.png");
@@ -1224,8 +1224,8 @@ background-color: #FEA82F;
 
   /* /////////////////// */
 
-  @import url('//db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
-@import url('//db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
+  @import url('https://db.onlinewebfonts.com/c/73e0fc96eb73ae25fd95435dd694cbb5?family=Aileron+Bold');
+@import url('https://db.onlinewebfonts.com/c/351c65048c69125fa2f3421ec197545d?family=Aileron');
 .mainsection{
     display: grid;
     grid-template-columns: 30vw 30vw;
