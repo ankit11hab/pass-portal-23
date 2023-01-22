@@ -58,12 +58,12 @@ def payment_response(request):
         decrypt_data = decrypt(secretkey, data)
         print(decrypt_data)
         split_data = decrypt_data.split('|')
-        # status = split_data[4]
-        status = '1'
+        status = split_data[4]
+        # status = '1'
         errDesc = split_data[5]
         tid = split_data[3]
-        # id = split_data[0]
-        id = "LNDKR6O0"
+        id = split_data[0]
+        # id = "LNDKR6O0"
         leader_id = id
         doc_ref = db.collection('users').document(
             leader_id)
