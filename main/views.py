@@ -173,7 +173,7 @@ def SaveData(request):
         doc_ref.set(Ldata)
         amount = paases_type['general']*500 + \
             (paases_type['premium']+paases_type['premium'])*750
-        # amount = 750
+        amount = 750
         print(amount)
         paases_type['amount'] = amount
         data = id+"|"+fee_id+"|"+str(amount)
