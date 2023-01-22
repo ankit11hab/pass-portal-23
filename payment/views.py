@@ -196,9 +196,9 @@ def generate_qr_code(request,leader,members):
     return HttpResponse('QR code email sent!')
 
 @csrf_exempt
-def get_verified_details(request):
-    print('called')
-    id=request.GET.get('id')
+def get_verified_details(request, id):
+    # print('called')
+    # id=request.GET.get('id')
     print(id)
     # if request.method=="POST":
         # print('entered')
