@@ -105,8 +105,8 @@
                 <div> <label for="LeaderLastName">Last Name</label></div>
               </div>
               <div class="shipping-details">
-                <input type="text" name="LeaderFirstName">
-                <input type="text" name="LeaderLastName">
+                <input required type="text" name="LeaderFirstName">
+                <input required type="text" name="LeaderLastName">
               </div>
 
               <div class="shipping-details1">
@@ -114,9 +114,10 @@
                 <div> <label for="LeaderContact_no">Contact No</label></div>
               </div>
               <div class="shipping-details">
-
-                <input type="email" name="LeaderEmail">
-                <input type="tel" name="LeaderContact_no">
+                  {% for message in messages%}
+                <input required type="email" name="LeaderEmail" value="{{message}}">
+                  {%endfor%}
+                <input required type="tel" name="LeaderContact_no">
               </div>
 
               <div class="shipping-details1">
@@ -125,8 +126,20 @@
               </div>
               <div class="shipping-details">
 
-                <input type="text" name="LeaderIDtype">
-                <input type="text" name="LeaderIDnumber">
+                <select name="LeaderIDtype" id="">
+                  <option value="none" disabled selected hidden>Select</option>
+                  <option value="collegeID"> CollegeID
+                  </option>
+                  <option value="aadhar"> Aadhar
+                  </option>
+                  <option value="voterid"> Voter ID
+                  </option>
+                  <option value="drivinglicense"> Driving License
+                  </option>
+                  <option value="other"> Other
+                  </option>
+                </select>
+                <input required type="text" name="LeaderIDnumber">
               </div>
 
               <div class="shipping-details3">
@@ -148,7 +161,7 @@
                     </select>
                   </div>
                   <div>
-                    <input name="LeaderAge" type="number" style="min-width: 100px">
+                    <input required name="LeaderAge" type="number" style="min-width: 100px">
                   </div>
                 </div>
 
@@ -235,19 +248,41 @@
               </div>
               <div class=" pass-type">
                 <p class="textinput"> First Name</p>
-                <input type="text" class="input-text-field " name="LeaderFirstName" required>
+                <input required type="text" class="input-text-field " name="LeaderFirstName" required>
               </div>
               <div class=" pass-type">
                 <p class="textinput"> Last Name</p>
-                <input type="text" class="input-text-field " name="LeaderLastName" required>
+                <input required type="text" class="input-text-field " name="LeaderLastName" required>
               </div>
               <div class=" pass-type">
                 <p class="textinput">E-mail</p>
-                <input type="text" class="input-text-field " name="LeaderEmail" required>
+{% for message in messages%}
+                <input required type="email" name="LeaderEmail" class="input-text-field" value="{{message}}" disabled>
+                  {%endfor%}
               </div>
               <div class=" pass-type">
                 <p class="textinput">Phone Number</p>
                 <input type="number" name="LeaderContact_no" class="input-text-field " required>
+              </div>
+              <div class=" pass-type">
+                <p class="textinput">ID Type</p>
+                <select name="LeaderIDtype" id="" class="input-text-field">
+                  <option value="none" disabled selected hidden>Select</option>
+                  <option value="collegeID"> CollegeID
+                  </option>
+                  <option value="aadhar"> Aadhar
+                  </option>
+                  <option value="voterid"> Voter ID
+                  </option>
+                  <option value="drivinglicense"> Driving License
+                  </option>
+                  <option value="other"> Other
+                  </option>
+                </select>
+              </div>
+              <div class=" pass-type">
+                <p class="textinput">ID Number</p>
+                <input required type="text" name="LeaderIDnumber" class="input-text-field"/>
               </div>
               <div class="pass-type age-gen">
                 <div class="pass-gender">
@@ -266,7 +301,7 @@
                 <div class="pass-age">
                   <p class="textinput">Age</p>
                   <div class="custom-select3">
-                    <input type="number" name="LeaderAge" class="input-text-field">
+                    <input required type="number" name="LeaderAge" class="input-text-field">
                   </div>
                 </div>
 
@@ -340,16 +375,16 @@
       <div>  <label for="last_name">Last Name</label></div>
           </div>  
           <div class="shipping-details">
-              <input type="text" name="first_name">
-              <input type="text" name="last_name">
+              <input required type="text" name="first_name">
+              <input required type="text" name="last_name">
           </div>
           <div class="shipping-details1">
               <div>  <label for="email">Email</label></div>
               <div>  <label for="contact_no">Contact No</label></div>
           </div>  
           <div class="shipping-details">
-              <input type="email" name="email">
-              <input type="tel" name="contact_no">
+              <input required type="email" name="email">
+              <input required type="tel" name="contact_no">
           </div>
           <div class="shipping-details1">
                 <div> <label for="IDtype">ID Type</label></div>
@@ -357,8 +392,20 @@
               </div>
               <div class="shipping-details">
 
-                <input type="text" name="IDtype">
-                <input type="text" name="IDnumber">
+                <select name="IDtype" id="">
+                  <option value="none" disabled selected hidden>Select</option>
+                  <option value="collegeID"> CollegeID
+                  </option>
+                  <option value="aadhar"> Aadhar
+                  </option>
+                  <option value="voterid"> Voter ID
+                  </option>
+                  <option value="drivinglicense"> Driving License
+                  </option>
+                  <option value="other"> Other
+                  </option>
+                </select>
+                <input required required type="text" name="IDnumber">
               </div>
 
           <div class="shipping-details3">        
@@ -369,7 +416,7 @@
           <div class="shipping-details2">
               <div class="genderDiv" > 
                      <select name="gender">  
-                  <option value="" disabled selected hidden ></option>
+                      <option value="" disabled selected hidden>Gender</option>
   
                     <option value="male"> Male
                     </option>
@@ -380,7 +427,7 @@
                   </select> 
                </div>
               <div>
-                <input type='number' name='age'>
+                <input required type='number' name='age'>
               </div>
           </div>
           <div class="shipping-details2" onclick=del(${i})>

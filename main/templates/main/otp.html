@@ -61,11 +61,11 @@
       width: 2px;
       height: 76px;;" class="fwef">
       <div class="email_input_container">
-        <form>
+        <form id="emailform">
           <label for="email">Enter Email</label>
 
           <div class="form_otp_container">
-            <input type="email" class="email_input" name="email" required />
+            <input type="email" class="email_input" name="email" autofocus/>
             <button type="button" class="otp_bookbtn" id="email_submit">
               <div class="booktextnav">Submit</div>
             </button>
@@ -78,7 +78,7 @@
           {% csrf_token %}
           <label for="otp1">Enter OTP</label>
           <div class="form_otp_container">
-            <input type="number" maxlength="4" class="otp_input" name="otp1" required
+            <input type="number" maxlength="4" class="otp_input" name="otp1" required 
               style="margin-top:10px ; width: 13.5vw;" />
             <button type="submit" class="otp_bookbtn" style="margin-top:10px ;width: 8.5vw;">
               <div class="booktextnav">Verify</div>
@@ -98,18 +98,35 @@
   </div>
 </body>
 <script>
-  document.getElementById('email_submit').addEventListener('click', (e) => {
-    document.getElementsByClassName('verify_container')[0].setAttribute('style', "display:block;")
-    fetch("{% url 'otp'%}", {
-      method: "POST",
-      body: JSON.stringify({
-        email: document.getElementsByName('email')[0].value
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
+  document.getElementById('email_submit').addEventListener('click', (e) => { 
+    function validation() {
+      var email = document.getElementsByName("email")[0].value;
+      console.log(email)
+      var emailReg = /^([A-Za-z0-9_\-.])+@/;
+      if (!(email).match(emailReg)) {
+        alert("Invalid Email");
+        return false;
+      } else {
+        return true;
+      }
+      }
+      if(validation()){
+        document.getElementsByClassName('verify_container')[0].setAttribute('style', "display:block;")
+        fetch("{% url 'otp'%}", {
+          method: "POST",
+          body: JSON.stringify({
+            email: document.getElementsByName('email')[0].value
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        })
+        document.getElementById('email_submit').disabled=true
+    
+
       }
     })
-  })
+
 </script>
 
 </html>

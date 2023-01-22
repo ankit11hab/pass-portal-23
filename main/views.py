@@ -76,6 +76,7 @@ def verify_otp(request):
     OTP = int(otp1)
     print(OTP)
     if OTP == otp:
+        messages.info(request, request.session['LeaderEmail'])
         return redirect('register')
     return render(request, 'main/verify.html')
 
@@ -100,84 +101,84 @@ def SaveData(request):
         fee_id = "M1006"
         print(id)
         paases_type = {
-            'general':0,
-            'premium':0,
-            'exclusive':0,
-            'id':id,
-            'amount':0,
+            'general': 0,
+            'premium': 0,
+            'exclusive': 0,
+            'id': id,
+            'amount': 0,
         }
-        
         LeaderFirstName = request.POST.get('LeaderFirstName')
         LeaderLastName = request.POST.get('LeaderLastName')
         LeaderContact_no = request.POST.get('LeaderContact_no')
         LeaderEmail = request.POST.get('LeaderEmail')
         LeaderPassType = request.POST.get('LeaderPassType')
-        LeaderIDType=request.POST.get('LeaderIDtype')
-        LeaderIDNumber=request.POST.get('LeaderIDnumber')
+        LeaderIDType = request.POST.get('LeaderIDtype')
+        LeaderIDNumber = request.POST.get('LeaderIDnumber')
         LeaderAge = request.POST.get('LeaderAge')
         LeaderGender = request.POST.get('LeaderGender')
         member_first_names = request.POST.getlist('first_name')
         member_last_names = request.POST.getlist('last_name')
         member_contacts = request.POST.getlist('contact_no')
         member_passtype = request.POST.getlist('pass_type')
-        member_idtype=request.POST.getlist('IDtype')
-        member_idnumber=request.POST.getlist('IDnumber')        
-        member_age = request.POST.getlist('age')        
+        member_idtype = request.POST.getlist('IDtype')
+        member_idnumber = request.POST.getlist('IDnumber')
+        member_age = request.POST.getlist('age')
         member_gender = request.POST.getlist('gender')
-        member_email = request.POST.getlist('email')     
+        member_email = request.POST.getlist('email')
 
-        if(LeaderPassType=='general'):
-                paases_type['general']=paases_type['general']+1
-        elif(LeaderPassType=='premium'):
-            paases_type['premium']=paases_type['premium']+1
-        elif(LeaderPassType=='exclusive'):
-            paases_type['exclusive']=paases_type['exclusive']+1
+        if (LeaderPassType == 'general'):
+            paases_type['general'] = paases_type['general']+1
+        elif (LeaderPassType == 'premium'):
+            paases_type['premium'] = paases_type['premium']+1
+        elif (LeaderPassType == 'exclusive'):
+            paases_type['exclusive'] = paases_type['exclusive']+1
 
         count = 1
         for i in member_first_names:
             count = count+1
         request.session['count'] = count
         members = []
-        
-        for fname,lname, contact, pass_type,idtype,idnumber,gender,age,email in zip(member_first_names,member_last_names, member_contacts, member_passtype,member_idtype,member_idnumber,member_gender,member_age,member_email):
+
+        for fname, lname, contact, pass_type, idtype, idnumber, gender, age, email, in zip(member_first_names, member_last_names, member_contacts, member_passtype, member_idtype, member_idnumber, member_gender, member_age, member_email):
             member = {
-                "name": fname+' '+ lname,
+                "name": fname+' ' + lname,
                 "contact": contact,
                 "pass_type": pass_type,
-                "id_type":idtype,
-                "id_number":idnumber,
-                "age":age,
-                "gender":gender,
-                'email':email
+                "id_type": idtype,
+                "id_number": idnumber,
+                "age": age,
+                "gender": gender,
+                'email': email,
             }
             members.append(member)
-            if(pass_type=='general'):
-                paases_type['general']=paases_type['general']+1
-            elif(pass_type=='premium'):
-                paases_type['premium']=paases_type['premium']+1
-            elif(pass_type=='exclusive'):
-                paases_type['exclusive']=paases_type['exclusive']+1
+            if (pass_type == 'general'):
+                paases_type['general'] = paases_type['general']+1
+            elif (pass_type == 'premium'):
+                paases_type['premium'] = paases_type['premium']+1
+            elif (pass_type == 'exclusive'):
+                paases_type['exclusive'] = paases_type['exclusive']+1
         Ldata = {
-            "LName": LeaderFirstName+' ' +LeaderLastName,
+            "LName": LeaderFirstName+' ' + LeaderLastName,
             "LContact": LeaderContact_no,
             "LEmail": LeaderEmail,
             "LPassType": LeaderPassType,
-            "LIDType":LeaderIDType,
-            "LIDNumber":LeaderIDNumber,
-            "LAge":LeaderAge,
-            "LGender":LeaderGender,
+            "LIDType": LeaderIDType,
+            "LIDNumber": LeaderIDNumber,
+            "LAge": LeaderAge,
+            "LGender": LeaderGender,
             "members": members
         }
 
         doc_ref = db.collection('users').document(id)
         doc_ref.set(Ldata)
-        amount=paases_type['general']*500+(paases_type['premium']+paases_type['premium'])*750
-        amount=1
+        amount = paases_type['general']*500 + \
+            (paases_type['premium']+paases_type['premium'])*750
+        amount = 1
         print(amount)
-        paases_type['amount']=amount
+        paases_type['amount'] = amount
         data = id+"|"+fee_id+"|"+str(amount)
         encryptedData = encrypt(key, data, iv)
-        fstring=f'{id}|{paases_type["general"]}|{paases_type["exclusive"]}|{paases_type["premium"]}|{paases_type["amount"]}'
+        fstring = f'{id}|{paases_type["general"]}|{paases_type["exclusive"]}|{paases_type["premium"]}|{paases_type["amount"]}'
         print(fstring)
         messages.info(request,  encryptedData)
         messages.error(request, fstring)

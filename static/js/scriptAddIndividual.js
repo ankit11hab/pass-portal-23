@@ -1,19 +1,22 @@
-const addIndividual=document.querySelector(".addIndividualBtnDiv");
-const referenceDiv=document.querySelector(".form-bottom");
-let k=0;
+const addIndividual = document.querySelector(".addIndividualBtnDiv");
+const referenceDiv = document.querySelector(".form-bottom");
+let k = 0;
 // const number_arr=["Second","Third","Fourth","Fifth","Sixth","Seventh","eighth","ninth","eleventh"];
-const removeButton=document.querySelector("#removeBtn-1");
+const removeButton = document.querySelector("#removeBtn-1");
 
-
-addIndividual.addEventListener('click',target=>{
-    console.log("hi");
-    referenceDiv.insertAdjacentHTML('beforebegin',`<div class="form-mid" id="extraDiv${k+1}">
+addIndividual.addEventListener("click", (target) => {
+  console.log("hi");
+  referenceDiv.insertAdjacentHTML(
+    "beforebegin",
+    `<div class="form-mid" id="extraDiv${k + 1}">
     <!-- <img class="bgpic" src="./form mid.png" alt=""> -->
     <div class="form">
         <div class="person">
             <div class="pass-type">
                 <P class="p-person"> Member</P>
-                <div class="remove-button" id="removeBtn-${k+1}" onclick="Delete(event, 'extraDiv${k+1}')">
+                <div class="remove-button" id="removeBtn-${
+                  k + 1
+                }" onclick="Delete(event, 'extraDiv${k + 1}')">
                     Remove
                 </div>
                 <p class="textinput">Pass type</p>
@@ -41,6 +44,26 @@ addIndividual.addEventListener('click',target=>{
                 <p class="textinput">Phone Number</p>
                 <input type="number" class="input-text-field " name="contact_no" required>
             </div>
+            <div class=" pass-type">
+                <p class="textinput">ID Type</p>
+                <select name="IDtype" id="" class="input-text-field">
+                  <option value="none" disabled selected hidden>Select</option>
+                  <option value="collegeID"> CollegeID
+                  </option>
+                  <option value="aadhar"> Aadhar
+                  </option>
+                  <option value="voterid"> Voter ID
+                  </option>
+                  <option value="drivinglicense"> Driving License
+                  </option>
+                  <option value="other"> Other
+                  </option>
+                </select>
+              </div>
+              <div class=" pass-type">
+                <p class="textinput">ID Number</p>
+                <input required type="text" name="IDnumber" class="input-text-field"/>
+              </div>
             <div class="pass-type age-gen">
                 <div class="pass-gender">
                     <p class="textinput">Gender</p>
@@ -68,10 +91,10 @@ addIndividual.addEventListener('click',target=>{
         </div>
         
     </div>
-</div>`);
-k++;
-
-})
+</div>`
+  );
+  k++;
+});
 
 // removeButton.addEventListener('click',target=>{
 //     console.log("remove");
@@ -79,8 +102,8 @@ k++;
 //     extraDivision.innerHTML=``;
 // });
 function Delete(event, id) {
-    onchnge_()
-    event.preventDefault();
-    var element = document.getElementById(id);
-    element.parentNode.removeChild(element);
+  onchnge_();
+  event.preventDefault();
+  var element = document.getElementById(id);
+  element.parentNode.removeChild(element);
 }
