@@ -217,7 +217,8 @@ def get_verified_details(request):
         for doc in q :
             context.append(doc.to_dict())
         print(context)
-        return render(request,'payment/success_.html',{'context':context})
+        return JsonResponse({'context':context})
+        # return render(request,'payment/success_.html',{'context':context})
     return render(request,'payment/success_.html')
 
 
