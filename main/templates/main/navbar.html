@@ -1,0 +1,50 @@
+{% load static %}
+<style>
+    body{
+        background-image: url('/static/images/Frame-14859.png'),defaul!important;
+    }
+    .mobnavbg{
+        background-image: url('/static/images/Frame-14859.png'),defaul!important;
+    }
+</style>
+<div class='main'>
+    <header class='navHeader '>
+      <div style="margin-top: 1vh;"><a href="/"><img style="width: 15vw;" src="{% static 'images/Mask group.png' %}"
+            class="alcherLogoo" alt=""></a></div>
+      <nav class='NavigationBar'>
+        <ul class='NavigationList'>
+          <li class="Events" id="Event" onclick="color()"><a href="/"><b>EVENTS</b></a></li>
+          <li class="Merch"><a href="/"><b>MERCH</b></a></li>
+          <li class='Campaigns'><a href="/"><b>CAMPAIGNS</b></a></li>
+          <li class='Teams'><a href="/"><b>TEAMS</b></a></li>
+
+          <li class='Sponsors'><a href="/"><b>SPONSORS</b></a></li>
+          <li class="Contests"><a href="/"><b>CONTESTS</b></a></li>
+        </ul>
+      </nav>
+
+    </header>
+  </div>
+
+
+  <!-- material icons CDN in the head section, see the html settings 👆-->
+  <div class="mobile">
+    <div class="mobnavbg"><a href="/"><img src="{% static 'images/Mask group.png' %}" id="logomobile" width="150vw" alt=""></a></div>
+    <ul class="menu mobileList">
+      <li><a class="menuItem" href="/"><b>EVENTS</b></a></li>
+      <li><a class="menuItem" href="/"><b>MERCH</b></a></li>
+      <li><a class="menuItem" href="/"><b>CAMPAIGNS</b></a></li>
+      <li><a class="menuItem" href="/"><b>TEAMS</b></a></li>
+      <li><a class="menuItem" href="/"><b>SPONSORS</b></a></li>
+      <li><a class="menuItem" href="/"><b>CONTESTS</b></a></li>
+
+    </ul>
+    <button class="hamburger">
+      <!-- material icons https://material.io/resources/icons/ -->
+      <i class="menuIcon material-symbols-outlined">menu</i>
+      <!-- <i class="closeIcon material-symbols-outlined">close</i> -->
+      <!-- <img src="{% static 'images/menu.png' %}" class="menuIcon" alt=""> -->
+      <img src="{% static 'images/close.png' %}" class="closeIcon" alt="">
+
+    </button>
+  </div>

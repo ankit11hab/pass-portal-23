@@ -41,6 +41,23 @@ body{
      justify-content: center;
      position: relative;
  }
+ #confirmbtn{
+  display: flex;
+  flex-direction: row;
+  background: #f35c41;
+  border: 2px solid #1a1a1a;
+  border-radius: 5vw;
+  color: #ffffff;
+align-items: center;
+  font-size:2vh;
+  font-weight: 700;
+  justify-content: center;
+
+  width: 30%;
+  box-shadow: 3px 3px 0px #1a1a1a;
+  padding-top: 3%;
+  padding-bottom: 3%;
+ }
  .exclusivePassInnerDiv{
   position: relative;
  }
@@ -423,6 +440,9 @@ body{
       align-items: center;
   }
   @media only screen and (max-width: 768px) {
+    body{
+      background-image: url('/static/images/Frame-14859.png');
+    }
     .logo {
       display: none;
     }

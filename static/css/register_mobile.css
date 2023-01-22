@@ -3,6 +3,14 @@ body {
     background-image: url("Android Large - 4 - Copy.png");
    
 }
+@font-face {
+    font-family: 'Star-Guard';
+    src: url(../fonts/starguard.ttf) format("truetype");
+  }
+  @font-face {
+  font-family: 'Aileron';
+  src: url("../fonts/Aileron-Bold.ttf") format("truetype");
+}
 @media screen  and (max-width:800px){
     body {
         margin: 0;
@@ -82,10 +90,12 @@ header{
     grid-template-columns: 2rem 1fr 3fr 1fr 2rem;
 
     color: #000000;
+
     font-family: sans-serif;
+
     
     font-style: normal;
-    font-weight: 900;
+    font-weight: 600;
     font-size: 1vw;
     /* identical to box height */
 
@@ -95,7 +105,9 @@ header{
 .navHeader div{
     display: grid;
     /* height: 7vw; */
+
     font-family: sans-serif;
+
     grid-column: 2/3;
     justify-content: start;
     align-items: center;
@@ -788,21 +800,21 @@ align-items: center;
 }
 
 .hail {
-position: absolute;
-font-family: "Star-Guard";
-font-style: italic;
-font-weight: 500;
-font-size: 6vw;
-line-height: 7vw;
-
-text-align: center;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-
-color: #fefcf0;
-
-text-shadow: 0px 14px 40px rgba(0, 0, 0, 0.2);
-z-index: 1;
+    position: absolute;
+    font-family: "Star-Guard";
+    font-style: italic;
+    font-weight: 500;
+    font-size: 6vw;
+    line-height: 7vw;
+  
+    text-align: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  
+    color: #fefcf0;
+  
+    text-shadow: 0px 14px 40px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .inqueries {

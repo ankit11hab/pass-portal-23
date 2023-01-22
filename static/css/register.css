@@ -1,11 +1,13 @@
 body{
     padding: 0;
     margin: 0;
+
     font-family: sans-serif !important;
+
 }
 body{
     margin: 0px;
-    background-image: url("/static/images/Frame 14941.png");
+   
     background-size: 900% 100%;
     font-family: sans-serif !important;
 }
@@ -19,6 +21,7 @@ body{
 }
 .navHeader{
     margin-top: 0;
+    background-image: url("/static/images/Frame 14941.png");
 }
 .passImg{
   display: none;
@@ -37,7 +40,7 @@ body{
 }
 .NavigationBar .active{
     font-family: 'Star-Guard Semi-Italic';
-    font-style: italic;
+   
     /* font-family: 'Roboto', sans-serif; */
     font-weight: 400;
     -webkit-text-stroke-width: 0.5px;
@@ -86,8 +89,7 @@ body{
 header{
     width: 100%;
     /* height: 7vw; */
-    background-color: #FFFBF5;
-    background-blend-mode: multiply;
+    background-image: url("/static/images/Frame 14941.png");
     display: grid;
     grid-template-columns: 2rem 1fr 3fr 1fr 2rem;
 
@@ -109,13 +111,16 @@ header{
     grid-column: 2/3;
     justify-content: start;
     align-items: center;
+    background-image: url("/static/images/Frame 14941.png");
 }
 nav{
     /* height: 7vw; */
     grid-column: 3/4;
+    background-image: url("/static/images/Frame 14941.png");
 }
 .NavigationBar{
     margin-top: 0.25vw;
+    background-image: url("/static/images/Frame 14941.png");
 }
 .NavigationBar ul{
     /* height: 7vw; */
@@ -157,20 +162,24 @@ li{
     transition: all 0.5s ease-in-out;
 }
 .gradient{
-    background-image: linear-gradient(180deg,#FFFBF5, transparent);
+  background-image: url("/static/images/Frame 14941.png");
 }
 .mobile{
     display: none;
 }
 .navmob{
     display: none;
+
+    
 }
 .mobileList{
     margin: 0px 0px 0px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
     font-family: sans-serif;
+
     
 }
 .mobileList a{
@@ -192,7 +201,7 @@ li{
         display: flex;
         flex-direction: column;
         padding: 0% 2% 0% 2%;
-        background-color: #FFFBF5;
+        background-image: url('/static/images/Frame-14859.png'),defaul!important;
     }
     .navmob{
         display: flex;
@@ -601,11 +610,14 @@ background-color: #FEA82F;
   }
   /* /////////////////////////////// CSS for footer starts here */
 /* footer */
+
+
 /* @import url('https://fonts.cdnfonts.com/css/aileron'); */
 @font-face {
   font-family: 'Star-Guard';
   src: url('./star-guard-italic.ttf');
 }
+
 .footer_desk {
     /* position: absolute; */
     width: 100vw;
@@ -780,7 +792,7 @@ background-color: #FEA82F;
   }
   
   .footer_desk a {
-    font-weight:900;
+    font-weight:600;
     color: white;
     text-decoration: none;
   }
