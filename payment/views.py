@@ -202,10 +202,13 @@ def get_verified_details(request):
         print('entered')
         print(type(request.body))
         id1=str((request.body).decode())
+        # id=gngjngj
         # id1='14I3DFYP'
         # tid=220075070
+        print(id1)
         id1=id1.split("=")
-        # print(id1[1])
+        print(id1)
+        print(id1[1])
         doc_ref = db.collection('users').document(id1[1])
         tid=doc_ref.get().to_dict()['transID']
         # id,name,pass_type

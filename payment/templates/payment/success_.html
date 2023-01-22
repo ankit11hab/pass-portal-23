@@ -258,4 +258,23 @@
 <h1>transaction not done</h1>
 {% endif %}
 
+<script>
+  window.addEventListener('load',()=>{
+  fetch('{% url 'get_verified_details' %}',{
+    method:'POST',
+    body:JSON.stringify({'id':window.localStorage.getItem('fasdlfsdaffdsui542958riuehwflu989aaSDAF')})
+  }
+  ).
+  then((response)=>{
+    response.json()
+    .then((data)=>{
+      console.log(data);
+    })
+  })
+  .then((error)=>{
+    console.log(error);
+  })
+})
+</script>
+
 </html>
