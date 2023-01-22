@@ -187,11 +187,11 @@ def get_verified_details(request):
     print('called')
     if request.method=="POST":
         print('entered')
-        # id1=request.body['id']
-        tid=220075070
+        id1=json.loads(request.body)['id']
+        # tid=220075070
         # print(id1)
-        # doc_ref = db.collection('users').document(id)
-        # tid=doc_ref.get().to_dict()['transID']
+        doc_ref = db.collection('users').document(id1)
+        tid=doc_ref.get().to_dict()['transID']
         # id,name,pass_type
         q=db.collection('verified_users').where('transID','==',tid).stream()
         context=[]

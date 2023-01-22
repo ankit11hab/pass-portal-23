@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}">
     <link rel="stylesheet" href="{% static 'css/success.css' %}">
   </head>
+  {% if context %}
   <body >
     <div class='main'>
       <header class='navHeader gradient'>
@@ -60,7 +61,7 @@
       <!-- <div class="alcherLogo">
       <img src="alcher 2023 logo.png" alt="">
   </div> -->
-  
+  {{context}}
     <div class="Pass-Alcher">
         <form action="">
 <div class="Pass">
@@ -352,4 +353,7 @@
     }) 
     </script>
 </body>
+{% else %}
+<h1>transaction not done</h1>
+{% endif %}
 </html>
