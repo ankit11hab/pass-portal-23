@@ -12,6 +12,7 @@ from django.conf import settings
 import random
 import string
 from pypdf import PdfWriter, PdfReader
+from django.templatetags.static import static
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import io
@@ -159,9 +160,9 @@ def generate_qr_code(request,leader,members):
     img = qr.make_image(fill_color="#fffde9",
                         back_color="black")
     lid = leader['id']
-    img.save(savefile_(f'static/QRcode/{lid}.png'), format='PNG')
+    img.save(static(f'static/QRcode/{lid}.png'), format='PNG')
     gen_pdf(lid)
-    message.attach_file(savefile_(f'static/pdf/{lid}.pdf'))
+    message.attach_file(static(f'static/pdf/{lid}.pdf'))
     for member in members:
         qr = qrcode.QRCode()
         qr.add_data(
@@ -170,9 +171,9 @@ def generate_qr_code(request,leader,members):
         img = qr.make_image(fill_color="#fffde9",
                         back_color="black")
         mid = member['id']
-        img.save(savefile_(f'static/QRcode/{mid}.png'), format='PNG')
+        img.save(static(f'static/QRcode/{mid}.png'), format='PNG')
         gen_pdf(mid)
-        message.attach(savefile_(f'static/pdf/{mid}.pdf'))
+        message.attach(static(f'static/pdf/{mid}.pdf'))
     message.send()
 
     return HttpResponse('Pass sent!')
@@ -210,24 +211,20 @@ def get_verified_details(request, id):
 def gen_pdf(pdfID):
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=(2000, 2000))
-    can.drawImage(savefile_(f"static/QRcode/{pdfID}.png"), 1100, 800)
+    can.drawImage(static(f"static/QRcode/{pdfID}.png"), 1100, 800)
     can.save()
     packet.seek(0)
     new_pdf = PdfReader(packet)
-    existing_pdf = PdfReader(open(savefile_("static/exclusive_alcheringa.pdf"), "rb"))
+    existing_pdf = PdfReader(open(static("static/exclusive_alcheringa.pdf"), "rb"))
     output = PdfWriter()
     page = existing_pdf.pages[0]
     page.merge_page(new_pdf.pages[0])
     output.add_page(page)
     output.add_page(existing_pdf.pages[1])
-    outputStream = open(savefile_(f'static/pdf/{pdfID}.pdf'), "wb")
+    outputStream = open(static(f'static/pdf/{pdfID}.pdf'), "wb")
     output.write(outputStream)
     outputStream.close()
 
 
 def get_payment_details(request):
     return render(request,'payment/transaction_done.html')
-
-
-def savefile_(pathtojoin):
-    return os.path.join(settings.BASE_DIR,pathtojoin)
