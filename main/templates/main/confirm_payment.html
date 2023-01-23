@@ -18,12 +18,14 @@
   <link rel="stylesheet" href="{% static 'css/Confirm_payment.css' %}">
 </head>
 <style>
-  body{
+  body {
     overflow-x: hidden;
+    font-family: sans-serif;
   }
 </style>
+
 <body>
- {% include 'main/navbar.html' %}
+  {% include 'main/navbar.html' %}
   <!-- /////////// code for navbar ends here -->
 
   <!-- <div class="alcherLogo">
@@ -35,179 +37,88 @@
   <div class="passPortalContent">
     {% for message in messages %}
     {% if message.tags == 'info' %}
-    <form
-      method="POST"
-      action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp">
+    <form method="POST" action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp">
       {% csrf_token %}
       <input type="hidden" name="data" value="{{message}}" />
-    <div class="ConfirmP_img">
-      <div class="CP_Left">
-        <div class="CP_Left_head">
-          Payment Comfirmation
-        </div>
-        <div class="CP_Left_body">
-          <div class="CP_entry">
-            <div class="CP_entry_head">
-              General Pass
-            </div>
-            <div class="CP_entry_quantity">
-              <div class="CP_entry_quantity_l">
-                Quantity:
-              </div>
-              <div class="CP_entry_quantity_r" id="CP_general_total_quantity">0
-              </div>
-            </div>
-            <div class="CP_entry_net">
-              x 500
-            </div>
-            <hr />
-            <div class="CP_entry_total">
-              <div class="CP_entry_total_a">
-                Total:
-              </div>
-              <div class="CP_entry_total_b" id="CP_general_total_amount">
-                699
-              </div>
-            </div>
+      <div class="ConfirmP_img">
+        <div class="CP_Left">
+          <div class="CP_Left_head">
+            Payment Comfirmation
           </div>
-          <div class="CP_entry">
-            <div class="CP_entry_head">
-              Exclusive Pass
-            </div>
-            <div class="CP_entry_quantity">
-              <div class="CP_entry_quantity_l">
-                Quantity:
+          <div class="CP_Left_body">
+            <div class="CP_entry">
+              <div class="CP_entry_head">
+                Exclusive Card
               </div>
-              <div class="CP_entry_quantity_r" id="CP_exclusive_total_quantity">
-                0
+              <div class="CP_entry_quantity">
+                <div class="CP_entry_quantity_l">
+                  Quantity:
+                </div>
+                <div class="CP_entry_quantity_r" id="CP_exclusive_total_quantity">
+                  0
+                </div>
               </div>
-            </div>
-            <div class="CP_entry_net">
-              x 750
-            </div>
-            <hr />
-            <div class="CP_entry_total">
-              <div class="CP_entry_total_a">
-                Total:
+              <div class="CP_entry_net">
+                x 750
               </div>
-              <div class="CP_entry_total_b" id="CP_exclusive_total_amount">  
-                0
-              </div>
-            </div>
-          </div>
-          <div class="CP_entry">
-            <div class="CP_entry_head">
-              Premium Pass
-            </div>
-            <div class="CP_entry_quantity">
-              <div class="CP_entry_quantity_l" >
-                Quantity:
-              </div>
-              <div class="CP_entry_quantity_r" id="CP_premium_total_quantity">
-                0
-              </div>
-            </div>
-            <div class="CP_entry_net">
-              x 750
-            </div>
-            <hr />
-            <div class="CP_entry_total">
-              <div class="CP_entry_total_a">
-                Total:
-              </div>
-              <div class="CP_entry_total_b" id="CP_premium_total_amount">
-                0
+              <hr />
+              <div class="CP_entry_total">
+                <div class="CP_entry_total_a">
+                  Total:
+                </div>
+                <div class="CP_entry_total_b" id="CP_exclusive_total_amount">
+                  0
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <img src="{% static 'images/Blackdot.png' %}" alt="" style="height: 70%;
+        <img src="{% static 'images/Blackdot.png' %}" alt="" style="height: 70%;
       position: relative;
       top: 15%;">
-      <div class="CP_Right">
-        <button class="CP_button" id="confirmbtn">
-          Confirm
-        </button>
-      </div>
-    </div>
-    <div class="ConfirmP_img_Mob">
-      <div class="CPtop">
-        <div class="CP_Left_head">
-          Payment Comfirmation
+        <div class="CP_Right">
+          <button class="CP_button" id="confirmbtn">
+            Confirm
+          </button>
         </div>
-        <div class="CPtop_body">
-          <div class="CP_entry">
-            <div class="CP_entry_head">
-              General Pass
-            </div>
-            <div class="CP_entry_quantity">
-              <div class="CP_entry_quantity_l">
-                Quantity:
-              </div>
-              <div class="CP_entry_quantity_r" id="CP_general_total_quantity_mob">
-                0
-              </div>
-            </div>
-            <div class="CP_entry_net">
-              x 500
-            </div>
+      </div>
+      <div class="ConfirmP_img_Mob">
+        <div class="CPtop">
+          <div class="CP_Left_head">
+            Payment Comfirmation
           </div>
-          <div class="CP_entry">
-            <div class="CP_entry_head">
-              Premium Pass
-            </div>
-            <div class="CP_entry_quantity">
-              <div class="CP_entry_quantity_l">
-                Quantity:
+          <div class="CPtop_body">
+            <div class="CP_entry">
+              <div class="CP_entry_head">
+                Exclusive Card
               </div>
-              <div class="CP_entry_quantity_r" id="CP_premium_total_quantity_mob">
-                0
+              <div class="CP_entry_quantity">
+                <div class="CP_entry_quantity_l">
+                  Quantity:
+                </div>
+                <div class="CP_entry_quantity_r" id="CP_exclusive_total_quantity_mob">
+                  0
+                </div>
               </div>
-            </div>
-            <div class="CP_entry_net">
-              x 750
-            </div>
-          </div>
-          <div class="CP_entry">
-            <div class="CP_entry_head">
-              Exclusive Pass
-            </div>
-            <div class="CP_entry_quantity">
-              <div class="CP_entry_quantity_l">
-                Quantity:
+              <div class="CP_entry_net">
+                x 750
               </div>
-              <div class="CP_entry_quantity_r" id="CP_exclusive_total_quantity_mob">
-                0
-              </div>
-            </div>
-            <div class="CP_entry_net">
-              x 750
             </div>
           </div>
         </div>
-      </div>
-      <div class="CPend">
-        <img src="{% static 'images/Blackdot.png' %}" alt="" style="transform: rotate(90deg) translateY(-38vw) translateX(-28vw);
+        <div class="CPend">
+          <img src="{% static 'images/Blackdot.png' %}" alt="" style="transform: rotate(90deg) translateY(-38vw) translateX(-28vw);
         height: 57vw;
         position: absolute;">
-        <div class="CP_Right_Total">
-          <div class="CP_Right_Total_a">
-            Grand Total:
-          </div>
-          <div class="CP_Right_Total_b" id="CP_grand_total_amount_mob">
-            0
-          </div>
+          <button class="CP_button" type="submit">
+            Confirm
+          </button>
         </div>
-        <button class="CP_button" type="submit">
-          Confirm
-        </button>
       </div>
-    </div>
-  </form>
-  {% endif %}
-  {%endfor%}
-</div>
+    </form>
+    {% endif %}
+    {%endfor%}
+  </div>
 
   <!-- /////////////////////////////////////////////////////////// -->
   <!-- Footer code starts here  -->
@@ -215,9 +126,9 @@
   {% include 'main/footer.html' %}
 
 
-    <!-- Footer code ends here  -->
-    <script src="{% static 'js/scriptPassPortal.js' %}"></script>
-    <script src="{% static 'js/script.js'%}"></script>
+  <!-- Footer code ends here  -->
+  <script src="{% static 'js/scriptPassPortal.js' %}"></script>
+  <script src="{% static 'js/script.js'%}"></script>
 
   </div>
 </body>
@@ -226,35 +137,35 @@
   {% for message in messages %}
   {% if message.tags == 'error' %}
   var msg = "{{message}}"
-  var splittedData="{{message}}".split("|")
+  var splittedData = "{{message}}".split("|")
   console.log((splittedData));
   {% endif %}
   {% endfor %}
-  window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF",splittedData[0])
-  var general_quantity=document.getElementById("CP_general_total_quantity")
-  var general_total=document.getElementById("CP_general_total_amount")
-  var premium_quantity=document.getElementById("CP_premium_total_quantity")
-  var premium_total=document.getElementById("CP_premium_total_amount")
-  var exclusive_quantity=document.getElementById("CP_exclusive_total_quantity")
-  var exclusive_total=document.getElementById("CP_exclusive_total_amount")
-  var general_quantity_mob=document.getElementById("CP_general_total_quantity_mob")
-  var premium_quantity_mob=document.getElementById("CP_premium_total_quantity_mob")
-  var exclusive_quantity_mob=document.getElementById("CP_exclusive_total_quantity_mob")
-  var grand_total=document.getElementById("CP_grand_total_amount")
-  var grand_total_mob=document.getElementById("CP_grand_total_amount_mob")
+  window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF", splittedData[0])
+  var general_quantity = document.getElementById("CP_general_total_quantity")
+  var general_total = document.getElementById("CP_general_total_amount")
+  var premium_quantity = document.getElementById("CP_premium_total_quantity")
+  var premium_total = document.getElementById("CP_premium_total_amount")
+  var exclusive_quantity = document.getElementById("CP_exclusive_total_quantity")
+  var exclusive_total = document.getElementById("CP_exclusive_total_amount")
+  var general_quantity_mob = document.getElementById("CP_general_total_quantity_mob")
+  var premium_quantity_mob = document.getElementById("CP_premium_total_quantity_mob")
+  var exclusive_quantity_mob = document.getElementById("CP_exclusive_total_quantity_mob")
+  var grand_total = document.getElementById("CP_grand_total_amount")
+  var grand_total_mob = document.getElementById("CP_grand_total_amount_mob")
 
-  
-  general_quantity.innerHTML=Number(splittedData[1]);
-  general_total.innerHTML=(Number(splittedData[1])*500);
-  premium_quantity.innerHTML=Number(splittedData[3]);
-  premium_total.innerHTML=(Number(splittedData[3])*750)
-  exclusive_quantity.innerHTML=Number(splittedData[2]);
-  exclusive_total.innerHTML=(Number(splittedData[2])*750);
-  general_quantity_mob.innerHTML=Number(splittedData[1]);
-  exclusive_quantity_mob.innerHTML=Number(splittedData[2]);
-  premium_quantity_mob.innerHTML=Number(splittedData[3]);
-  grand_total.innerHTML=Number(splittedData[4]);
-  grand_total_mob.innerHTML=Number(splittedData[4]);
+
+  general_quantity.innerHTML = Number(splittedData[1]);
+  general_total.innerHTML = (Number(splittedData[1]) * 500);
+  premium_quantity.innerHTML = Number(splittedData[3]);
+  premium_total.innerHTML = (Number(splittedData[3]) * 750)
+  exclusive_quantity.innerHTML = Number(splittedData[2]);
+  exclusive_total.innerHTML = (Number(splittedData[2]) * 750);
+  general_quantity_mob.innerHTML = Number(splittedData[1]);
+  exclusive_quantity_mob.innerHTML = Number(splittedData[2]);
+  premium_quantity_mob.innerHTML = Number(splittedData[3]);
+  grand_total.innerHTML = Number(splittedData[4]);
+  grand_total_mob.innerHTML = Number(splittedData[4]);
 
 </script>
 
