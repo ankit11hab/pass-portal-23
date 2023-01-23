@@ -37,7 +37,7 @@ body {
 
 .Ticket-details {
   background-color: white;
-  border-radius: 2vw;
+  border-radius: 3vw;
   max-width: 400px;
   max-height: 50vw;
   position: relative;
@@ -398,6 +398,7 @@ a:visited {
   display: flex;
   margin-top: 5vh;
   margin-bottom: 7vh;
+
   /* margin-left: 5vw; */
 }
 
@@ -550,13 +551,30 @@ a:visited {
 .border-ticket {
   padding-bottom: 7%;
 }
-
+#removebtn{
+  display: flex;
+  flex-direction: row;
+  background: #f35c41;
+  color: #ffffff;
+  color: #ffffff;
+  align-items: center;
+  font-size: 2vh;
+  font-weight: 700;
+  justify-content: center;
+cursor: pointer;
+  width: 80%;
+  position: relative;
+  left: 11.5vw;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  border: 2px solid #1a1a1a;  
+}
 #bookbtnnav {
   display: flex;
   flex-direction: row;
   background: #f35c41;
   border: 2px solid #1a1a1a;
-  border-radius: 5vw;
+  border-radius: 3vw;
   color: #ffffff;
   align-items: center;
   font-size: 2vh;
@@ -574,6 +592,7 @@ a:visited {
   flex-direction: row;
 
   border: 1px solid #1a1a1a;
+  box-shadow: 2px 2px 0px #1a1a1a;
   color: black;
   align-items: center;
   font-size: 2.5vh;
@@ -606,17 +625,34 @@ a:visited {
   align-self: center;
 }
 
+@media(max-width:1200px){
+  .booktextnav {
+    margin-right: 2vw;
+    font-size: 1.5vw;
+    }
+    
+}
 @media (max-width: 900px) {
   #bookbtn {
     border-radius: 20vw;
 
     box-shadow: 3.5px 3.5px 0px #1a1a1a;
+    
   }
+ 
 }
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
 
+}
+@media all and (device-width: 1024px) and (device-height: 768px) and (orientation:landscape) {
+
+}
 @media (min-width: 800px) and (max-width: 900px) {
   #bookbtnnav {
     border-radius: 20vw;
+    width: 12vw;
+    position: relative;
+    right: 1vw;
   }
 }
 
