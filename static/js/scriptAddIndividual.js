@@ -46,7 +46,7 @@ addIndividual.addEventListener("click", (target) => {
             <div class=" pass-type">
                 <p class="textinput">ID Type</p>
                 <select name="IDtype" id="" class="input-text-field">
-                  <option value="none" disabled selected hidden>Select</option>
+                  <option value="" disabled selected hidden>Select</option>
                   <option value="collegeID"> CollegeID
                   </option>
                   <option value="aadhar"> Aadhar

@@ -238,7 +238,7 @@
                   <p class="textinput">Pass type</p>
                 </div>
                 <div class="custom-select">
-                  <select name="LeaderPassType" onchange=onchnge_()>
+                  <select name="LeaderPassType" onchange=onchnge_() required>
                     <option value="exclusive"> Exclusive
                     </option>
                   </select>
@@ -265,7 +265,7 @@
               <div class=" pass-type">
                 <p class="textinput">ID Type</p>
                 <select name="LeaderIDtype" id="" class="input-text-field" required>
-                  <option value="none" disabled selected hidden>Select</option>
+                  <option value="" disabled selected hidden>Select</option>
                   <option value="collegeID"> CollegeID
                   </option>
                   <option value="aadhar"> Aadhar
@@ -360,7 +360,7 @@
         <div class="upperPart" style="display: flex; justify-content:space-between">
                 <p style="font-weight:700;font-size:20px;">Attendee</p>
                 <div class="passdiv">
-                  <select class="PassSel select_dropdown" name="pass_type" onchange=onchnge_()>
+                  <select class="PassSel select_dropdown" name="pass_type" onchange=onchnge_() required>
                     <option value="exclusive"> Exclusive
                     </option>
                   </select>
@@ -389,8 +389,8 @@
               </div>
               <div class="shipping-details">
 
-                <select name="IDtype" id="">
-                  <option value="none" disabled selected hidden>Select</option>
+                <select name="IDtype" id="" required> 
+                  <option value="" disabled selected hidden>Select</option>
                   <option value="collegeID"> CollegeID
                   </option>
                   <option value="aadhar"> Aadhar
@@ -412,7 +412,7 @@
       <div class="shipping-details">
           <div class="shipping-details2">
               <div class="genderDiv" > 
-                     <select name="gender">  
+                     <select name="gender" required>  
                       <option value="" disabled selected hidden>Gender</option>
   
                     <option value="male"> Male
