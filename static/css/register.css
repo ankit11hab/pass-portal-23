@@ -936,7 +936,11 @@ a:visited {
   justify-content: space-between;
   align-items: center;
 }
-
+@media only screen and (max-width: 1500px) {
+  .details{
+    flex-direction: column !important;
+  }
+}
 @media only screen and (max-width: 768px) {
   .logo {
     display: none;

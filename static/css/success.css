@@ -575,6 +575,12 @@ text-align: center;
     display: none;
   }
   @media screen and (max-width: 800px) {
+    .CP_entry_quantity_l{
+      margin-left: 0 !important;
+    }
+    .CP_entry_quantity {
+      display: block !important;
+    }
     .Pass,.Pass-Alcher{
       display: none;
     }
