@@ -161,14 +161,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
         {% for member in context %}
-        var qrcode = new QRCode("{{member.id}}_mob", {
+        var qrcode = new QRCode("{{member.id}}", {
           text: "{{member.id}}|{{member.name}}|{{member.email}}|{{member.pass_type}}",
          });
-    <<<<<<< HEAD
+        var qrcode1 = new QRCode("{{member.id}}_mob", {
+          text: "{{member.id}}|{{member.name}}|{{member.email}}|{{member.pass_type}}",
+         });
          document.getElementById("{{member.id}}").children[1].setAttribute('style','height:10vw;width:10vw;')
-    =======
          document.getElementById("{{member.id}}_mob").children[1].setAttribute('style','height:200px')
-    >>>>>>> ec1570b9839d493c0356595806d9d5936532494f
         {%endfor%}
   </script>
 </html>

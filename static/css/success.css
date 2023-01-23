@@ -734,10 +734,11 @@ a:visited {
   font-weight: 700;
 }
 .tapButton_mob {
-  width: 75px;
+  max-width: 75px;
+  min-width: 50px;
 }
 .buttonStack_mob{
 display: flex;
-gap: 20px;
+gap: 2vw;
 flex-direction: row;
 }

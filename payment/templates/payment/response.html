@@ -1,14 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/passPortal.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Confirm_payment.css' %}">
+    <style>
+
+      .container {
+          background-color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 2px 10px 10px rgba(#000, 0.05);
+      }
+
+      .circle,
+      .circle-border {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+      }
+
+      .circle {
+          z-index: 1;
+          position: relative;
+          background: white;
+          transform: scale(1);
+          animation: success-anim 700ms ease;
+      }
+
+      .circle-border {
+          z-index: 0;
+          position: absolute;
+          transform: scale(1.1);
+          animation: circle-anim 400ms ease;
+          background: #f86;
+      }
+
+      @keyframes success-anim {
+          0% {
+              transform: scale(0);
+          }
+
+          30% {
+              transform: scale(0);
+          }
+
+          100% {
+              transform: scale(1);
+          }
+      }
+
+      @keyframes circle-anim {
+          from {
+              transform: scale(0);
+          }
+
+          to {
+              transform: scale(1.1);
+          }
+      }
+
+      .error::before,
+      .error::after {
+          content: "";
+          display: block;
+          height: 4px;
+          background: #f86;
+          position: absolute;
+      }
+
+      .error::before {
+          width: 40px;
+          top: 48%;
+          left: 16%;
+          transform: rotateZ(50deg);
+      }
+
+      .error::after {
+          width: 40px;
+          top: 48%;
+          left: 16%;
+          transform: rotateZ(-50deg);
+      }
+  </style>
   </head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <body>
-    <div id="status"></div>
+    {% include 'main/navbar.html' %}
+    <div style="text-align: center;height: 25vh;padding: 5% ;">
+      <div style="margin: auto;display: flex;justify-content: center;">
+        <div class="container" ></div>
+        <div class="circle-border"></div>
+        <div class="circle">
+            <div class="error"></div>
+        </div>
+        
+    </div>
+      <div style="color: red;font-size: 3vw;">Error</div>
+      <div id="status" style="margin-top: 2vw;font-size: 1.5vw;display: flex;justify-content: center;"><p style="color:#7f2e2e;width: 50vw;word-wrap: break-word;"></p></div>
+    </div>
+
+    {% include 'main/footer.html' %}
   </body>
   <script>
     var id = window.localStorage.getItem(
@@ -26,9 +124,6 @@
             document.getElementById("status").innerText = data.error;
             console.log("here");
             clearInterval(check);
-          } else {
-            document.getElementById("status").innerText =
-            location.href = "{% url 'UnderProcess' %}";
           }
         },
       });
