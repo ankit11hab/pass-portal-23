@@ -3,7 +3,6 @@ body {
   margin: 0;
 
   font-family: sans-serif !important;
-
 }
 
 body {
@@ -46,7 +45,7 @@ body {
 }
 
 .NavigationBar .active {
-  font-family: 'Star-Guard Semi-Italic';
+  font-family: "Star-Guard Semi-Italic";
 
   /* font-family: 'Roboto', sans-serif; */
   font-weight: 400;
@@ -66,17 +65,16 @@ body {
   letter-spacing: 0.01em;
   text-transform: uppercase;
 
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .Events {
   padding-left: 1.2vw;
   padding-right: 1vw;
-
 }
 
 .Merch {
-  padding-left: 1.vw;
+  padding-left: 1vw;
   padding-right: 1vw;
 }
 
@@ -195,8 +193,6 @@ li {
 
 .navmob {
   display: none;
-
-
 }
 
 .mobileList {
@@ -206,8 +202,6 @@ li {
   align-items: center;
 
   font-family: sans-serif;
-
-
 }
 
 .mobileList a {
@@ -220,8 +214,7 @@ li {
   padding-top: auto;
 }
 
-@media screen and (max-width:760px) {
-
+@media screen and (max-width: 760px) {
   .main {
     display: none;
   }
@@ -230,14 +223,13 @@ li {
     display: flex;
     flex-direction: column;
     padding: 0% 2% 0% 2%;
-    background-image: url('/static/images/Frame-14859.png'), defaul !important;
+    background-image: url("/static/images/Frame-14859.png"), defaul !important;
   }
 
   .navmob {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
   }
 
   #logomobile {
@@ -265,10 +257,8 @@ li {
   margin-top: 7vh;
   border-radius: 24px;
   box-shadow: 2px 3px 3px black;
-  background-color: #F35C41;
+  background-color: #f35c41;
   color: white;
-
-
 }
 
 .tickett {
@@ -290,7 +280,7 @@ li {
 
 .logoticket {
   width: 1.38vw;
-  padding-left: 1.0rem;
+  padding-left: 1rem;
   border: none;
   box-shadow: none;
   display: flex;
@@ -302,13 +292,12 @@ li {
   width: 7.6vw;
   display: flex;
   padding-left: 0.5rem;
-
 }
 
 #btnn:hover {
   box-shadow: none;
   -webkit-transform: translateY(-1px);
-  transform: translateY(1px)
+  transform: translateY(1px);
 }
 
 a:visited {
@@ -327,7 +316,7 @@ a:visited {
   font-size: 1.6rem;
   font-family: sans-serif;
   color: white !important;
-  text-decoration: #0B0B0B;
+  text-decoration: #0b0b0b;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -337,7 +326,6 @@ a:visited {
   text-decoration: underline;
 }
 
-
 .hamburger {
   position: fixed;
   z-index: 100;
@@ -345,7 +333,7 @@ a:visited {
   right: 1rem;
   padding: 4px;
   border: none;
-  background-color: #FFFBF5;
+  background-color: #fffbf5;
   cursor: pointer;
 }
 
@@ -353,7 +341,6 @@ a:visited {
   display: none;
   background-color: #000000;
   border: transparent;
-
 }
 
 .menu {
@@ -375,9 +362,6 @@ a:visited {
   transform: translateX(0);
 }
 
-
-
-
 /* ///////////////////////////////////////////////////// CSS for navbar ends here */
 .Pass-Alcher {
   display: flex;
@@ -389,7 +373,7 @@ a:visited {
 }
 
 .Pass-Alcher .Pass {
-  background-image: url('/static/images/Subtract.png');
+  background-image: url("/static/images/Subtract.png");
   background-repeat: none;
   height: 47vh;
   width: 65vw;
@@ -400,7 +384,7 @@ a:visited {
 }
 
 .Pass-Alcher .Pass2 {
-  background-image: url('/static/images/Subtract.png');
+  background-image: url("/static/images/Subtract.png");
   background-repeat: none;
   height: 55vh;
   width: 75vw;
@@ -412,13 +396,12 @@ a:visited {
 
 .addmember {
   display: flex;
+  margin-top: 5vh;
   margin-bottom: 7vh;
-  margin-left: 5vw;
+  /* margin-left: 5vw; */
 }
 
 .shipping-section {
-
-
   display: flex;
   justify-content: space-evenly;
   padding: 0% 5%;
@@ -426,9 +409,7 @@ a:visited {
   flex-direction: column;
 
   width: 74.7%;
-
 }
-
 
 .shipping-details {
   display: flex;
@@ -445,7 +426,6 @@ a:visited {
 .shipping-details1 {
   display: flex;
   justify-content: space-between;
-
 }
 
 .shipping-details1 div {
@@ -487,7 +467,6 @@ a:visited {
 }
 
 .shipping-details1 label {
-
   font-style: normal;
   font-weight: 600;
   font-size: 2.3vh;
@@ -514,7 +493,6 @@ a:visited {
   border: 1.5px solid #000000;
 }
 
-
 .shipping-details-address input:focus {
   border: 1.5px solid #000000;
 }
@@ -535,7 +513,6 @@ a:visited {
   font-weight: 400;
   font-size: 1.65vh;
   color: #141414;
-
 }
 
 .blackdot img {
@@ -560,7 +537,6 @@ a:visited {
   font-size: 2.3vh;
   gap: 6.5%;
   width: 25%;
-
 }
 
 .Ticket-details div {
@@ -591,7 +567,6 @@ a:visited {
   box-shadow: 3px 3px 0px #1a1a1a;
   padding-top: 3%;
   padding-bottom: 3%;
-
 }
 
 #add-member-button {
@@ -608,21 +583,17 @@ a:visited {
   width: 15vw;
   height: 3vw;
   padding: 1.2vh 1vw;
-
-
 }
 
 #add-member-button2 {
-
   font-size: 2.3vh;
-
 }
 
 .PassSel {
   width: 20vw;
 
   height: 2.3vw;
-  background-color: #FEA82F;
+  background-color: #fea82f;
 }
 
 .bookicon {
@@ -637,9 +608,6 @@ a:visited {
 
 @media (max-width: 900px) {
   #bookbtn {
-
-
-
     border-radius: 20vw;
 
     box-shadow: 3.5px 3.5px 0px #1a1a1a;
@@ -647,11 +615,8 @@ a:visited {
 }
 
 @media (min-width: 800px) and (max-width: 900px) {
-
   #bookbtnnav {
-
     border-radius: 20vw;
-
   }
 }
 
@@ -673,11 +638,10 @@ a:visited {
 /* /////////////////////////////// CSS for footer starts here */
 /* footer */
 
-
 /* @import url('https://fonts.cdnfonts.com/css/aileron'); */
 @font-face {
-  font-family: 'Star-Guard';
-  src: url('./star-guard-italic.ttf');
+  font-family: "Star-Guard";
+  src: url("./star-guard-italic.ttf");
 }
 
 .footer_desk {
@@ -982,13 +946,11 @@ a:visited {
   }
 
   .violet {
-
     width: 29vw;
     height: 39vw;
     position: relative;
     top: 18vw;
     left: -20vw;
-
   }
 
   .green {
@@ -1036,7 +998,6 @@ a:visited {
   }
 
   .footer_bottom {
-
     margin: 4vh;
     display: flex;
     justify-content: space-between;
@@ -1080,7 +1041,6 @@ a:visited {
 
     flex-direction: row;
     justify-content: flex-end;
-
   }
 
   .socials_desk {
@@ -1613,12 +1573,11 @@ a:visited {
   width: 15vw;
 }
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 768px) {
   .footer_logo {
     width: 50vw;
   }
 }
-
 
 /* /////////////////// */
 .mainsection {
@@ -1628,7 +1587,6 @@ a:visited {
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 5vh;
-
 }
 
 .imgsec {
@@ -1639,7 +1597,7 @@ a:visited {
 .head1 {
   font-family: sans-serif;
   font-size: 3.5vh;
-  color: #3A3A3A;
+  color: #3a3a3a;
   margin-bottom: 20px;
   font-weight: 600;
 }
@@ -1647,19 +1605,19 @@ a:visited {
 .head2 {
   font-family: sans-serif;
   font-size: 3.5vh;
-  color: #3A3A3A;
+  color: #3a3a3a;
   margin-top: 50px;
   font-weight: 600;
   text-align: center;
 }
 
 .Pass {
-  color: #3A3A3A;
+  color: #3a3a3a;
 }
 
 .rndtxt {
   font-size: 2.5vh;
-  color: #3A3A3A
+  color: #3a3a3a;
 }
 
 .feature_button {
@@ -1667,7 +1625,7 @@ a:visited {
   padding-bottom: 3%;
   width: 23vw;
   font-size: 2vh;
-  background: #FEA82F;
+  background: #fea82f;
   border: 1.5px solid #000000;
   box-shadow: 3px 3px 0 #000000;
   cursor: grabbing;

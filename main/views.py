@@ -76,7 +76,6 @@ def verify_otp(request):
     OTP = int(otp1)
     print(OTP)
     if OTP == otp:
-        messages.info(request, request.session['LeaderEmail'])
         return redirect('register')
     return render(request, 'main/verify.html')
 

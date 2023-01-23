@@ -99,7 +99,53 @@
       </div>
       {%endfor%}
     </div>
+    {% for member in context%}
+    <div class="Pass-Alcher-Mob">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          padding: 0 12%;
+          margin-top: 20px;
+        "
+      >
+        <div class="qrcode__container">
+          <div class="registration__done_txt">REGISTRATION DONE</div>
+          <div class="main_qr__img" id="{{member.id}}_mob"></div>
 
+          <div class="pass_owner_name"><strong>Digvijay</strong></div>
+          <div class="copy_sent__text">
+            A copy of the E-pass has been sent to your registered E-mail ID.
+          </div>
+          <div class="buttonStackOuterDiv_mob">
+            <div class="buttonStack_mob">
+              <div>
+                <img
+                  class="tapButton_mob"
+                  src="{% static  'images/DownloadBtn.png'%}"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  class="tapButton_mob"
+                  src="{% static  'images/shareBtn.png'%}"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  class="tapButton_mob"
+                  src="{% static  'images/whatsappBtn.png'%}"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
     <!-- Footer code starts here  -->
 
     {% include 'main/footer.html'%}
@@ -114,11 +160,15 @@
   ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    {% for member in context %}
-    var qrcode = new QRCode("{{member.id}}", {
-      text: "{{member.id}}|{{member.name}}|{{member.email}}|{{member.pass_type}}",
-     });
-     document.getElementById("{{member.id}}").children[1].setAttribute('style','height:10vw;width:10vw;')
-    {%endfor%}
+        {% for member in context %}
+        var qrcode = new QRCode("{{member.id}}_mob", {
+          text: "{{member.id}}|{{member.name}}|{{member.email}}|{{member.pass_type}}",
+         });
+    <<<<<<< HEAD
+         document.getElementById("{{member.id}}").children[1].setAttribute('style','height:10vw;width:10vw;')
+    =======
+         document.getElementById("{{member.id}}_mob").children[1].setAttribute('style','height:200px')
+    >>>>>>> ec1570b9839d493c0356595806d9d5936532494f
+        {%endfor%}
   </script>
 </html>

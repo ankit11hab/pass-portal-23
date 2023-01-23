@@ -93,11 +93,11 @@
               <div class="upperPart" style="display: flex; justify-content:space-between">
                 <p style="font-weight:600;font-size:3vh;">Primary Attendee </p>
                 <div class="passdiv">
-                  <select class="PassSel select_dropdown" name="LeaderPassType" onchange=onchnge_()>
+                  {% comment %} <select class="PassSel select_dropdown" name="LeaderPassType" onchange=onchnge_()>
                     <option value="none" disabled selected hidden>Select</option>
                     <option value="exclusive"> Exclusive
                     </option>
-                  </select>
+                  </select> {% endcomment %}
                 </div>
               </div>
 
@@ -115,9 +115,7 @@
                 <div> <label for="LeaderContact_no">Contact No</label></div>
               </div>
               <div class="shipping-details">
-                  {% for message in messages%}
-                <input required type="email" name="LeaderEmail" value="{{message}}">
-                  {%endfor%}
+                <input required type="email" name="LeaderEmail" >
                 <input required type="tel" name="LeaderContact_no">
               </div>
 
@@ -176,6 +174,16 @@
             </div>
 
           </div>
+        </form>
+        <div style="width:65vw;">
+          <div class="addmember">
+            <button type="button" id="add-member-button">
+              <div id="add-member-button2"> Add Attendee</div>
+            </button>
+          </div>
+        </div>
+
+          
 
       </div>
       <div class="Ticket-details" style="width: 17vw;height: 65vh;border:2px solid black ;margin-top: 11.3vh;">
@@ -213,15 +221,11 @@
           </button>
         </div>
       </div>
+      
       </form>
+      
     </div>
-    <div class="addmember">
-      <button type="button" id="add-member-button">
-
-        <div id="add-member-button2"> Add Attendee</div>
-
-      </button>
-    </div>
+    
   </div>
 
   <div class="form_mobile__">
@@ -236,7 +240,7 @@
                 <div>
                   <P class="p-person">Member (Primary)</P>
                 </div>
-                <div>
+                {% comment %} <div>
                   <p class="textinput">Pass type</p>
                 </div>
                 <div class="custom-select">
@@ -245,7 +249,7 @@
                     <option value="exclusive"> Exclusive
                     </option>
                   </select>
-                </div>
+                </div> {% endcomment %}
               </div>
               <div class=" pass-type">
                 <p class="textinput"> First Name</p>
@@ -257,9 +261,7 @@
               </div>
               <div class=" pass-type">
                 <p class="textinput">E-mail</p>
-{% for message in messages%}
-                <input required type="email" name="LeaderEmail" class="input-text-field" value="{{message}}" disabled>
-                  {%endfor%}
+                <input required type="email" name="LeaderEmail" class="input-text-field" disabled>
               </div>
               <div class=" pass-type">
                 <p class="textinput">Phone Number</p>
@@ -363,11 +365,11 @@
         <div class="upperPart" style="display: flex; justify-content:space-between">
                 <p style="font-weight:700;font-size:20px;">Attendee</p>
                 <div class="passdiv">
-                  <select class="PassSel select_dropdown" name="pass_type" onchange=onchnge_()>
+                  {% comment %} <select class="PassSel select_dropdown" name="pass_type" onchange=onchnge_()>
                     <option value="none" disabled selected hidden>Select</option>
                     <option value="exclusive"> Exclusive
                     </option>
-                  </select>
+                  </select> {% endcomment %}
                 </div>
               </div>
   
@@ -474,7 +476,11 @@
   </script>
   <script>
     let amount = 0;
-
+    const email__field= document.getElementsByName('LeaderEmail')
+    email__field[0].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
+    email__field[1].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
+    email__field[0].disabled=true
+    email__field[1].disabled=true
     function onchnge_() {
       amount = 0;
       const select_dropdowns = document.getElementsByName('pass_type');
