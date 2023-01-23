@@ -559,7 +559,7 @@ a:visited {
     display: none;
   }
   .Pass-Alcher-Mob {
-    margin-left: 10vw;
+    /* margin-left: 10vw; */
     display: block;
   }
   .CP_entry {
@@ -624,7 +624,7 @@ a:visited {
 .tapButton {
   width: 5vw;
   /* height: 10vh; */
-  box-shadow: 5px 5px black;
+  box-shadow: 2px 2px 2px black;
 }
 .tapButton:hover {
   transform: translate(5px, 5px);
@@ -657,4 +657,37 @@ a:visited {
 
 .CP_Right_Total canvas img {
   width: 20vw;
+}
+
+
+.qrcode__container{
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+  align-items: center;
+  margin-bottom: 3vw;
+  border:solid;
+  padding:31px 10px;
+  border-radius: 35px;
+  width: 300px;
+  min-width: 200px;
+  font-family: sans-serif;
+}
+.copy_sent__text{
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+.registration__done_txt{
+  font-size: 20px;
+  font-weight: 700;
+}
+.tapButton_mob {
+  width: 75px;
+}
+.buttonStack_mob{
+display: flex;
+gap: 20px;
+flex-direction: row;
 }
