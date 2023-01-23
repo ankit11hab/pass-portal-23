@@ -115,9 +115,7 @@
                 <div> <label for="LeaderContact_no">Contact No</label></div>
               </div>
               <div class="shipping-details">
-                  {% for message in messages%}
-                <input required type="email" name="LeaderEmail" value="{{message}}">
-                  {%endfor%}
+                <input required type="email" name="LeaderEmail" >
                 <input required type="tel" name="LeaderContact_no">
               </div>
 
@@ -263,9 +261,7 @@
               </div>
               <div class=" pass-type">
                 <p class="textinput">E-mail</p>
-{% for message in messages%}
-                <input required type="email" name="LeaderEmail" class="input-text-field" value="{{message}}" disabled>
-                  {%endfor%}
+                <input required type="email" name="LeaderEmail" class="input-text-field" disabled>
               </div>
               <div class=" pass-type">
                 <p class="textinput">Phone Number</p>
@@ -480,7 +476,11 @@
   </script>
   <script>
     let amount = 0;
-
+    const email__field= document.getElementsByName('LeaderEmail')
+    email__field[0].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
+    email__field[1].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
+    email__field[0].disabled=true
+    email__field[1].disabled=true
     function onchnge_() {
       amount = 0;
       const select_dropdowns = document.getElementsByName('pass_type');

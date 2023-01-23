@@ -185,8 +185,8 @@
           }
         })
         document.getElementById('email_submit').disabled=true
-    
-
+        const mailid=document.getElementsByName('email')[0]
+        window.sessionStorage.setItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54',mailid.value)
       }
     })
 
@@ -194,10 +194,8 @@
       console.log(e.key);
       if((e.key=="Enter")&&!otp_sent) {
         document.getElementById('email_submit').click();
-        
       }
     })
-
 </script>
 
 </html>
