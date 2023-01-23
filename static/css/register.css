@@ -423,7 +423,9 @@ a:visited {
 
   width: 47%;
 }
-
+.ticketHead{
+  text-align: center; font-size: 3vh;
+}
 .shipping-details1 {
   display: flex;
   justify-content: space-between;
@@ -538,13 +540,14 @@ a:visited {
   font-size: 2.3vh;
   gap: 6.5%;
   width: 25%;
+  width: 17vw;height: 65vh;border:2px solid black ;margin-top: 11.3vh;
 }
 
 .Ticket-details div {
   display: flex;
   flex-direction: column;
   gap: 1.5vh;
-  font-size: 1.8vh;
+  font-size: 2.3vh;
   font-style: normal;
 }
 
@@ -937,11 +940,44 @@ cursor: pointer;
   align-items: center;
 }
 
+
 @media only screen and (max-width: 768px) {
   .logo {
     display: none;
   }
-
+  .Pass{
+    transform: scale(.8)scaleX(1.1)scaleY(.9);
+  position: relative;
+  bottom: 9vw;
+  
+  }
+.Ticket-details{
+  width: 50vw;
+font-size: 2vh;
+position: sticky;
+right: 5vw;
+}
+#add-member-button{
+  position: relative;
+  bottom: 10vw;
+  left: 3vw;
+ 
+}
+#add-member-button2{
+  font-size: 1.3vh;
+}
+#bookbtnnav{
+  font-size: 1.5vw;
+ width: 15vw;
+ position: relative;
+ right: 2.2vw;
+ margin-bottom: 2vw;
+}
+.ticketHead{
+  font-size: 2vh;
+  position: relative;
+  top: 3vh;
+}
   .logo_mob {
     padding: 15vw 12vw;
     display: flex;
