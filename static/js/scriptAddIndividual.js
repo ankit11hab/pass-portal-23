@@ -22,7 +22,6 @@ addIndividual.addEventListener("click", (target) => {
                 <p class="textinput">Pass type</p>
                 <div class="custom-select">
                     <select name="pass_type" id="" onchange=onchnge_()>
-                    <option value="none" disabled selected hidden>Select</option>
                     <option value="exclusive"> Exclusive
                     </option>
                 </select>
@@ -47,7 +46,7 @@ addIndividual.addEventListener("click", (target) => {
             <div class=" pass-type">
                 <p class="textinput">ID Type</p>
                 <select name="IDtype" id="" class="input-text-field">
-                  <option value="none" disabled selected hidden>Select</option>
+                  <option value="" disabled selected hidden>Select</option>
                   <option value="collegeID"> CollegeID
                   </option>
                   <option value="aadhar"> Aadhar
@@ -94,6 +93,7 @@ addIndividual.addEventListener("click", (target) => {
 </div>`
   );
   k++;
+  onchnge_();
 });
 
 // removeButton.addEventListener('click',target=>{
