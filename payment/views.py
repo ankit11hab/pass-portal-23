@@ -152,61 +152,10 @@ def under_process(request):
     return render(request, 'under_process.html')
 
 
-def generate_qr_code(request, leader, members):
-    email = request.session.get('LeaderEmail')
-    count = request.session.get('count')
-    from_email = settings.EMAIL_HOST_USER
-    message = EmailMessage(
-        'QR code',
-        'Here is the Pass you requested',
-        from_email,
-        [email],
-    )
-    qr = qrcode.QRCode(version=6,
-                       box_size=18,
-                       border=4,)
-    qr.add_data(
-        {'name': leader['name'], 'pass_type': leader['pass_type'], 'id': leader['id']})
-    qr.make()
-    img = qr.make_image(fill_color="#fffde9",
-                        back_color="black")
-    lid = leader['id']
-    img.save(static(f'static/QRcode/{lid}.png'), format='PNG')
-    gen_pdf(lid)
-    message.attach_file(static(f'static/pdf/{lid}.pdf'))
-    for member in members:
-        qr = qrcode.QRCode()
-        qr.add_data(
-            {'name': member['name'], 'pass_type': member['pass_type'], 'id': member['id']})
-        qr.make()
-        img = qr.make_image(fill_color="#fffde9",
-                            back_color="black")
-        mid = member['id']
-        img.save(static(f'static/QRcode/{mid}.png'), format='PNG')
-        gen_pdf(mid)
-        message.attach(static(f'static/pdf/{mid}.pdf'))
-    message.send()
-
-    return HttpResponse('Pass sent!')
-
-
 @csrf_exempt
 def get_verified_details(request, id):
     # print('called')
     # id=request.GET.get('id')
-    print(id)
-    # if request.method=="POST":
-    # print('entered')
-    # print(type(request.body))
-    # id1=str((request.body).decode())
-    # id=gngjngj
-    # id1='14I3DFYP'
-    # tid=220075070
-    # print(id1)
-    # id1=id1.split("=")
-    # print(id1)
-    # print(id1[1])
-    # doc_ref = db.collection('users').document(id1[1])
     doc_ref = db.collection('users').document(id)
     tid = doc_ref.get().to_dict()['transID']
     # id,name,pass_type
@@ -215,29 +164,67 @@ def get_verified_details(request, id):
     for doc in q:
         context.append(doc.to_dict())
     print(context)
-    # return JsonResponse({'context':context})
     return render(request, 'payment/success_.html', {'context': context})
-    # return render(request,'payment/success_.html')
-
-
-def gen_pdf(pdfID):
-    packet = io.BytesIO()
-    can = canvas.Canvas(packet, pagesize=(2000, 2000))
-    can.drawImage(static(f"static/QRcode/{pdfID}.png"), 1100, 800)
-    can.save()
-    packet.seek(0)
-    new_pdf = PdfReader(packet)
-    existing_pdf = PdfReader(
-        open(static("static/exclusive_alcheringa.pdf"), "rb"))
-    output = PdfWriter()
-    page = existing_pdf.pages[0]
-    page.merge_page(new_pdf.pages[0])
-    output.add_page(page)
-    output.add_page(existing_pdf.pages[1])
-    outputStream = open(static(f'static/pdf/{pdfID}.pdf'), "wb")
-    output.write(outputStream)
-    outputStream.close()
 
 
 def get_payment_details(request):
     return render(request, 'payment/transaction_done.html')
+
+# def generate_qr_code(request):
+#     # email = request.session.get('LeaderEmail')
+#     email = "akshat.aksat@iitg.ac.in"
+#     count = request.session.get('count')
+#     from_email = settings.EMAIL_HOST_USER
+#     message = EmailMessage(
+#         'QR code',
+#         'Here is the Pass you requested',
+#         from_email,
+#         [email],
+#     )
+#     qr = qrcode.QRCode(version=6,
+#                        box_size=18,
+#                        border=4,)
+#     qr.add_data(
+#         {'name': 'leader[', 'pass_type': 'leader[', 'id': 'leader['})
+#     qr.make()
+#     img = qr.make_image(fill_color="#fffde9",
+#                         back_color="black")
+#     # lid = leader['id']
+#     lid = 123456789
+#     img.save(static(f'static/QRcode/{lid}.png'), format='PNG')
+#     gen_pdf(lid)
+#     message.attach_file(static(f'static/pdf/{lid}.pdf'))
+#     members = [1, 2, 3, 4]
+#     for mid in members:
+#         qr = qrcode.QRCode()
+#         qr.add_data(
+#             {'name': member['name'], 'pass_type': member['pass_type'], 'id': member['id']})
+#         qr.make()
+#         img = qr.make_image(fill_color="#fffde9",
+#                             back_color="black")
+#         mid = member['id']
+#         img.save(static(f'static/QRcode/{mid}.png'), format='PNG')
+#         gen_pdf(mid)
+#         message.attach(static(f'static/pdf/{mid}.pdf'))
+#     message.send()
+
+#     return HttpResponse('Pass sent!')
+
+
+# def gen_pdf(pdfID):
+#     packet = io.BytesIO()
+#     can = canvas.Canvas(packet, pagesize=(2000, 2000))
+#     can.drawImage(static(f"static/QRcode/{pdfID}.png"), 1100, 800)
+#     can.save()
+#     packet.seek(0)
+#     new_pdf = PdfReader(packet)
+#     existing_pdf = PdfReader(
+#         open(static("static/exclusive_alcheringa.pdf"), "rb"))
+#     output = PdfWriter()
+#     page = existing_pdf.pages[0]
+#     page.merge_page(new_pdf.pages[0])
+#     output.add_page(page)
+#     output.add_page(existing_pdf.pages[1])
+#     outputStream = open(static(f'static/pdf/{pdfID}.pdf'), "wb")
+#     output.write(outputStream)
+#     outputStream.close()
