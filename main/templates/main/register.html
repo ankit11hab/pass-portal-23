@@ -83,8 +83,8 @@
     Enter your details
   </div>
   <!-- ////////////////////// -->
-  <div class="form_desktop__">
-    <div style="display:flex ; justify-content: center;gap: 7vw;">
+  <div class="form_desktop__" >
+    <div style="display:flex ; justify-content: center;gap: 10vw;">
       <div class="Pass-Alcher" style="display:flex ;flex-direction:column; width: 65%;">
         <form action="{% url 'SaveData' %}" id="details__form" method="POST">
           {% csrf_token %}
@@ -100,29 +100,29 @@
                 </div>
               </div>
 
-              <div class="shipping-details1">
+              <div class="shipping-details1" style="padding-bottom: 1%;">
                 <div> <label for="LeaderFirstName">First Name</label></div>
                 <div> <label for="LeaderLastName">Last Name</label></div>
               </div>
-              <div class="shipping-details">
+              <div class="shipping-details" style="padding-bottom: 1%;">
                 <input required type="text" name="LeaderFirstName">
                 <input required type="text" name="LeaderLastName">
               </div>
 
-              <div class="shipping-details1">
+              <div class="shipping-details1"style="padding-bottom: 1%;">
                 <div> <label for="LeaderEmail">Email</label></div>
                 <div> <label for="LeaderContact_no">Contact No</label></div>
               </div>
-              <div class="shipping-details">
+              <div class="shipping-details"style="padding-bottom: 1%;">
                 <input required type="email" name="LeaderEmail" >
                 <input required type="tel" name="LeaderContact_no">
               </div>
 
-              <div class="shipping-details1">
+              <div class="shipping-details1"style="padding-bottom: 1%;">
                 <div> <label for="LeaderIDtype">ID Type</label></div>
                 <div> <label for="LeaderIDnumber">ID Number</label></div>
               </div>
-              <div class="shipping-details">
+              <div class="shipping-details"style="padding-bottom: 1%;">
 
                 <select name="LeaderIDtype" id="">
                   <option value="none" disabled selected hidden>Select</option>
@@ -140,12 +140,12 @@
                 <input required type="text" name="LeaderIDnumber">
               </div>
 
-              <div class="shipping-details3">
+              <div class="shipping-details3"style="padding-bottom: 1%;">
                 <div> <label for="LeaderGender">Gender</label></div>
                 <div> <label for="LeaderAge">Age</label></div>
               </div>
-              <div class="shipping-details">
-                <div class="shipping-details2">
+              <div class="shipping-details"style="padding-bottom: 1%;">
+                <div class="shipping-details2"style="padding-bottom: 1%;">
                   <div class="genderDiv">
                     <select name="LeaderGender">
                       <option value="" disabled selected hidden>Gender</option>
@@ -185,16 +185,16 @@
           
 
       </div>
-      <div class="Ticket-details" style="width: 17vw;height: 65vh;border:2px solid black ;margin-top: 11.3vh;">
+      <div class="Ticket-details" >
         <div class="border-ticket">
-          <div style="text-align: center; font-size: 3vh;"><b>Order Summary</b> </div>
+          <div class="ticketHead" style=""><b>Order Summary</b> </div>
         </div>
         <div class="border-ticket">
           <div style="display: flex; flex-direction: row; justify-content: space-between;color: rgb(138, 133, 133);">
             <div>Venue </div>
           </div>
           <div class="details" style="display:flex ; flex-direction:row; justify-content: space-between; ">
-            <div> <b style="font-size: 2.3vh;">IIT Guwahati </b></div>
+            <div> <b>IIT Guwahati </b></div>
           </div>
         </div>
         <div class="border-ticket">
@@ -203,20 +203,20 @@
             <div>Date</div>
           </div>
           <div class="details" style="display:flex ; flex-direction:row; justify-content: space-between; ">
-            <div> <b style="font-size: 2.3vh;">08:00 AM </b></div>
-            <div><b style="font-size: 2.3vh;">3rd - 5th Feb </b></div>
+            <div> <b >08:00 AM </b></div>
+            <div><b >3rd - 5th Feb </b></div>
           </div>
         </div>
         <hr>
         <div style="display:flex; flex-direction: row; justify-content: space-between;">
-          <div style="font-size: 2.3vh;">Total</div>
-          <div style="font-size: 2.3vh;"><b><span class="amount__">0</span></b></div>
+          <div >Total</div>
+          <div ><b><span class="amount__">0</span></b></div>
         </div>
         <div class=""
           style="transform:scale(.9) ;width:10vw; margin-right: auto;margin-left: auto;justify-content: none;">
           <button type="submit" id="bookbtnnav" class="">
             <img class="" src="{% static 'images/4406gtiiiii 1.png' %}" alt="" />
-            <div style="margin-left: 15px;font-size: 2.3vh;">PAY</div>
+            <div style="margin-left: 15px;display: flex ; justify-content: center; flex-direction: row;">PAY <span class="amount__">0</span></div>
           </button>
         </div>
       </div>
@@ -370,27 +370,27 @@
                 </div>
               </div>
   
-         <div class="shipping-details1">        
+         <div class="shipping-details1" style="padding-bottom:1%;">        
       <div>  <label for="first_name">First Name</label></div>
       <div>  <label for="last_name">Last Name</label></div>
           </div>  
-          <div class="shipping-details">
+          <div class="shipping-details"style="padding-bottom:1%;">
               <input required type="text" name="first_name">
               <input required type="text" name="last_name">
           </div>
-          <div class="shipping-details1">
+          <div class="shipping-details1"style="padding-bottom:1%;">
               <div>  <label for="email">Email</label></div>
               <div>  <label for="contact_no">Contact No</label></div>
           </div>  
-          <div class="shipping-details">
+          <div class="shipping-details"style="padding-bottom:1%;">
               <input required type="email" name="email">
               <input required type="tel" name="contact_no">
           </div>
-          <div class="shipping-details1">
+          <div class="shipping-details1"style="padding-bottom:1%;">
                 <div> <label for="IDtype">ID Type</label></div>
                 <div> <label for="IDnumber">ID Number</label></div>
               </div>
-              <div class="shipping-details">
+              <div class="shipping-details"style="padding-bottom:1%;">
 
                 <select name="IDtype" id="">
                   <option value="none" disabled selected hidden>Select</option>
@@ -408,12 +408,12 @@
                 <input required required type="text" name="IDnumber">
               </div>
 
-          <div class="shipping-details3">        
+          <div class="shipping-details3"style="padding-bottom:1%;">        
               <div>  <label for="gender">Gender</label></div>
               <div>  <label for="age">Age</label></div>
           </div>  
-      <div class="shipping-details">
-          <div class="shipping-details2">
+      <div class="shipping-details"style="padding-bottom:1%;">
+          <div class="shipping-details2"style="padding-bottom:1%;">
               <div class="genderDiv" > 
                      <select name="gender">  
                       <option value="" disabled selected hidden>Gender</option>
@@ -430,9 +430,9 @@
                 <input required type='number' name='age'>
               </div>
           </div>
-          <div class="shipping-details2" onclick=del(${i})>
+          <div class="shipping-details2" style="padding-bottom:1%;" onclick=del(${i})>
             <div class="bookticketbtnnav">
-          <button type="button" id="bookbtnnav" onclick=del(${i}) class="bookbtn" >
+          <button type="button" id="removebtn" onclick=del(${i}) class="bookbtn" >
         <div class="booktextnav" >Remove</div>
       </button>
         </div>
