@@ -52,7 +52,67 @@
   {% include 'main/navbar.html' %}
   <!-- /////////// code for navbar ends here -->
 
-  <div class="otpPage_container">
+  <div class="passPortalContent">
+      <div class="exclusivePass">
+        <div
+          class="exclusivePassInnerDiv"
+        >
+          <img
+            id="exclusivePassImg"
+            src="{% static 'images/ExclusivePass.png' %}"
+            alt=""
+            style="cursor: pointer"
+          />
+        
+        </div>
+      </div>
+<div style="display:flex ; justify-content: center;gap: 7vw;">
+    <div class="Pass-Alcher" style="display:flex ;flex-direction:column; width: 65%;">
+
+          <div class="Pass">
+            <div style="padding-left:2rem;padding-top:1rem; width:130%;">
+              <div class="vemail">VERIFY E-Mail ADDRESS</div>
+              <div class="vc1">
+                  <div class="ve1">E-Mail Address</div>
+                  <div class="vcin">
+                    <input type="text" class="vinput">
+                  <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/>
+                  </div>
+              </div>
+              <div class="vpara">
+                Please enter your e-mail ID. A one-time-passcode will be sent on the same to verify your E-Mail ID.
+              </div>
+            </div>
+            
+            <div class="blackdot">
+              <img src="{% static 'images/Blackdot.png' %}" alt="">
+            </div>
+            <form action="{% url 'verify_otp'%}" method="POST">
+                      {% csrf_token %}
+              <div style="padding:5vh; display:flex;flex-direction:column; justify-content: space-between;align-items: center; width:75%;height:30vh;">
+    
+                <div class="textOTP">ENTER OTP</div>
+                <div class="cntOTP">
+                  <input class="inputOTP">
+                  <img class="imgOTP" src="{% static 'images/GroupArrow.png' %}"/>
+                </div>
+                <div class="p1">Please enter the four digit OTP, which has been sent to your registered e-mail address.</div>
+                <div class="p2">Please Enter E-mail First</div>
+                <button type="submit" class="proc">Proceed</button>
+                
+              </div>
+            </form>
+
+          </div>
+        
+        
+
+          
+
+      </div>
+    </div>
+
+  {% comment %} <div class="otpPage_container">
     <div class="otp_header">Verify Email</div>
 
     <div class="otpPage_box">
@@ -86,16 +146,17 @@
         </form>
       </div>
   </div>
-  </div>
+  </div> {% endcomment %}
   <!-- /////////////////////////////////////////////////////////// -->
   <!-- Footer code starts here  -->
-
+</div>
   {% include 'main/footer.html' %}
 
   <!-- Footer code ends here  -->
   <script src="{% static 'js/scriptPassPortal.js' %}"></script>
   <script src="{% static 'js/script.js'%}"></script>
-  </div>
+  
+  
 </body>
 <script>
   let otp_sent = false;

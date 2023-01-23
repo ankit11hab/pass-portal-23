@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}" />
   </head>
 
-<style>
-  body{
-    overflow-x: hidden;
-  }
-</style>
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+  </style>
   <body>
     {% include 'main/navbar.html' %}
     <!-- /////////// code for navbar ends here -->
@@ -37,14 +37,20 @@
 
     <div class="passPortalContent">
       <div class="exclusivePass">
-        <div class="exclusivePassInnerDiv">
+        <div
+          class="exclusivePassInnerDiv"
+          onclick="window.location.href=`{% url 'send_otp' %}`"
+        >
           <img
             id="exclusivePassImg"
             src="{% static 'images/ExclusivePass.png' %}"
             alt=""
+            style="cursor: pointer"
           />
           <div class="bookNowBtnDesktop">
-           <a href="{% url 'send_otp' %}" ><img src="{% static 'images/Frame 14711.png' %}" alt=""></a>
+            <a href="{% url 'send_otp' %}"
+              ><img src="{% static 'images/Frame 14711.png' %}" alt=""
+            /></a>
           </div>
         </div>
       </div>
@@ -110,20 +116,29 @@
             </div>
           </div> -->
           <!-- //////////////////////////////////////////////////////// -->
-          <div class="mobImg"><div class="mobImgInnerDiv">
-            <img src="{% static 'images/Frame 149721.png' %}" alt="" />
-            <div class="bookTicketsBtn">
-                <a href="{% url 'send_otp' %}" ><img src="{% static 'images/Frame 14711.png' %}" alt=""></a>
+          <div class="mobImg">
+            <div
+              class="mobImgInnerDiv"
+              onclick="window.location.href=`{% url 'send_otp' %}`"
+            >
+              <img
+                src="{% static 'images/Frame 149721.png' %}"
+                alt=""
+                style="cursor: pointer"
+              />
+              <div class="bookTicketsBtn">
+                <a href="{% url 'send_otp' %}"
+                  ><img src="{% static 'images/Frame 14711.png' %}" alt=""
+                /></a>
+              </div>
             </div>
+            <!-- ///////////////////////////////////////////////////// -->
           </div>
-          <!-- ///////////////////////////////////////////////////// -->
         </div>
       </div>
-    </div>
 
-    <!-- /////////////////////////////////////////////////////////// -->
-    <!-- Footer code starts here  -->
-
+      <!-- /////////////////////////////////////////////////////////// -->
+      <!-- Footer code starts here  -->
 
       {% include 'main/footer.html' %}
 
