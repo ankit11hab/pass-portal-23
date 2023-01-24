@@ -175,6 +175,7 @@ def SaveData(request):
         amount = 750
         print(amount)
         paases_type['amount'] = amount
+        amount=1
         data = id+"|"+fee_id+"|"+str(amount)
         encryptedData = encrypt(key, data, iv)
         fstring = f'{id}|{paases_type["general"]}|{paases_type["exclusive"]}|{paases_type["premium"]}|{paases_type["amount"]}'
