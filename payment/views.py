@@ -66,7 +66,9 @@ def payment_response(request):
         errDesc = split_data[5]
         tid = split_data[3]
         id = split_data[0]
-        # id = "2UIRIAH8"
+        # id = "GBTCG"
+        doc_ref_trans=db.collection('transactions').document(tid)
+        doc_ref_trans.set({"id":split_data[0],"fee_type":split_data[1],"amount":split_data[2],"status":status,"errDesc":split_data[5],"time":split_data[6]})
         leader_id = id
         doc_ref = db.collection('users').document(
             leader_id)
@@ -82,16 +84,19 @@ def payment_response(request):
                 "age": doc_ref.get().to_dict()['LAge'],
                 "gender": doc_ref.get().to_dict()['LGender'],
                 "transID": tid,
+                "day1": True,
+                "day2": True,
+                "day3": True
             }
             doc_ref2 = ''
             while True:
                 memID = ''.join(random.choices(string.ascii_uppercase +
-                                               string.digits, k=8))
+                                               string.digits, k=5))
                 doc_ref2 = db.collection('verified_users').document(memID)
                 if not doc_ref2.get().exists:
                     doc_ref2.set(leader_data)
                     break
-
+            doc_ref.update({"verID":doc_ref2.id})       
             docref3 = db.collection('verified_users').document(doc_ref2.id)
             leader_array = {
                 'name': docref3.get().to_dict()['name'],
@@ -101,7 +106,8 @@ def payment_response(request):
             print(leader_array)
             i = 0
             member_array = []
-            for member in doc_ref.get().to_dict()['members']:
+            for member_doc in doc_ref.collection('members').stream():
+                member=member_doc.to_dict()
                 member_data = {
                     "name": member['name'],
                     "contact": member['contact'],
@@ -109,16 +115,20 @@ def payment_response(request):
                     "email": member['email'],
                     "age": member['age'],
                     "gender": member['gender'],
-                    "transID": tid
+                    "transID": tid,
+                    "day1": True,
+                    "day2": True,
+                    "day3": True
                 }
                 doc_ref2 = ''
                 while True:
                     memID = ''.join(random.choices(string.ascii_uppercase +
-                                                   string.digits, k=8))
+                                                   string.digits, k=5))
                     doc_ref2 = db.collection('verified_users').document(memID)
                     if not doc_ref2.get().exists:
                         doc_ref2.set(member_data)
                         break
+                doc_ref.collection('members').document(member_doc.id).update({"verID":doc_ref2.id})
                 member_array.append(
                     {'name': member_data['name'], 'pass_type': member_data['pass_type'], 'id': doc_ref2.id})
             print(member_array)
@@ -161,8 +171,10 @@ def encrypt_data(data, key):
     return bytes(encrypted_data)
 
 @csrf_exempt
-def get_verified_details(request, id):
+def get_verified_details(request):
     # print('called')
+ if request.method=="POST":
+    id=request.POST['uid']
     doc_ref = db.collection('users').document(id)
     tid = doc_ref.get().to_dict()['transID']
     # id,name,pass_type

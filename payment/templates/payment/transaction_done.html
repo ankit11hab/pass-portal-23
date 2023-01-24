@@ -22,6 +22,9 @@
     <h4>Loading</h4>
   </div>
   {% include 'main/footer.html' %}
+    <form action="{% url 'get_verified_details'%}" method="POST" id="check">
+      <input type="text" name="uid" id="input"/>
+    </form>
 
   </body>
   <script>
@@ -30,11 +33,8 @@
       "fasdlfsdaffdsui542958riuehwflu989aaSDAF"
     );
     const timeout__=setTimeout(()=>{
-      window.location =
-        "{% url 'get_verified_details' id='2UIRIAH8' %}".replace(
-          "2UIRIAH8",
-          id.toString()
-        );
+      document.getElementById('input').value=id
+      document.getElementById('check').submit()
     },3000);
   </script>
 </html>
