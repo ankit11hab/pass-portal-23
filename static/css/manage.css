@@ -1,0 +1,407 @@
+.otpPage_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 3vw;
+    width: 80vw;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-color: #fef8f1;
+    background-size: cover;
+    aspect-ratio: 3.57;
+  }
+  .otpPage_container {
+    padding: 7vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 12vh;
+  }
+  .email_input,
+  .otp_input {
+    height: 25px;
+    width: 200px;
+    border: 1px solid black;
+    background: transparent;
+  }
+  .email_input_container,
+  .verify_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .form_otp_container {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+  }
+  
+  .verify_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 3vw;
+    width: 80vw;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-color: #fef8f1;
+    background-size: cover;
+    aspect-ratio: 3.57;
+    display: none;
+  }
+  
+  .otp_bookbtn {
+    width: 66px;
+    margin-left: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    background: transparent;
+    /* border-radius: 20px; */
+    font-weight: 700;
+  }
+  .otp_header {
+    display: flex;
+    justify-content: center;
+    font-size: 7vw;
+    padding: 2vw;
+    padding-top: 0;
+    box-sizing: border-box;
+    width: 80vw;
+  }
+  @media only screen and (max-width: 650px) {
+    .email_input_container form {
+      flex-direction: column;
+    }
+    .otp_bookbtn {
+      margin-left: 56px;
+    }
+  }
+  
+  .Pass-Alcher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-top: 11.7vh;
+    margin-bottom: 15vh;
+  }
+  
+  .Pass-Alcher .Pass {
+    background-image: url("/static/images/Subtract.png");
+    height: 18vw;
+    min-height: 200px;
+    max-height: 300px;
+    width: 60vw;
+    padding: 5% 5%;
+    align-items: center;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    /* box-sizing: border-box; */
+  }
+  .email_verify_container {
+    width: 71%;
+  }
+  
+  .Pass-Alcher .Pass2 {
+    background-image: url("/static/images/Subtract.png");
+    background-repeat: none;
+    height: 300px;
+    width: 75vw;
+    padding: 2.5% 0%;
+    background-size: 100% 100%;
+    display: flex;
+    box-sizing: border-box;
+  }
+  
+  .vemail {
+    /* position: absolute;
+    width: 428px;
+    height: 43px;
+    left: 62.98px;
+    top: 48px; */
+  
+    font-family: "aileron", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2vw;
+    /* line-height: 43px; */
+    text-transform: uppercase;
+  
+    color: #3a3a3a;
+  }
+  .ve1 {
+    /* width: 169px; */
+    height: 29px;
+  
+    font-family: "aileron", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    /* font-size: 1.5vw; */
+    /* line-height: 29px; */
+    margin-top: 1.5vh;
+    /* identical to box height */
+  
+    color: #3a3a3a;
+  
+    /* Inside auto layout */
+  
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+  .vcin {
+    /* width: 25vw; */
+    height: 8vh;
+  
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+  
+    /* border: 2.07049px solid #3a3a3a; */
+    margin-top: 1.5vh;
+    box-sizing: border-box;
+    /* transform: rotate(90deg); */
+  
+    /* Inside auto layout */
+    /* 
+    flex: none;
+    order: 1;
+    flex-grow: 0; */
+  }
+  .vinput {
+    /* position: absolute;
+    left: 37.69%;
+    right: -357.02%;
+    top: 4.26%;
+    bottom: 87.87%; */
+    box-sizing: border-box;
+    border: 2.07049px solid #3a3a3a;
+    width: 23vw;
+  
+    font-family: "aileron", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5vw;
+    padding: 1%;
+    /* line-height: 33px; */
+    height: 6vh;
+    max-height: 60px;
+    color: #3a3a3a;
+    /* identical to box height*/
+  }
+  .vimg {
+    /* position: absolute;
+    left: 87.5%;
+    right: -62.5%;
+    top: 20.83%;
+    bottom: 20.78%; */
+    border: 2.07049px solid #3a3a3a;
+    height: 6vh;
+    max-height: 60px;
+    padding: 1vh;
+  
+    box-sizing: border-box;
+    /* transform: matrix(-1, 0, 0, 1, 0, 0); */
+  }
+  .vpara {
+    /* position: absolute;
+    left: 5.11%;
+    right: 65.57%;
+    top: 72.16%;
+    bottom: 18.26%; */
+    margin-top: 1.5vh;
+    font-family: "aileron", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    /* line-height: 16px; */
+  
+    width: 23vw;
+  
+    color: #3a3a3a;
+  }
+  
+  .blackdot img {
+    height: 24vh;
+    min-height: 160px;
+    max-height: 245px;
+  }
+  
+  .blackdot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .textOTP {
+    font-family: "aileron", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2vw;
+    /* line-height: 29px; */
+    /* identical to box height */
+  
+    color: #3a3a3a;
+  }
+  
+  .cntOTP {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .inputOTP {
+    width: 50%;
+    border: 2.07049px solid #3a3a3a;
+  }
+  .imgOTP {
+    border: 2.07049px solid #3a3a3a;
+    height: 5vh;
+    padding: 1vh;
+  
+    box-sizing: border-box;
+  }
+  .p1 {
+    font-size: 1vw;
+    font-family: "aileron", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    /* line-height: 16px; */
+    text-align: center;
+  }
+  .p2 {
+    font-family: "aileron", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1vw;
+    /* line-height: 16px; */
+    /* identical to box height */
+  
+    text-align: center;
+  
+    color: #f35c41;
+  }
+  .proc {
+    box-sizing: border-box;
+  
+    /* Auto layout */
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    gap: 12px;
+  
+    width: 90px;
+    height: 20px;
+  
+    background: #fea82f;
+    border: 1.5px solid #1a1a1a;
+    border-radius: 126px;
+  
+    font-family: "aileron", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    /* line-height: 14px; */
+    text-align: right;
+  
+    color: #000000;
+  }
+  .otpFormmain {
+    width: 21%;
+  }
+  .otpFormmain_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw;
+  }
+  .vc1{
+    display: flex;
+    gap: 2vw;
+  }
+  @media (max-width: 600px) {
+    .Pass-Alcher .Pass {
+      background-image: url("/static/images/managemob.png");
+      height: 440px;
+      min-height: none;
+      max-height: none;
+      width: 190px;
+      padding: 5% 5%;
+      align-items: center;
+      background-size: 100% 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      /* box-sizing: border-box; */
+    }
+    .passid{
+        min-width: 80px !important;
+    }
+    .vemail {
+      text-align: center;
+    }
+    .blackdot {
+      display: none;
+    }
+    .email_verify_container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .vemail,
+    .ve1,
+    .vpara,.textOTP {
+      font-size: 2vh;
+    }
+    .ve1 {
+      height: auto;
+    }
+    .vc1 {
+      margin-top: 1vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .vcin {
+      height: 3vh;
+      width: auto;
+    }
+    .vinput {
+      height: 28px;
+  min-width: 120px;
+  font-size: 2vh;
+    }
+    .vimg {
+      height: 28px;
+    }
+    .vpara{
+      margin-top: 4vh;
+      font-size: 1.5vh;
+      width: 80%;
+    }
+    .p1,.p2 {
+      font-size: 1.5vh;
+      width: 40vw;
+      max-width: 180px;
+    }
+    .otpFormmain{
+      width: auto;
+    }
+    .inputOTP{
+      width: 40%;
+    }
+  }
+  
