@@ -126,7 +126,7 @@ nav{
     flex-direction: row;
     justify-content: space-around;
 }
-li{
+.NavigationBar li{
     display: flex;
     align-items: center;
     justify-content: center;
