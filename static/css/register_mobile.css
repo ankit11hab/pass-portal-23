@@ -376,14 +376,14 @@ li{
 .form-top {
     /* display: grid; */
     position: relative;
-    background-image: url("/static/images/form top.png");
+    background-image: url("{% static 'images/form top.png' %}");
     background-size: 100% 100%;
   
 }
 
 .form-mid {
     /* display: grid; */
-    background-image: url("/static/images/form mid.png");
+    background-image: url("{% static 'images/form mid.png' %}");
     background-size: 100% 100%;
     
 
@@ -391,7 +391,7 @@ li{
 
 .form-bottom {
     /* display: grid; */
-    background-image: url("/static/images/form-bottom.png");
+    background-image: url("{% static 'images/form-bottom.png' %}");
     background-size: 100% 100%;
 }
 

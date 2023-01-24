@@ -95,7 +95,7 @@
 }
 
 .Pass-Alcher .Pass {
-  background-image: url("/static/images/Subtract.png");
+  background-image: url("{% static 'images/Subtract.png' %}");
   height: 18vw;
   min-height: 200px;
   max-height: 300px;
@@ -113,7 +113,7 @@
 }
 
 .Pass-Alcher .Pass2 {
-  background-image: url("/static/images/Subtract.png");
+  background-image: url("{% static 'images/Subtract.png' %}");
   background-repeat: none;
   height: 300px;
   width: 75vw;
@@ -332,7 +332,7 @@
 }
 @media (max-width: 600px) {
   .Pass-Alcher .Pass {
-    background-image: url("/static/images/otpFrame.png");
+    background-image: url("{% static 'images/otpFrame.png' %}");
     height: 700px;
     /* min-height: 200px; */
     /* max-height: 300px; */
