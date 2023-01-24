@@ -109,7 +109,9 @@ def SaveData(request):
         LeaderFirstName = request.POST.get('LeaderFirstName')
         LeaderLastName = request.POST.get('LeaderLastName')
         LeaderContact_no = request.POST.get('LeaderContact_no')
-        LeaderEmail = request.POST.get('LeaderEmail')
+        # LeaderEmail = request.POST.get('LeaderEmail')
+        LeaderEmail =         request.session['LeaderEmail']
+        print(LeaderEmail)
         LeaderPassType = request.POST.get('LeaderPassType')
         LeaderIDType = request.POST.get('LeaderIDtype')
         LeaderIDNumber = request.POST.get('LeaderIDnumber')
