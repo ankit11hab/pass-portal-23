@@ -34,10 +34,10 @@
     {% include 'main/navbar.html' %}
     <!-- /////////// code for navbar ends here -->
     
-    <div class="Pass-Alcher" >
+    <div class="Pass-Alcher" id="printpass">
       
       {% for member in context%}
-      <div class="Pass" id="printpass" style="display:flex ; justify-content:space-around" >
+      <div class="Pass"  style="display:flex ; justify-content:space-around" >
         <div class="desktop_success_left">
           <div class="desktop_success_left_subleft">
             <div class="success_main_header">DETAILS PERSON</div>
@@ -192,27 +192,27 @@
         }
         {%endfor%}
   </script>
-  <script>
+<script>
     function PrintDiv(elid) {
-      window.jsPDF = window.jspdf.jsPDF;
-      let pdf = new jsPDF('l', 'pt', 'a2');
-    
-    pdf.html(document.getElementById('printpass'), {
-        callback: function (pdf) {
-            window.open(pdf.output('bloburl'));
-        }
-    });
+      var divContents = document.getElementById('printpass').innerHTML;
+      var printWindow = window.open('', '', 'height=1200px,width=920px');
+      printWindow.document.write('<html><head><title>Registration Complete!</title>');
+        printWindow.document.write('</head><body><style> #printpass{display:flex;} </style>');
+      printWindow.document.write(divContents);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
 
     }
     function PrintDivMob(elid) {
-      window.jsPDF = window.jspdf.jsPDF;
-      let pdf = new jsPDF('l', 'pt', 'a2');
-    
-    pdf.html(document.getElementById('printpass'), {
-        callback: function (pdf) {
-            window.open(pdf.output('bloburl'));
-        }
-    });
+      var divContents = document.getElementById('passmob').innerHTML;
+      var printWindow = window.open('', '', 'height=520px,width=1000px');
+      printWindow.document.write("<html><head><title>Alcher Pass</title>");
+      printWindow.document.write("</head><style></style><body >")
+      printWindow.document.write(divContents);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
     }
   </script>
 </html>
