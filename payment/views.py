@@ -153,10 +153,9 @@ def under_process(request):
 
 
 @csrf_exempt
-def get_verified_details(request, id1):
+def get_verified_details(request, id):
     # print('called')
-    id1=request.GET.get('id')
-    doc_ref = db.collection('users').document(id1)
+    doc_ref = db.collection('users').document(id)
     tid = doc_ref.get().to_dict()['transID']
     # id,name,pass_type
     q = db.collection('verified_users').where('transID', '==', tid).stream()
