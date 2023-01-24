@@ -166,7 +166,7 @@ def under_process(request):
 def get_verified_details(request):
     # print('called')
     if request.method=="POST":
-        id=request.POST['id']
+        id=request.POST['uid']
         doc_ref = db.collection('users').document(id)
         tid = doc_ref.get().to_dict()['transID']
         # id,name,pass_type

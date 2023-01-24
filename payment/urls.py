@@ -6,7 +6,7 @@ urlpatterns = [
 #     path('mail/', views.generate_qr_code, name='mail'),
     path('response/', views.payment_response, name='payment_response'),
     path('status/', views.payment_response, name="payment_status"),
-    path('get_verified_details/<str:id>/',
+    path('get_verified_details/',
          views.get_verified_details, name="get_verified_details"),
     path('get_payment_details/', views.get_payment_details,
          name="get_payment_details"),
