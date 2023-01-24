@@ -66,20 +66,39 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-  function send_ajax_request(){
-    const email_input = document.getElementsByName('email');
-    const id_input = document.getElementsByName('passid');
+  document.getElementById('email_submit').addEventListener('click', ()=>{
+    function validation(){
+      var email = document.getElementsByName("email")[0].value;
+    console.log(email)
+    var emailReg = /^([A-Za-z0-9_\-.])+@/;
+    if (!(email).match(emailReg)) {
+      alert("Invalid Email");
+      return false;
+    } else {
+      otp_sent = true;
+      return true;
+    }
+    }
+    if(validation()){
+      const email_input = document.getElementsByName('email');
+      const id_input = document.getElementsByName('passid');
 
-    fetch("{% url 'managebooking'%}", {
-        method: "POST",
-        body: JSON.stringify({
-          email: email_input[0].value,
-          id:id_input[0].value,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      })
+      fetch("{% url 'managebooking'%}", {
+          method: "POST",
+          body: JSON.stringify({
+            email: email_input[0].value,
+            id:id_input[0].value,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        })
   }
+      document.getElementById('email_submit').disabled=true
+      document.getElementsByClassName('p2')[0].innerHTML="OTP sent"
+      document.getElementsByClassName('p2')[0].setAttribute('style','color:green;')
+      const mailid=document.getElementsByName('email')[0]
+      window.sessionStorage.setItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54',mailid.value)
+    })
 </script>
 </html>

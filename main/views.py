@@ -292,4 +292,4 @@ def manangebooking(request):
     return HttpResponse('mail not found')
 
 def manage_booking_page(request):
-    return render(request,'main/manange.html')
+    return render(request,'main/manage.html')
