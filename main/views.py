@@ -130,7 +130,7 @@ def SaveData(request):
         key = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         iv = "adjfytryd5g87hgh"
         id = ''.join(random.choices(string.ascii_uppercase +
-                                    string.digits, k=8))
+                                    string.digits, k=5))
         amount = 1
         fee_id = "M1006"
         print(id)
@@ -145,7 +145,7 @@ def SaveData(request):
         LeaderLastName = request.POST.get('LeaderLastName')
         LeaderContact_no = request.POST.get('LeaderContact_no')
         # LeaderEmail = request.POST.get('LeaderEmail')
-        LeaderEmail =         request.session['LeaderEmail']
+        LeaderEmail = request.session['LeaderEmail']
         print(LeaderEmail)
         LeaderPassType = request.POST.get('LeaderPassType')
         LeaderIDType = request.POST.get('LeaderIDtype')
@@ -168,7 +168,20 @@ def SaveData(request):
             paases_type['premium'] = paases_type['premium']+1
         elif (LeaderPassType == 'exclusive'):
             paases_type['exclusive'] = paases_type['exclusive']+1
+        Ldata = {
+            "LName": LeaderFirstName+' ' + LeaderLastName,
+            "LContact": LeaderContact_no,
+            "LEmail": LeaderEmail,
+            "LPassType": LeaderPassType,
+            "LIDType": LeaderIDType,
+            "LIDNumber": LeaderIDNumber,
+            "LAge": LeaderAge,
+            "LGender": LeaderGender,
+            # "members": members
+        }
 
+        doc_ref = db.collection('users').document(id)
+        doc_ref.set(Ldata)
         count = 1
         for i in member_first_names:
             count = count+1
@@ -186,6 +199,7 @@ def SaveData(request):
                 "gender": gender,
                 'email': email,
             }
+            doc_ref.collection('members').document().set(member)
             members.append(member)
             if (pass_type == 'general'):
                 paases_type['general'] = paases_type['general']+1
@@ -193,20 +207,7 @@ def SaveData(request):
                 paases_type['premium'] = paases_type['premium']+1
             elif (pass_type == 'exclusive'):
                 paases_type['exclusive'] = paases_type['exclusive']+1
-        Ldata = {
-            "LName": LeaderFirstName+' ' + LeaderLastName,
-            "LContact": LeaderContact_no,
-            "LEmail": LeaderEmail,
-            "LPassType": LeaderPassType,
-            "LIDType": LeaderIDType,
-            "LIDNumber": LeaderIDNumber,
-            "LAge": LeaderAge,
-            "LGender": LeaderGender,
-            "members": members
-        }
 
-        doc_ref = db.collection('users').document(id)
-        doc_ref.set(Ldata)
         amount = paases_type['general']*500 + \
             (paases_type['premium']+paases_type['premium'])*750
         amount = 1
