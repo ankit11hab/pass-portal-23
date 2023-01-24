@@ -137,8 +137,7 @@
 
   color: #3a3a3a;
 }
-.vc1 {
-}
+
 .ve1 {
   /* width: 169px; */
   height: 29px;
@@ -308,7 +307,7 @@
   border: 1.5px solid #1a1a1a;
   border-radius: 126px;
 
-  font-family: ""aileron",sans-serif;
+  font-family: "aileron",sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
