@@ -173,7 +173,6 @@
             </div>
 
           </div>
-        </form>
         <div style="width:65vw;">
           <div class="addmember">
             <button type="button" id="add-member-button">
@@ -473,10 +472,10 @@
   <script src="{% static 'js/scriptAddIndividual.js' %}" type="application/javascript">
   </script>
   <script>
-    let amount = -750;
+    let amount = 0;
 
     function onchnge_() {
-      amount = -750;
+      amount = 0;
       const select_dropdowns = document.getElementsByName('pass_type');
       for (var x = 0; x < select_dropdowns.length; x++) {
         console.log(select_dropdowns[x]);
@@ -503,6 +502,11 @@
       }
     }
     onchnge_();
+    const email_input = document.getElementsByName('LeaderEmail')
+    email_input[0].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
+    email_input[1].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
+    email_input[0].disabled=true
+    email_input[1].disabled=true
   </script>
   <script>
 
