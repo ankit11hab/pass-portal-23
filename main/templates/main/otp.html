@@ -16,10 +16,21 @@
   <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}" />
   <link rel="stylesheet" href="{% static 'css/otpPage.css' %}" />
   <style>
-    @media(max-width:700px) {
-      .otpPage_box,.verify_container {
-  box-shadow: 1.2px 0px 0px black;
-}
+    .otpPage_container{
+      display:none;
+    }
+    
+    @media(max-width:500px) {
+      .otpPage_container{
+        display:flex;
+        flex-direction:column;
+      }
+      .verify_container{
+        display:none;
+      }
+      .passPortalContent{
+        display:none
+      }
       .otp_bookbtn {
         margin-left: 0px;
         padding: 1vw 8vw 1vw 8vw;
@@ -29,10 +40,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-      }
-
-      .email_input {
-        padding: 10px;
       }
 
       .otp_input {
@@ -67,15 +74,14 @@
         </div>
       </div>
 <div style="display:flex ; justify-content: center;gap: 7vw;">
-    <div class="Pass-Alcher" style="display:flex ;flex-direction:column; width: 65%;">
-
+    <div class="Pass-Alcher" style="display:flex ;flex-direction:column;">
           <div class="Pass">
-            <div style="padding-left:2rem;padding-top:1rem; width:130%;">
+            <div style="width:73%">
               <div class="vemail">VERIFY E-Mail ADDRESS</div>
               <div class="vc1">
                   <div class="ve1">E-Mail Address</div>
                   <div class="vcin">
-                    <input type="text" class="vinput">
+                    <input type="email" class="vinput" name="email" >
                   <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/>
                   </div>
               </div>
@@ -87,9 +93,9 @@
             <div class="blackdot">
               <img src="{% static 'images/Blackdot.png' %}" alt="">
             </div>
-            <form action="{% url 'verify_otp'%}" method="POST">
+            <form action="{% url 'verify_otp'%}" method="POST" style="width:21%">
                       {% csrf_token %}
-              <div style="padding:5vh; display:flex;flex-direction:column; justify-content: space-between;align-items: center; width:75%;height:30vh;">
+              <div style="display:flex;flex-direction:column; justify-content: space-between;align-items: center;gap:1vw;">
     
                 <div class="textOTP">ENTER OTP</div>
                 <div class="cntOTP">
@@ -150,6 +156,46 @@
   <!-- /////////////////////////////////////////////////////////// -->
   <!-- Footer code starts here  -->
 </div>
+<div class="otpPage_container">
+  <div class="otp_header">Verify Email</div>
+
+  <div class="otpPage_box">
+    <img src="{% static 'images/Blackdot.png' %}" alt="" style="transform: translateX(73px);
+    position: absolute;
+    width: 2px;
+    height: 76px;;" class="fwef">
+    <div class="email_input_container">
+      <form id="emailform">
+        <label for="email">Enter Email</label>
+        <div class="form_otp_container">
+          <input type="email" class="email_input" name="email" autofocus />
+          <button type="button" class="otp_bookbtn" id="email_submit_mob">
+            <div class="booktextnav">Submit</div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="verify_container">
+    <img src="{% static 'images/Blackdot.png' %}" alt="" style="transform: translateX(73px);
+      position: absolute;
+      width: 2px;
+      height: 76px;;" class="fwef">
+    <div class="email_input_container">
+      <form action="{% url 'verify_otp'%}" method="POST">
+        {% csrf_token %}
+        <label for="otp1">Enter OTP</label>
+        <div class="form_otp_container">
+          <input type="number" maxlength="4" class="email_input" name="otp1" required/>
+            <button type="button" class="otp_bookbtn" >
+              <div class="booktextnav">Verify</div>
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
   {% include 'main/footer.html' %}
 
   <!-- Footer code ends here  -->
@@ -160,35 +206,63 @@
 </body>
 <script>
   let otp_sent = false;
-  document.getElementById('email_submit').addEventListener('click', (e) => { 
-    function validation() {
+  document.getElementById('email_submit').addEventListener('click', ()=>{
+    function validation(){
       var email = document.getElementsByName("email")[0].value;
-      console.log(email)
-      var emailReg = /^([A-Za-z0-9_\-.])+@/;
-      if (!(email).match(emailReg)) {
-        alert("Invalid Email");
-        return false;
-      } else {
-        otp_sent = true;
-        return true;
-      }
-      }
-      if(validation()){
-        document.getElementsByClassName('verify_container')[0].setAttribute('style', "display:block;")
-        fetch("{% url 'otp'%}", {
-          method: "POST",
-          body: JSON.stringify({
-            email: document.getElementsByName('email')[0].value
-          }),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8"
-          }
-        })
-        document.getElementById('email_submit').disabled=true
-        const mailid=document.getElementsByName('email')[0]
-        window.sessionStorage.setItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54',mailid.value)
+    console.log(email)
+    var emailReg = /^([A-Za-z0-9_\-.])+@/;
+    if (!(email).match(emailReg)) {
+      alert("Invalid Email");
+      return false;
+    } else {
+      otp_sent = true;
+      return true;
+    }
+    }
+    
+    
+    if(validation()){
+      fetch("{% url 'otp'%}", {
+        method: "POST",
+        body: JSON.stringify({
+          email: document.getElementsByName('email')[0].value
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+      document.getElementById('email_submit').disabled=true
+      const mailid=document.getElementsByName('email')[0]
+      window.sessionStorage.setItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54',mailid.value)
+    } })
+
+  document.getElementById('email_submit_mob').addEventListener('click',()=>{
+    function validation(){
+      var email = document.getElementsByName("email")[1].value;
+    console.log(email)
+    var emailReg = /^([A-Za-z0-9_\-.])+@/;
+    if (!(email).match(emailReg)) {
+      alert("Invalid Email");
+      return false;
+    } else {
+      otp_sent = true;
+      return true;
+    }
+    }
+  
+  if(validation()){
+    fetch("{% url 'otp'%}", {
+      method: "POST",
+      body: JSON.stringify({
+        email: document.getElementsByName('email')[1].value
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
       }
     })
+    document.getElementsByClassName('verify_container')[0].setAttribute('style','display:block;')
+  }
+  })
 
     document.body.addEventListener('keypress', (e)=>{
       console.log(e.key);
