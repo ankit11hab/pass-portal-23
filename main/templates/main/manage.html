@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="{% static 'css/manage.css'%}">
 </head>
 <body>
-    {% include 'main/navbar.html'%}
+  {% include 'main/navbar.html'%}
+  <form action="{% url 'verifiy_otp_manage_booking' %}" method="POST" class="otpFormmain">
       <div style="display:flex ; justify-content: center;gap: 7vw;">
           <div class="Pass-Alcher" style="display:flex ;flex-direction:column;">
                 <div class="Pass">
@@ -30,7 +31,7 @@
                         <div class="ve1">Pass ID</div>
                         <div class="vcin">
                           <input type="text" class="vinput passid" name="passid"style="width:11vw" />
-                        <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/>
+                        <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}" onclick="send_ajax_request()"/>
                         </div>
                       </div>
                   </div>
@@ -42,31 +43,62 @@
                   <div class="blackdot">
                     <img src="{% static 'images/Blackdot.png' %}" alt="">
                   </div>
-                  <form action="{% url 'verify_otp'%}" method="POST" class="otpFormmain">
                             {% csrf_token %}
                     <div class="otpFormmain_div">
           
                       <div class="textOTP">ENTER OTP</div>
                       <div class="cntOTP">
-                        <input class="inputOTP" type="number" name="otp1" required>
+                        <input class="inputOTP" type="number" name="otp" required>
                       </div>
                       <div class="p1">Please enter the four digit OTP, which has been sent to your registered e-mail address.</div>
                       <div class="p2">Please Enter E-mail First</div>
                       <button type="submit" class="proc">Proceed</button>
-                      
                     </div>
-                  </form>
       
                 </div>
-              
-              
-      
-                
-      
             </div>
-          </div>
+      </div>
+  </form>
+
     {% include 'main/footer.html'%}
 
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  document.getElementById('email_submit').addEventListener('click', ()=>{
+    function validation(){
+      var email = document.getElementsByName("email")[0].value;
+    console.log(email)
+    var emailReg = /^([A-Za-z0-9_\-.])+@/;
+    if (!(email).match(emailReg)) {
+      alert("Invalid Email");
+      return false;
+    } else {
+      otp_sent = true;
+      return true;
+    }
+    }
+    if(validation()){
+      const email_input = document.getElementsByName('email');
+      const id_input = document.getElementsByName('passid');
+
+      fetch("{% url 'managebooking'%}", {
+          method: "POST",
+          body: JSON.stringify({
+            email: email_input[0].value,
+            id:id_input[0].value,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        })
+  }
+      document.getElementById('email_submit').disabled=true
+      document.getElementsByClassName('p2')[0].innerHTML="OTP sent"
+      document.getElementsByClassName('p2')[0].setAttribute('style','color:green;')
+      const mailid=document.getElementsByName('email')[0]
+      window.sessionStorage.setItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54',mailid.value)
+    })
+</script>
 </html>

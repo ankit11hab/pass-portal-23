@@ -1,5 +1,4 @@
-
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponse
 from django.http import JsonResponse
 import qrcode
 import string
@@ -227,5 +226,70 @@ def SaveData(request):
 
 def confirm(request):
     return render(request, 'main/confirm_payment.html')
-def manage(request):
+
+def send_verify_otp(email,id):
+    try:
+        subject = 'Your email verification email'
+        otp = random.randint(1000, 9999)
+        message = 'Your otp is ' + str(otp)
+        from_email = settings.EMAIL_HOST_USER
+        send_mail(subject, message, from_email, [email])
+        doc_ref_otp=db.collection('manage_booking_otps').document(id)
+        doc_ref_otp.set({'id':id,'email':email,'otp':otp})
+    except Exception as e:
+        print(e)
+    return JsonResponse({"otp": "otp"})
+
+
+@csrf_exempt
+def verifiy_otp_manage_booking(request):
+    if request.method=='POST':
+        otp = request.POST['otp']
+        email = request.POST['email']
+        id = request.POST['passid']
+        print(otp)
+        otp__db=db.collection('manage_booking_otps').document(id).get().to_dict()
+        otp_from_db=otp__db['otp']
+        print(otp_from_db)
+        if(str(otp)==str(otp_from_db)):
+            context=[]
+            doc__ref=db.collection('users').where('verID','==',id).stream()
+            for doc in doc__ref:
+                data_ref=doc.to_dict()            
+                LAge=data_ref['LAge']
+                LEmail=data_ref['LEmail']
+                LGender=data_ref['LGender']
+                LIDType=data_ref['LIDType']
+                LPassType=data_ref['LPassType']
+                LName=data_ref['LName']
+                LIDNumber=data_ref['LIDNumber']
+                context.append(
+                {'age':LAge,
+                'email':LEmail,
+                'gender':LGender,
+                'id_type':LIDType,
+                'pass_type':LPassType,
+                'name':LName,
+                'id_number':LIDNumber})
+                for mem in doc.reference.collection('members').stream():
+                    dict=mem.to_dict()
+                    context.append(dict)
+            print(context)
+            return render(request,'main/managebooking.html',{'context':context})
+        return render(request,'main/verify_otp_manage_booking.html')
+
+# @csrf_exempt 
+def manangebooking(request):
+    data=json.loads(request.body);
+    id=data['id']
+    email=data['email']
+    print(id+' '+email)
+    doc_ref=db.collection('verified_users').document(id).get().to_dict()
+    print(doc_ref)
+    if(doc_ref['email']==email):
+        send_verify_otp(email,id)
+        return HttpResponse('otp sent!')
+    return HttpResponse('mail not found')
+
+def manage_booking_page(request):
     return render(request,'main/manage.html')
