@@ -28,9 +28,9 @@
       .verify_container{
         display:none;
       }
-      .passPortalContent{
+      {% comment %} .passPortalContent{
         display:none
-      }
+      } {% endcomment %}
       .otp_bookbtn {
         margin-left: 0px;
         padding: 1vw 8vw 1vw 8vw;
@@ -76,12 +76,12 @@
 <div style="display:flex ; justify-content: center;gap: 7vw;">
     <div class="Pass-Alcher" style="display:flex ;flex-direction:column;">
           <div class="Pass">
-            <div style="width:73%">
+            <div class="email_verify_container">
               <div class="vemail">VERIFY E-Mail ADDRESS</div>
               <div class="vc1">
                   <div class="ve1">E-Mail Address</div>
                   <div class="vcin">
-                    <input type="email" class="vinput" name="email" >
+                    <input type="email" class="vinput" name="email" />
                   <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/>
                   </div>
               </div>
@@ -93,13 +93,13 @@
             <div class="blackdot">
               <img src="{% static 'images/Blackdot.png' %}" alt="">
             </div>
-            <form action="{% url 'verify_otp'%}" method="POST" style="width:21%">
+            <form action="{% url 'verify_otp'%}" method="POST" class="otpFormmain">
                       {% csrf_token %}
-              <div style="display:flex;flex-direction:column; justify-content: space-between;align-items: center;gap:1vw;">
+              <div class="otpFormmain_div">
     
                 <div class="textOTP">ENTER OTP</div>
                 <div class="cntOTP">
-                  <input class="inputOTP" type="number" name="otp1">
+                  <input class="inputOTP" type="number" name="otp1" required>
                   <img class="imgOTP" src="{% static 'images/GroupArrow.png' %}"/>
                 </div>
                 <div class="p1">Please enter the four digit OTP, which has been sent to your registered e-mail address.</div>
@@ -156,7 +156,7 @@
   <!-- /////////////////////////////////////////////////////////// -->
   <!-- Footer code starts here  -->
 </div>
-<div class="otpPage_container">
+{% comment %} <div class="otpPage_container">
   <div class="otp_header">Verify Email</div>
 
   <div class="otpPage_box">
@@ -195,7 +195,7 @@
     </div>
   </div>
 </div>
-</div>
+</div> {% endcomment %}
   {% include 'main/footer.html' %}
 
   <!-- Footer code ends here  -->
