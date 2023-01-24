@@ -37,8 +37,10 @@
     <div class="Pass-Alcher" id="printpass">
       
       {% for member in context%}
-      <div class="Pass"  style="display:flex ; justify-content:space-around" >
-        <div class="desktop_success_left">
+      <div class="Pass"   >
+        <div class="desktop_success_left" >
+
+     
           <div class="desktop_success_left_subleft">
             <div class="success_main_header">DETAILS PERSON</div>
             <div class="desk_person_info">
@@ -97,7 +99,7 @@
               "
             >
               <div>PAYMENT SUCCESSFUL</div>
-              <img src="{%static 'images/green_tick.png'%}" />
+              <img src="{% static 'images/green_tick.png' %}" />
             </div>
             <div id="{{member.id}}" class="canvas_right" style="margin-right:2vw;"></div>
           </div>
@@ -113,7 +115,7 @@
       {%endfor%}
     </div>
     {% for member in context %}
-    <div class="Pass-Alcher-Mob" >
+    <div class="Pass-Alcher-Mob" id="passmob" >
       <div
         style="
           display: flex;
@@ -133,7 +135,7 @@
           <div class="copy_sent__text">
             A copy of the E-pass has been sent to your registered E-mail ID.
           </div>
-          <div class="buttonStackOuterDiv_mob">
+          <div class="buttonStackOuterDiv_mob" >
             <div class="buttonStack_mob">
               <div>
                 <img
