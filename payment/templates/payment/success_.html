@@ -97,10 +97,17 @@
           </div>
         </div>
       </div>
+      <div style="display: flex; justify-content: center">
+        <img
+          class="tapButton_mob"
+          src="{% static 'images/DownloadBtn.png'%}"
+          onclick="PrintDiv('{{member.id}}')"
+        />
+      </div>
       {%endfor%}
     </div>
     {% for member in context%}
-    <div class="Pass-Alcher-Mob">
+    <div class="Pass-Alcher-Mob" >
       <div
         style="
           display: flex;
@@ -109,11 +116,14 @@
           margin-top: 20px;
         "
       >
-        <div class="qrcode__container">
+        <div class="qrcode__container" >
           <div class="registration__done_txt">REGISTRATION DONE</div>
-          <div class="main_qr__img" id="{{member.id}}_mob"></div>
-
-          <div class="pass_owner_name"><strong>Digvijay</strong></div>
+          <div id="{{member.id}}mob_pass" style="text-align: center;"> 
+            <div class="main_qr__img" id="{{member.id}}_mob"></div>
+  
+            <div class="pass_owner_name" style="margin-top: 20px;"><strong>{{member.name}}</strong></div>
+          </div>
+            
           <div class="copy_sent__text">
             A copy of the E-pass has been sent to your registered E-mail ID.
           </div>
@@ -124,6 +134,7 @@
                   class="tapButton_mob"
                   src="{% static  'images/DownloadBtn.png'%}"
                   alt=""
+                  onclick="PrintDivMob('{{member.id}}mob_pass')"
                 />
               </div>
               <div>
@@ -170,5 +181,27 @@
          document.getElementById("{{member.id}}").children[1].setAttribute('style','height:10vw;width:10vw;')
          document.getElementById("{{member.id}}_mob").children[1].setAttribute('style','height:200px')
         {%endfor%}
+  </script>
+  <script>
+    function PrintDiv(elid) {
+      var divContents = document.getElementById(elid).innerHTML;
+      var printWindow = window.open('', '', 'height=1200px,width=920px');
+      printWindow.document.write('<html><head><title>Print DIV Content</title>');
+      printWindow.document.write('</head><body >');
+      printWindow.document.write(divContents);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    }
+    function PrintDivMob(elid) {
+      var divContents = document.getElementById(elid).innerHTML;
+      var printWindow = window.open('', '', 'height=520px,width=1000px');
+      printWindow.document.write("<html><head><title>Alcher Pass</title>");
+      printWindow.document.write("</head><style></style><body >")
+      printWindow.document.write(divContents);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    }
   </script>
 </html>
