@@ -28,8 +28,9 @@
   <body>
     {% include 'main/navbar.html' %}
     <!-- /////////// code for navbar ends here -->
-
+    
     <div class="Pass-Alcher">
+      
       {% for member in context%}
       <div class="Pass">
         <div class="desktop_success_left">
@@ -178,7 +179,7 @@
            });
            document.getElementById("{{member.id}}").children[1].setAttribute('style','height:10vw;width:10vw;')
         }
-        else if{
+        else{
           var qrcode1 = new QRCode("{{member.id}}_mob", {
             text: "{{member.id}}|{{member.name}}|{{member.email}}|{{member.pass_type}}",
            });

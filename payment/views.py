@@ -161,7 +161,9 @@ def get_verified_details(request, id):
     q = db.collection('verified_users').where('transID', '==', tid).stream()
     context = []
     for doc in q:
-        context.append(doc.to_dict())
+        doc_dict = doc.to_dict()
+        doc_dict['id'] = doc.id
+        context.append(doc_dict)
     print(context)
     return render(request, 'payment/success_.html', {'context': context})
 
