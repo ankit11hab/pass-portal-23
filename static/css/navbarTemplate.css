@@ -96,7 +96,7 @@ nav{
     justify-content: space-around;
     font-family: sans-serif;
 }
-li{
+.NavigationBar li{
     display: flex;
     align-items: center;
     justify-content: center;

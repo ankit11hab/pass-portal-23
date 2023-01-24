@@ -47,7 +47,10 @@ def home(request):
 
 
 def otp(request):
-    return render(request, "main/otp.html")
+    context={
+        'message':"Please Enter E-mail First",
+    }
+    return render(request, "main/otp.html",context)
 
 
 @csrf_exempt
@@ -57,10 +60,23 @@ def send_otp(request):
         request.session['LeaderEmail'] = email
         subject = 'Your email verification email'
         otp = random.randint(1000, 9999)
+        # print(otp)
         message = 'Your otp is ' + str(otp)
         from_email = settings.EMAIL_HOST_USER
         send_mail(subject, message, from_email, [email])
-        request.session['otp'] = otp
+        # request.session['otp'] = otp
+        
+
+        doc_ref = db.collection('all_otps').document()
+        
+        doc_ref.set({
+            'id':doc_ref.id,
+            'email':email,
+            'otp':otp,
+        })
+        request.session['OtpId']=doc_ref.id
+        print(doc_ref)
+        
     except Exception as e:
         print(e)
     return JsonResponse({"otp": "otp"})
@@ -73,13 +89,30 @@ def verify(request):
 
 def verify_otp(request):
     otp1 = request.POST.get('otp1')
-    otp = request.session.get('otp')
+    # otp = request.session.get('otp')
+    otpID = request.session.get('OtpId')
+    snapshots = db.collection('all_otps').where('id','==',otpID).stream()
+    users=[]
+    otp=0
+    for user in snapshots:
+        formattedData = user.to_dict()
+        print(formattedData)
+        otp=formattedData['otp']
+        users.append(user.reference)
 
+    # otp=int(user['otp'])
+    
+    
+            
     OTP = int(otp1)
-    print(OTP)
+    print(OTP,otp)
     if OTP == otp:
         return redirect('register')
-    return render(request, 'main/verify.html')
+    
+    context = {
+        'message':"Incorrect OTP",
+    }
+    return render(request, 'main/otp.html',context)
 
 
 def register(request):
@@ -97,7 +130,7 @@ def SaveData(request):
         key = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         iv = "adjfytryd5g87hgh"
         id = ''.join(random.choices(string.ascii_uppercase +
-                                    string.digits, k=8))
+                                    string.digits, k=5))
         amount = 1
         fee_id = "M1006"
         print(id)
@@ -112,7 +145,7 @@ def SaveData(request):
         LeaderLastName = request.POST.get('LeaderLastName')
         LeaderContact_no = request.POST.get('LeaderContact_no')
         # LeaderEmail = request.POST.get('LeaderEmail')
-        LeaderEmail =         request.session['LeaderEmail']
+        LeaderEmail = request.session['LeaderEmail']
         print(LeaderEmail)
         LeaderPassType = request.POST.get('LeaderPassType')
         LeaderIDType = request.POST.get('LeaderIDtype')
@@ -135,7 +168,20 @@ def SaveData(request):
             paases_type['premium'] = paases_type['premium']+1
         elif (LeaderPassType == 'exclusive'):
             paases_type['exclusive'] = paases_type['exclusive']+1
+        Ldata = {
+            "LName": LeaderFirstName+' ' + LeaderLastName,
+            "LContact": LeaderContact_no,
+            "LEmail": LeaderEmail,
+            "LPassType": LeaderPassType,
+            "LIDType": LeaderIDType,
+            "LIDNumber": LeaderIDNumber,
+            "LAge": LeaderAge,
+            "LGender": LeaderGender,
+            # "members": members
+        }
 
+        doc_ref = db.collection('users').document(id)
+        doc_ref.set(Ldata)
         count = 1
         for i in member_first_names:
             count = count+1
@@ -153,6 +199,7 @@ def SaveData(request):
                 "gender": gender,
                 'email': email,
             }
+            doc_ref.collection('members').document().set(member)
             members.append(member)
             if (pass_type == 'general'):
                 paases_type['general'] = paases_type['general']+1
@@ -160,23 +207,10 @@ def SaveData(request):
                 paases_type['premium'] = paases_type['premium']+1
             elif (pass_type == 'exclusive'):
                 paases_type['exclusive'] = paases_type['exclusive']+1
-        Ldata = {
-            "LName": LeaderFirstName+' ' + LeaderLastName,
-            "LContact": LeaderContact_no,
-            "LEmail": LeaderEmail,
-            "LPassType": LeaderPassType,
-            "LIDType": LeaderIDType,
-            "LIDNumber": LeaderIDNumber,
-            "LAge": LeaderAge,
-            "LGender": LeaderGender,
-            "members": members
-        }
 
-        doc_ref = db.collection('users').document(id)
-        doc_ref.set(Ldata)
         amount = paases_type['general']*500 + \
             (paases_type['premium']+paases_type['premium'])*750
-        amount = 750
+        amount = 1
         print(amount)
         paases_type['amount'] = amount
         amount=1
