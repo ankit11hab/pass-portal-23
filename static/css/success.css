@@ -131,9 +131,6 @@ li {
     height: 3vw;
     width: 9vw;
 } */
-.payment_confirmed{
-
-}
 .NavigationBar a {
   height: 6vw;
   margin-top: 8vh;
@@ -264,9 +261,6 @@ a:visited {
 
 .menuItem:hover {
   text-decoration: underline;
-}
-
-.menuIcon {
 }
 
 .hamburger {
