@@ -109,7 +109,9 @@ def SaveData(request):
         LeaderFirstName = request.POST.get('LeaderFirstName')
         LeaderLastName = request.POST.get('LeaderLastName')
         LeaderContact_no = request.POST.get('LeaderContact_no')
-        LeaderEmail = request.POST.get('LeaderEmail')
+        # LeaderEmail = request.POST.get('LeaderEmail')
+        LeaderEmail =         request.session['LeaderEmail']
+        print(LeaderEmail)
         LeaderPassType = request.POST.get('LeaderPassType')
         LeaderIDType = request.POST.get('LeaderIDtype')
         LeaderIDNumber = request.POST.get('LeaderIDnumber')
@@ -175,6 +177,7 @@ def SaveData(request):
         amount = 750
         print(amount)
         paases_type['amount'] = amount
+        amount=1
         data = id+"|"+fee_id+"|"+str(amount)
         encryptedData = encrypt(key, data, iv)
         fstring = f'{id}|{paases_type["general"]}|{paases_type["exclusive"]}|{paases_type["premium"]}|{paases_type["amount"]}'

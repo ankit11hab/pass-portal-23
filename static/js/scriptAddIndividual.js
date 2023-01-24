@@ -20,9 +20,8 @@ addIndividual.addEventListener("click", (target) => {
                     Remove
                 </div>
                 <p class="textinput">Pass type</p>
-                <div class="custom-select">
+                <div class="custom-select" style="display:none;">
                     <select name="pass_type" id="" onchange=onchnge_()>
-                    <option value="none" disabled selected hidden>Select</option>
                     <option value="exclusive"> Exclusive
                     </option>
                 </select>
@@ -94,6 +93,7 @@ addIndividual.addEventListener("click", (target) => {
 </div>`
   );
   k++;
+  onchnge_();
 });
 
 // removeButton.addEventListener('click',target=>{
@@ -102,8 +102,8 @@ addIndividual.addEventListener("click", (target) => {
 //     extraDivision.innerHTML=``;
 // });
 function Delete(event, id) {
-  onchnge_();
-  event.preventDefault();
-  var element = document.getElementById(id);
-  element.parentNode.removeChild(element);
+    event.preventDefault();
+    var element = document.getElementById(id);
+    element.parentNode.removeChild(element);
+    onchnge_(); 
 }

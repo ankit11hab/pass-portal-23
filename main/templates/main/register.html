@@ -91,13 +91,12 @@
           <div class="Pass">
             <div class="shipping-section">
               <div class="upperPart" style="display: flex; justify-content:space-between">
-                <p style="font-weight:600;font-size:3vh;padding-bottom: 1%; padding-top: 2%;">Primary Attendee </p>
-                <div class="passdiv">
-                  {% comment %} <select class="PassSel select_dropdown" name="LeaderPassType" onchange=onchnge_()>
-                    <option value="none" disabled selected hidden>Select</option>
+                <p style="font-weight:600;font-size:3vh;">Primary Attendee </p>
+                <div class="passdiv" style="display: none;">
+                  <select class="PassSel select_dropdown" name="LeaderPassType" onchange=onchnge_()>
                     <option value="exclusive"> Exclusive
                     </option>
-                  </select> {% endcomment %}
+                  </select>
                 </div>
               </div>
 
@@ -116,7 +115,7 @@
               </div>
               <div class="shipping-details"style="padding-bottom: 1%;">
                 <input required type="email" name="LeaderEmail" >
-                <input required type="tel" name="LeaderContact_no">
+                <input required type="text" name="LeaderContact_no">
               </div>
 
               <div class="shipping-details1"style="padding-bottom: 1%;">
@@ -174,7 +173,6 @@
             </div>
 
           </div>
-        </form>
         <div style="width:65vw;">
           <div class="addmember">
             <button type="button" id="add-member-button">
@@ -243,9 +241,8 @@
                 {% comment %} <div>
                   <p class="textinput">Pass type</p>
                 </div>
-                <div class="custom-select">
+                <div class="custom-select"  style="display: none;">
                   <select name="LeaderPassType" onchange=onchnge_()>
-                    <option value="none" disabled selected hidden>Select</option>
                     <option value="exclusive"> Exclusive
                     </option>
                   </select>
@@ -269,7 +266,7 @@
               </div>
               <div class=" pass-type">
                 <p class="textinput">ID Type</p>
-                <select name="LeaderIDtype" id="" class="input-text-field">
+                <select name="LeaderIDtype" id="" class="input-text-field" required >
                   <option value="none" disabled selected hidden>Select</option>
                   <option value="collegeID"> CollegeID
                   </option>
@@ -363,13 +360,12 @@
   <div class="Pass" id="${i}" style="margin-top:3vw;">
       <div class="shipping-section">
         <div class="upperPart" style="display: flex; justify-content:space-between">
-                <p style="font-weight:700;font-size:20px;padding-bottom:1%;padding-top:2%;">Attendee</p>
-                <div class="passdiv">
-                  {% comment %} <select class="PassSel select_dropdown" name="pass_type" onchange=onchnge_()>
-                    <option value="none" disabled selected hidden>Select</option>
+                <p style="font-weight:700;font-size:20px;">Attendee</p>
+                <div class="passdiv" style="display:none;">
+                  <select class="PassSel select_dropdown" name="pass_type" onchange=onchnge_()>
                     <option value="exclusive"> Exclusive
                     </option>
-                  </select> {% endcomment %}
+                  </select>
                 </div>
               </div>
   
@@ -456,15 +452,16 @@
       var parent = document.querySelector("#details__form");
 
       parent.insertAdjacentHTML('beforeend', newForm);
-
+    onchnge_();
     });
 
     function del(div) {
-      onchnge_()
+      onchnge_();
       document.getElementById(div).remove()
       document.getElementById("hidden").insertAdjacentHTML('beforeend',
         `<input type="hidden" name="name${div}" value=""/>`)
     }
+   
     // document.querySelector('.Pass-Alcher').addEventListener('click', function (event) {
     //   if (event.target.classList.contains('booktextnav')) {
     //     event.target.closest('div').remove();
@@ -476,11 +473,7 @@
   </script>
   <script>
     let amount = 0;
-    const email__field= document.getElementsByName('LeaderEmail')
-    email__field[0].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
-    email__field[1].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
-    email__field[0].disabled=true
-    email__field[1].disabled=true
+
     function onchnge_() {
       amount = 0;
       const select_dropdowns = document.getElementsByName('pass_type');
@@ -508,6 +501,12 @@
         amount__span[k].innerHTML = amount;
       }
     }
+    onchnge_();
+    const email_input = document.getElementsByName('LeaderEmail')
+    email_input[0].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
+    email_input[1].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
+    email_input[0].disabled=true
+    email_input[1].disabled=true
   </script>
   <script>
 

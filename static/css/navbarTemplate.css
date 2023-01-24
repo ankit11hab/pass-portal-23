@@ -100,7 +100,7 @@ li{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: auto;
+    height: 8vw;
     width: fit-content;
 }
 .NavigationBar a{
@@ -122,8 +122,6 @@ li{
 } */
 
 .NavigationBar a{
-    height: 6vw;
-    margin-top:8vh;
 }
 .nonGradient{
     transition: all 0.5s ease-in-out;
