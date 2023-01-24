@@ -2,12 +2,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.home, name="home"),
-    path('otp/', views.otp, name="send_otp"),
-    path('confirm/', views.confirm, name="confirm"),
-    path('submit/', views.send_otp, name='otp'),
-    path('verify/', views.verify, name='verify'),
-    path('verify/submit/', views.verify_otp, name='verify_otp'),
-    path('register/', views.register, name='register'),
-    path('register/submit/', views.SaveData, name='SaveData'),
+    path('', views.comingsoon, name="comingsoon"),
+    path('h7564', views.home, name="home"),
+    path('otp23/', views.otp, name="send_otp"),
+    path('confirm12/', views.confirm, name="confirm"),
+    path('submit43/', views.send_otp, name='otp'),
+    path('verify21/', views.verify, name='verify'),
+    path('verify32/submit/', views.verify_otp, name='verify_otp'),
+    path('register12/', views.register, name='register'),
+    path('register12/submit/', views.SaveData, name='SaveData'),
 ] 
