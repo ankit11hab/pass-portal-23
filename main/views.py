@@ -51,7 +51,14 @@ def otp(request):
     }
     return render(request, "main/otp.html",context)
 
-
+@csrf_exempt
+def encrypt_data(data, key):
+    """Encrypt the data using XOR encryption and a given key"""
+    encrypted_data = bytearray(len(data))
+    key_len = len(key)
+    for i in range(len(data)):
+        encrypted_data[i] = data[i] ^ key[i % key_len]
+    return bytes(encrypted_data)
 @csrf_exempt
 def send_otp(request):
     try:
@@ -240,7 +247,7 @@ def send_verify_otp(email,id):
         print(e)
     return JsonResponse({"otp": "otp"})
 
-
+key = b'mysecretkey'
 @csrf_exempt
 def verifiy_otp_manage_booking(request):
     if request.method=='POST':
@@ -263,22 +270,30 @@ def verifiy_otp_manage_booking(request):
                 LPassType=data_ref['LPassType']
                 LName=data_ref['LName']
                 LIDNumber=data_ref['LIDNumber']
+                curr_data = f"{doc.id}"
+                curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
                 context.append(
-                {'age':LAge,
+                {"id":doc.id,
+                    'age':LAge,
                 'email':LEmail,
                 'gender':LGender,
                 'id_type':LIDType,
                 'pass_type':LPassType,
                 'name':LName,
-                'id_number':LIDNumber})
+                'id_number':LIDNumber,'encrypted_id':curr_encrypted_data})
+
                 for mem in doc.reference.collection('members').stream():
                     dict=mem.to_dict()
+                    dict["id"]=mem.id
+                    curr_data = f"{dict['verID']}"
+                    curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
+                    dict['encrypted_id']=curr_encrypted_data
                     context.append(dict)
             print(context)
-            return render(request,'main/managebooking.html',{'context':context})
+            return render(request,'payment/success_.html',{'context':context})
         return render(request,'main/verify_otp_manage_booking.html')
 
-# @csrf_exempt 
+@csrf_exempt 
 def manangebooking(request):
     data=json.loads(request.body);
     id=data['id']
@@ -288,6 +303,7 @@ def manangebooking(request):
     print(doc_ref)
     if(doc_ref['email']==email):
         send_verify_otp(email,id)
+        print('mail sent')
         return HttpResponse('otp sent!')
     return HttpResponse('mail not found')
 

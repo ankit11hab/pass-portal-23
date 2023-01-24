@@ -11,9 +11,10 @@
 </head>
 <body>
   {% include 'main/navbar.html'%}
-  <form action="{% url 'verifiy_otp_manage_booking' %}" method="POST" class="otpFormmain">
-      <div style="display:flex ; justify-content: center;gap: 7vw;">
-          <div class="Pass-Alcher" style="display:flex ;flex-direction:column;">
+  <div style="display:flex ; justify-content: center;gap: 7vw;">
+    <form action="{% url 'verifiy_otp_manage_booking' %}" method="POST" class="otpFormmain">
+        <div class="Pass-Alcher" style="display:flex ;flex-direction:column;">
+        {% csrf_token %}
                 <div class="Pass">
                   <div class="email_verify_container">
                     <div class="vemail">VERIFY E-Mail ADDRESS</div>
@@ -24,14 +25,13 @@
                         <div class="ve1">E-Mail Address</div>
                         <div class="vcin">
                           <input type="email" class="vinput" name="email" />
-                        {% comment %} <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/> {% endcomment %}
                         </div>
                       </div>
                       <div>
                         <div class="ve1">Pass ID</div>
                         <div class="vcin">
                           <input type="text" class="vinput passid" name="passid"style="width:11vw" />
-                        <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}" onclick="send_ajax_request()"/>
+                        <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/>
                         </div>
                       </div>
                   </div>
@@ -43,7 +43,7 @@
                   <div class="blackdot">
                     <img src="{% static 'images/Blackdot.png' %}" alt="">
                   </div>
-                            {% csrf_token %}
+                            
                     <div class="otpFormmain_div">
           
                       <div class="textOTP">ENTER OTP</div>
@@ -56,9 +56,9 @@
                     </div>
       
                 </div>
-            </div>
+              </div>
+            </form>
       </div>
-  </form>
 
     {% include 'main/footer.html'%}
 
@@ -83,7 +83,7 @@
       const email_input = document.getElementsByName('email');
       const id_input = document.getElementsByName('passid');
 
-      fetch("{% url 'managebooking'%}", {
+      fetch("{% url 'managebooking' %}", {
           method: "POST",
           body: JSON.stringify({
             email: email_input[0].value,
