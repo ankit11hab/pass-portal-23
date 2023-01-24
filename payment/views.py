@@ -65,8 +65,8 @@ def payment_response(request):
         status = split_data[4]
         errDesc = split_data[5]
         tid = split_data[3]
-        # id = split_data[0]
-        id = "GBTCG"
+        id = split_data[0]
+        # id = "GBTCG"
         doc_ref_trans=db.collection('transactions').document(tid)
         doc_ref_trans.set({"id":split_data[0],"fee_type":split_data[1],"amount":split_data[2],"status":status,"errDesc":split_data[5],"time":split_data[6]})
         leader_id = id
@@ -163,18 +163,20 @@ def under_process(request):
 
 
 @csrf_exempt
-def get_verified_details(request, id):
+def get_verified_details(request):
     # print('called')
-    doc_ref = db.collection('users').document(id)
-    tid = doc_ref.get().to_dict()['transID']
-    # id,name,pass_type
-    q = db.collection('verified_users').where('transID', '==', tid).stream()
-    context = []
-    for doc in q:
-        doc_dict = doc.to_dict()
-        doc_dict['id'] = doc.id
-        context.append(doc_dict)
-    print(context)
+    if request.method=="POST":
+        id=request.POST['id']
+        doc_ref = db.collection('users').document(id)
+        tid = doc_ref.get().to_dict()['transID']
+        # id,name,pass_type
+        q = db.collection('verified_users').where('transID', '==', tid).stream()
+        context = []
+        for doc in q:
+            doc_dict = doc.to_dict()
+            doc_dict['id'] = doc.id
+            context.append(doc_dict)
+        print(context)
     return render(request, 'payment/success_.html', {'context': context})
 
 

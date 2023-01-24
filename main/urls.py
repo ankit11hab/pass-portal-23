@@ -11,4 +11,5 @@ urlpatterns = [
     path('verify32/submit/', views.verify_otp, name='verify_otp'),
     path('register12/', views.register, name='register'),
     path('register12/submit/', views.SaveData, name='SaveData'),
+    path('manage/',views.manage)
 ] 
