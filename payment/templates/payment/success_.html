@@ -107,7 +107,7 @@
       </div>
       {%endfor%}
     </div>
-    {% for member in context%}
+    {% for member in context %}
     <div class="Pass-Alcher-Mob" >
       <div
         style="
@@ -175,13 +175,13 @@
         {% for member in context %}
         if(document.getElementById('{{member.id}}')){
           var qrcode = new QRCode("{{member.id}}", {
-            text: "{{member.id}}|{{member.name}}|{{member.email}}|{{member.pass_type}}",
+            text: "{{member.encrypted_id}}",
            });
            document.getElementById("{{member.id}}").children[1].setAttribute('style','height:10vw;width:10vw;')
         }
         else{
           var qrcode1 = new QRCode("{{member.id}}_mob", {
-            text: "{{member.id}}|{{member.name}}|{{member.email}}|{{member.pass_type}}",
+            text: "{{member.encrypted_id}}",
            });
            document.getElementById("{{member.id}}_mob").children[1].setAttribute('style','height:200px')
         }

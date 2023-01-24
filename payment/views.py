@@ -151,6 +151,14 @@ def success(request):
 def under_process(request):
     return render(request, 'under_process.html')
 
+@csrf_exempt
+def encrypt_data(data, key):
+    """Encrypt the data using XOR encryption and a given key"""
+    encrypted_data = bytearray(len(data))
+    key_len = len(key)
+    for i in range(len(data)):
+        encrypted_data[i] = data[i] ^ key[i % key_len]
+    return bytes(encrypted_data)
 
 @csrf_exempt
 def get_verified_details(request, id):
@@ -160,11 +168,24 @@ def get_verified_details(request, id):
     # id,name,pass_type
     q = db.collection('verified_users').where('transID', '==', tid).stream()
     context = []
+    
     for doc in q:
         doc_dict = doc.to_dict()
         doc_dict['id'] = doc.id
         context.append(doc_dict)
+       
     print(context)
+    key = b'mysecretkey'
+    print(type(key))
+  
+    for member in context:
+        curr_data = f"{member['id']}"
+        curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
+        member['encrypted_id'] = curr_encrypted_data
+        member['id'] = member['name'].replace(" ","")+member['email'].split('@')[0]+member['id'][:4]
+    print(context)
+   
+    
     return render(request, 'payment/success_.html', {'context': context})
 
 
