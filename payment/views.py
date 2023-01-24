@@ -194,6 +194,7 @@ def get_verified_details(request):
         curr_data = f"{member['id']}"
         curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
         member['encrypted_id'] = curr_encrypted_data
+        member['id'] = member['name'].replace(" ","")+member['email'].split('@')[0]+member['id'][:4]
        
     print(context)
    
