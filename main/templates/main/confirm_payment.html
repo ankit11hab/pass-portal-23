@@ -58,4 +58,15 @@
       btn___.click();
     },3000);
   </script>
+  <script>
+    {% for message in messages %}
+  {% if message.tags == 'error' %}
+  var msg = "{{message}}"
+  var splittedData="{{message}}".split("|")
+  console.log((splittedData));
+  {% endif %}
+  {% endfor %}
+  window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF",splittedData[0])
+
+  </script>
 </html>
