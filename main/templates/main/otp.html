@@ -232,6 +232,8 @@
         }
       })
       document.getElementById('email_submit').disabled=true
+      document.getElementsByClassName('p2')[0].innerHTML="OTP sent"
+      document.getElementsByClassName('p2')[0].setAttribute('style','color:green;')
       const mailid=document.getElementsByName('email')[0]
       window.sessionStorage.setItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54',mailid.value)
     } })

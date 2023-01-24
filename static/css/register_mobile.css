@@ -297,10 +297,6 @@ li{
   .menuItem:hover {
     text-decoration: underline;
   }
-  
-.menuIcon{
-  
-}
 
   .hamburger {
     position: fixed;
@@ -442,11 +438,6 @@ li{
  transform: translate(50px,50px);
     background-color: #F35C41;
 } */
-.addIndividualBtnDiv{
- 
-     
-    
-}
 .addIndividualBtnDiv img{
     width: 90%;
     margin-left: 5%;
@@ -523,10 +514,9 @@ input:focus {
     position: relative;
 }
 
-.custom-select select {
+/* .custom-select select {
     /* display: none; */
     /*hide original SELECT element:*/
-}
 /*style the arrow inside the select element:*/
 
 .select-selected:after {

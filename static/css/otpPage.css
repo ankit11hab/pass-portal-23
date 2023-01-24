@@ -137,7 +137,6 @@
 
   color: #3a3a3a;
 }
-
 .ve1 {
   /* width: 169px; */
   height: 29px;
@@ -164,7 +163,7 @@
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 
   /* border: 2.07049px solid #3a3a3a; */
@@ -189,10 +188,11 @@
 
   font-family: "aileron",sans-serif;
   font-style: normal;
-  font-weight: 900;
-  font-size: 2vw;
+  font-weight: 700;
+  font-size: 1.5vw;
+  padding: 1%;
   line-height: 33px;
-  height: 8vh;
+  height: 6vh;
   max-height: 60px;
   color: #3a3a3a;
   /* identical to box height*/
@@ -204,7 +204,7 @@
   top: 20.83%;
   bottom: 20.78%; */
   border: 2.07049px solid #3a3a3a;
-  height: 8vh;
+  height: 6vh;
   max-height: 60px;
   padding: 1vh;
 
