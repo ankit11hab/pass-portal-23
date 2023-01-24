@@ -1,5 +1,4 @@
-
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponse
 from django.http import JsonResponse
 import qrcode
 import string
@@ -193,3 +192,93 @@ def SaveData(request):
 
 def confirm(request):
     return render(request, 'main/confirm_payment.html')
+
+def send_verify_otp(email,id):
+    try:
+        subject = 'Your email verification email'
+        otp = random.randint(1000, 9999)
+        message = 'Your otp is ' + str(otp)
+        from_email = settings.EMAIL_HOST_USER
+        send_mail(subject, message, from_email, [email])
+        doc_ref_otp=db.collection('manage_booking_otps').document(id)
+        doc_ref_otp.set({'id':id,'email':email,'otp':otp})
+    except Exception as e:
+        print(e)
+    return JsonResponse({"otp": "otp"})
+
+
+@csrf_exempt
+def verifiy_otp(request):
+    if request.method=='POST':
+        otp = request.POST['otp']
+        email = request.POST['email']
+        id = request.POST['id']
+        print(otp)
+        otp__db=db.collection('manage_booking_otps').document(id).get().to_dict()
+        otp_from_db=otp__db['otp']
+        print(otp_from_db)
+        if(str(otp)==str(otp_from_db)):
+            doc__ref=db.collection('users').where('verID','==',id).stream()
+            print(doc__ref)
+            context=[]
+            for doc in doc__ref:
+                data_ref=doc.to_dict()            
+                LAge=data_ref['LAge']
+                print(LAge)
+                LEmail=data_ref['LEmail']
+                LGender=data_ref['LGender']
+                LIDType=data_ref['LIDType']
+                LPassType=data_ref['LPassType']
+                LName=data_ref['LName']
+                LIDNumber=data_ref['LIDNumber']
+            # LEmail,LGender,LIDNumber,LIDType,LName,LPassType,members
+                context.append({'LAge':LAge,
+                'LEmail':LEmail,
+                'LGender':LGender,
+                'LIDType':LIDType,
+                'LPassType':LPassType,
+                'LName':LName,
+                'LIDNumber':LIDNumber})
+                print(context[0])
+                # members=doc.collection('members').document().get()
+                members=doc.getData('members')
+                print(members) 
+                for memb in members:
+                    memb_dict=memb.to_dict()
+                    age=memb_dict['age']
+                    email=memb_dict['email']
+                    contact=memb_dict['contact']
+                    gender=memb_dict['gender']
+                    idtype=memb_dict['id_type']
+                    pass_type=memb_dict['pass_type']
+                    name=memb_dict['name']
+                    idnumber=memb_dict['id_number']
+
+                    context+={
+                    "name": name,
+                    "contact": contact,
+                    "pass_type": pass_type,
+                    "id_type": idtype,
+                    "id_number": idnumber,
+                    "age": age,
+                    "gender": gender,
+                    'email': email,
+                }
+            return render(request,'main/managebooking.html',context)
+        return render(request,'main/verify_otp_manage_booking.html')
+
+# @csrf_exempt 
+def manangebooking(request):
+    send_verify_otp('akshat.akshat@iitg.ac.in','4VY5M')
+    print('sent')
+    # data=json.loads(request.body);
+    # data=request.POST
+    # id=data['id']
+    # email=data['email']
+    # print(id+' '+email)
+    # doc_ref=db.collection('verified_users').document(id).get().to_dict()
+    # print(doc_ref)
+    # if(doc_ref['email']==email):
+        # send_verify_otp(email,id)
+        # return HttpResponse('otp sent!')
+    return HttpResponse('mail not found')
