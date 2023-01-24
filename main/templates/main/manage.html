@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcheringa|Manage Booking</title>
+    <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/manage.css'%}">
+</head>
+<body>
+    {% include 'main/navbar.html'%}
+      <div style="display:flex ; justify-content: center;gap: 7vw;">
+          <div class="Pass-Alcher" style="display:flex ;flex-direction:column;">
+                <div class="Pass">
+                  <div class="email_verify_container">
+                    <div class="vemail">VERIFY E-Mail ADDRESS</div>
+
+                    <div class="vc1" style="display:flex">
+                      <div>
+
+                        <div class="ve1">E-Mail Address</div>
+                        <div class="vcin">
+                          <input type="email" class="vinput" name="email" />
+                        {% comment %} <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/> {% endcomment %}
+                        </div>
+                      </div>
+                      <div>
+                        <div class="ve1">Pass ID</div>
+                        <div class="vcin">
+                          <input type="text" class="vinput passid" name="passid"style="width:11vw" />
+                        <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/>
+                        </div>
+                      </div>
+                  </div>
+                    <div class="vpara">
+                      Please enter your e-mail ID. A one-time-passcode will be sent on the same to verify your E-Mail ID.
+                    </div>
+                  </div>
+                  
+                  <div class="blackdot">
+                    <img src="{% static 'images/Blackdot.png' %}" alt="">
+                  </div>
+                  <form action="{% url 'verify_otp'%}" method="POST" class="otpFormmain">
+                            {% csrf_token %}
+                    <div class="otpFormmain_div">
+          
+                      <div class="textOTP">ENTER OTP</div>
+                      <div class="cntOTP">
+                        <input class="inputOTP" type="number" name="otp1" required>
+                      </div>
+                      <div class="p1">Please enter the four digit OTP, which has been sent to your registered e-mail address.</div>
+                      <div class="p2">Please Enter E-mail First</div>
+                      <button type="submit" class="proc">Proceed</button>
+                      
+                    </div>
+                  </form>
+      
+                </div>
+              
+              
+      
+                
+      
+            </div>
+          </div>
+    {% include 'main/footer.html'%}
+
+
+</body>
+</html>
