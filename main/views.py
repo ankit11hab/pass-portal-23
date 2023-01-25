@@ -17,6 +17,7 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 import base64
 import json
+from django.core.mail import EmailMultiAlternatives
 
 
 config = {
@@ -62,7 +63,15 @@ def send_otp(request):
         # print(otp)
         message = 'Your otp is ' + str(otp)
         from_email = settings.EMAIL_HOST_USER
-        send_mail(subject, message, from_email, [email])
+        # send_mail(subject, message, from_email, [email])
+
+        html_content = f'''<div>Dear User,<br/><br/>
+            The OTP for email verification is: <b>{otp}</b>.<br/><br/>
+            With best wishes,<br/>
+            Team Alcheringa
+        </div>'''
+        msg = EmailMultiAlternatives(subject, html_content, from_email, [email])
+        msg.send()
         # request.session['otp'] = otp
         
 
