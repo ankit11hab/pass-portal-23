@@ -17,6 +17,7 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 import base64
 import json
+from django.core.mail import EmailMultiAlternatives
 
 
 config = {
@@ -69,7 +70,16 @@ def send_otp(request):
         # print(otp)
         message = 'Your otp is ' + str(otp)
         from_email = settings.EMAIL_HOST_USER
-        send_mail(subject, message, from_email, [email])
+        # send_mail(subject, message, from_email, [email])
+
+        html_content = f'''<div>Dear User,<br/><br/>
+            The OTP for email verification is: <b>{otp}</b><br/><br/>
+            With best wishes,<br/>
+            Team Alcheringa
+        </div>'''
+        msg = EmailMultiAlternatives(subject, html_content, from_email, [email])
+        msg.content_subtype = "html"
+        msg.send()
         # request.session['otp'] = otp
         
 
@@ -215,11 +225,13 @@ def SaveData(request):
                 paases_type['exclusive'] = paases_type['exclusive']+1
 
         amount = paases_type['general']*500 + \
-            (paases_type['premium']+paases_type['premium'])*750
-        amount = 1
+            (paases_type['exclusive']+paases_type['premium'])*750
+        # amount = 750
         print(amount)
+        if not amount:
+            amount = 750
         paases_type['amount'] = amount
-        amount=1
+        # amount=1
         data = id+"|"+fee_id+"|"+str(amount)
         encryptedData = encrypt(key, data, iv)
         fstring = f'{id}|{paases_type["general"]}|{paases_type["exclusive"]}|{paases_type["premium"]}|{paases_type["amount"]}'
@@ -240,7 +252,15 @@ def send_verify_otp(email,id):
         otp = random.randint(1000, 9999)
         message = 'Your otp is ' + str(otp)
         from_email = settings.EMAIL_HOST_USER
-        send_mail(subject, message, from_email, [email])
+        # send_mail(subject, message, from_email, [email])
+        html_content = f'''<div>Dear User,<br/><br/>
+            The OTP for email verification is: <b>{otp}</b><br/><br/>
+            With best wishes,<br/>
+            Team Alcheringa
+        </div>'''
+        msg = EmailMultiAlternatives(subject, html_content, from_email, [email])
+        msg.content_subtype = "html"
+        msg.send()
         doc_ref_otp=db.collection('manage_booking_otps').document(id)
         doc_ref_otp.set({'id':id,'email':email,'otp':otp})
     except Exception as e:

@@ -11,10 +11,9 @@
 </head>
 <body>
   {% include 'main/navbar.html'%}
-  <div style="display:flex ; justify-content: center;gap: 7vw;">
-    <form action="{% url 'verifiy_otp_manage_booking' %}" method="POST" class="otpFormmain">
-        <div class="Pass-Alcher" style="display:flex ;flex-direction:column;">
-        {% csrf_token %}
+  <form action="{% url 'verifiy_otp_manage_booking' %}" method="POST" class="otpFormmain">
+      <div style="display:flex ; justify-content: center;">
+          <div class="Pass-Alcher" style="display:flex ;flex-direction:column;">
                 <div class="Pass">
                   <div class="email_verify_container">
                     <div class="vemail">VERIFY E-Mail ADDRESS</div>

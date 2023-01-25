@@ -95,11 +95,11 @@
   }
   
   .Pass-Alcher .Pass {
-    background-image: url("{% static 'images/Subtract.png' %}");
+    background-image: url("https://passportalbucket.s3.amazonaws.com/images/Subtract.png");
     height: 18vw;
     min-height: 200px;
     max-height: 300px;
-    width: 60vw;
+    /* width: 60vw; */
     padding: 5% 5%;
     align-items: center;
     background-size: 100% 100%;
@@ -113,7 +113,7 @@
   }
   
   .Pass-Alcher .Pass2 {
-    background-image: url("{% static 'images/Subtract.png' %}");
+    background-image: url("https://passportalbucket.s3.amazonaws.com/images/Subtract.png");
     background-repeat: none;
     height: 300px;
     width: 75vw;
@@ -319,9 +319,9 @@
   
     color: #000000;
   }
-  .otpFormmain {
+  /* .otpFormmain {
     width: 21%;
-  }
+  } */
   .otpFormmain_div {
     display: flex;
     flex-direction: column;
@@ -332,13 +332,19 @@
     display: flex;
     gap: 2vw;
   }
+  .manageBtn{
+    left: 16vw !important;
+  }
+ body{
+  margin: 0 !important;
+ }
   @media (max-width: 600px) {
     .Pass-Alcher .Pass {
       background-image: url("{% static 'images/managemob.png' %}");
       height: 440px;
       min-height: none;
       max-height: none;
-      width: 190px;
+      /* width: 190px; */
       padding: 5% 5%;
       align-items: center;
       background-size: 100% 100%;

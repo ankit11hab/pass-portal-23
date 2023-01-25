@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="referrer" content="unsafe-url" />
-    <title>Registration | Alcheringa</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-    />
-    <link rel="stylesheet" href="{% static 'css/passPortal.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/success.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/Confirm_payment.css' %}" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  </head>
-  {% if context %}
-  <body>
-    {% include 'main/navbar.html' %}
-    <!-- /////////// code for navbar ends here -->
-    
-    <div class="Pass-Alcher" id="printpass">
-      
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="unsafe-url" />
+  <title>Registration | Alcheringa</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="{% static 'css/passPortal.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/success.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/Confirm_payment.css' %}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+{% if context %}
+
+<body>
+  {% include 'main/navbar.html' %}
+  <!-- /////////// code for navbar ends here -->
+  <div id="printpass">
+    <div class="Pass-Alcher">
+
       {% for member in context%}
-      <div class="Pass"   >
-        <div class="desktop_success_left" >
+      
+      <div id="final_pass_{{member.id}}" style="display: none;">
+        <div style="position: relative;font-family:cursive;">
+          <center><h1 style="margin-bottom: 20px;">{{member.name}}</h1></center>
+          <div style="z-index: -1;"><img src="{% static 'images/pass.jpg' %}" width="920px" /></div>
+          <div id="final_qr_{{member.id}}" style="color:white; font-size: 15px;position:absolute;top: 350px;left:250px"></div>
+        </div>
+      </div>
+      <div class="Pass">
+        <div class="desktop_success_left">
 
-     
+
           <div class="desktop_success_left_subleft">
             <div class="success_main_header">DETAILS PERSON</div>
             <div class="desk_person_info">
@@ -77,27 +80,25 @@
             <div class="success_div_mul">
               <div class="success_div_">
                 <div class="success_header">Entry Time</div>
-                <div class="success_info_value">2:30 PM</div>
+                <div class="success_info_value">08:00 AM</div>
               </div>
               <div class="success_div_">
                 <div class="success_header">Date</div>
-                <div class="success_info_value">2 Feb 2023</div>
+                <div class="success_info_value">3 Feb 2023</div>
               </div>
             </div>
           </div>
         </div>
         <div class="black_dot_div_center">
-          <img src="{% static "images/Blackdot.png"%}"/>
+          <img src="{% static 'images/Blackdot.png'%}" />
         </div>
         <div class="desk_success_right">
           <div class="payment_confirmed_desk_">
-            <div
-              style="
+            <div style="
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-              "
-            >
+              ">
               <div>PAYMENT SUCCESSFUL</div>
               <img src="{% static 'images/green_tick.png' %}" />
             </div>
@@ -105,116 +106,106 @@
           </div>
         </div>
       </div>
-      <div style="display: flex; justify-content: center">
-        <img
-          class="tapButton_mob"
-          src="{% static 'images/DownloadBtn.png'%}"
-          onclick="PrintDiv('{{member.id}}')"
-        />
+      <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <img class="tapButton_mob" src="{% static 'images/DownloadBtn.png'%}" onclick="PrintDiv('final_pass_{{member.id}}')" />
       </div>
       {%endfor%}
     </div>
-    {% for member in context %}
-    <div class="Pass-Alcher-Mob" id="passmob" >
-      <div
-        style="
+  </div>
+  {% for member in context %}
+  <div class="Pass-Alcher-Mob" id="passmob">
+    <div style="
           display: flex;
           justify-content: center;
           padding: 0 12%;
           margin-top: 20px;
-        "
-      >
-        <div class="qrcode__container" >
-          <div class="registration__done_txt" >REGISTRATION DONE</div>
-          <div id="{{member.id}}mob_pass" style="text-align: center; "> 
-            <div class="main_qr__img" id="{{member.id}}_mob" style="text-align: center;" ></div>
-  
-            <div class="pass_owner_name" style="margin-top: 20px;"><strong>{{member.name}}</strong></div>
-          </div>
-            
-          <div class="copy_sent__text">
-            A copy of the E-pass has been sent to your registered E-mail ID.
-          </div>
-          <div class="buttonStackOuterDiv_mob" >
-            <div class="buttonStack_mob">
-              <div>
-                <img
-                  class="tapButton_mob"
-                  src="{% static  'images/DownloadBtn.png'%}"
-                  alt=""
-                  onclick="PrintDivMob('{{member.id}}mob_pass')"
-                />
-              </div>
-              <div>
-                <img
-                  class="tapButton_mob"
-                  src="{% static  'images/shareBtn.png'%}"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="tapButton_mob"
-                  src="{% static  'images/whatsappBtn.png'%}"
-                  alt=""
-                />
-              </div>
+        ">
+      <div class="qrcode__container">
+        <div class="registration__done_txt">REGISTRATION DONE</div>
+        <div id="{{member.id}}mob_pass" style="text-align: center; ">
+          <div class="main_qr__img" id="{{member.id}}_mob" style="text-align: center;"></div>
+
+          <div class="pass_owner_name" style="margin-top: 20px;"><strong>{{member.name}}</strong></div>
+        </div>
+
+        <div class="copy_sent__text">
+          A copy of the E-pass has been sent to your registered E-mail ID.
+        </div>
+        <div class="buttonStackOuterDiv_mob">
+          <div class="buttonStack_mob">
+            <div>
+              <img class="tapButton_mob" src="{% static  'images/DownloadBtn.png'%}" alt=""
+                onclick="PrintDivMob('final_pass_{{member.id}}')" />
+            </div>
+            <div>
+              <img class="tapButton_mob" src="{% static  'images/shareBtn.png'%}" alt="" />
+            </div>
+            <div>
+              <img class="tapButton_mob" src="{% static  'images/whatsappBtn.png'%}" alt="" />
             </div>
           </div>
         </div>
       </div>
     </div>
-    {%endfor%}
-    <!-- Footer code starts here  -->
+  </div>
+  {%endfor%}
+  <!-- Footer code starts here  -->
 
-    {% include 'main/footer.html'%}
+  {% include 'main/footer.html'%}
 
-    <!-- Footer code ends here  -->
-  </body>
-  {% endif%}
-  <script
-    src="https://code.jquery.com/jquery-3.6.3.min.js"
-    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-    crossorigin="anonymous"
-  ></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script>
-        {% for member in context %}
-        if(document.getElementById('{{member.id}}')){
-          var qrcode = new QRCode("{{member.id}}", {
-            text: "{{member.encrypted_id}}",
-           });
-           document.getElementById("{{member.id}}").children[1].setAttribute('style','height:10vw;width:10vw;')
-        }
-        if(document.getElementById('{{member.id}}_mob')) {
-          var qrcode1 = new QRCode("{{member.id}}_mob", {
-            text: "{{member.encrypted_id}}",
-           });
-           document.getElementById("{{member.id}}_mob").children[1].setAttribute('style','height:200px')
-        }
-        {%endfor%}
-  </script>
+  <!-- Footer code ends here  -->
+</body>
+{% endif%}
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-    function PrintDiv(elid) {
-      var divContents = document.getElementById('printpass').innerHTML;
-      var printWindow = window.open('', '', 'height=1200px,width=920px');
-      printWindow.document.write('<html><head><title>Registration Complete!</title>');
-        printWindow.document.write('</head><body><style> #printpass{display:flex;} </style>');
-      printWindow.document.write(divContents);
-      printWindow.document.write('</body></html>');
-      printWindow.document.close();
-      printWindow.print();
+  {% for member in context %}
+  if (document.getElementById('{{member.id}}')) {
+    var qrcode = new QRCode("{{member.id}}", {
+      text: "{{member.encrypted_id}}",
+    });
+    var qrcode2 = new QRCode("final_qr_{{member.id}}", {
+      text: "{{member.encrypted_id}}",
+      width: 176,
+      height: 176,
+      colorDark : "#ffffff",
+      colorLight : "#000000",
+    });
+    document.getElementById("{{member.id}}").children[1].setAttribute('style', 'height:10vw;width:10vw;')
+  }
+  if (document.getElementById('{{member.id}}_mob')) {
+    var qrcode1 = new QRCode("{{member.id}}_mob", {
+      text: "{{member.encrypted_id}}",
+    });
+    document.getElementById("{{member.id}}_mob").children[1].setAttribute('style', 'height:200px')
+  }
+  {% endfor %}
+</script>
+<script>
+  function PrintDiv(elid) {
+    var divContents = document.getElementById(elid).innerHTML;
+    var printWindow = window.open('', '', 'height=1200px,width=920px');
+    printWindow.document.write('<html><head><title>Registration Complete!</title>');
+    
+    // document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
+    printWindow.document.write(divContents);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
 
-    }
-    function PrintDivMob(elid) {
-      var divContents = document.getElementById('passmob').innerHTML;
-      var printWindow = window.open('', '', 'height=520px,width=1000px');
-      printWindow.document.write("<html><head><title>Alcher Pass</title>");
-      printWindow.document.write("</head><style></style><body >")
-      printWindow.document.write(divContents);
-      printWindow.document.write('</body></html>');
-      printWindow.document.close();
-      printWindow.print();
-    }
-  </script>
+  }
+  function PrintDivMob(elid) {
+    var divContents = document.getElementById(elid).innerHTML;
+    var printWindow = window.open('', '', 'height=1200px,width=920px');
+    printWindow.document.write('<html><head><title>Registration Complete!</title>');
+    
+    // document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
+    printWindow.document.write(divContents);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+  }
+</script>
+
 </html>

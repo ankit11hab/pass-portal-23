@@ -18,6 +18,7 @@ from reportlab.pdfgen import canvas
 import io
 import os
 from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 
 
 # Create your views here.
@@ -132,14 +133,24 @@ def payment_response(request):
                 member_array.append(
                     {'name': member_data['name'], 'pass_type': member_data['pass_type'], 'id': doc_ref2.id})
             print(member_array)
-            email = doc_ref.get().to_dict()['LEmail']
+            info = doc_ref.get().to_dict()
+            email = info['LEmail']
+            name = info['LName']
             # count = request.session.get('count')
             from_email = settings.EMAIL_HOST_USER
             subject = 'Confirmation Mail'
             otp = random.randint(1000, 9999)
             message = 'Your registeration for Alcheringa 2023 has been sent to us.Hang on to your cape and keep an eye out we will send you a QR code shortly'
             from_email = settings.EMAIL_HOST_USER
-            send_mail(subject, message, from_email, [email])
+            # send_mail(subject, message, from_email, [email])
+            html_content = f'''<div>Dear {name},<br/><br/>
+                Your registration for Alcheringa 2023 has been sent to us. Kindly download the passes with the QR codes that are being shown on the website.<br/><br/>
+                With best wishes,<br/>
+                Team Alcheringa
+            </div>'''
+            msg = EmailMultiAlternatives(subject, html_content, from_email, [email])
+            msg.content_subtype = "html"
+            msg.send()
             # generate_qr_code(request,leader_array,member_array)
             return redirect('get_payment_details')
         else:
