@@ -211,6 +211,8 @@ def SaveData(request):
             (paases_type['exclusive']+paases_type['premium'])*750
         # amount = 750
         print(amount)
+        if not amount:
+            amount = 750
         paases_type['amount'] = amount
         # amount=1
         data = id+"|"+fee_id+"|"+str(amount)
