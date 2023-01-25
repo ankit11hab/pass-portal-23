@@ -66,7 +66,7 @@ def send_otp(request):
         # send_mail(subject, message, from_email, [email])
 
         html_content = f'''<div>Dear User,<br/><br/>
-            The OTP for email verification is: <b>{otp}</b>.<br/><br/>
+            The OTP for email verification is: <b>{otp}</b><br/><br/>
             With best wishes,<br/>
             Team Alcheringa
         </div>'''
@@ -245,7 +245,15 @@ def send_verify_otp(email,id):
         otp = random.randint(1000, 9999)
         message = 'Your otp is ' + str(otp)
         from_email = settings.EMAIL_HOST_USER
-        send_mail(subject, message, from_email, [email])
+        # send_mail(subject, message, from_email, [email])
+        html_content = f'''<div>Dear User,<br/><br/>
+            The OTP for email verification is: <b>{otp}</b><br/><br/>
+            With best wishes,<br/>
+            Team Alcheringa
+        </div>'''
+        msg = EmailMultiAlternatives(subject, html_content, from_email, [email])
+        msg.content_subtype = "html"
+        msg.send()
         doc_ref_otp=db.collection('manage_booking_otps').document(id)
         doc_ref_otp.set({'id':id,'email':email,'otp':otp})
     except Exception as e:
