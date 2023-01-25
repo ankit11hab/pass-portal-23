@@ -71,6 +71,7 @@ def send_otp(request):
             Team Alcheringa
         </div>'''
         msg = EmailMultiAlternatives(subject, html_content, from_email, [email])
+        msg.content_subtype = "html"
         msg.send()
         # request.session['otp'] = otp
         
