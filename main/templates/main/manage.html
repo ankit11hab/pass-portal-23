@@ -24,14 +24,13 @@
                         <div class="ve1">E-Mail Address</div>
                         <div class="vcin">
                           <input type="email" class="vinput" name="email" />
-                        {% comment %} <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/> {% endcomment %}
                         </div>
                       </div>
                       <div>
                         <div class="ve1">Pass ID</div>
                         <div class="vcin">
                           <input type="text" class="vinput passid" name="passid"style="width:11vw" />
-                        <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}" onclick="send_ajax_request()"/>
+                        <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/>
                         </div>
                       </div>
                   </div>
@@ -43,7 +42,7 @@
                   <div class="blackdot">
                     <img src="{% static 'images/Blackdot.png' %}" alt="">
                   </div>
-                            {% csrf_token %}
+                            
                     <div class="otpFormmain_div">
           
                       <div class="textOTP">ENTER OTP</div>
@@ -56,9 +55,9 @@
                     </div>
       
                 </div>
-            </div>
+              </div>
+            </form>
       </div>
-  </form>
 
     {% include 'main/footer.html'%}
 
@@ -83,7 +82,7 @@
       const email_input = document.getElementsByName('email');
       const id_input = document.getElementsByName('passid');
 
-      fetch("{% url 'managebooking'%}", {
+      fetch("{% url 'managebooking' %}", {
           method: "POST",
           body: JSON.stringify({
             email: email_input[0].value,
