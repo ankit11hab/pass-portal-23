@@ -208,11 +208,11 @@ def SaveData(request):
                 paases_type['exclusive'] = paases_type['exclusive']+1
 
         amount = paases_type['general']*500 + \
-            (paases_type['premium']+paases_type['premium'])*750
-        amount = 1
+            (paases_type['exclusive']+paases_type['premium'])*750
+        # amount = 750
         print(amount)
         paases_type['amount'] = amount
-        amount=1
+        # amount=1
         data = id+"|"+fee_id+"|"+str(amount)
         encryptedData = encrypt(key, data, iv)
         fstring = f'{id}|{paases_type["general"]}|{paases_type["exclusive"]}|{paases_type["premium"]}|{paases_type["amount"]}'
