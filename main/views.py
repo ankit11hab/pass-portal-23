@@ -149,7 +149,6 @@ def SaveData(request):
                                     string.digits, k=5))
         amount = 1
         fee_id = "M1006"
-        print(id)
         paases_type = {
             'general': 0,
             'premium': 0,
@@ -163,7 +162,8 @@ def SaveData(request):
         # LeaderEmail = request.POST.get('LeaderEmail')
         LeaderEmail = request.session['LeaderEmail']
         print(LeaderEmail)
-        LeaderPassType = request.POST.get('LeaderPassType')
+        LeaderPassType = "exclusive"
+        # LeaderPassType = request.POST.get('LeaderPassType')
         LeaderIDType = request.POST.get('LeaderIDtype')
         LeaderIDNumber = request.POST.get('LeaderIDnumber')
         LeaderAge = request.POST.get('LeaderAge')
@@ -208,7 +208,7 @@ def SaveData(request):
             member = {
                 "name": fname+' ' + lname,
                 "contact": contact,
-                "pass_type": pass_type,
+                "pass_type": "exclusive",
                 "id_type": idtype,
                 "id_number": idnumber,
                 "age": age,
@@ -227,7 +227,6 @@ def SaveData(request):
         amount = paases_type['general']*500 + \
             (paases_type['exclusive']+paases_type['premium'])*750
         # amount = 750
-        print(amount)
         if not amount:
             amount = 750
         # amount=1
@@ -330,3 +329,15 @@ def manangebooking(request):
 
 def manage_booking_page(request):
     return render(request,'main/manage.html')
+
+
+
+def backupData():
+    doc_ref=db.collection('users').stream()
+    data_backup=[]
+    for doc in doc_ref:
+        memb_dict=[]
+        for mem in doc.reference.collection('members').stream():
+            memb_dict.append({f'{mem.id}=>{mem.to_dict()}'})
+        data_backup.append(f'{doc.id} => {doc.to_dict()},{"members"}=>{memb_dict}')
+    print(data_backup)
