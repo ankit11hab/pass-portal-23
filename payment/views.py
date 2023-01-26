@@ -145,7 +145,7 @@ def payment_response(request):
             from_email = settings.EMAIL_HOST_USER
             # send_mail(subject, message, from_email, [email])
             html_content = f'''<div>Dear {name},<br/><br/>
-                Your registration for Alcheringa 2023 has been sent to us. Kindly download the passes with the QR codes that are being shown on the website.<br/><br/>
+                Your registration for Alcheringa 2023 has been sent to us. Kindly take screenshot of the passes with the QR codes that are being shown on the website.<br/><br/>
                 Your passID is {passid}.
                 With best wishes,<br/>
                 Team Alcheringa
