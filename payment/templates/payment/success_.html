@@ -106,9 +106,11 @@
           </div>
         </div>
       </div>
-      <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+      {% comment %}
+      <!-- <div style="display: flex; justify-content: center; margin-bottom: 20px;">
         <img class="tapButton_mob" src="{% static 'images/DownloadBtn.png'%}" onclick="PrintDiv('final_pass_{{member.id}}')" />
-      </div>
+      </div> -->
+      {% endcomment %}
       {%endfor%}
     </div>
   </div>
@@ -131,7 +133,8 @@
         <div class="copy_sent__text">
           A copy of the E-pass has been sent to your registered E-mail ID.
         </div>
-        <div class="buttonStackOuterDiv_mob">
+        {% comment %}
+        <!-- <div class="buttonStackOuterDiv_mob">
           <div class="buttonStack_mob">
             <div>
               <img class="tapButton_mob" src="{% static  'images/DownloadBtn.png'%}" alt=""
@@ -144,7 +147,8 @@
               <img class="tapButton_mob" src="{% static  'images/whatsappBtn.png'%}" alt="" />
             </div>
           </div>
-        </div>
+        </div> -->
+        {% endcomment %}
       </div>
     </div>
   </div>
@@ -183,29 +187,29 @@
   {% endfor %}
 </script>
 <script>
-  function PrintDiv(elid) {
-    var divContents = document.getElementById(elid).innerHTML;
-    var printWindow = window.open('', '', 'height=1200px,width=920px');
-    printWindow.document.write('<html><head><title>Registration Complete!</title>');
+  // function PrintDiv(elid) {
+  //   var divContents = document.getElementById(elid).innerHTML;
+  //   var printWindow = window.open('', '', 'height=1200px,width=920px');
+  //   printWindow.document.write('<html><head><title>Registration Complete!</title>');
     
-    // document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
-    printWindow.document.write(divContents);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.print();
+  //   // document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
+  //   printWindow.document.write(divContents);
+  //   printWindow.document.write('</body></html>');
+  //   printWindow.document.close();
+  //   printWindow.print();
 
-  }
-  function PrintDivMob(elid) {
-    var divContents = document.getElementById(elid).innerHTML;
-    var printWindow = window.open('', '', 'height=1200px,width=920px');
-    printWindow.document.write('<html><head><title>Registration Complete!</title>');
+  // }
+  // function PrintDivMob(elid) {
+  //   var divContents = document.getElementById(elid).innerHTML;
+  //   var printWindow = window.open('', '', 'height=1200px,width=920px');
+  //   printWindow.document.write('<html><head><title>Registration Complete!</title>');
     
-    // document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
-    printWindow.document.write(divContents);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.print();
-  }
+  //   // document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
+  //   printWindow.document.write(divContents);
+  //   printWindow.document.write('</body></html>');
+  //   printWindow.document.close();
+  //   printWindow.print();
+  // }
 </script>
 
 </html>
