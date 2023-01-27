@@ -332,7 +332,7 @@ def manage_booking_page(request):
 
 
 
-def backupData():
+def backupData_users():
     doc_ref=db.collection('users').stream()
     data_backup=[]
     for doc in doc_ref:
@@ -340,4 +340,20 @@ def backupData():
         for mem in doc.reference.collection('members').stream():
             memb_dict.append({f'{mem.id}=>{mem.to_dict()}'})
         data_backup.append(f'{doc.id} => {doc.to_dict()},{"members"}=>{memb_dict}')
+    print(data_backup)
+
+
+def backupData_verified_users():
+    doc_ref=db.collection('verified_users').stream()
+    data_backup=[]
+    for doc in doc_ref:
+        data_backup.append(f'{doc.id} => {doc.to_dict()}')
+    print(data_backup)
+
+
+def backupData_transactions():
+    doc_ref=db.collection('transactions').stream()
+    data_backup=[]
+    for doc in doc_ref:
+        data_backup.append(f'{doc.id} => {doc.to_dict()}')
     print(data_backup)
