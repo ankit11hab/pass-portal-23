@@ -33,7 +33,7 @@
 
       {% for member in context%}
       
-      <div id="final_pass_{{member.id}}" style="display:none;">
+      <div id="final_pass_{{member.id}}" style="visibility:hidden;">
         <div style="position: relative;font-family:cursive;">
           <center><h1 style="margin-bottom: 20px;">{{member.name}}</h1></center>
           <div><img src="{% static 'images/pass.jpg' %}" width="920px" /></div>
@@ -207,7 +207,7 @@
 
    function PrintDiv(elid){
     var element = document.getElementById(elid);
-    element.setAttribute('style','display:block;')
+    // element.setAttribute('style','display:block;')
     html2pdf()
         .set({
             margin: 0,
@@ -217,9 +217,9 @@
         })
         .from(element)
         .save()
-        .then(data=>{
-          element.setAttribute('style','display:none;')
-        })
+        // .then(data=>{
+        //   element.setAttribute('style','display:none;')
+        // })
    }
 </script>
 
