@@ -92,7 +92,7 @@
             <div class="shipping-section">
               <div class="upperPart" style="display: flex; justify-content:space-between">
                 <p style="font-weight:600;font-size:3vh;">Primary Attendee </p>
-                <div class="passdiv" style="display: none;">
+                <div class="passdiv" style="visibility:hidden;">
                   <select class="PassSel select_dropdown" name="LeaderPassType" onchange=onchnge_()>
                     <option value="exclusive"> Exclusive
                     </option>
@@ -239,15 +239,15 @@
                 <div>
                   <P class="p-person">Member (Primary)</P>
                 </div>
-                {% comment %} <div>
+                 {% comment %} <div>
                   <p class="textinput">Pass type</p>
-                </div>
-                <div class="custom-select"  style="display: none;">
+                </div> {% endcomment %}
+                <div class="custom-select"  style="visibility:hidden;">
                   <select name="LeaderPassType" onchange=onchnge_()>
                     <option value="exclusive"> Exclusive
                     </option>
                   </select>
-                </div> {% endcomment %}
+                </div> 
               </div>
               <div class=" pass-type">
                 <p class="textinput"> First Name</p>
@@ -362,7 +362,7 @@
       <div class="shipping-section">
         <div class="upperPart" style="display: flex; justify-content:space-between">
                 <p style="font-weight:700;font-size:20px;">Attendee</p>
-                <div class="passdiv" style="display:none;">
+                <div class="passdiv" style="visibility:hidden;">
                   <select class="PassSel select_dropdown" name="pass_type" onchange=onchnge_()>
                     <option value="exclusive"> Exclusive
                     </option>
@@ -493,7 +493,7 @@
         if (leader_select_dropdown[y].value === "general") {
           amount += 500;
         } else if (leader_select_dropdown[y].value === "exclusive" || leader_select_dropdown[y].value === "premium") {
-          amount += 750;
+          amount += 375;
         }
       }
       console.log(amount)

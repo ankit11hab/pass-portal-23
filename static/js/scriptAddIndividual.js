@@ -20,7 +20,7 @@ addIndividual.addEventListener("click", (target) => {
                     Remove
                 </div>
                 <p class="textinput">Pass type</p>
-                <div class="custom-select" style="display:none;">
+                <div class="custom-select" style="visibility:hidden;">
                     <select name="pass_type" id="" onchange=onchnge_()>
                     <option value="exclusive"> Exclusive
                     </option>
