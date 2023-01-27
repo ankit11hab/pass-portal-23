@@ -43,7 +43,7 @@
                     <img src="{% static 'images/Blackdot.png' %}" alt="">
                   </div>
                             
-                    <div class="otpFormmain_div">
+                    <div class="otpFormmain_div" style="width:17%">
           
                       <div class="textOTP">ENTER OTP</div>
                       <div class="cntOTP">
@@ -51,7 +51,7 @@
                       </div>
                       <div class="p1">Please enter the four digit OTP, which has been sent to your registered e-mail address.</div>
                       <div class="p2">Please Enter E-mail First</div>
-                      <button type="submit" class="proc">Proceed</button>
+                      <button type="submit" class="proc" style="background-color:gray;" disabled>Proceed</button>
                     </div>
       
                 </div>
@@ -96,6 +96,8 @@
       document.getElementById('email_submit').disabled=true
       document.getElementsByClassName('p2')[0].innerHTML="OTP sent"
       document.getElementsByClassName('p2')[0].setAttribute('style','color:green;')
+      document.getElementsByClassName('proc')[0].setAttribute('style','background-color:#fea82f')
+      document.getElementsByClassName('proc')[0].disabled=false
       const mailid=document.getElementsByName('email')[0]
       window.sessionStorage.setItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54',mailid.value)
     })
