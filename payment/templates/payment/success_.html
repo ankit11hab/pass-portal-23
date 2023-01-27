@@ -208,7 +208,7 @@
     printWindow.print();
   } {% endcomment %}
 
-  function PrintDiv(elid) {
+  async function PrintDiv(elid) {
     var element = document.getElementById(`final_pass_${elid}`);
     let url = "https://passportalbucket.s3.amazonaws.com/images/pass.jpg"
     let urlBase64 = await toDataUrl(url);
