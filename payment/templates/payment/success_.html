@@ -32,16 +32,16 @@
     <div class="Pass-Alcher">
 
       {% for member in context%}
-        <div id="final_pass_{{member.id}}">
-          <div style="position: relative;font-family:cursive;">
-            <center>
-              <h1 style="margin-bottom: 20px;">{{member.name}}</h1>
-            </center>
-            <div><img src="{% static 'images/pass.jpg' %}" width="920px" /></div>
-            <div id="final_qr_{{member.id}}"
-              style="color:white; font-size: 15px;position:absolute;top: 350px;left:250px"></div>
+      <div id="final_pass_{{member.id}}">
+        <div style="position: relative;font-family:cursive;">
+          <center>
+            <h1 style="margin-bottom: 20px;">{{member.name}}</h1>
+          </center>
+          <div><img src="{% static 'images/pass.jpg' %}" width="920px" /></div>
+          <div id="final_qr_{{member.id}}" style="color:white; font-size: 15px;position:absolute;top: 350px;left:250px">
           </div>
         </div>
+      </div>
       <div class="Pass">
         <div class="desktop_success_left">
 
@@ -163,65 +163,68 @@
   integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-  {% for member in context %}
-  if (document.getElementById('{{member.id}}')) {
-    var qrcode = new QRCode("{{member.id}}", {
-      text: "{{member.encrypted_id}}",
-    });
-    var qrcode2 = new QRCode("final_qr_{{member.id}}", {
-      text: "{{member.encrypted_id}}",
-      width: 176,
-      height: 176,
-      colorDark: "#ffffff",
-      colorLight: "#000000",
-    });
-    document.getElementById("{{member.id}}").children[1].setAttribute('style', 'height:10vw;width:10vw;')
-  }
-  if (document.getElementById('{{member.id}}_mob')) {
-    var qrcode1 = new QRCode("{{member.id}}_mob", {
-      text: "{{member.encrypted_id}}",
-    });
-    document.getElementById("{{member.id}}_mob").children[1].setAttribute('style', 'height:200px')
-  }
-  {% endfor %}
+  let imagenes = document.getElementsByTagName("img");
+  for (let i = 0; i < imagenes.length; i++) {
+    imagenes[i].setAttribute("crossorigin", "*");
+    {% for member in context %}
+    if (document.getElementById('{{member.id}}')) {
+      var qrcode = new QRCode("{{member.id}}", {
+        text: "{{member.encrypted_id}}",
+      });
+      var qrcode2 = new QRCode("final_qr_{{member.id}}", {
+        text: "{{member.encrypted_id}}",
+        width: 176,
+        height: 176,
+        colorDark: "#ffffff",
+        colorLight: "#000000",
+      });
+      document.getElementById("{{member.id}}").children[1].setAttribute('style', 'height:10vw;width:10vw;')
+    }
+    if (document.getElementById('{{member.id}}_mob')) {
+      var qrcode1 = new QRCode("{{member.id}}_mob", {
+        text: "{{member.encrypted_id}}",
+      });
+      document.getElementById("{{member.id}}_mob").children[1].setAttribute('style', 'height:200px')
+    }
+    {% endfor %}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/html2pdf.js"></script>
 <script>
-  {% comment %} function PrintDiv(elid) {
-    var divContents = document.getElementById(elid).innerHTML;
-    var printWindow = window.open('', '', 'left=0,top=0,width=900,height=900');
-    printWindow.document.write('<html><head><title>Registration Complete!</title>');
-    printWindow.document.write(divContents);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.print();
+    {% comment %} function PrintDiv(elid) {
+      var divContents = document.getElementById(elid).innerHTML;
+      var printWindow = window.open('', '', 'left=0,top=0,width=900,height=900');
+      printWindow.document.write('<html><head><title>Registration Complete!</title>');
+      printWindow.document.write(divContents);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
 
-  } {% endcomment %}
-  {% comment %} function PrintDivMob(elid) {
-    var divContents = document.getElementById(elid).innerHTML;
-    var printWindow = window.open('', '', 'height=1200px,width=920px');
-    printWindow.document.write('<html><head><title>Registration Complete!</title>');
-    document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
-    printWindow.document.write(divContents);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.print();
-  } {% endcomment %}
+    } {% endcomment %}
+    {% comment %} function PrintDivMob(elid) {
+      var divContents = document.getElementById(elid).innerHTML;
+      var printWindow = window.open('', '', 'height=1200px,width=920px');
+      printWindow.document.write('<html><head><title>Registration Complete!</title>');
+      document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
+      printWindow.document.write(divContents);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    } {% endcomment %}
 
-  function PrintDiv(elid) {
-    var element = document.getElementById(elid);
-    element.setAttribute('style', 'display:block;')
-    html2pdf()
-      .set({
-        margin: 0,
-        filename: 'pass.pdf',
-        image: { type: "jpg", quality: 0.95 },
-        html2canvas: { scale: 2,useCORS: true },
-        jsPDF: { unit: 'mm', format: [193, 244], orientation: 'landscape' }
-      })
-      .from(element)
-      .save()
-  }
+    function PrintDiv(elid) {
+      var element = document.getElementById(elid);
+      element.setAttribute('style', 'display:block;')
+      html2pdf()
+        .set({
+          margin: 0,
+          filename: 'pass.pdf',
+          image: { type: "jpg", quality: 0.95 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'mm', format: [193, 244], orientation: 'landscape' }
+        })
+        .from(element)
+        .save()
+    }
 </script>
 
 </html>
