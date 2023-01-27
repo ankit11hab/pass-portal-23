@@ -215,7 +215,7 @@
       .set({
         margin: 0,
         filename: 'pass.pdf',
-        html2canvas: { scale: 2 },
+        html2canvas: { scale: 2,useCORS: true },
         jsPDF: { unit: 'mm', format: [193, 244], orientation: 'landscape' }
       })
       .from(element)
