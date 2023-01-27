@@ -32,7 +32,6 @@
     <div class="Pass-Alcher">
 
       {% for member in context%}
-      <div style="display:none;">
         <div id="final_pass_{{member.id}}">
           <div style="position: relative;font-family:cursive;">
             <center>
@@ -43,7 +42,6 @@
               style="color:white; font-size: 15px;position:absolute;top: 350px;left:250px"></div>
           </div>
         </div>
-      </div>
       <div class="Pass">
         <div class="desktop_success_left">
 
@@ -222,9 +220,6 @@
       })
       .from(element)
       .save()
-      .then(data => {
-        element.setAttribute('style', 'display:none;')
-      })
   }
 </script>
 
