@@ -224,8 +224,8 @@ def SaveData(request):
             elif (pass_type == 'exclusive'):
                 paases_type['exclusive'] = paases_type['exclusive']+1
 
-        # amount = paases_type['general']*500+(paases_type['exclusive']+paases_type['premium'])*750
-        amount=paases_type['exclusive']
+        amount = paases_type['general']*500+(paases_type['exclusive']+paases_type['premium'])*750
+        # amount=paases_type['exclusive']
         # amount = 750
         if not amount:
             amount = 750
