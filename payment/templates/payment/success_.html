@@ -33,10 +33,10 @@
 
       {% for member in context%}
       
-      <div id="final_pass_{{member.id}}" style="display: none;">
+      <div id="final_pass_{{member.id}}" style="display:none;">
         <div style="position: relative;font-family:cursive;">
           <center><h1 style="margin-bottom: 20px;">{{member.name}}</h1></center>
-          <div style="z-index: -1;"><img src="{% static 'images/pass.jpg' %}" width="920px" /></div>
+          <div><img src="{% static 'images/pass.jpg' %}" width="920px" /></div>
           <div id="final_qr_{{member.id}}" style="color:white; font-size: 15px;position:absolute;top: 350px;left:250px"></div>
         </div>
       </div>
@@ -106,11 +106,9 @@
           </div>
         </div>
       </div>
-      {% comment %}
-      <!-- <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+<div style="display: flex; justify-content: center; margin-bottom: 20px;">
         <img class="tapButton_mob" src="{% static 'images/DownloadBtn.png'%}" onclick="PrintDiv('final_pass_{{member.id}}')" />
-      </div> -->
-      {% endcomment %}
+      </div> 
       {%endfor%}
     </div>
   </div>
@@ -133,22 +131,20 @@
         <div class="copy_sent__text">
           A copy of the E-pass has been sent to your registered E-mail ID.
         </div>
-        {% comment %}
-        <!-- <div class="buttonStackOuterDiv_mob">
+         <div class="buttonStackOuterDiv_mob">
           <div class="buttonStack_mob">
             <div>
               <img class="tapButton_mob" src="{% static  'images/DownloadBtn.png'%}" alt=""
-                onclick="PrintDivMob('final_pass_{{member.id}}')" />
+                onclick="PrintDiv('final_pass_{{member.id}}')" />
             </div>
-            <div>
+            {% comment %} <div>
               <img class="tapButton_mob" src="{% static  'images/shareBtn.png'%}" alt="" />
             </div>
             <div>
               <img class="tapButton_mob" src="{% static  'images/whatsappBtn.png'%}" alt="" />
-            </div>
+            </div> {% endcomment %}
           </div>
-        </div> -->
-        {% endcomment %}
+        </div> 
       </div>
     </div>
   </div>
@@ -186,30 +182,45 @@
   }
   {% endfor %}
 </script>
+<script src="https://cdn.jsdelivr.net/npm/html2pdf.js"></script>
 <script>
-  // function PrintDiv(elid) {
-  //   var divContents = document.getElementById(elid).innerHTML;
-  //   var printWindow = window.open('', '', 'height=1200px,width=920px');
-  //   printWindow.document.write('<html><head><title>Registration Complete!</title>');
-    
-  //   // document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
-  //   printWindow.document.write(divContents);
-  //   printWindow.document.write('</body></html>');
-  //   printWindow.document.close();
-  //   printWindow.print();
+   {% comment %} function PrintDiv(elid) {
+     var divContents = document.getElementById(elid).innerHTML;
+     var printWindow = window.open('','','left=0,top=0,width=900,height=900');
+     printWindow.document.write('<html><head><title>Registration Complete!</title>');
+     printWindow.document.write(divContents);
+     printWindow.document.write('</body></html>');
+     printWindow.document.close();
+     printWindow.print();
 
-  // }
-  // function PrintDivMob(elid) {
-  //   var divContents = document.getElementById(elid).innerHTML;
-  //   var printWindow = window.open('', '', 'height=1200px,width=920px');
-  //   printWindow.document.write('<html><head><title>Registration Complete!</title>');
-    
-  //   // document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
-  //   printWindow.document.write(divContents);
-  //   printWindow.document.write('</body></html>');
-  //   printWindow.document.close();
-  //   printWindow.print();
-  // }
+   } {% endcomment %}
+   {% comment %} function PrintDivMob(elid) {
+    var divContents = document.getElementById(elid).innerHTML;
+    var printWindow = window.open('', '', 'height=1200px,width=920px');
+    printWindow.document.write('<html><head><title>Registration Complete!</title>');
+    document.getElementById("final_qr").setAttribute('style', 'height:200px;width:200px;')
+    printWindow.document.write(divContents);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+   } {% endcomment %}
+
+   function PrintDiv(elid){
+    var element = document.getElementById(elid);
+    element.setAttribute('style','display:block;')
+    html2pdf()
+        .set({
+            margin: 0,
+            filename: 'pass.pdf',
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: [193,244], orientation: 'landscape' }
+        })
+        .from(element)
+        .save()
+        .then(data=>{
+          element.setAttribute('style','display:none;')
+        })
+   }
 </script>
 
 </html>
