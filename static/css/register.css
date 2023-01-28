@@ -1702,6 +1702,8 @@ right: 5vw;
   box-shadow: 3px 3px 0 #000000;
   cursor: grabbing;
   font-weight: 700;
+  text-align: center;
+  cursor:default;
 }
 
 .button_section {
