@@ -220,7 +220,7 @@ def get_verified_details(request):
         else:
             print('The Entered Referral ID was Incorrect')
     
-    return render(request, 'payment/success_.html', {'context': context})
+    return render(request, 'payment/success_.html', {'context': context,"cardid":doc_ref.get().to_dict()['verID']})
 
 
 def get_payment_details(request):

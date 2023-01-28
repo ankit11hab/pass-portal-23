@@ -1,71 +1,78 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="unsafe-url" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration | Alcheringa</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link rel="stylesheet" href="{% static 'css/passPortal.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Confirm_payment.css' %}" />
+  </head>
+  <style>
+    body {
+      overflow-x: hidden;
+      font-family: sans-serif;
+    }
+  </style>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="referrer" content="unsafe-url" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registration | Alcheringa</title>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-  <link rel="stylesheet" href="{% static 'css/passPortal.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/navbarTemplate.css' %}">
-  <link rel="stylesheet" href="{% static 'css/Confirm_payment.css' %}">
-</head>
-<style>
-  body {
-    overflow-x: hidden;
-    font-family: sans-serif;
-  }
-</style>
+  <body>
+    {% include 'main/navbar.html' %}
 
-<body>
-  {% include 'main/navbar.html' %}
-  
-  <div class="loader-container">
-    <div class="loader book">
-      <figure class="page"></figure>
-      <figure class="page"></figure>
-      <figure class="page"></figure>  
+    <div class="loader-container">
+      <div class="loader book">
+        <figure class="page"></figure>
+        <figure class="page"></figure>
+        <figure class="page"></figure>
+      </div>
+      <h4>Loading</h4>
     </div>
-    <h4>Loading</h4>
-  </div>
 
-  {% for message in messages %}
-  {% if message.tags == 'info' %}
-  <form method="POST" action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp">
-    {% csrf_token %}
-    <input type="hidden" name="data" value="{{message}}" />
-    <button id="cnfirm_pymnt_submit_btn" style="opacity: 0;" type="submit">submit</button>
-  </form>
-    {% endif %}
-    {% endfor %}
-
-  {% include 'main/footer.html' %}
-
-</body>
+    {% for message in messages %} {% if message.tags == 'info' %}
+    <form
+      method="POST"
+      action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp"
+    >
+      {% csrf_token %}
+      <input type="hidden" name="data" value="{{message}}" />
+      <button id="cnfirm_pymnt_submit_btn" style="opacity: 0" type="submit">
+        submit
+      </button>
+    </form>
+    {% endif %} {% endfor %} {% include 'main/footer.html' %}
+  </body>
   <script src="{% static 'js/scriptPassPortal.js' %}"></script>
   <script src="{% static 'js/script.js'%}"></script>
   <script>
-    const timeout_=setTimeout(()=>{
-      const btn___=document.getElementById('cnfirm_pymnt_submit_btn')
+    const timeout_ = setTimeout(() => {
+      const btn___ = document.getElementById("cnfirm_pymnt_submit_btn");
       console.log(btn___);
       btn___.click();
-    },3000);
+    }, 3000);
   </script>
   <script>
-    {% for message in messages %}
-  {% if message.tags == 'error' %}
-  var msg = "{{message}}"
-  var splittedData="{{message}}".split("|")
-  console.log((splittedData));
-  {% endif %}
-  {% endfor %}
-  window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF",splittedData[0])
+      {% for message in messages %}
+    {% if message.tags == 'error' %}
+    var msg = "{{message}}"
+    var splittedData="{{message}}".split("|")
+    console.log((splittedData));
+    {% endif %}
+    {% endfor %}
+    window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF",splittedData[0])
   </script>
 </html>

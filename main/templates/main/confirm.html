@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="referrer" content="unsafe-url" />
     <title>Document</title>
   </head>
   <body>
     <h1>COnfirm?</h1>
-    {% for message in messages %} 
-    {% if message.tags == 'info' %}
+    {% for message in messages %} {% if message.tags == 'info' %}
     <form
       method="post"
       action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp"
@@ -20,8 +20,7 @@
       {{message}}
       <button type="submit">submit</button>
     </form>
-    {%endif%} 
-    {%endfor%}
+    {%endif%} {%endfor%}
   </body>
   <script>
     window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF","{{message}}")
