@@ -211,7 +211,7 @@ def get_verified_details(request):
     print(context)
    
     
-    return render(request, 'payment/success_.html', {'context': context})
+    return render(request, 'payment/success_.html', {'context': context,"cardid":id})
 
 
 def get_payment_details(request):

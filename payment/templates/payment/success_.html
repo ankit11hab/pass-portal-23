@@ -28,6 +28,19 @@
 <body>
   {% include 'main/navbar.html' %}
   <!-- /////////// code for navbar ends here -->
+  {%if cardid%}
+  <div class="card_id_lead">
+    <div class="card_id_header">Your own card ID is ready ! Save it to manage your Alcher cards</div>
+    <div class="card_id_content">
+    <div>CARD ID:</div>
+    <div class="array_card_id">
+    {%for id in cardid%}
+      <div class="card_id_content_array">{{id}}</div>
+    {%endfor%}
+    </div>
+    </div>
+  </div>
+  {%endif%}
   <div id="printpass">
     <div class="Pass-Alcher">
 
