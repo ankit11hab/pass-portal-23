@@ -19,7 +19,6 @@ import base64
 import json
 from django.core.mail import EmailMultiAlternatives
 
-
 config = {
     'apiKey': os.environ.get('API_KEY'),
     'authDomain': "pass-portal-a05c7.firebaseapp.com",
@@ -29,7 +28,6 @@ config = {
     'messagingSenderId': "160016579583",
     'appId': "1:160016579583:web:e04e2383bfd944f4aa05ca",
 }
-
 
 # firebase=pyrebase.initialize_app(config)
 # authe = firebase.auth()
@@ -168,6 +166,7 @@ def SaveData(request):
         LeaderIDNumber = request.POST.get('LeaderIDnumber')
         LeaderAge = request.POST.get('LeaderAge')
         LeaderGender = request.POST.get('LeaderGender')
+        referralId=request.POST.get('ref_id')
         member_first_names = request.POST.getlist('first_name')
         member_last_names = request.POST.getlist('last_name')
         member_contacts = request.POST.getlist('contact_no')
@@ -203,6 +202,16 @@ def SaveData(request):
             count = count+1
         request.session['count'] = count
         members = []
+
+# -----------------------code for referral id-----------------------------
+        referral_Id={'ReferralID':referralId}
+        referral = db.collection('referral_ids').where('ID', '==', referralId).get()
+        for ref in referral:
+            if ref.exists:
+                doc_ref.update(referral_Id)
+            else:
+                print('The Entered Referral ID was Incorrect')
+    
 
         for fname, lname, contact, pass_type, idtype, idnumber, gender, age, email, in zip(member_first_names, member_last_names, member_contacts, member_passtype, member_idtype, member_idnumber, member_gender, member_age, member_email):
             member = {
