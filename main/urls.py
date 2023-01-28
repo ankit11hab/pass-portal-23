@@ -14,4 +14,8 @@ urlpatterns = [
     path('managebooking/', views.manangebooking, name='managebooking'),
     path('manage_booking/', views.manage_booking_page, name='manage_booking'),
     path('verify_otp/', views.verifiy_otp_manage_booking, name='verifiy_otp_manage_booking'),
+    path('backup/users',views.backupData_users),
+    path('backup/verifiedusers',views.backupData_verified_users),
+    path('backup/transactions',views.backupData_transactions),
+
 ] 
