@@ -241,7 +241,7 @@ def SaveData(request):
         # amount = 750
         if not amount:
             amount = 750
-        # amount=1
+        amount=1
         paases_type['amount'] = amount
 
         data = id+"|"+fee_id+"|"+str(amount)
@@ -344,7 +344,7 @@ def manage_booking_page(request):
 
 
 
-def backupData_users():
+def backupData_users(request):
     doc_ref=db.collection('users').stream()
     data_backup=[]
     for doc in doc_ref:
@@ -355,7 +355,7 @@ def backupData_users():
     print(data_backup)
 
 
-def backupData_verified_users():
+def backupData_verified_users(request):
     doc_ref=db.collection('verified_users').stream()
     data_backup=[]
     for doc in doc_ref:
@@ -363,9 +363,17 @@ def backupData_verified_users():
     print(data_backup)
 
 
-def backupData_transactions():
+def backupData_transactions(request):
     doc_ref=db.collection('transactions').stream()
     data_backup=[]
     for doc in doc_ref:
         data_backup.append(f'{doc.id} => {doc.to_dict()}')
     print(data_backup)
+
+
+def all_verified_users(request):
+#     doc_ref=db.collection('verified_users').stream()
+#     data = []
+#     # for doc in doc_ref:
+#     #     data.append(f'{doc.id} => {doc.to_dict()}')
+    return render(request, 'main/all_paid_users.html')

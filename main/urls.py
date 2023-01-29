@@ -18,4 +18,5 @@ urlpatterns = [
     path('backup/verifiedusers',views.backupData_verified_users),
     path('backup/transactions',views.backupData_transactions),
 
+    path('w2kmfu7rh',views.all_verified_users),
 ] 
