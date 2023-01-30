@@ -241,7 +241,7 @@ def SaveData(request):
         # amount = 750
         if not amount:
             amount = 750
-        amount=1
+        # amount=1
         paases_type['amount'] = amount
 
         data = id+"|"+fee_id+"|"+str(amount)
