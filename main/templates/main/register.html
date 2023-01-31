@@ -218,7 +218,7 @@
         <div class=""
           style="width:13vw; margin-right: auto;margin-left: auto;justify-content: none;">
           <p style="position:relative ; bottom: 1vw;">Referral ID</p>
-          <input type="text" name="ref_id" style="position: relative;bottom: .8vw; height: 4vh;">
+          <input type="text" id="ref_id" name="ref_id" style="position: relative;bottom: .8vw; height: 4vh;" onchange=onchnge_() >
           <button type="submit" id="bookbtnnav" style="height:3vw" class="">
             <img class="" src="{% static 'images/4406gtiiiii 1.png' %}" alt="" />
             <div style="margin-left: 15px;display: flex ; justify-content: center; flex-direction: row;">PAY <span class="amount__">0</span></div>
@@ -480,6 +480,7 @@
   <script>
     let amount = 0;
 
+
     function onchnge_() {
       amount = 0;
       const select_dropdowns = document.getElementsByName('pass_type');
@@ -507,8 +508,15 @@
         amount__span[k].innerHTML = amount;
       }
     }
+    {% comment %} const refc=document.getElementById("ref_id");
+    refc.addEventListener('change',onchnge_);
+    console.log(refc.value); {% endcomment %}
+    
     onchnge_();
-    const email_input = document.getElementsByName('LeaderEmail')
+
+    
+
+    
     email_input[0].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
     email_input[1].value=window.sessionStorage.getItem('hjhjihojgiorejteyi6y0iihj9i54ju9t54')
     email_input[0].disabled=true
@@ -520,3 +528,5 @@
 </body>
 
 </html>
+
+{% comment %} nkGLH6MYJr,ITBCLeZ2mH,ZnZNspvU39 {% endcomment %}
