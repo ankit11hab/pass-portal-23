@@ -13,7 +13,7 @@ urlpatterns = [
     path('success/', views.success, name="payment_success"),
     path('get_status/', views.get_status_ajax, name="get_status_ajax"),
     path('under_process/', views.under_process, name='UnderProcess'),
-#     path('qr', views.generate_qr_code)
+    path('qrdsfasdfaswr3235r', views.generate_qr_code)
 
     # path('status/',views.payment_status,name='payment_status'),
     # re_path(r'^get_status_ajax/$', views.get_status_ajax, name='get_status_ajax'),

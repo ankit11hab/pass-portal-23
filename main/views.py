@@ -344,7 +344,7 @@ def manage_booking_page(request):
 
 
 
-def backupData_users():
+def backupData_users(request):
     doc_ref=db.collection('users').stream()
     data_backup=[]
     for doc in doc_ref:
@@ -355,17 +355,27 @@ def backupData_users():
     print(data_backup)
 
 
-def backupData_verified_users():
+def backupData_verified_users(request):
     doc_ref=db.collection('verified_users').stream()
     data_backup=[]
     for doc in doc_ref:
         data_backup.append(f'{doc.id} => {doc.to_dict()}')
     print(data_backup)
+    return HttpResponse('ho gaya')
 
 
-def backupData_transactions():
+def backupData_transactions(request):
     doc_ref=db.collection('transactions').stream()
     data_backup=[]
     for doc in doc_ref:
         data_backup.append(f'{doc.id} => {doc.to_dict()}')
     print(data_backup)
+    return HttpResponse('ho gaya')
+
+def delete_kardega(request):
+    doc_ref=db.collection('verified_users').where("email","==","digvijaysihag123@gmail.com").stream()
+    for doc in doc_ref:
+        doc.reference.delete()
+    return HttpResponse('ho gaya delte kuch ab')
+    
+    

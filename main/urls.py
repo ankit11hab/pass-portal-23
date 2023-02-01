@@ -17,5 +17,6 @@ urlpatterns = [
     path('backup/users',views.backupData_users),
     path('backup/verifiedusers',views.backupData_verified_users),
     path('backup/transactions',views.backupData_transactions),
+    path('dletesfdsdfar32',views.delete_kardega)
 
 ] 
