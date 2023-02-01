@@ -186,41 +186,42 @@ def encrypt_data(data, key):
 @csrf_exempt
 def get_verified_details(request):
     # print('called')
- if request.method=="POST":
-    id=request.POST['uid']
-    doc_ref = db.collection('users').document(id)
-    tid = doc_ref.get().to_dict()['transID']
-    # id,name,pass_type
-    q = db.collection('verified_users').where('transID', '==', tid).stream()
-    context = []
+    if request.method=="POST":
+        id=request.POST['uid']
+        doc_ref = db.collection('users').document(id)
+        tid = doc_ref.get().to_dict()['transID']
+        # id,name,pass_type
+        q = db.collection('verified_users').where('transID', '==', tid).stream()
+        context = []
+        
+        for doc in q:
+            doc_dict = doc.to_dict()
+            doc_dict['id'] = doc.id
+            context.append(doc_dict)
+        
+        print(context)
+        key = b'mysecretkey'
+        print(type(key))
+        count=1
+        for member in context:
+            curr_data = f"{member['id']}"
+            curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
+            member['encrypted_id'] = curr_encrypted_data
+            member['id'] = member['name'].replace(" ","")+member['email'].split('@')[0]+member['id'][:4]
+            count=count+1
+        print(context)
+        # -----------------------code for referral id-----------------------------
+        # ref_id = doc_ref.get().to_dict()['ReferralID']
+        # referral = db.collection('referral_ids').where('ID', '==', ref_id).get()
+        # for ref in referral:
+        #     if ref.exists:
+        #         referred_users={'referred_user':count}
+        #         ref.reference.update(referred_users)
+        #     else:
+        #         print('The Entered Referral ID was Incorrect')
     
-    for doc in q:
-        doc_dict = doc.to_dict()
-        doc_dict['id'] = doc.id
-        context.append(doc_dict)
-       
-    print(context)
-    key = b'mysecretkey'
-    print(type(key))
-    count=1
-    for member in context:
-        curr_data = f"{member['id']}"
-        curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
-        member['encrypted_id'] = curr_encrypted_data
-        member['id'] = member['name'].replace(" ","")+member['email'].split('@')[0]+member['id'][:4]
-        count=count+1
-    print(context)
-  # -----------------------code for referral id-----------------------------
-    ref_id = doc_ref.get().to_dict()['ReferralID']
-    referral = db.collection('referral_ids').where('ID', '==', ref_id).get()
-    for ref in referral:
-        if ref.exists:
-            referred_users={'referred_user':count}
-            ref.reference.update(referred_users)
-        else:
-            print('The Entered Referral ID was Incorrect')
-    
-    return render(request, 'payment/success_.html', {'context': context,"cardid":doc_ref.get().to_dict()['verID']})
+        return render(request, 'payment/success_.html', {'context': context,"cardid":doc_ref.get().to_dict()['verID']})
+    return render(request, 'payment/success_.html')
 
 
 def get_payment_details(request):

@@ -86,6 +86,7 @@
                   <img class="vimg" id="email_submit" src="{% static 'images/GroupArrow.png' %}"/>
                   </div>
               </div>
+              <div id="resendOTP"></div>
               <div class="vpara">
                 Please enter your e-mail ID. A one-time-passcode will be sent on the same to verify your E-Mail ID.
               </div>
@@ -206,18 +207,27 @@
 </body>
 <script>
   let otp_sent = false;
+  function ResendOTP(){
+    otp_sent = false;
+  }
   document.getElementById('email_submit').addEventListener('click', ()=>{
     function validation(){
+      if(otp_sent) {
+        alert("OTP has already been sent to your entered Email ID. Please wait for a minute before you try again!");
+        return false;
+      }
       var email = document.getElementsByName("email")[0].value;
-    console.log(email)
-    var emailReg = /^([A-Za-z0-9_\-.])+@/;
-    if (!(email).match(emailReg)) {
-      alert("Invalid Email");
-      return false;
-    } else {
-      otp_sent = true;
-      return true;
-    }
+      
+      console.log(email)
+      var emailReg = /^([A-Za-z0-9_\-.])+@/;
+      if (!(email).match(emailReg)) {
+        alert("Invalid Email");
+        return false;
+      } else {
+        otp_sent = true;
+        setTimeout(ResendOTP,60000);
+        return true;
+      }
     }
     
     
