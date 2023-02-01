@@ -208,6 +208,7 @@ def get_verified_details(request):
             curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
             member['encrypted_id'] = curr_encrypted_data
             member['id'] = member['name'].replace(" ","")+member['email'].split('@')[0]+member['id'][:4]
+            generate_qr_code(member['email'],member['id'])
             count=count+1
         print(context)
         # -----------------------code for referral id-----------------------------
@@ -227,49 +228,48 @@ def get_verified_details(request):
 def get_payment_details(request):
     return render(request, 'payment/transaction_done.html')
 
-def generate_qr_code(request):
-    # email = request.session.get('LeaderEmail')
-        # doc_refs=db.collection('verified_users').stream()
-        key = b'mysecretkey'
-    # for doc in doc_refs:
-        # member= doc.to_dict()
-        email = "akshat.akshat@iitg.ac.in"
-        # email=member['email']
-        from_email = settings.EMAIL_HOST_USER
-        message = EmailMessage(
-            'QR code',
-            'Here is the Pass you requested',
-            from_email,
-            [email],
-        )
-        qr = qrcode.QRCode(version=6,
-                            box_size=18,
-                            border=4,)
-        qr.make()
-        img = qr.make_image(fill_color="#fffde9",
-                            back_color="black")
-        qr = qrcode.QRCode()
-        # id=doc.id
-        id="tempa"
-        # qr.add_data(encrypt_data(str.encode(doc.id), key).decode())
-        qr.add_data(encrypt_data(str.encode(id), key).decode())
-        qr.make()
-        img = qr.make_image(fill_color="#fffde9",
-                            back_color="black")
-        img.save(f'static/QRcode/{id}.png', format='PNG')
-        gen_pdf(id)
-        try:
-            message.attach_file(f'/static/pdf/{id}.pdf')
-        except:
-            print('lodelage gaye')
-        message.send()
-        return HttpResponse('Pass sent!')
+def mail_all(request):
+    doc_refs=db.collection('verified_users').stream()
+    a=0;
+    for doc in doc_refs:
+        member= doc.to_dict()
+        if (db.collection('transactions').document(member['transID']).get().exists and db.collection('transactions').document(member['transID']).get().to_dict()['amount']!="1.00") or ( not db.collection('transactions').document(member['transID']).get().exists) or member['transID']=="Manual":
+            generate_qr_code(member['email'],doc.id)
+            doc.update({"mailsent":True})
+            a+=1
+    return HttpResponse(f'sent mail to {a}')
+
+def generate_qr_code(email,id):
+    key = b'mysecretkey'
+    from_email = settings.EMAIL_HOST_USER
+    message = EmailMessage(
+        'QR code',
+        'Here is the Pass you requested',
+        from_email,
+        [email],
+    )
+    qr = qrcode.QRCode(version=6,
+                       box_size=18,
+                       border=4,)
+    qr.add_data(encrypt_data(id,key))
+    qr.make()
+    img = qr.make_image(fill_color="#fffde9",
+                        back_color="black")
+    img.save(f'passes/QRcode/{id}.png', format='PNG')
+    gen_pdf(id)
+    try:
+        message.attach_file(f'passes/pdf/{id}.pdf')
+    except:
+        print('lodelage gaye')
+    message.send()
+    delete_file(id)
+    return HttpResponse('Pass sent!')
 
 
 def gen_pdf(pdfID):
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=(2000, 2000))
-    can.drawImage(f"static/QRcode/{pdfID}.png", 1100, 800)
+    can.drawImage(f"passes/QRcode/{pdfID}.png", 1100, 800)
     can.save()
     packet.seek(0)
     new_pdf = PdfReader(packet)
@@ -280,6 +280,13 @@ def gen_pdf(pdfID):
     page.merge_page(new_pdf.pages[0])
     output.add_page(page)
     output.add_page(existing_pdf.pages[1])
-    outputStream = open(f'static/pdf/{pdfID}.pdf', "wb")
+    outputStream = open(f'passes/pdf/{pdfID}.pdf', "wb")
     output.write(outputStream)
     outputStream.close()
+
+def delete_file(id):
+    os.remove(f'passes/pdf/{id}.pdf')
+    os.remove(f'passes/QRcode/{id}.png')
+
+
+
