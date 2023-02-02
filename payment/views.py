@@ -202,17 +202,18 @@ def get_verified_details(request):
             doc_dict = doc.to_dict()
             doc_dict['id'] = doc.id
             context.append(doc_dict)
+            generate_qr_code(doc_dict['email'],doc_dict['name'],doc_dict['IDNumber'],doc_dict['id'])
+            doc.reference.update({"mailsent":True})
         
-        count=1
-        for member in context:
+        # count=1
+        # for member in context:
             # curr_data = f"{member['id']}"
             # curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
             # member['encrypted_id'] = curr_data
             # member['id'] = member['name'].replace(" ","")+member['email'].split('@')[0]+member['id'][:4]
-            generate_qr_code(member['email'],member['name'],member['IDNumber'],doc.id)
-            doc.update({"mailsent":True})
-            count=count+1
-        print(context)
+            
+            # count=count+1
+        # print(context)
         # -----------------------code for referral id-----------------------------
         # ref_id = doc_ref.get().to_dict()['ReferralID']
         # referral = db.collection('referral_ids').where('ID', '==', ref_id).get()
