@@ -237,9 +237,9 @@ def SaveData(request):
             elif (pass_type == 'exclusive'):
                 paases_type['exclusive'] = paases_type['exclusive']+1
 
-        # amount = paases_type['general']*500 + \
-        #     (paases_type['exclusive']+paases_type['premium'])*750
-        amount=paases_type['exclusive']
+        amount = paases_type['general']*500 + \
+            (paases_type['exclusive']+paases_type['premium'])*750
+        # amount=paases_type['exclusive']
 
         if paases_type['general']+paases_type['premium']+paases_type['exclusive'] != len(members)+1:
             messages.warning(request, 'Some Error Occured.Please Try Again')
