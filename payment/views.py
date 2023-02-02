@@ -19,6 +19,7 @@ import io
 import os
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
+# import String
 
 
 # Create your views here.
@@ -85,6 +86,7 @@ def payment_response(request):
                 "age": doc_ref.get().to_dict()['LAge'],
                 "gender": doc_ref.get().to_dict()['LGender'],
                 "transID": tid,
+                "IDNumber":doc_ref.get().to_dict()['LIDNumber'],
                 "day1": True,
                 "day2": True,
                 "day3": True
@@ -117,6 +119,7 @@ def payment_response(request):
                     "age": member['age'],
                     "gender": member['gender'],
                     "transID": tid,
+                    "IDNumber":member['id_number'],
                     "day1": True,
                     "day2": True,
                     "day3": True
@@ -193,22 +196,21 @@ def get_verified_details(request):
         # id,name,pass_type
         q = db.collection('verified_users').where('transID', '==', tid).stream()
         context = []
+        key = b'mysecretkey'
         
         for doc in q:
             doc_dict = doc.to_dict()
             doc_dict['id'] = doc.id
             context.append(doc_dict)
         
-        print(context)
-        key = b'mysecretkey'
-        print(type(key))
         count=1
         for member in context:
-            curr_data = f"{member['id']}"
-            curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
-            member['encrypted_id'] = curr_encrypted_data
-            member['id'] = member['name'].replace(" ","")+member['email'].split('@')[0]+member['id'][:4]
-            generate_qr_code(member['email'],member['id'])
+            # curr_data = f"{member['id']}"
+            # curr_encrypted_data = encrypt_data(str.encode(curr_data), key).decode()
+            # member['encrypted_id'] = curr_data
+            # member['id'] = member['name'].replace(" ","")+member['email'].split('@')[0]+member['id'][:4]
+            generate_qr_code(member['email'],member['name'],member['IDNumber'],doc.id)
+            doc.update({"mailsent":True})
             count=count+1
         print(context)
         # -----------------------code for referral id-----------------------------
@@ -229,17 +231,19 @@ def get_payment_details(request):
     return render(request, 'payment/transaction_done.html')
 
 def mail_all(request):
-    doc_refs=db.collection('verified_users').stream()
+    doc_refs=db.collection('ver_copy').limit(1).stream()
     a=0;
     for doc in doc_refs:
         member= doc.to_dict()
-        if (db.collection('transactions').document(member['transID']).get().exists and db.collection('transactions').document(member['transID']).get().to_dict()['amount']!="1.00") or ( not db.collection('transactions').document(member['transID']).get().exists) or member['transID']=="Manual":
-            generate_qr_code(member['email'],doc.id)
-            doc.update({"mailsent":True})
-            a+=1
+        idNumber="301230121"
+        # idNumber=member['IDNumber']
+        # if (db.collection('transactions').document(member['transID']).get().exists and db.collection('transactions').document(member['transID']).get().to_dict()['amount']!="1.00") or ( not db.collection('transactions').document(member['transID']).get().exists) or member['transID']=="Manual":
+        generate_qr_code(member['email'],member['name'],idNumber,doc.id)
+        doc.reference.update({"mailsent":True})
+        a+=1
     return HttpResponse(f'sent mail to {a}')
 
-def generate_qr_code(email,id):
+def generate_qr_code(email,name,idNumber,id):
     key = b'mysecretkey'
     from_email = settings.EMAIL_HOST_USER
     message = EmailMessage(
@@ -248,28 +252,41 @@ def generate_qr_code(email,id):
         from_email,
         [email],
     )
-    qr = qrcode.QRCode(version=6,
-                       box_size=18,
-                       border=4,)
-    qr.add_data(encrypt_data(id,key))
+    qr = qrcode.QRCode(version=3,
+                       box_size=5,
+                       border=3,)
+    qr.add_data(id)
     qr.make()
     img = qr.make_image(fill_color="#fffde9",
                         back_color="black")
     img.save(f'passes/QRcode/{id}.png', format='PNG')
-    gen_pdf(id)
+    gen_pdf(name,idNumber,id)
     try:
-        message.attach_file(f'passes/pdf/{id}.pdf')
+        message.attach_file(f'passes/pdf/{name}_{id}.pdf')
     except:
         print('lodelage gaye')
     message.send()
-    delete_file(id)
+    delete_file(name,id)
     return HttpResponse('Pass sent!')
 
-
-def gen_pdf(pdfID):
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+def gen_pdf(name,idNumber,pdfID):
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=(2000, 2000))
-    can.drawImage(f"passes/QRcode/{pdfID}.png", 1100, 800)
+    can.drawImage(f"passes/QRcode/{pdfID}.png", 360, 310)
+    # can.setFillColorRGB(222,0,0)
+    pdfmetrics.registerFont(TTFont('times', 'timesbd.ttf'))
+    # pdfmetrics.registerFont(TTFont('VeraBd', 'VeraBd.ttf'))
+    # pdfmetrics.registerFont(TTFont('VeraIt', 'VeraIt.ttf'))
+    # pdfmetrics.registerFont(TTFont('VeraBI', 'VeraBI.ttf'))
+    can.setFont('times', 32)
+
+    # can.setFont('DarkGardenMK', 32)
+    # can.drawString(10, 150, 'This should be in')
+    # idNumber = "hi hello abcd"
+    can.drawString(50,290, idNumber)
+    # can.setFont("",240)
     can.save()
     packet.seek(0)
     new_pdf = PdfReader(packet)
@@ -280,13 +297,52 @@ def gen_pdf(pdfID):
     page.merge_page(new_pdf.pages[0])
     output.add_page(page)
     output.add_page(existing_pdf.pages[1])
-    outputStream = open(f'passes/pdf/{pdfID}.pdf', "wb")
+    outputStream = open(f'passes/pdf/{name}_{pdfID}.pdf', "wb")
     output.write(outputStream)
     outputStream.close()
 
-def delete_file(id):
-    os.remove(f'passes/pdf/{id}.pdf')
+def delete_file(name,id):
+    os.remove(f'passes/pdf/{name}_{id}.pdf')
     os.remove(f'passes/QRcode/{id}.png')
+
+def allqr(request):
+    doc_refs=db.collection("verified_users").stream()
+    context=[]
+    key = b'mysecretkey'
+    for doc in doc_refs:
+        try: 
+            doc.to_dict()['IDNumber']
+        # generate_qr_code(doc.id)
+            print(doc.to_dict())
+            dict={}
+            dict['id']=doc.id
+            
+            dict['IDNumber']=doc.to_dict()['IDNumber']
+            context.append(dict)
+        except:
+            pass
+    return render(request,'payment/all_qr.html',{"context":context})
+
+def copy_collection(request):
+    doc_refs=db.collection('users').where("LEmail",'==',"shiddharthasha3008@gmail.com").stream()
+    for doc in doc_refs:
+        # try:
+        if doc.get("verID"):
+            verID=doc.to_dict()['verID']
+            ref=db.collection('verified_users').document(verID)
+            ref.update({'IDNumber':doc.to_dict()['LIDNumber']})
+            members=doc.reference.collection('members').stream()
+            for mem in members:
+                memverID=mem.to_dict()['verID']
+                ref=db.collection('verified_users').document(memverID)
+                ref.update({'IDNumber':mem.to_dict()['id_number']})
+            # pass
+    return HttpResponse('check')
+
+
+
+
+
 
 
 
