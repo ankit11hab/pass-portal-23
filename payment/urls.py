@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('errordsjkdfasdf88/', views.payment_error, name='payment_error'),
 #     path('mail/', views.generate_qr_code, name='mail'),
-    path('responsefsadfnjlasufo8/', views.payment_response, name='payment_response'),
+    path('response/', views.payment_response, name='payment_response'),
     path('statusfaskdfla88jfii7/', views.payment_response, name="payment_status"),
     path('get_verified_detailsjkfhkef743jh2/',
          views.get_verified_details, name="get_verified_details"),
