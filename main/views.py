@@ -43,7 +43,7 @@ def comingsoon(request):
 
 
 def home(request):
-    return render(request, 'main/maint.html')
+    return render(request, 'main/home.html')
 
 
 def otp(request):
