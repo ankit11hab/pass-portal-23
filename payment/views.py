@@ -249,7 +249,11 @@ def generate_qr_code(email,name,idNumber,id):
     from_email = settings.EMAIL_HOST_USER
     message = EmailMessage(
         'QR code',
-        'Here is the Pass you requested',
+        f'Dear {name}\
+        Your registration for Alcheringa 2023 has been sent to us.\
+        Your passID is {id}.\
+        With best wishes,\
+        Team Alcheringa',
         from_email,
         [email],
     )

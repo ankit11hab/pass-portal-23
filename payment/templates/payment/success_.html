@@ -30,7 +30,7 @@
   <!-- /////////// code for navbar ends here -->
   {%if cardid%}
   <div class="card_id_lead">
-    <div class="card_id_header">Your own card ID is ready ! Save it to manage your Alcher cards</div>
+    <div class="card_id_header">Your own card ID is ready ! Your Passes are sent on E-mail.</div>
     <div class="card_id_content">
     <div>CARD ID:</div>
     <div class="array_card_id">
@@ -119,9 +119,9 @@
           </div>
         </div>
       </div>
-      <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+      {% comment %} <div style="display: flex; justify-content: center; margin-bottom: 20px;">
         <img class="tapButton_mob" src="{% static 'images/DownloadBtn.png'%}" onclick="PrintDiv('final_pass_{{member.id}}')" />
-      </div>
+      </div> {% endcomment %}
       {%endfor%}
     </div>
   </div>
@@ -144,7 +144,7 @@
         <div class="copy_sent__text">
           A copy of the E-pass has been sent to your registered E-mail ID.
         </div>
-        <div class="buttonStackOuterDiv_mob">
+        {% comment %} <div class="buttonStackOuterDiv_mob">
           <div class="buttonStack_mob">
             <div>
               <img class="tapButton_mob" src="{% static  'images/DownloadBtn.png'%}" alt=""
@@ -157,7 +157,7 @@
               <img class="tapButton_mob" src="{% static  'images/whatsappBtn.png'%}" alt="" />
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
       </div>
     </div>
   </div>
@@ -176,10 +176,10 @@
   {% for member in context %}
   if (document.getElementById('{{member.id}}')) {
     var qrcode = new QRCode("{{member.id}}", {
-      text: "{{member.encrypted_id}}",
+      text: "{{member.id}}",
     });
     var qrcode2 = new QRCode("final_qr_{{member.id}}", {
-      text: "{{member.encrypted_id}}",
+      text: "{{member.id}}",
       width: 176,
       height: 176,
       colorDark : "#ffffff",
@@ -189,7 +189,7 @@
   }
   if (document.getElementById('{{member.id}}_mob')) {
     var qrcode1 = new QRCode("{{member.id}}_mob", {
-      text: "{{member.encrypted_id}}",
+      text: "{{member.id}}",
     });
     document.getElementById("{{member.id}}_mob").children[1].setAttribute('style', 'height:200px')
   }
