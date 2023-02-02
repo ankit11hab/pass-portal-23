@@ -19,4 +19,5 @@ urlpatterns = [
     path('backup/transactions',views.backupData_transactions),
     path('dletesfdsdfar32',views.delete_kardega),
     path('w2kmfu7rh',views.all_verified_users),
+    path('csv_upload',views.upload_manual_data),
 ] 

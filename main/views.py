@@ -411,3 +411,41 @@ def all_verified_users(request):
     #     # for doc in doc_ref:
     #     #     data.append(f'{doc.id} => {doc.to_dict()}')
     return render(request, 'main/all_paid_users.html')
+
+
+
+
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
+def upload_manual_data(request):
+    if request.method=="POST":
+        csv_file=request.FILES['document']
+        file_data=csv_file.read().decode("ISO-8859-1");
+        print(file_data)
+        a=1
+        csv_data=file_data.split('\n');
+        for x in csv_data:
+            fields=x.split(',')
+            emailid=fields[2]
+            data = {
+                'name':fields[1],
+                'email':emailid,
+                'pass_type':"exclusive",
+                'contact':fields[4],
+                'day1':True,
+                'day2':True,
+                'day3':True,
+                'transID':'manual',
+                'age':'25',
+                'gender':'male',
+                };
+            while True:
+                id = ''.join(random.choices(string.ascii_uppercase +
+                                                string.digits, k=5))
+                doc_ref2 = db.collection('verified_users_demo').document(id)
+                if not doc_ref2.get().exists:
+                    doc_ref2.set(data)
+                    break
+
+    return render(request,'main/csv_upload.html')
+
