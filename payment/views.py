@@ -276,7 +276,7 @@ def gen_pdf(name,idNumber,pdfID):
     can = canvas.Canvas(packet, pagesize=(2000, 2000))
     can.drawImage(f"passes/QRcode/{pdfID}.png", 360, 310)
     # can.setFillColorRGB(222,0,0)
-    pdfmetrics.registerFont(TTFont('times', 'timesbd.ttf'))
+    pdfmetrics.registerFont(TTFont('times', 'times.ttf'))
     # pdfmetrics.registerFont(TTFont('VeraBd', 'VeraBd.ttf'))
     # pdfmetrics.registerFont(TTFont('VeraIt', 'VeraIt.ttf'))
     # pdfmetrics.registerFont(TTFont('VeraBI', 'VeraBI.ttf'))
