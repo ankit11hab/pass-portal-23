@@ -248,12 +248,8 @@ def generate_qr_code(email,name,idNumber,id):
     key = b'mysecretkey'
     from_email = settings.EMAIL_HOST_USER
     message = EmailMessage(
-        'QR code',
-        f'Dear {name}\
-        Your registration for Alcheringa 2023 has been sent to us.\
-        Your passID is {id}.\
-        With best wishes,\
-        Team Alcheringa',
+        'Registration Successful',
+      f'Dear {name}, \n\nYour Alcheringa Registartion is Successful.\nYour CardID is {id}.Your Alcher Card is Attached with the E-Mail. \nPlease Bring Your ID-Proof  for on-spot verification. \n\nWith best wishes, \nTeam Alcheringa',
         from_email,
         [email],
     )
