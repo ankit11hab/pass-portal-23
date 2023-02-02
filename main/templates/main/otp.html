@@ -210,15 +210,15 @@
   function ResendOTP(){
     otp_sent = false;
     const resend=document.getElementById('resendOTP');
-    resend.innerHTML="<h4>*Resend OTP</h4>"
+    resend.innerHTML="<h5>*Resend OTP</h5>"
     resend.style.color='green';
     resend.style.fontFamily='aileron, sans-serif'
   }
   document.getElementById('email_submit').addEventListener('click', ()=>{
     function validation(){
       const resend=document.getElementById('resendOTP');
-    resend.innerHTML="<h4></h4>"
-    resend.style.color='green';
+    resend.innerHTML="<h5>*Please Wait For a Minute Before You Try Again</h5>"
+    resend.style.color='red';
     resend.style.fontFamily='aileron, sans-serif'
       if(otp_sent) {
         alert("OTP has already been sent to your entered Email ID. Please wait for a minute before you try again!");
