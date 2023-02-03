@@ -428,21 +428,22 @@ def upload_manual_data(request):
             fields=x.split(',')
             emailid=fields[2]
             data = {
-                'name':fields[1],
+                'name':fields[0],
                 'email':emailid,
                 'pass_type':"exclusive",
-                'contact':fields[4],
+                'contact':fields[1],
                 'day1':True,
                 'day2':True,
                 'day3':True,
                 'transID':'manual',
                 'age':'25',
                 'gender':'male',
+                'IDNumber':fields[3]
                 };
             while True:
                 id = ''.join(random.choices(string.ascii_uppercase +
                                                 string.digits, k=5))
-                doc_ref2 = db.collection('verified_users_demo').document(id)
+                doc_ref2 = db.collection('verified_users').document(id)
                 if not doc_ref2.get().exists:
                     doc_ref2.set(data)
                     break

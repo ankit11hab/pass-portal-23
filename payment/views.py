@@ -232,24 +232,35 @@ def get_payment_details(request):
     return render(request, 'payment/transaction_done.html')
 
 def mail_all(request):
-    doc_refs=db.collection('ver_copy').limit(1).stream()
+    doc_refs=db.collection('verified_users').stream()
     a=0;
     for doc in doc_refs:
-        member= doc.to_dict()
-        idNumber="301230121"
-        # idNumber=member['IDNumber']
-        # if (db.collection('transactions').document(member['transID']).get().exists and db.collection('transactions').document(member['transID']).get().to_dict()['amount']!="1.00") or ( not db.collection('transactions').document(member['transID']).get().exists) or member['transID']=="Manual":
-        generate_qr_code(member['email'],member['name'],idNumber,doc.id)
-        doc.reference.update({"mailsent":True})
-        a+=1
+        try:
+            if ('mailsent' not in doc.to_dict()) or ('mailsent' in doc.to_dict() and not doc.to_dict()['mailsent']):
+                member= doc.to_dict()
+                if 'IDNumber' in doc.to_dict():
+                    if doc.to_dict()['IDNumber']!="":
+                        idNumber=doc.to_dict()['IDNumber']
+                        # if ('transID' in member and db.collection('transactions').document(member['transID']).get().exists and db.collection('transactions').document(member['transID']).get().to_dict()['amount']!="1.00"):
+                        if 'transID' in member and member['transID']=="manual":
+                            generate_qr_code(member['email'],member['name'],idNumber,doc.id)
+                            doc.reference.update({"mailsent":True})
+                            a+=1
+                            print(a)
+                            if a==30:
+                                break;
+        except:
+            pass
+    
     return HttpResponse(f'sent mail to {a}')
 
 def generate_qr_code(email,name,idNumber,id):
     key = b'mysecretkey'
     from_email = settings.EMAIL_HOST_USER
     message = EmailMessage(
-        'Registration Successful',
-      f'Dear {name}, \n\nYour Alcheringa Registartion is Successful.\nYour CardID is {id}.Your Alcher Card is Attached with the E-Mail. \nPlease Bring Your ID-Proof  for on-spot verification. \n\nWith best wishes, \nTeam Alcheringa',
+        'Your Alcheringa 2023 Card is here',
+    #   f'Dear {name}, \n\nYour Alcheringa Registartion is Successful.\nYour CardID is {id}.Your Alcher Card is Attached with the E-Mail. \nPlease Bring Your ID-Proof  for on-spot verification. \n\nWith best wishes, \nTeam Alcheringa',
+        f"Dear {name},\n\nThe wait is finally over! Your very own Exclusive Alcher Card is here. Thank you for purchasing it. With the pass, you get free entry at the Creator's Camp, access to the Premium Arena, 10% discount on the official Alcher Merch, and many more perks during the three days of Alcheringa 23.\n\nThis is your final pass, so make sure to keep this with you at all times during the fest. Hope you have a great time!\n\nFor any doubts and queries, contact:\n+91 9310859978 / +91 9378063452\n\nWith best wishes,\nTeam Alcheringa",
         from_email,
         [email],
     )
@@ -282,12 +293,12 @@ def gen_pdf(name,idNumber,pdfID):
     # pdfmetrics.registerFont(TTFont('VeraBd', 'VeraBd.ttf'))
     # pdfmetrics.registerFont(TTFont('VeraIt', 'VeraIt.ttf'))
     # pdfmetrics.registerFont(TTFont('VeraBI', 'VeraBI.ttf'))
-    can.setFont('abel', 32)
+    can.setFont('abel', 20)
 
     # can.setFont('DarkGardenMK', 32)
     # can.drawString(10, 150, 'This should be in')
     # idNumber = "hi hello abcd"
-    can.drawString(55,285, idNumber)
+    can.drawString(45,285, idNumber)
     # can.setFont("",240)
     can.save()
     packet.seek(0)
@@ -326,20 +337,24 @@ def allqr(request):
     return render(request,'payment/all_qr.html',{"context":context})
 
 def copy_collection(request):
-    doc_refs=db.collection('users').where("LEmail",'==',"shiddharthasha3008@gmail.com").stream()
+    doc_refs=db.collection('users').stream()
+    count=0
     for doc in doc_refs:
-        # try:
-        if doc.get("verID"):
-            verID=doc.to_dict()['verID']
-            ref=db.collection('verified_users').document(verID)
-            ref.update({'IDNumber':doc.to_dict()['LIDNumber']})
-            members=doc.reference.collection('members').stream()
-            for mem in members:
-                memverID=mem.to_dict()['verID']
-                ref=db.collection('verified_users').document(memverID)
-                ref.update({'IDNumber':mem.to_dict()['id_number']})
-            # pass
-    return HttpResponse('check')
+        try:
+            if 'verID' in doc.to_dict():
+                verID=doc.to_dict()['verID']
+                ref=db.collection('verified_users').document(verID)
+                count+=1
+                ref.update({'IDNumber':doc.to_dict()['LIDNumber']})
+                members=doc.reference.collection('members').stream()
+                for mem in members:
+                    memverID=mem.to_dict()['verID']
+                    ref=db.collection('verified_users').document(memverID)
+                    count+=1
+                    ref.update({'IDNumber':mem.to_dict()['id_number']})
+        except:
+            pass
+    return HttpResponse(f'updated {count}')
 
 
 
