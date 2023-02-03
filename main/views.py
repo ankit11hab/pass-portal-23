@@ -313,6 +313,7 @@ def verifiy_otp_manage_booking(request):
         print(otp_from_db)
         if (str(otp) == str(otp_from_db)):
             context = []
+            print(id)
             doc__ref = db.collection('users').where('verID', '==', id).stream()
             for doc in doc__ref:
                 data_ref = doc.to_dict()
@@ -323,26 +324,21 @@ def verifiy_otp_manage_booking(request):
                 LPassType = data_ref['LPassType']
                 LName = data_ref['LName']
                 LIDNumber = data_ref['LIDNumber']
-                curr_data = f"{doc.id}"
-                curr_encrypted_data = encrypt_data(
-                    str.encode(curr_data), key).decode()
+                verID=data_ref['verID']
                 context.append(
-                    {"id": doc.id,
+                    {"id": verID,
                      'age': LAge,
                      'email': LEmail,
                      'gender': LGender,
                      'id_type': LIDType,
                      'pass_type': LPassType,
                      'name': LName,
-                     'id_number': LIDNumber, 'encrypted_id': curr_encrypted_data})
+                     'id_number': LIDNumber
+                     })
 
                 for mem in doc.reference.collection('members').stream():
                     dict = mem.to_dict()
-                    dict["id"] = mem.id
-                    curr_data = f"{dict['verID']}"
-                    curr_encrypted_data = encrypt_data(
-                        str.encode(curr_data), key).decode()
-                    dict['encrypted_id'] = curr_encrypted_data
+                    dict["id"] = mem.to_dict()['verID']
                     context.append(dict)
             print(context)
             return render(request, 'payment/success_.html', {'context': context, "cardid": id})
