@@ -373,7 +373,7 @@ a:visited {
 }
 
 .Pass-Alcher .Pass {
-  background-image: url("https://passportalbucket.s3.amazonaws.com/images/Subtract.png");
+  background-image: url("../images/Subtract.png");
   background-repeat: none;
   height: 47vh;
   width: 65vw;
@@ -384,7 +384,7 @@ a:visited {
 }
 
 .Pass-Alcher .Pass2 {
-  background-image: url("https://passportalbucket.s3.amazonaws.com/images/Subtract.png");
+  background-image: url("../images/Subtract.png");
   background-repeat: none;
   height: 55vh;
   width: 75vw;

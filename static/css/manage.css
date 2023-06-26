@@ -95,7 +95,7 @@
   }
   
   .Pass-Alcher .Pass {
-    background-image: url("https://passportalbucket.s3.amazonaws.com/images/Subtract.png");
+    background-image: url("../images/Subtract.png");
     height: 18vw;
     min-height: 200px;
     max-height: 300px;
@@ -113,7 +113,7 @@
   }
   
   .Pass-Alcher .Pass2 {
-    background-image: url("https://passportalbucket.s3.amazonaws.com/images/Subtract.png");
+    background-image: url("../images/Subtract.png");
     background-repeat: none;
     height: 300px;
     width: 75vw;
