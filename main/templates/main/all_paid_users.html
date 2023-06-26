@@ -5,11 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table,tr,th,td{
+            border: solid;
+            padding: 5px;
+        }
+        
+    </style>
 </head>
 <body>
-    <h1>All paid users</h1>
+    <h1>All verified users</h1>
     <table>
         <tr>
+            <th>Pass ID</th>
             <th>Trans ID</th>
             <th>Name</th>
             <th>Email</th>
@@ -19,6 +27,18 @@
         </tr>
         {% for user in data %}
         <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.transID}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.contact}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.pass_type}}</td>
+        </tr>
+        {% endfor %}
+        {% for user in data__ %}
+        <tr>
+            <td>{{user.id}}</td>
             <td>{{user.transID}}</td>
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>

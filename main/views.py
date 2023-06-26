@@ -402,11 +402,25 @@ def delete_kardega(request):
     
     
 def all_verified_users(request):
-    #     doc_ref=db.collection('verified_users').stream()
-    #     data = []
-    #     # for doc in doc_ref:
-    #     #     data.append(f'{doc.id} => {doc.to_dict()}')
-    return render(request, 'main/all_paid_users.html')
+    doc_ref=db.collection('verified_users').stream()
+    data = []
+    data__ = []
+    count = 0;
+    for doc in doc_ref:
+        doc_dict = doc.to_dict()
+        doc_dict['id']=doc.id
+        if doc_dict['transID']:
+            if (doc_dict['transID'] != "manual" and db.collection('transactions').document(doc_dict['transID']).get().exists and db.collection('transactions').document(doc_dict['transID']).get().to_dict()['amount']!="1.00"):
+                data.append(doc_dict)
+                count+=1
+                print(count)
+        if doc_dict['transID'] == 'manual':
+             doc_dict_ = doc.to_dict()
+             doc_dict_['id']=doc.id
+             data__.append(doc_dict_)
+
+    # print(data)
+    return render(request, 'main/all_paid_users.html',{'data':data,'data__':data__})
 
 
 
@@ -445,4 +459,3 @@ def upload_manual_data(request):
                     break
 
     return render(request,'main/csv_upload.html')
-
