@@ -283,6 +283,7 @@ def generate_qr_code(email,name,idNumber,id):
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+
 def gen_pdf(name,idNumber,pdfID):
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=(2000, 2000))
@@ -357,9 +358,37 @@ def copy_collection(request):
     return HttpResponse(f'updated {count}')
 
 
+emails = []
 
+def all_mails():
+    doc_refs=db.collection('verified_users').stream()
 
+    for doc in doc_refs:
+        email  = doc.to_dict()['email']
+        emails.append(email)
 
+    emails_set = (set(emails))
+    emails = emails_set
+    return HttpResponse('done')
 
+emails_ = {'digvijaysihag123@gmail.com'}
 
+def send_email(request):
+    count = 0;
+    # all_emails() #uncomment this to store all emails in emails 
+    #change emails_ to emails to send to all verified_users
+    for email in emails_:
+        print('here')
+        from_email = settings.EMAIL_HOST_USER
 
+        message = EmailMessage(
+        'Test Subject',
+        f"This is a test email to {email}",
+        from_email,
+        [email],)
+
+        message.send()
+        count = count + 1
+    
+    return HttpResponse(f'Send mail to {count}')
+    

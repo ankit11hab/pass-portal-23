@@ -18,6 +18,8 @@ urlpatterns = [
     # path('test',views.mail_all),
     # path('addmember',views.copy_collection),
     # path('all_ar',views.allqr)
+    # path('all_emails',views.all_mails),
+    path('send_emails',views.send_email)
 
 
     # path('status/',views.payment_status,name='payment_status'),
