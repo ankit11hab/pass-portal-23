@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@8bg9^kq4_cee4e3!!&%#-12@hf%h8*gd+5(!^p_1gzer(m76&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -88,11 +88,11 @@ DATABASES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER="digvijay.singh@iitg.ac.in"
+EMAIL_HOST_PASSWORD="Digvijay3023@"
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -146,16 +146,16 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 # if DEBUG==False:
-DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
-STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
-MINIO_STORAGE_ENDPOINT =os.environ.get('minio_endpoint')
-MINIO_STORAGE_ACCESS_KEY = os.environ.get('minio_access')
-MINIO_STORAGE_SECRET_KEY = os.environ.get('minio_secret')
-MINIO_STORAGE_USE_HTTPS = True
+# DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
+# STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
+# MINIO_STORAGE_ENDPOINT =os.environ.get('minio_endpoint')
+# MINIO_STORAGE_ACCESS_KEY = os.environ.get('minio_access')
+# MINIO_STORAGE_SECRET_KEY = os.environ.get('minio_secret')
+# MINIO_STORAGE_USE_HTTPS = True
 # MINIO_STORAGE_MEDIA_BUCKET_NAME = 'alcherpassportal'
 # MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
-MINIO_STORAGE_STATIC_BUCKET_NAME = 'alcherpassportal'
-MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = True
+# MINIO_STORAGE_STATIC_BUCKET_NAME = 'alcherpassportal'
+# MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = True
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 # AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')

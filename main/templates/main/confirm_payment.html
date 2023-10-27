@@ -46,10 +46,11 @@
     {% for message in messages %} {% if message.tags == 'info' %}
     <form
       method="POST"
-      action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp"
+      action="{% url 'payment_status' %}"
     >
       {% csrf_token %}
       <input type="hidden" name="data" value="{{message}}" />
+      <input type="hidden" name="id"  />
       <button id="cnfirm_pymnt_submit_btn" style="opacity: 0" type="submit">
         submit
       </button>
@@ -61,6 +62,10 @@
   <script>
     const timeout_ = setTimeout(() => {
       const btn___ = document.getElementById("cnfirm_pymnt_submit_btn");
+      const id = window.localStorage.getItem(
+      "fasdlfsdaffdsui542958riuehwflu989aaSDAF"
+    );
+    document.getElementsByName('id').value = id;
       console.log(btn___);
       btn___.click();
     }, 3000);
@@ -73,6 +78,6 @@
     console.log((splittedData));
     {% endif %}
     {% endfor %}
-    window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF",splittedData[0])
+    window.localStorage.setItem("fasdlfsdaffdsui542958riuehwflu989aaSDAF",splittedData[0]);
   </script>
 </html>

@@ -39,7 +39,7 @@ def get_status_ajax(request):
         id = request.GET.get("id")
         # print(request.GET)
 
-        doc_ref = db.collection('users').document(id).get().to_dict()
+        doc_ref = db.collection('users_').document(id).get().to_dict()
         print(doc_ref)
         if 'currStatus' in doc_ref:
             if doc_ref['currStatus'] == "verified":
@@ -60,19 +60,22 @@ def payment_response(request):
     print(context)
     if request.method == 'POST':
         secretkey = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
-        data = request.POST['data']
-        decrypt_data = decrypt(secretkey, data)
-        print(decrypt_data)
-        split_data = decrypt_data.split('|')
-        status = split_data[4]
-        errDesc = split_data[5]
-        tid = split_data[3]
-        id = split_data[0]
-        # id = "GBTCG"
-        doc_ref_trans=db.collection('transactions').document(tid)
-        doc_ref_trans.set({"id":split_data[0],"fee_type":split_data[1],"amount":split_data[2],"status":status,"errDesc":split_data[5],"time":split_data[6]})
+        # data = request.POST['data']
+        # decrypt_data = decrypt(secretkey, data)
+        # print(decrypt_data)
+        # split_data = decrypt_data.split('|')
+        # status = split_data[4]
+        status = "1"
+        # errDesc = split_data[5]
+        # tid = split_data[3]
+        tid = "220076382"
+        # id = split_data[0]
+        id = "KGLSO"
+        print(id)
+        doc_ref_trans=db.collection('transactions_').document(tid)
+        doc_ref_trans.set({"id":id,"fee_type":"Demo","amount":"750","status":status,"errDesc":"NA","time":"7:30"})
         leader_id = id
-        doc_ref = db.collection('users').document(
+        doc_ref = db.collection('users_').document(
             leader_id)
         if status == "1":
             print("inside 1")
@@ -95,12 +98,12 @@ def payment_response(request):
             while True:
                 memID = ''.join(random.choices(string.ascii_uppercase +
                                                string.digits, k=5))
-                doc_ref2 = db.collection('verified_users').document(memID)
+                doc_ref2 = db.collection('verified_users_').document(memID)
                 if not doc_ref2.get().exists:
                     doc_ref2.set(leader_data)
                     break
             doc_ref.update({"verID":doc_ref2.id})       
-            docref3 = db.collection('verified_users').document(doc_ref2.id)
+            docref3 = db.collection('verified_users_').document(doc_ref2.id)
             leader_array = {
                 'name': docref3.get().to_dict()['name'],
                 'pass_type': docref3.get().to_dict()['pass_type'],
@@ -128,7 +131,7 @@ def payment_response(request):
                 while True:
                     memID = ''.join(random.choices(string.ascii_uppercase +
                                                    string.digits, k=5))
-                    doc_ref2 = db.collection('verified_users').document(memID)
+                    doc_ref2 = db.collection('verified_users_').document(memID)
                     if not doc_ref2.get().exists:
                         doc_ref2.set(member_data)
                         break
@@ -159,10 +162,10 @@ def payment_response(request):
             # generate_qr_code(request,leader_array,member_array)
             return redirect('get_payment_details')
         else:
-            doc_ref = db.collection('users').document(
+            doc_ref = db.collection('users_').document(
                 leader_id)
-            doc_ref.update({"currStatus": "error", "error": errDesc})
-            context = {"message": errDesc, "success": 0, "tid": tid}
+            doc_ref.update({"currStatus": "error", "error": "errDesc"})
+            context = {"message": "errDesc", "success": 0, "tid": tid}
             print(context)
 
     return render(request, "payment/response.html", context)
@@ -191,10 +194,10 @@ def get_verified_details(request):
     # print('called')
     if request.method=="POST":
         id=request.POST['uid']
-        doc_ref = db.collection('users').document(id)
+        doc_ref = db.collection('users_').document(id)
         tid = doc_ref.get().to_dict()['transID']
         # id,name,pass_type
-        q = db.collection('verified_users').where('transID', '==', tid).stream()
+        q = db.collection('verified_users_').where('transID', '==', tid).stream()
         context = []
         key = b'mysecretkey'
         
@@ -232,7 +235,7 @@ def get_payment_details(request):
     return render(request, 'payment/transaction_done.html')
 
 def mail_all(request):
-    doc_refs=db.collection('verified_users').stream()
+    doc_refs=db.collection('verified_users_').stream()
     a=0;
     for doc in doc_refs:
         try:
@@ -320,7 +323,7 @@ def delete_file(name,id):
     os.remove(f'passes/QRcode/{id}.png')
 
 def allqr(request):
-    doc_refs=db.collection("verified_users").stream()
+    doc_refs=db.collection("verified_users_").stream()
     context=[]
     key = b'mysecretkey'
     for doc in doc_refs:
@@ -338,19 +341,19 @@ def allqr(request):
     return render(request,'payment/all_qr.html',{"context":context})
 
 def copy_collection(request):
-    doc_refs=db.collection('users').stream()
+    doc_refs=db.collection('users_').stream()
     count=0
     for doc in doc_refs:
         try:
             if 'verID' in doc.to_dict():
                 verID=doc.to_dict()['verID']
-                ref=db.collection('verified_users').document(verID)
+                ref=db.collection('verified_users_').document(verID)
                 count+=1
                 ref.update({'IDNumber':doc.to_dict()['LIDNumber']})
                 members=doc.reference.collection('members').stream()
                 for mem in members:
                     memverID=mem.to_dict()['verID']
-                    ref=db.collection('verified_users').document(memverID)
+                    ref=db.collection('verified_users_').document(memverID)
                     count+=1
                     ref.update({'IDNumber':mem.to_dict()['id_number']})
         except:
@@ -361,7 +364,7 @@ def copy_collection(request):
 emails = []
 
 def all_mails():
-    doc_refs=db.collection('verified_users').stream()
+    doc_refs=db.collection('verified_users_').stream()
 
     for doc in doc_refs:
         email  = doc.to_dict()['email']

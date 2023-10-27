@@ -13,7 +13,7 @@
     {% for message in messages %} {% if message.tags == 'info' %}
     <form
       method="post"
-      action="https://online.iitg.ac.in/epay/misc/alcheringa.jsp"
+      action="{% url 'payment_status' %}"
     >
       {% csrf_token %}
       <input type="hidden" name="data" value="{{message}}" />

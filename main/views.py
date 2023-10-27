@@ -20,14 +20,14 @@ import json
 from django.core.mail import EmailMultiAlternatives
 
 config = {
-    'apiKey': os.environ.get('API_KEY'),
-    'authDomain': "pass-portal-a05c7.firebaseapp.com",
-    'databaseURL': "https://pass-portal-a05c7-default-rtdb.firebaseio.com/",
-    'projectId': "pass-portal-a05c7",
-    'storageBucket': "pass-portal-a05c7.appspot.com",
-    'messagingSenderId': "160016579583",
-    'appId': "1:160016579583:web:e04e2383bfd944f4aa05ca",
-}
+  'apiKey': "AIzaSyD0KgHcI6ajhW86bxrJwRMkZU-5OrX9At8",
+  'authDomain': "pass-portal-e3e5e.firebaseapp.com",
+  'projectId': "pass-portal-e3e5e",
+  'storageBucket': "pass-portal-e3e5e.firebaseio.com",
+  'databaseURL': "https://pass-portal-e3e5e-default-rtdb.firebaseio.com",
+  'messagingSenderId': "202019625356",
+  'appId': "1:202019625356:web:6c811fb453662ce02e9ea9"
+};
 
 # firebase=pyrebase.initialize_app(config)
 # authe = firebase.auth()
@@ -146,8 +146,9 @@ def SaveData(request):
     if request.method == 'POST':
         key = "Jkdh9rs6x1mSKH2lDFZ6z6057x4p8CL7"
         iv = "adjfytryd5g87hgh"
-        id = ''.join(random.choices(string.ascii_uppercase +
-                                    string.digits, k=5))
+        # id = ''.join(random.choices(string.ascii_uppercase +
+                                    # string.digits, k=5))
+        id = "KGLSO"
         amount = 1
         fee_id = "M1006"
         paases_type = {
@@ -198,7 +199,7 @@ def SaveData(request):
             # "members": members
         }
 
-        doc_ref = db.collection('users').document(id)
+        doc_ref = db.collection('users_').document(id)
         doc_ref.set(Ldata)
         count = 1
         for i in member_first_names:
@@ -314,7 +315,7 @@ def verifiy_otp_manage_booking(request):
         if (str(otp) == str(otp_from_db)):
             context = []
             print(id)
-            doc__ref = db.collection('users').where('verID', '==', id).stream()
+            doc__ref = db.collection('users_').where('verID', '==', id).stream()
             for doc in doc__ref:
                 data_ref = doc.to_dict()
                 LAge = data_ref['LAge']
@@ -351,7 +352,7 @@ def manangebooking(request):
     id = data['id']
     email = data['email']
     print(id+' '+email)
-    doc_ref = db.collection('verified_users').document(id).get().to_dict()
+    doc_ref = db.collection('verified_users_').document(id).get().to_dict()
     print(doc_ref)
     if (doc_ref['email'] == email):
         send_verify_otp(email, id)
@@ -366,7 +367,7 @@ def manage_booking_page(request):
 
 
 def backupData_users(request):
-    doc_ref=db.collection('users').stream()
+    doc_ref=db.collection('users_').stream()
     data_backup=[]
     for doc in doc_ref:
         memb_dict = []
@@ -378,7 +379,7 @@ def backupData_users(request):
 
 
 def backupData_verified_users(request):
-    doc_ref=db.collection('verified_users').stream()
+    doc_ref=db.collection('verified_users_').stream()
     data_backup=[]
     for doc in doc_ref:
         data_backup.append(f'{doc.id} => {doc.to_dict()}')
@@ -387,7 +388,7 @@ def backupData_verified_users(request):
 
 
 def backupData_transactions(request):
-    doc_ref=db.collection('transactions').stream()
+    doc_ref=db.collection('transactions_').stream()
     data_backup=[]
     for doc in doc_ref:
         data_backup.append(f'{doc.id} => {doc.to_dict()}')
@@ -395,14 +396,14 @@ def backupData_transactions(request):
     return HttpResponse('ho gaya')
 
 def delete_kardega(request):
-    doc_ref=db.collection('verified_users').where("email","==","digvijaysihag123@gmail.com").stream()
+    doc_ref=db.collection('verified_users_').where("email","==","digvijaysihag123@gmail.com").stream()
     for doc in doc_ref:
         doc.reference.delete()
     return HttpResponse('ho gaya delte kuch ab')
     
     
 def all_verified_users(request):
-    doc_ref=db.collection('verified_users').stream()
+    doc_ref=db.collection('verified_users_').stream()
     data = []
     data__ = []
     count = 0;
@@ -453,7 +454,7 @@ def upload_manual_data(request):
             while True:
                 id = ''.join(random.choices(string.ascii_uppercase +
                                                 string.digits, k=5))
-                doc_ref2 = db.collection('verified_users').document(id)
+                doc_ref2 = db.collection('verified_users_').document(id)
                 if not doc_ref2.get().exists:
                     doc_ref2.set(data)
                     break
